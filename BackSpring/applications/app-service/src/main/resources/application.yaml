@@ -5,12 +5,8 @@ spring:
     name: "OkrAdministration"
   devtools:
     add-properties: false
-  h2:
-    console:
-      enabled: true
-      path: "/h2"
   profiles:
     include: null
   data:
     mongodb:
-      uri: "mongodb://localhost:27017/test"
+      uri: "mongodb+srv://admin:Y2Gg8vyrgdN2KLFM@cluster0.2pbel.mongodb.net/proyectoOkrC2?retryWrites=true&w=majority"

@@ -17,4 +17,5 @@ public RouterFunction<ServerResponse> routerFunction(Handler handler) {
     .andRoute(POST("/api/usecase/otherpath"), handler::listenPOSTUseCase).and(route(GET("/api/otherusercase/path"), handler::listenGETOtherUseCase));
 
     }
+
     }
