@@ -1,0 +1,12 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: "OkrAdministration"
+  devtools:
+    add-properties: false
+  profiles:
+    include: null
+  data:
+    mongodb:
+      uri: "mongodb+srv://admin:Y2Gg8vyrgdN2KLFM@cluster0.2pbel.mongodb.net/proyectoOkrC2?retryWrites=true&w=majority"
