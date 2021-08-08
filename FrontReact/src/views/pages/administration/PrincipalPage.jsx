@@ -1,29 +1,32 @@
 import React from "react";
-
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import Sidebar from "../../components/administration/Sidebar";
 import "../../assets/styles/administration/index.css";
 
-const DashboardPage = () => {
+// Páginas
+import OkrPage from "../../pages/okr/OkrPage";
+import DashboardPage from "../../pages/dashboard/DashboardPage";
+import DashboardUserPage from "../../pages/dashboard/DashboardUserPage";
+import CalendarPage from "../../pages/calendar/CalendarPage";
+import AdministrationPage from "../../pages/administration/AdministrationPage";
+
+import "../../assets/styles/administration/App.scss";
+
+const PrincipalPage = () => {
   return (
-    <div>
-      <Sidebar />
-      <div id="content">
-        <section>
-          <div className="container">
-            <div className="row">
-              <div className="col-lg-9">
-                <h1>Bienvenido Usuario</h1>
-                <p>Holiwi</p>
-              </div>
-              <div className="col-lg-3">
-                
-              </div>
-            </div>
-          </div>
-        </section>
+    <Router>
+      <div className="flex">
+        <Sidebar />
+        <div className="content w-100">
+          <Route exact path="/okr" component={OkrPage} />
+          <Route exact path="/dashboard" component={DashboardPage} />
+          <Route exact path="/userdash" component={DashboardUserPage} />
+          <Route exact path="/calendar" component={CalendarPage} />
+          <Route exact path="/administration" component={AdministrationPage} />
+        </div>
       </div>
-    </div>
+    </Router>
   );
 };
 
-export default DashboardPage;
+export default PrincipalPage;
