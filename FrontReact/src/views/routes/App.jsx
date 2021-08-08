@@ -1,9 +1,9 @@
 import "../assets/styles/administration/index.css";
-
+import Sidebar from "../components/administration/Sidebar";
 function App() {
   return (
     <div>
-      <h1>Buenasss</h1>
+      <Sidebar />
     </div>
   );
 }
