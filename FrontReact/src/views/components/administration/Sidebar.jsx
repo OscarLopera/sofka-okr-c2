@@ -13,7 +13,7 @@ function Sidebar() {
             <i className="icon ion-md-stats mx-2 lead"></i>Dashboard
           </a>
           <a href="/" className="d-block text-light p-3">
-            <i class="icon ion-md-calendar mx-2 lead"></i>Calendario
+            <i className="icon ion-md-calendar mx-2 lead"></i>Calendario
           </a>
           <a href="/" className="d-block text-light p-3">
             <i className="icon ion-md-settings mx-2 lead"></i>Administración
