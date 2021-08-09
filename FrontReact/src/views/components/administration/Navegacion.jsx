@@ -12,7 +12,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from "reactstrap";
-// import { NavLink } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 import Logo from "../../assets/static/administration/sofka-icono2.png";
 
@@ -32,13 +32,13 @@ const Navegacion = (props) => {
         <Collapse isOpen={isOpen} navbar>
           <Nav className="ms-auto" navbar>
             <NavItem>
-              <NavLink href="/">Home</NavLink>
+              <NavLink to="/">Home</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/login">Login</NavLink>
+              <NavLink to="/login">Login</NavLink>
             </NavItem>
             <NavItem>
-              <NavLink href="/principal">Principal</NavLink>
+              <NavLink to="/principal">Principal</NavLink>
             </NavItem>
             <UncontrolledDropdown nav inNavbar>
               <DropdownToggle nav caret>
