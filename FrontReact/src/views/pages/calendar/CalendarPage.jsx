@@ -74,7 +74,14 @@ const CalendarPage = () => {
         </div>
     )
 }
-
+function renderEventContent(eventInfo) {
+    return (
+        <>
+            <b>{eventInfo.timeText}</b>
+            <i>{eventInfo.event.title}</i>
+        </>
+    )
+}
 
 
 export default CalendarPage;
