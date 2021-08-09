@@ -36,6 +36,33 @@ const CalendarPage = () => {
                 });
     }
 
+    const executeListEvents = () => {
+        return gapi.client.calendar.events.list({
+            "calendarId": "primary",
+            "orderBy": "updated",
+        }).then(function (response) {
+                const items = response.result.items;
+                if (items.length) {
+                    items.map(element => {
+                        if (element.summary === "OKR") {
+                            console.log(element)
+                            setEvents(...{
+                                id:element.id,
+                                title:element.summary,
+                                description:element.description,
+                                start:element.start.dateTime,
+                                end:element.end.dateTime,
+                            })
+                            console.log(events)
+                        }
+                    })
+                }
+            },
+            function (err) {
+                console.error("Execute error", err);
+            });
+    }
+
     const handleDateSelect = (selectInfo) => {
         console.log(selectInfo)
         let title = prompt('Please enter a new title for your event')
