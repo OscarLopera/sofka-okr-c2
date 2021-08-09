@@ -11,6 +11,10 @@ const reducer = (state = initialState, action) => {
             return {user: action.payload, error: null};
         case types.LOGIN_USER_FAILURE:
             return { user: null, error: action.payload };
+        case types.LOGOUT_SUCCESS: 
+            return { user: null, error: null };
+        case types.LOGOUT_FAILURE:
+            return { user: null, error: action.payload };
         default:
             return state;
     }
