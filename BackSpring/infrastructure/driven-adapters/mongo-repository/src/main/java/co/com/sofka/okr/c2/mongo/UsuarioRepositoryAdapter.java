@@ -11,13 +11,19 @@ import reactor.core.publisher.Mono;
 
 @Repository
 public class UsuarioRepositoryAdapter extends AdapterOperations<UsuariosEntity, UsuariosEntity, String, UsuarioDBRepository>
-//implements UsuariosRepository
+implements UsuariosRepository
 {
 
+    private UserMapper userMapper= new UserMapper();
 
     public UsuarioRepositoryAdapter(UsuarioDBRepository repository, ObjectMapper mapper) {
 
         super(repository, mapper, d -> mapper.map(d, UsuariosEntity.class));
     }
 
+    @Override
+    public Mono<Usuarios> adduser(Usuarios usuarios) {
+        Mono<Usuarios> user = this.repository.save(userMapper.fromUsuarios().apply(usuarios)).map(userMapper.fromUsuariosEntity());
+        return user;
+    }
 }

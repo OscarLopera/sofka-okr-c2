@@ -10,8 +10,10 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class Handler {
-//private  final UseCase useCase;
+//private  final UseCase useCase;c
 //private  final UseCase2 useCase2;
+    private final CreateUserUseCase createUserUseCase;
+    private MapperUserDTO mapperUserDTO = new MapperUserDTO();
 
     public Mono<ServerResponse> listenGETUseCase(ServerRequest serverRequest) {
         // usecase.logic();
@@ -26,5 +28,11 @@ public class Handler {
     public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {
         // usecase.logic();
         return ServerResponse.ok().body("", String.class);
+    }
+
+    public Mono<UsuarioDTO> createUser(UsuarioDTO usuarioDTO){
+        Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
+                .map(mapperUserDTO.toDTO());
+        return user;
     }
 }

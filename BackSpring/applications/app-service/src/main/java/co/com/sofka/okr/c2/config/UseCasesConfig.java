@@ -13,4 +13,8 @@ import org.springframework.context.annotation.FilterType;
         },
         useDefaultFilters = false)
 public class UseCasesConfig {
+
+        CreateUserUseCase createUserUseCase(UsuariosRepository usuariosRepository){
+                return new CreateUserUseCase(usuariosRepository);
+        }
 }
