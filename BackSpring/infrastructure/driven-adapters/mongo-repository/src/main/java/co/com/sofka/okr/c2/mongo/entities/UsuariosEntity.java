@@ -1,25 +1,30 @@
-package co.com.sofka.okr.c2.api;
+package co.com.sofka.okr.c2.mongo.entities;
 
-public class UsuarioDTO {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "users")
+public class UsuariosEntity {
+    @Id
     private String id;
     private String name;
     private String email;
     private String urlPhoto;
     private String phone;
-    private Boolean FirstTime;
+    private Boolean firstTime;
     private String verticalId;
     private String rol;
 
-    public UsuarioDTO() {
+    public UsuariosEntity() {
     }
 
-    public UsuarioDTO(String id, String name, String email, String urlPhoto, String phone, Boolean FirstTime, String verticalId, String rol) {
+    public UsuariosEntity(String id, String name, String email, String urlPhoto, String phone, Boolean FirstTime, String verticalId, String rol) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.urlPhoto = urlPhoto;
         this.phone = phone;
-        this.FirstTime = FirstTime;
+        this.firstTime = FirstTime;
         this.verticalId = verticalId;
         this.rol = rol;
     }
@@ -81,10 +86,10 @@ public class UsuarioDTO {
     }
 
     public Boolean getFirstTime() {
-        return FirstTime;
+        return firstTime;
     }
 
     public void setFirstTime(Boolean firstTime) {
-        FirstTime = firstTime;
+        this.firstTime = firstTime;
     }
 }

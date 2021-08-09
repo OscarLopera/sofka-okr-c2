@@ -2,6 +2,7 @@ package co.com.sofka.okr.c2.api;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.MediaType;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
@@ -18,4 +19,4 @@ public RouterFunction<ServerResponse> routerFunction(Handler handler) {
 
     }
 
-    }
+}

@@ -1,5 +1,7 @@
 package co.com.sofka.okr.c2.config;
 
+import co.com.sofka.okr.c2.model.usuarios.gateways.UsuariosRepository;
+import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
