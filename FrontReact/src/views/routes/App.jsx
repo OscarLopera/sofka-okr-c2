@@ -16,11 +16,11 @@ import "../assets/styles/administration/App.scss";
 const App = () => {
   return (
     <Router>
-      <Navegacion />
+      {/* <Navegacion /> */}
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route exact path="/login" component={LoginPage} />
-        <Route exact path="/principal" component={PrincipalPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/principal" component={PrincipalPage} />
+        <Route path="/" component={HomePage} />
       </Switch>
     </Router>
   );

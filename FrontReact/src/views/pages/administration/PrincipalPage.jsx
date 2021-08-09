@@ -11,20 +11,19 @@ import CalendarPage from "../../pages/calendar/CalendarPage";
 import AdministrationPage from "../../pages/administration/AdministrationPage";
 
 import "../../assets/styles/administration/App.scss";
+import Switch from "react-bootstrap/esm/Switch";
 
 const PrincipalPage = () => {
   return (
     <Router>
-      <div className="flex">
-        <Sidebar />
-        <div className="content w-100">
-          <Route exact path="/okr" component={OkrPage} />
-          <Route exact path="/dashboard" component={DashboardPage} />
-          <Route exact path="/userdash" component={DashboardUserPage} />
-          <Route exact path="/calendar" component={CalendarPage} />
-          <Route exact path="/administration" component={AdministrationPage} />
-        </div>
-      </div>
+      <Sidebar />
+      <Switch>
+        <Route exact path="/okr" component={OkrPage} />
+        <Route exact path="/dashboard" component={DashboardPage} />
+        <Route exact path="/userdash" component={DashboardUserPage} />
+        <Route exact path="/calendar" component={CalendarPage} />
+        <Route exact path="/administration" component={AdministrationPage} />
+      </Switch>
     </Router>
   );
 };
