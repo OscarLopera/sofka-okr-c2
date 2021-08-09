@@ -3,7 +3,7 @@
 //const OKRS = require(" IMPLENTAR DOMINIO DE OKRS ")
 //const KRS = require(" IMPLENTAR DOMINIO DE KRS ")
 
-module.exports = async (id) => {
+module.exports = async (id) => { // INTERFAZ DEL OKR Y KRS
       const okrsId = await OKRS.findById(id);
       const krList = await KRS.find();
 

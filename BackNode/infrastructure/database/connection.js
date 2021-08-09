@@ -6,12 +6,21 @@ const USER = encodeURIComponent(config.dbUser);
 const PASSWORD = encodeURIComponent(config.dbPassword);
 const DB_NAME = config.dbName;
 
-//const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}:${config.dbPort}/${DB_NAME}?retryWrites=true&w=majority`;
-const MONGO_URI = `mongodb+srv://admin:SNkAijhmy63puCyG@proyectos.6bgcy.mongodb.net/ProyectoFinal?retryWrites=true&w=majority`;
+const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}/${DB_NAME}?retryWrites=true&w=majority`;
 
+  const connectDB =async ()=>{
+    try{
+        await mongoose
+        .connect(MONGO_URI,{ useNewUrlParser: true,
+                    useUnifiedTopology: true ,
+                    useCreateIndex: true })
+        console.log("Mongodb connected")
+    }
+    catch(err){
+        console.error(err.message)
+        process.exit(1)
+    }
 
-mongoose
-  .connect(MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log("DB is connected"))
-  .catch((e) => console.log(e));
+}
 
+module.exports= connectDB
