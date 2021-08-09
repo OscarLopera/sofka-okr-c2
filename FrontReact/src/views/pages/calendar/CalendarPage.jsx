@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -6,8 +6,6 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
 
 const CalendarPage = () => {
-
-    const [events, setEvents] = useState()
 
     const gapi = window.gapi
     const CLIENT_ID = "618457073189-ef3vd653lm20qg4eajpucqltb5a5vtb5.apps.googleusercontent.com";
@@ -18,58 +16,42 @@ const CalendarPage = () => {
     });
 
     const authenticate = () => {
-        return gapi.auth2.getAuthInstance().signIn({scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly"}).then(function () {
-                console.log("Sign-in successful");
+        return gapi.auth2.getAuthInstance().signIn({scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly"}).then(() => {
+                gapi.client.setApiKey(API_KEY);
+                gapi.client.load("https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest").then(() => {
+                    console.log("API connexion OK")
+                }, (err) => {
+                    console.error("Error loading API", err);
+                });
             },
-            function (err) {
+            (err) => {
                 console.error("Error signing in", err);
             });
-    }
-    const loadClient = () => {
-        gapi.client.setApiKey(API_KEY);
-        return gapi.client.load("https://content.googleapis.com/discovery/v1/apis/calendar/v3/rest")
-            .then(function () {
-                    console.log("GAPI client loaded for API");
-                },
-                function (err) {
-                    console.error("Error loading GAPI client for API", err);
-                });
     }
 
     const executeListEvents = () => {
         return gapi.client.calendar.events.list({
             "calendarId": "primary",
             "orderBy": "updated",
-        }).then(function (response) {
-                const items = response.result.items;
-                if (items.length) {
-                    items.map(element => {
-                        if (element.summary === "OKR") {
-                            console.log(element)
-                            setEvents(...{
-                                id:element.id,
-                                title:element.summary,
-                                description:element.description,
-                                start:element.start.dateTime,
-                                end:element.end.dateTime,
-                            })
-                            console.log(events)
-                        }
-                    })
-                }
-            },
-            function (err) {
-                console.error("Execute error", err);
-            });
+        }).then((response) => {
+            const items = response.result.items;
+            if (items.length) {
+                items.map(element => {
+                    if (element.summary === "OKR") {
+                        console.log(element)
+                    }
+                })
+            }
+        }, (err) => {
+            console.error("Execute error", err);
+        });
     }
 
     const handleDateSelect = (selectInfo) => {
         console.log(selectInfo)
         let title = prompt('Please enter a new title for your event')
         let calendarApi = selectInfo.view.calendar
-
-        calendarApi.unselect() // clear date selection
-
+        calendarApi.unselect()
         if (title) {
             const eventoP = {
                 id: "aaaaaa",
@@ -83,6 +65,15 @@ const CalendarPage = () => {
         }
     }
 
+    const renderEventContent = (eventInfo) => {
+        return (
+            <>
+                <b>{eventInfo.timeText}</b>
+                <i>{eventInfo.event.title}</i>
+            </>
+        )
+    }
+
 
     return (
         <div className={"container"}>
@@ -90,8 +81,7 @@ const CalendarPage = () => {
                 <div className="col-md-12">
                     <h1>Instructions</h1>
                     <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
-                            onClick={() => authenticate().then(loadClient).then(executeListEvents)}>authenticate<i
-                        className="bi bi-door-open-fill"/>
+                            onClick={() => authenticate().then(executeListEvents)}>authenticate<i className="bi bi-door-open-fill"/>
                     </button>
                 </div>
             </div>
@@ -110,7 +100,7 @@ const CalendarPage = () => {
                         selectable={true}
                         selectMirror={true}
                         dayMaxEvents={true}
-                        initialEvents={events}
+                        initialEvents={""}
                         select={handleDateSelect}
                         eventContent={renderEventContent}
                         eventClick={""}
@@ -121,14 +111,5 @@ const CalendarPage = () => {
         </div>
     )
 }
-function renderEventContent(eventInfo) {
-    return (
-        <>
-            <b>{eventInfo.timeText}</b>
-            <i>{eventInfo.event.title}</i>
-        </>
-    )
-}
-
 
 export default CalendarPage;
