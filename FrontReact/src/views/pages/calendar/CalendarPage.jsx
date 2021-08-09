@@ -36,6 +36,26 @@ const CalendarPage = () => {
                 });
     }
 
+    const handleDateSelect = (selectInfo) => {
+        console.log(selectInfo)
+        let title = prompt('Please enter a new title for your event')
+        let calendarApi = selectInfo.view.calendar
+
+        calendarApi.unselect() // clear date selection
+
+        if (title) {
+            const eventoP = {
+                id: "aaaaaa",
+                title,
+                start: selectInfo.startStr,
+                end: selectInfo.endStr,
+                allDay: selectInfo.allDay
+            }
+            calendarApi.addEvent(eventoP)
+            console.log(eventoP)
+        }
+    }
+
 
     return (
         <div className={"container"}>
