@@ -5,4 +5,5 @@ import reactor.core.publisher.Mono;
 
 public interface UsuariosRepository {
     Mono<Usuarios> adduser(Usuarios usuarios);
+    Mono<Usuarios> listUser(String id);
 }
