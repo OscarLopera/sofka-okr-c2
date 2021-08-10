@@ -4,6 +4,7 @@ import co.com.sofka.okr.c2.model.okrs.KRS;
 import co.com.sofka.okr.c2.model.okrs.OKRS;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -11,6 +12,7 @@ import java.util.stream.Collectors;
 @Component
 public class MapperOKRDTO  {
 
+    private List<KRDTO> krs = new ArrayList<>();
     public Function<OKRS, OKRSDTO> okrToDto(){
         return okr-> new OKRSDTO(
                 okr.getId().getValue(),
@@ -21,7 +23,7 @@ public class MapperOKRDTO  {
                 okr.getVerticalId().getValue(),
                 okr.getProgress(),
                 okr.getHistoricalProgress(),
-                okr.getKrs().stream().map(it->krToDto().apply(it)).collect(Collectors.toList())
+                krs
         );
     }
 

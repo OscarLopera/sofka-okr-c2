@@ -12,10 +12,11 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 @Configuration
 public class Router {
-@Bean
-public RouterFunction<ServerResponse> routerFunction(Handler handler) {
-    return route(GET("/api/usecase/path"), handler::listenGETUseCase)
-    .andRoute(POST("/api/usecase/otherpath"), handler::listenPOSTUseCase).and(route(GET("/api/otherusercase/path"), handler::listenGETOtherUseCase));
+    @Bean
+    public RouterFunction<ServerResponse> getOKRById(Handler handler) {
+        return route(GET("/api/getokrbyid/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                        .body(handler.getOkrBiId(request.pathVariable("id")), OKRSDTO.class));
 
     }
 

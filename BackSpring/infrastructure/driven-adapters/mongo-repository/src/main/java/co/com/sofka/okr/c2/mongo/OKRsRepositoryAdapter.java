@@ -10,8 +10,7 @@ import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
-import java.util.function.Function;
-
+@Repository
 public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity, OKREntity, String, OKRsDBRepository>
         implements OKRSRepository {
     private EntityMapper entityMapper = new EntityMapper();
@@ -25,3 +24,4 @@ public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity, OKREntit
         return this.repository.findById(id).map(entityMapper.fromOKREntity());
     }
 }
+

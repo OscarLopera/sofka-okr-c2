@@ -3,7 +3,7 @@ package co.com.sofka.okr.c2.mongo.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "krs")
+@Document(collection = "Krs")
 public class KREntity {
     @Id
     private String id;
