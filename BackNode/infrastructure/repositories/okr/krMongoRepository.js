@@ -17,7 +17,7 @@ class KrRepositoryMongo extends KrRepository {
       progress : Kr.progress,
     });
     const response = await  newKr.save()
-    console.log(response);
+    return response._id;
   }
 
   async deleteKr(KrId) {
