@@ -1,6 +1,7 @@
 package co.com.sofka.okr.c2.api;
 
 import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
+import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
@@ -14,6 +15,7 @@ public class Handler {
 
     private final GetUserOKRUseCase getUserOKRUseCase;
     private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
+    private final GetAllUserUseCase getAllUserUseCase;
     private final MapperOKRDTO mapperOKRDTO;
     private final MapperUserDTO mapperUserDTO;
 
@@ -28,6 +30,13 @@ public class Handler {
         return response.next();
     }
 
+
+    public Flux<RespuestaUsuarioDTO> findAllUserOKR(){
+        Flux<RespuestaUsuarioDTO> users = getAllUserUseCase.execute().map(mapperUserDTO.userResponseToDTO())
+                .flatMap(us ->
+                        findUserAllOkr(us.getId()));
+        return users;
+    }
 
 
 }

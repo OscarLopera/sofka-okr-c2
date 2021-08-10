@@ -28,7 +28,8 @@ implements UsuariosRepository
 
     @Override
     public Flux<Usuarios> getAllUsuarios() {
-        return null;
+        Flux<Usuarios> usuariosFlux = this.repository.findAll().map(userMapper.fromUsuariosEntity());
+        return  usuariosFlux;
     }
 
     @Override
