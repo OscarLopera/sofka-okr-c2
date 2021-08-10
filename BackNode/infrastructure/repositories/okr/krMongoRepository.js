@@ -33,9 +33,9 @@ class KrRepositoryMongo extends KrRepository {
     return CrudMongoRepository.getAll(collection);
   }
 
-  async updateKr(KrId, KrData) {
-    return CrudMongoRepository.update(collection, KrId, KrData);
-  }
+  // async updateKr(KrId, KrData) {
+  //   return CrudMongoRepository.update(collection, KrId, KrData);
+  // }
 
   async getByKrId(KrId) {
     return CrudMongoRepository.getById(collection, KrId);

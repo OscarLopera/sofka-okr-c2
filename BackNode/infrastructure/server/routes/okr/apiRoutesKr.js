@@ -19,6 +19,12 @@ function routesApiKr(app) {
     async (req, res, next) =>{
       await krControllers.deleteKrController(req, res, next)}
   );
+  router.patch(
+    "/update/:id",
+    /*validationHandler(krSchemas.createkrSchema),*/
+    async (req, res, next) =>{
+      await krControllers.updateKrProgressController(req, res, next)}
+  );
 
 }
 

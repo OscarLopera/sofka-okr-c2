@@ -8,7 +8,7 @@ class OkrRepository {
   getAllOkr() {
     throw new Error("Error metodo getAllOkr no implemenado");
   }
-  updateOkr(OkrId, Okr) {
+  updateOkr(OkrId, OkrVal) {
     throw new Error("Error metodo updateOkr no implemenado");
   }
   getByOkrId(OkrId) {
