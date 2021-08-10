@@ -51,17 +51,31 @@ describe("Middleware Test Dashboard", () => {
 
   const [loadingOKRFlow] = dashboardmiddleware;
 
-  const action = loadingOKR(idUser)
-  
-  /*
-  test("Probando primer middleware", async () => {
+  const action = loadingOKR(idUser);
+
+  test("Test Functional", async () => {
     await loadingOKRFlow({ api })({ dispatch })(next)(action);
     expect(next).toHaveBeenCalledWith(action);
   });
-*/
-  test("Probando primer middleware", async () => {
+
+  test("Test Happy", async () => {
     await loadingOKRFlow({ api })({ dispatch })(next)(action);
     expect(dispatch).toHaveBeenCalledWith(loadingOKRSuccess(dummyListOKRs));
   });
 
+  //Test Failure
+
+  test("Test Failure", async () => {
+  const api = {
+    dashboard: {
+      loadingOKR: (idUser) => {
+        throw new Error ("Se ha generado un error");
+      },
+    },
+  };
+    const action = loadingOKR(idUser);
+    await loadingOKRFlow({ api })({ dispatch })(next)(action);
+    expect(dispatch).toHaveBeenCalledWith(loadingOKRFailure("Se ha generado un error")
+    );
+  });
 });
