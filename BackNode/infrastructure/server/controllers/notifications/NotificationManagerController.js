@@ -12,9 +12,7 @@ function createNotificationManager(){
             const body = req.body
 
             const {error, value} = schema.validate({ 
-                userId :        body.userId,
-                mail:           body.mail,
-                screen:         body.screen,
+                userId :        body.userId
               });
               if(!error){
                 let result = await createNotiManager(repositoryNotiManagerDb, body)
