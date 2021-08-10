@@ -1,9 +1,8 @@
 
-//const Usuarios = require(" IMPLENTAR DOMINIO DE USUAURIOS ")
-//const OKRS = require(" IMPLENTAR DOMINIO DE OKRS ")
-//const KRS = require(" IMPLENTAR DOMINIO DE KRS ")
+const User = require("../../../domain/user/User")
 
-module.exports = async (id) => { // INTERFAZ DEL OKR Y KRS
+
+const filterUser = async (id,OkrRepository,KrRepository) => { // INTERFAZ DEL OKR Y KRS
       const okrsId = await OKRS.findById(id);
       const krList = await KRS.find();
 
@@ -42,3 +41,5 @@ module.exports = async (id) => { // INTERFAZ DEL OKR Y KRS
     
     return result
 };
+
+module.exports = filterUser

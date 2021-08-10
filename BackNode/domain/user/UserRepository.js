@@ -7,4 +7,12 @@ class UserRepository{
     findById(id){
         throw new Error("METHOD_NOT_IMPLEMENTED");
     }
+
+    getUsersByName(name){
+        throw new Error("METHOD_NOT_IMPLEMENTED");
+
+    }
 }
+
+
+module.exports = UserRepository;
