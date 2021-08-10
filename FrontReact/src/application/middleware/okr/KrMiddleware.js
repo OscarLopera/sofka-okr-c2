@@ -27,7 +27,7 @@ const deleteKrFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
 
 const middlewareKr = [
     createKrFlow,
-    deleteKrFlow
+    deleteKrFlow,
 ]
 
 export default middlewareKr;
