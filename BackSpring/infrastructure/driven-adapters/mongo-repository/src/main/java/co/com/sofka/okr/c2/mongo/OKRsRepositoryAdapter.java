@@ -35,7 +35,8 @@ public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity,OKREntity
 
     @Override
     public Flux<OKRS> findByProgress(String id) {
-        return null;
+        return this.repository.findByManagerIdAndCurrentProgressLessThan(id,100.0)
+                .map(entityMapper.fromOKREntity());
     }
 
     @Override

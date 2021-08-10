@@ -10,4 +10,5 @@ public interface OKRsDBRepository extends ReactiveMongoRepository<OKREntity, Str
 
     Flux<OKREntity> findAllByManagerId(String id);
     Flux<OKREntity> findByManagerIdAndCurrentProgressEquals(String managerId, Double currentProgress);
+    Flux<OKREntity> findByManagerIdAndCurrentProgressLessThan(String managerId, Double currentProgress);
 }

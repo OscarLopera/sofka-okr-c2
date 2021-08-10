@@ -1,12 +1,9 @@
 package co.com.sofka.okr.c2.api;
 
-import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
-import co.com.sofka.okr.c2.usecase.okr.GetOKRByCompletedUseCase;
+import co.com.sofka.okr.c2.usecase.okr.*;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
-import co.com.sofka.okr.c2.usecase.okr.GetAllKrsByIdOkrUseCase;
-import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
@@ -30,6 +27,7 @@ public class Handler {
     private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
     private final GetAllUserUseCase getAllUserUseCase;
     private final GetOKRByCompletedUseCase getOKRByCompletedUseCase;
+    private final GetOKRByProgressUseCase getOKRByProgressUseCase;
 
     public Mono<OKRSDTO> getOkrBiId(String id) {
         Mono<OKRSDTO> okr = getOkrByIdUseCase.execute(id).map(mapperOKRDTO.okrToDto());
@@ -65,6 +63,11 @@ public class Handler {
 
     public Flux<OKRSDTO> getCompleted(String id){
         Flux<OKRSDTO> okrs = getOKRByCompletedUseCase.execute(id).map(mapperOKRDTO.okrToDto());
+        return okrs;
+    }
+
+    public Flux<OKRSDTO> getProgress(String id){
+        Flux<OKRSDTO> okrs = getOKRByProgressUseCase.execute(id).map(mapperOKRDTO.okrToDto());
         return okrs;
     }
 }

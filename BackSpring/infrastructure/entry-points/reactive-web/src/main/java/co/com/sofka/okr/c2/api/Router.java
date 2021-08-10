@@ -41,4 +41,11 @@ public class Router {
 
     }
 
+    @Bean
+    public RouterFunction<ServerResponse> getOKRProgress(Handler handler){
+        return route(GET("/api/get/progress/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
+                        .body(handler.getProgress(request.pathVariable("id")),OKRSDTO.class));
+    }
+
 }
