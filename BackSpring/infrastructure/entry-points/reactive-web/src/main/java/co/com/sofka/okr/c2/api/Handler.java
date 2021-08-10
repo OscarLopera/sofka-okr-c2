@@ -9,6 +9,8 @@ import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.stream.Collectors;
+
 @Component
 @RequiredArgsConstructor
 public class Handler {
@@ -23,7 +25,7 @@ public class Handler {
         Mono<RespuestaUsuarioDTO> user = getUserOKRUseCase.execute(id).map(mapperUserDTO.userResponseToDTO());
         Flux<RespuestaUsuarioDTO> response = getAllOKRByUserUseCase.execute(id).buffer()
                 .flatMap(it -> user.flatMap(okr -> {
-                    okr.setOkrs(it);
+                    okr.setOkrs(it.stream().map(mapperOKRDTO.okrToDto()).collect(Collectors.toList()));
                     val okr2 = okr;
                     return Mono.just(okr2);
                 }));

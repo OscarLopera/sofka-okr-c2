@@ -12,7 +12,7 @@ import java.util.function.Function;
 @Component
 public class MapperUserDTO {
 
-    private List<OKRS> okrs = new ArrayList<>();
+    private List<OKRSDTO> okrs = new ArrayList<>();
 
     public Function<Usuarios,UsuarioDTO> toDTO(){
         return usuarios -> new UsuarioDTO(

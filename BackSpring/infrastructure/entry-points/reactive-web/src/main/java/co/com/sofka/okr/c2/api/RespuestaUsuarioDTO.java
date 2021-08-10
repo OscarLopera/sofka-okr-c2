@@ -8,9 +8,9 @@ public class RespuestaUsuarioDTO {
 
     private String id;
     private String name;
-    private List<OKRS> okrs;
+    private List<OKRSDTO> okrs;
 
-    public RespuestaUsuarioDTO(String id, String name, List<OKRS> okrs) {
+    public RespuestaUsuarioDTO(String id, String name, List<OKRSDTO> okrs) {
         this.id = id;
         this.name = name;
         this.okrs = okrs;
@@ -35,11 +35,11 @@ public class RespuestaUsuarioDTO {
         this.name = name;
     }
 
-    public List<OKRS> getOkrs() {
+    public List<OKRSDTO> getOkrs() {
         return okrs;
     }
 
-    public void setOkrs(List<OKRS> okrs) {
+    public void setOkrs(List<OKRSDTO> okrs) {
         this.okrs = okrs;
     }
 }
