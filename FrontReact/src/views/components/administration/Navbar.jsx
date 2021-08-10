@@ -10,6 +10,7 @@ import * as FaIcons from "react-icons/fa";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
+import Campana from "../notifications/Campana";
 
 // const Nav = styled.div`
 //   background: #050531;
@@ -92,7 +93,7 @@ const Navbar = () => {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link text-white" to="/">
-                    Campana
+                    <Campana/>
                   </Link>
                 </li>
                 <li className="nav-item">
