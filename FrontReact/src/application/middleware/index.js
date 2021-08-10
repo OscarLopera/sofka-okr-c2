@@ -1,5 +1,6 @@
+import dashboardmiddleware from './dashboard/dashboardmiddleware';
 
-
-export default [
-    
+const middleware = [
+   ...dashboardmiddleware,
 ]
+export default middleware;

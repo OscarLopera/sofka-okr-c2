@@ -3,8 +3,7 @@ package co.com.sofka.okr.c2.config;
 import co.com.sofka.okr.c2.model.okrs.gateways.OKRSRepository;
 import co.com.sofka.okr.c2.model.usuarios.gateways.UsuariosRepository;
 import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
-import co.com.sofka.okr.c2.usecase.okr.GetOKRByUserUseCase;
-import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
+import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import org.springframework.context.annotation.ComponentScan;
@@ -31,4 +30,8 @@ public class UseCasesConfig {
                 return new GetAllUserUseCase(usuariosRepository);
         }
 
+
+        public GetOkrByIdUseCase getOkrByIdUseCase(OKRSRepository repository){
+                return new GetOkrByIdUseCase(repository);
+        }
 }

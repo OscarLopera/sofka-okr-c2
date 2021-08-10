@@ -9,6 +9,7 @@ import co.com.sofka.okr.c2.mongo.helper.EntityMapper;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
 
 @Repository
@@ -34,5 +35,10 @@ public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity,OKREntity
     @Override
     public Flux<OKRS> findByProgress(String id) {
         return null;
+    }
+
+    @Override
+    public Mono<OKRS> getOkrById(String id) {
+        return this.repository.findById(id).map(entityMapper.fromOKREntity());
     }
 }
