@@ -30,7 +30,7 @@ const OkrSchema = mongoose.Schema(
   },
   {
     versionKey: false,
-    collection: "OKR",
+    collection: "Okrs",
   }
 );
 

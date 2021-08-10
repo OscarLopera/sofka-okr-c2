@@ -3,7 +3,7 @@ const KrRepositoryMongo = require("../../../repositories/okr/krMongoRepository")
 const krRepository = new KrRepositoryMongo
 
 module.exports = async (req, res, next) => {
-  const  idKr  = req.params;
+  const  idKr  = req.params.id;
   try {
     const deletedKrId = await KrService.deleteKrUseCase(
       idKr,
