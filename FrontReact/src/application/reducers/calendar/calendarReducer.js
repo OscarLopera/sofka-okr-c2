@@ -9,7 +9,6 @@ const initialState = {
 const calendarReducer = (state = initialState, action) => {
     switch (action.type) {
         case CalendarTypes.ADD_EVENT:
-            console.log("load")
             return {...state, loading: true}
         case CalendarTypes.ADD_EVENT_SUCCESS:
             const eventsOptional = state.events;

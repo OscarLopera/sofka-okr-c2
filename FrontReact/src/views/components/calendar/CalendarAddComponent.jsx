@@ -47,6 +47,9 @@ const CalendarAddComponent = ({AddEvent,token}) => {
 
   return(
       <div>
+          <form action="">
+
+          </form>
           <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
                   onClick={() => addEvent()}>post<i className="bi bi-door-open-fill"/>
           </button>

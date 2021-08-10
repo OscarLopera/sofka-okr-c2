@@ -8,13 +8,14 @@ const addEventFlow = ({api}) => ({dispatch}) => next => async (action) => {
             const event = await api.calendar.addEvent(action.payload, action.token)
             dispatch(AddEventSuccess(event))
         } catch (error) {
-            dispatch(AddEventFailure(error))
+            dispatch(AddEventFailure(error.message))
         }
     }
 }
 
 const calendarMiddleware = [
-    addEventFlow
+    addEventFlow,
+
 ]
 
 export default calendarMiddleware
