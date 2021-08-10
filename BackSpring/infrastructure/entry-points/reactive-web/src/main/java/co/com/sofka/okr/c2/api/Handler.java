@@ -1,6 +1,7 @@
 package co.com.sofka.okr.c2.api;
 
 import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
+import co.com.sofka.okr.c2.usecase.okr.GetOKRByCompletedUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
@@ -9,8 +10,6 @@ import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.server.ServerRequest;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
@@ -22,8 +21,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class Handler {
-//private  final UseCase useCase;
-//private  final UseCase2 useCase2;
 
     private final MapperOKRDTO mapperOKRDTO;
     private final MapperUserDTO mapperUserDTO;
@@ -32,6 +29,7 @@ public class Handler {
     private final GetUserOKRUseCase getUserOKRUseCase;
     private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
     private final GetAllUserUseCase getAllUserUseCase;
+    private final GetOKRByCompletedUseCase getOKRByCompletedUseCase;
 
     public Mono<OKRSDTO> getOkrBiId(String id) {
         Mono<OKRSDTO> okr = getOkrByIdUseCase.execute(id).map(mapperOKRDTO.okrToDto());
@@ -63,5 +61,10 @@ public class Handler {
                 .flatMap(us ->
                         findUserAllOkr(us.getId()));
         return users;
+    }
+
+    public Flux<OKRSDTO> getCompleted(String id){
+        Flux<OKRSDTO> okrs = getOKRByCompletedUseCase.execute(id).map(mapperOKRDTO.okrToDto());
+        return okrs;
     }
 }

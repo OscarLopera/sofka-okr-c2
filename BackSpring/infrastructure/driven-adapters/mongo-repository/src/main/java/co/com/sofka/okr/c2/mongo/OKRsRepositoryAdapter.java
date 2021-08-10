@@ -29,7 +29,8 @@ public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity,OKREntity
 
     @Override
     public Flux<OKRS> findByCompleted(String id) {
-        return null;
+        return this.repository.findByManagerIdAndCurrentProgressEquals(id,100.0)
+                .map(entityMapper.fromOKREntity());
     }
 
     @Override

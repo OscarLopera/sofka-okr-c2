@@ -9,4 +9,5 @@ import reactor.core.publisher.Flux;
 public interface OKRsDBRepository extends ReactiveMongoRepository<OKREntity, String>, ReactiveQueryByExampleExecutor<OKREntity> {
 
     Flux<OKREntity> findAllByManagerId(String id);
+    Flux<OKREntity> findByManagerIdAndCurrentProgressEquals(String managerId, Double currentProgress);
 }

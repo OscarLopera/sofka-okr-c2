@@ -17,21 +17,21 @@ public class OKREntity {
     private String managerId;
     private  String verticalId;
     private String description;
-    private Double progress;
+    private Double currentProgress;
     private List<HistoricalProgress> historicalProgress;
 
 
     public OKREntity() {
     }
 
-    public OKREntity(String id, String objective, String title, String managerId, String verticalId, String description, Double progress, List<HistoricalProgress> historicalProgress) {
+    public OKREntity(String id, String objective, String title, String managerId, String verticalId, String description, Double currentProgress, List<HistoricalProgress> historicalProgress) {
         this.id = id;
         this.objective = objective;
         this.title = title;
         this.managerId = managerId;
         this.verticalId = verticalId;
         this.description = description;
-        this.progress = progress;
+        this.currentProgress = currentProgress;
         this.historicalProgress = historicalProgress;
 
     }
@@ -85,11 +85,11 @@ public class OKREntity {
     }
 
     public Double getProgress() {
-        return progress;
+        return currentProgress;
     }
 
     public void setProgress(Double progress) {
-        this.progress = progress;
+        this.currentProgress = progress;
     }
 
     public List<HistoricalProgress> getHistoricalProgress() {
