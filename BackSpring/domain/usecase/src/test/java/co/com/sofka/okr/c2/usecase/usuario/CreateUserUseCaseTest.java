@@ -65,7 +65,6 @@ class CreateUserUseCaseTest {
     @Test
     @DisplayName("Sab test empty use case create user")
     public void createUserSabTestEmpty() throws InterruptedException {
-        Usuarios user = new Usuarios();
 
         Assertions.assertThrows(IllegalArgumentException.class,()->{
             createUserUseCase.execute(new Usuarios("xxxx",
@@ -98,9 +97,9 @@ class CreateUserUseCaseTest {
         Assertions.assertThrows(IllegalArgumentException.class,()->{
             createUserUseCase.execute(new Usuarios("",
                             new Name("juan"),
-                            new Email(""),
+                            new Email("juank9225@gmail.com"),
                             new UrlPhoto("http://imagen/data1"),
-                            new Phone("3008765432"),
+                            new Phone(""),
                             new FirstTime(false),
                             new VerticalId("zzzz"),
                             new Rol("QA")
