@@ -17,7 +17,6 @@ public class OKREntity {
     private String managerId;
     private  String verticalId;
     private String description;
-    private String areaInCharge;
     private Double progress;
     private List<HistoricalProgress> historicalProgress;
 
@@ -25,14 +24,13 @@ public class OKREntity {
     public OKREntity() {
     }
 
-    public OKREntity(String id, String objective, String title, String managerId, String verticalId, String description, String areaInCharge, Double progress, List<HistoricalProgress> historicalProgress) {
+    public OKREntity(String id, String objective, String title, String managerId, String verticalId, String description, Double progress, List<HistoricalProgress> historicalProgress) {
         this.id = id;
         this.objective = objective;
         this.title = title;
         this.managerId = managerId;
         this.verticalId = verticalId;
         this.description = description;
-        this.areaInCharge = areaInCharge;
         this.progress = progress;
         this.historicalProgress = historicalProgress;
 
@@ -84,14 +82,6 @@ public class OKREntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getAreaInCharge() {
-        return areaInCharge;
-    }
-
-    public void setAreaInCharge(String areaInCharge) {
-        this.areaInCharge = areaInCharge;
     }
 
     public Double getProgress() {

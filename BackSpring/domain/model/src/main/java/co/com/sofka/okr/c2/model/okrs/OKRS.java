@@ -16,7 +16,6 @@ public class OKRS {
     private String managerId;
     private Description description;
     private VerticalId verticalId;
-    private String areaInCharge;
     private Double progress;
     private List<HistoricalProgress> historicalProgress;
     private List<KRS> krs;
@@ -24,14 +23,13 @@ public class OKRS {
     public OKRS() {
     }
 
-    public OKRS(IdOkr id, Objective objective, Title title, String managerId, Description description, VerticalId verticalId, String areaInCharge, Double progress, List<HistoricalProgress> historicalProgress, List<KRS> krs) {
+    public OKRS(IdOkr id, Objective objective, Title title, String managerId, Description description, VerticalId verticalId,  Double progress, List<HistoricalProgress> historicalProgress, List<KRS> krs) {
         this.id = id;
         this.objective = objective;
         this.title = title;
         this.managerId = managerId;
         this.description = description;
         this.verticalId = verticalId;
-        this.areaInCharge = areaInCharge;
         this.progress = progress;
         this.historicalProgress = historicalProgress;
         this.krs = krs;
@@ -85,13 +83,7 @@ public class OKRS {
         this.verticalId = verticalId;
     }
 
-    public String getAreaInCharge() {
-        return areaInCharge;
-    }
 
-    public void setAreaInCharge(String areaInCharge) {
-        this.areaInCharge = areaInCharge;
-    }
 
     public Double getProgress() {
         return progress;
