@@ -5,7 +5,6 @@ const okrRepository = new OkrRepositoryMongo
 module.exports = async (req, res, next) => {
   const { body: okr } = req;
   try {
-      console.log("Metodo Post")
     const createdOkrId = await OkrService.createOkrUseCase(
       okr,
       okrRepository
