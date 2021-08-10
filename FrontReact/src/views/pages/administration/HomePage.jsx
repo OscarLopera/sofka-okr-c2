@@ -1,12 +1,61 @@
-import React from "react";
+import { bindActionCreators } from "redux";
+import { loginUser, logoutUser } from "../../../application/actions/administration/user";
+import { connect } from "react-redux";
+import { getUser } from "../../../application/selectors/administration/user";
 
+//import { Modal, Button } from "react-bootstrap";
 
-const HomePage = () => {
+const HomePage = ({ loginUser, logoutUser, user }) => {
   return (
-    <div>
-        <h1>HomePage</h1>
+    <div className="container text-center">
+      {user ?
+        user.firstTime ? <div>es su primera vez</div>: null
+      :
+        null
+      }
+
+
+      {/*<Modal.Dialog show={true}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal title</Modal.Title>
+        </Modal.Header>
+
+        <Modal.Body>
+          <p>Modal body text goes here.</p>
+        </Modal.Body>
+        
+        <Modal.Footer>
+          <Button variant="secondary">Close</Button>
+          <Button variant="primary">Save changes</Button>
+          </Modal.Footer>
+      </Modal.Dialog>*/}
+
+      
+
+      <img src="https://www.sofka.com.co/wp-content/uploads/2020/08/sofka-logo-gradient-white.png" alt="logo-sofka" />
+      <h1>Sofka Okrs</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed facilisis odio quam, sed pretium elit facilisis sed. Nunc ac felis ante. Sed egestas massa non viverra tempor. Pellentesque et nulla nisi. Donec porta commodo est eu volutpat. Quisque quis euismod mi. Praesent eu eros vitae felis viverra facilisis.</p>
+      <div>
+        <img src="https://www.sofka.com.co/wp-content/uploads/2020/09/grupo7.png" alt="sofka-image" />
+      </div>
+      <button className={user ? "d-none" : "mt-5 btn btn-primary px-4"} onClick={loginUser}>
+        <i className="bi bi-google" /> Iniciar sesion con Google
+      </button>
+      <button className={!user ? "d-none" : "mt-5 btn btn-primary px-4"} onClick={logoutUser}>
+        <i className="bi bi-google" /> Salir
+      </button>
     </div>
   );
 };
 
-export default HomePage;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ loginUser, logoutUser }, dispatch);
+};
+
+const mapStateToProps = (state) => {
+  return {
+    user: getUser(state)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
