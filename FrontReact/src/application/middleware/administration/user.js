@@ -62,7 +62,6 @@ const logoutUserFlow = ({firebase}) => ({dispatch}) => next => async (action) =>
     }
 }
 
-
 export default [
     loginUserFlow,
     logoutUserFlow

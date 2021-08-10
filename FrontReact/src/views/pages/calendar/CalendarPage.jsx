@@ -5,40 +5,24 @@ import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
-import {auth} from "../../../infrastructure/services/firebase/config/firebase";
 import {getCalendar} from "../../../application/selectors/calendar/calendarSelector";
 import {bindActionCreators} from "redux";
 import {AddEvent, ListEvents} from "../../../application/actions/calendar/calendarActions";
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
+import {getUser} from "../../../application/selectors/administration/user";
 // import CalendarListComponent from '../../components/calendar/CalendarListComponent'
 
-const CalendarPage = ({calendar, AddEvent, ListEvents}) => {
+const CalendarPage = ({calendar, AddEvent, ListEvents, user}) => {
 
-    const [token, setToken] = useState('');
-
-    const load = () => {
-        let provider = new auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/calendar.events');
-        auth().signInWithPopup(provider).then(result => {
-            setToken(result.credential.accessToken)
-            console.log("token", token)
-        }).catch(error => {
-            console.log(error)
-        })
-    }
-
-    const list = () => ListEvents(token);
+    const list = () => ListEvents(user.userToken);
 
     return (
         <div className={"container"}>
             <div className="row">
                 <div className="col-md-12">
                     <h1>Instructions</h1>
-                    <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
-                            onClick={() => load()}>authenticate<i className="bi bi-door-open-fill"/>
-                    </button>
-                    <CalendarAddComponent AddEvent={AddEvent} token={token}/>
+                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}/>
                     <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
                             onClick={() => list()}>getListEvents<i className="bi bi-door-open-fill"/>
                     </button>
@@ -74,7 +58,8 @@ const CalendarPage = ({calendar, AddEvent, ListEvents}) => {
 
 const mapStateToProps = (state) => {
     return {
-        calendar: getCalendar(state)
+        calendar: getCalendar(state),
+        user: getUser(state)
     }
 }
 
