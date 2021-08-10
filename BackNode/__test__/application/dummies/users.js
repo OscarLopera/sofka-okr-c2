@@ -9,6 +9,7 @@ const usersDummies = [
         verticalId: "prfsd165f1s56dueba",
         isFirstTime: true
       },
+      
       {
         _id: "610de277a6663b52ac859fdb",
         name: "julio",

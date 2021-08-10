@@ -3,7 +3,7 @@ const UserRepository = require('../../domain/user/UserRepository')
 const OKRRepository = require('../../domain/okr/okr/Okr-repository')
 const mockUserRepository = new UserRepository();
 const mockOkrRepository = new OKRRepository();
-const { usersDummies, okrDummies} = require("./dummies/index")
+const { usersDummies, okrDummies, userError, okrError} = require("./dummies/index")
 
 
 describe('Get users by OKR id', () => {

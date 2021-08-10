@@ -20,7 +20,6 @@ const filterUsersOkr = async (req, res, next) => {
 
 }
 
-
 const getUsersByNameRegex = async (req, res, next) => {
     try {
         const { name } = req.params;
