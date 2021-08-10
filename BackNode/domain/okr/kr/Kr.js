@@ -1,13 +1,13 @@
-const DescriptionValueObject = require("./values/description");
-const IdValueObject = require("./values/IdValue");
-const ProgressValueObject = require("./values/progress");
-const TitleValueObject = require("./values/title");
-const IdOkrValueObject = require("./values/IdOkrValue");
-const ManagerNameValueObject = require("./values/ManagerName");
-const ManagerMailValueObject = require("./values/ManagerEmail");
-const StartDateValueObject = require("./values/StartValue");
-const EndDateValueObject = require("./values/EndDate");
-const LoadValueObject = require("./values/LoadValue");
+const DescriptionValueObject = require("./values/description")
+const IdValueObject = require("./values/IdValue")
+const ProgressValueObject = require("./values/progress")
+const TitleValueObject = require("./values/title")
+const IdOkrValueObject = require("./values/IdOkrValue")
+const ManagerNameValueObject = require("./values/ManagerName")
+const ManagerMailValueObject = require("./values/ManagerMail")
+const StartDateValueObject = require("./values/StartDate")
+const EndDateValueObject = require("./values/EndDate")
+const LoadValueObject = require("./values/LoadValue")
 
 class Kr {
   constructor(
@@ -35,4 +35,4 @@ class Kr {
   }
 }
 
-module.exports = Kr;
+module.exports = Kr
