@@ -43,7 +43,7 @@ public class Handler {
         Mono<RespuestaLoginDTO> resp = listUserUseCase.execute(id).map(respuesta.toDTOTrue())
                 .switchIfEmpty(Mono.just(new RespuestaLoginDTO())).map(respuestaLoginDTO->{
                     if (respuestaLoginDTO.getVerticalId()==null){
-                        respuestaLoginDTO.setFirstTime(false);
+                        respuestaLoginDTO.setFirstTime(true);
                         respuestaLoginDTO.setVerticalId(null);
                     }
                         return respuestaLoginDTO;

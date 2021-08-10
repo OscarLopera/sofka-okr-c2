@@ -14,10 +14,4 @@ public class MapperRespuestaLoginDTO {
                 usuarios.getVerticalId().getValue()
         );
     }
-    public Function<Usuarios,RespuestaLoginDTO> toDTOFalse(){
-        return usuarios -> new RespuestaLoginDTO(
-                false,
-                null
-        );
-    }
 }
