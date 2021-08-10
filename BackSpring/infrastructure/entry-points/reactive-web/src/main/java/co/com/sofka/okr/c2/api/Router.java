@@ -31,4 +31,12 @@ public RouterFunction<ServerResponse> routerFunction(Handler handler) {
         );
     }
 
+    @Bean
+    public RouterFunction<ServerResponse> consultUser(Handler handler) {
+        return route(GET("/api/usuario/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .body(handler.validarUsuario(request.pathVariable("id")), RespuestaLoginDTO.class)
+        );
+    }
+
 }
