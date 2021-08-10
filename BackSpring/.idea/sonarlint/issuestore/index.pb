@@ -1,4 +1,5 @@
 
+<<<<<<< HEAD
 ¥
 uinfrastructure/driven-adapters/mongo-repository/src/main/java/co/com/sofka/okr/c2/mongo/helper/AdapterOperations.java,4\8\48d34323152cfdb2faa80897ba738f30719cb9b1
 l
@@ -35,3 +36,7 @@ einfrastructure/entry-points/reactive-web/src/main/java/co/com/sofka/okr/c2/api/
 ninfrastructure/driven-adapters/mongo-repository/src/main/java/co/com/sofka/okr/c2/mongo/helper/UserMapper.java,2\2\22f3bfcd5b3a46316a76535e46da4ba8ef7da39f
 ’
 bdomain/usecase/src/test/java/co/com/sofka/okr/c2/usecase/vertical/ListarVerticalesUseCaseTest.java,f\a\facaddc2011e681a57d3531046b0fe888d21344d
+=======
+9
+	README.md,8/e/8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
+>>>>>>> ca2e0512a52062920b4231b0772d350e4daeba20

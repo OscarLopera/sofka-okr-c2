@@ -3,6 +3,7 @@ package co.com.sofka.okr.c2.api;
 import co.com.sofka.okr.c2.model.vertical.Vertical;
 import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
 
+import co.com.sofka.okr.c2.usecase.vertical.ListVerticalUseCase;
 import co.com.sofka.okr.c2.usecase.vertical.VerticalUseCase;
 
 import co.com.sofka.okr.c2.usecase.usuario.ListUserUseCase;
@@ -21,6 +22,7 @@ public class Handler {
 //private  final UseCase2 useCase2;
     private final CreateUserUseCase createUserUseCase;
     private final ListUserUseCase listUserUseCase;
+    private final ListVerticalUseCase listVerticalUseCase;
     private MapperRespuestaLoginDTO respuesta = new MapperRespuestaLoginDTO();
     private MapperUserDTO mapperUserDTO = new MapperUserDTO();
     private  MapperVerticalDTO mapperVerticalDTO=new MapperVerticalDTO();
@@ -48,7 +50,9 @@ public class Handler {
         return user;
     }
 
-
+    public Mono<VerticalDTO> findVerticalById(String id) {
+        return listVerticalUseCase.listVertical(id).map(mapperVerticalDTO.toVerticalDTO());
+    }
 
     public Flux<VerticalDTO> getVertical() {
 

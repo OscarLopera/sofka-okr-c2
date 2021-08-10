@@ -44,6 +44,16 @@ public RouterFunction<ServerResponse> routerFunction(Handler handler) {
     }
 
     @Bean
+    public RouterFunction<ServerResponse> consultVertical(Handler handler) {
+        return route(GET("/api/vertical/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(handler.findVerticalById(request.pathVariable("id")), VerticalDTO.class))
+        );
+    }
+
+
+    @Bean
     public RouterFunction<ServerResponse> consultUser(Handler handler) {
         return route(GET("/api/usuario/validar/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
