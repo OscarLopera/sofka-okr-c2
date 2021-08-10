@@ -14,6 +14,7 @@ import java.util.function.Function;
 
 @Component
 public class EntityMapper {
+
     public Function<OKREntity, OKRS> fromOKREntity() {
         return newEntity -> new OKRS(
                 new IdOkr(newEntity.getId()),
