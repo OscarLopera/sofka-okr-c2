@@ -1,0 +1,9 @@
+:root {
+  --primary: #050531;
+  --light: #ffffff;
+  --grey: #efefef;
+}
+
+.navega {
+  background-color: var(--primary) !important;
+}
