@@ -14,7 +14,7 @@ const loadingOKRFlow = ({api}) => ({dispatch}) => next => async(action) =>{
             const okrs = await api.dashboard.loadingOKR(action.payload)
             dispatch(loadingOKRSuccess(okrs))
         } catch (error) {
-            dispatch(loadingOKRFailure(error))     
+            dispatch(loadingOKRFailure(error.message))     
         }
     }
 }
