@@ -7,7 +7,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.function.Function;
 
-@Component
 public class UserMapper {
 
     public Function<UsuariosEntity, Usuarios> fromUsuariosEntity() {
