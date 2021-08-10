@@ -1,6 +1,6 @@
 package co.com.sofka.okr.c2.api;
 
-import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
+import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
@@ -10,12 +10,11 @@ import reactor.core.publisher.Mono;
 @Component
 @RequiredArgsConstructor
 public class Handler {
-//private  final UseCase useCase;
-//private  final UseCase2 useCase2;
 
-    public Mono<ServerResponse> listenGETUseCase(ServerRequest serverRequest) {
-        // usecase.logic();
-        return ServerResponse.ok().body("", String.class);
+    private  final GetOkrByIdUseCase getOkrByIdUseCase;
+
+    public Mono<OKRSDTO> getOkrBiId(String id) {
+        return null;
     }
 
     public Mono<ServerResponse> listenGETOtherUseCase(ServerRequest serverRequest) {
