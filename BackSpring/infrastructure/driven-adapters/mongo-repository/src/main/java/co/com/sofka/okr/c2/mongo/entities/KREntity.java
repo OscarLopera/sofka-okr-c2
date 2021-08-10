@@ -1,28 +1,27 @@
-package co.com.sofka.okr.c2.model.okrs;
+package co.com.sofka.okr.c2.mongo.entities;
 
-import co.com.sofka.okr.c2.model.okrs.values.Description;
-import co.com.sofka.okr.c2.model.okrs.values.IdOkr;
-import co.com.sofka.okr.c2.model.okrs.values.KRId;
-import co.com.sofka.okr.c2.model.okrs.values.Title;
-import co.com.sofka.okr.c2.model.usuarios.values.Email;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class KRS {
-    private KRId krId;
-    private IdOkr idOkr;
-    private Title title;
-    private Description description;
+@Document(collection = "krs")
+public class KREntity {
+    @Id
+    private String id;
+    private String idOkr;
+    private String title;
+    private String description;
     private String managerName;
-    private Email managerEmail;
+    private String managerEmail;
     private String startDate;
     private String endDate;
     private Double loadValue;
     private Double progress;
 
-    public KRS() {
+    public KREntity() {
     }
 
-    public KRS( KRId krId, IdOkr idOkr, Title title, Description description, String managerName, Email managerEmail, String startDate, String endDate, Double loadValue, Double progress) {
-        this.krId = krId;
+    public KREntity(String id, String idOkr, String title, String description, String managerName, String managerEmail, String startDate, String endDate, Double loadValue, Double progress) {
+        this.id = id;
         this.idOkr = idOkr;
         this.title = title;
         this.description = description;
@@ -34,36 +33,35 @@ public class KRS {
         this.progress = progress;
     }
 
-
-    public KRId getKrId() {
-        return krId;
+    public String getId() {
+        return id;
     }
 
-    public void setKrId(KRId krId) {
-        this.krId = krId;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public IdOkr getIdOkr() {
+    public String getIdOkr() {
         return idOkr;
     }
 
-    public void setIdOkr(IdOkr idOkr) {
+    public void setIdOkr(String idOkr) {
         this.idOkr = idOkr;
     }
 
-    public Title getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Title title) {
+    public void setTitle(String title) {
         this.title = title;
     }
 
-    public Description getDescription() {
+    public String getDescription() {
         return description;
     }
 
-    public void setDescription(Description description) {
+    public void setDescription(String description) {
         this.description = description;
     }
 
@@ -75,11 +73,11 @@ public class KRS {
         this.managerName = managerName;
     }
 
-    public Email getManagerEmail() {
+    public String getManagerEmail() {
         return managerEmail;
     }
 
-    public void setManagerEmail(Email managerEmail) {
+    public void setManagerEmail(String managerEmail) {
         this.managerEmail = managerEmail;
     }
 
