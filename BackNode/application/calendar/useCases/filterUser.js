@@ -6,9 +6,11 @@ const filterUser = async (id, OkrRepository, UserRepository) => {
 
     const usuariosList = []
 
-
     const managerOkrsId = okrsId.managerId;
+
+
     const foundUserOKR = await UserRepository.getUsersById(managerOkrsId)
+
     usuariosList.push(foundUserOKR[0])
 
     let result = [];
@@ -18,10 +20,11 @@ const filterUser = async (id, OkrRepository, UserRepository) => {
             result.push(item)
         }
     })
-    
+
     return result.map(user => new User(user._id, user.name, user.email, user.urlPhoto, user.phone,
         user.isFirstTime, user.isFirstTime, user.verticalId, user.rol))
 
+    
     /*
     //  const okrsId = await OKRS.findById(id);
       const krList = await KRS.find();

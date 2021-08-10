@@ -3,31 +3,25 @@ const UserRepositoryMongo = require("../../../repositories/calendar/UserReposito
 
 const OkrRepositoryMongo = require("../../../repositories/calendar/OkrRepository")
 
-const okrRepository = new OkrRepositoryMongo
-const reposi = new UserRepositoryMongo()
 
 const UserRecommendationDTO = require("../../DTO/UserRecommendationDTO")
 
-const filterUsersOkr = async (req, res) => {
+const filterUsersOkr = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        if (!id) {
-            return res.json([]);
-        }
-
-        const filter = await filterUser(id, okrRepository, reposi)
-        return res.json(filter)
+        const filter = await filterUser(id, OkrRepositoryMongo.prototype, UserRepositoryMongo.prototype)
+        return res.status(200).json(filter)
 
     } catch (err) {
-        throw new Error(err)
+        next(err);
     }
     
 
 }
 
 
-const getUsersByNameRegex = async (req, res) => {
+const getUsersByNameRegex = async (req, res, next) => {
     try {
         const { name } = req.params;
         if (!name) {
@@ -35,9 +29,9 @@ const getUsersByNameRegex = async (req, res) => {
         }
         const users = await userRecommendationByName(name,UserRepositoryMongo.prototype)
         const usersDTO= users.map(user => new UserRecommendationDTO(user))
-        return res.json(usersDTO)
+        return res.status(200).json(usersDTO)
     }catch(err){
-        throw new Error(err)
+        next(err)
     }
 
 }
