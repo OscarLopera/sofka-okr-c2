@@ -13,6 +13,13 @@ function routesApiKr(app) {
     async (req, res, next) =>
       await krControllers.createKrController(req, res, next)
   );
+  router.delete(
+    "/delete/:id",
+    /*validationHandler(krSchemas.createkrSchema),*/
+    async (req, res, next) =>
+      await krControllers.deleteKrController(req, res, next)
+  );
+
 }
 
 module.exports = routesApiKr;
