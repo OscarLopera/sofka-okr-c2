@@ -68,4 +68,15 @@ public class Router {
         );
     }
 
+    @Bean
+    public RouterFunction<ServerResponse> routerGetPreguntas(Handler handler) {
+        return route(
+                GET("/api/preguntas/frecuentes").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(handler.listPreguntas(), PreguntasDTO.class))
+        );
+
+    }
+
 }
