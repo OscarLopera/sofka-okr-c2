@@ -1,10 +1,13 @@
 package co.com.sofka.okr.c2.api;
 
+import co.com.sofka.okr.c2.model.vertical.Vertical;
 import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
+import co.com.sofka.okr.c2.usecase.vertical.VerticalUseCase;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.server.ServerRequest;
 import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
@@ -14,6 +17,9 @@ public class Handler {
 //private  final UseCase2 useCase2;
     private final CreateUserUseCase createUserUseCase;
     private MapperUserDTO mapperUserDTO = new MapperUserDTO();
+    private  MapperVerticalDTO mapperVerticalDTO=new MapperVerticalDTO();
+
+    private  final VerticalUseCase verticalUseCase;
 
     public Mono<ServerResponse> listenGETUseCase(ServerRequest serverRequest) {
         // usecase.logic();
@@ -34,5 +40,11 @@ public class Handler {
         Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
                 .map(mapperUserDTO.toDTO());
         return user;
+    }
+
+
+    public Flux<VerticalDTO> getVertical() {
+
+        return verticalUseCase.execute().map(mapperVerticalDTO.toVerticalDTO());
     }
 }
