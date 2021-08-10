@@ -6,7 +6,8 @@ public class FirstTime {
     private final Boolean value;
 
     public FirstTime(Boolean value) {
-        this.value = Objects.requireNonNull(value,"The required user first time");
+        this.value = value;
+       // this.value = Objects.requireNonNull(value,"The required user first time");
     }
 
     public Boolean getValue() {

@@ -1,30 +1,42 @@
 package co.com.sofka.okr.c2.api;
 
-import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
+import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
+import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
+import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import lombok.RequiredArgsConstructor;
+import lombok.val;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.server.ServerRequest;
-import org.springframework.web.reactive.function.server.ServerResponse;
+import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 @Component
 @RequiredArgsConstructor
 public class Handler {
-//private  final UseCase useCase;
-//private  final UseCase2 useCase2;
 
-    public Mono<ServerResponse> listenGETUseCase(ServerRequest serverRequest) {
-        // usecase.logic();
-        return ServerResponse.ok().body("", String.class);
+    private final GetUserOKRUseCase getUserOKRUseCase;
+    private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
+    private final GetAllUserUseCase getAllUserUseCase;
+    private final MapperOKRDTO mapperOKRDTO;
+    private final MapperUserDTO mapperUserDTO;
+
+    public Mono<RespuestaUsuarioDTO> findUserAllOkr(String id){
+        Mono<RespuestaUsuarioDTO> user = getUserOKRUseCase.execute(id).map(mapperUserDTO.userResponseToDTO());
+        Flux<RespuestaUsuarioDTO> response = getAllOKRByUserUseCase.execute(id).buffer()
+                .flatMap(it -> user.flatMap(okr -> {
+                    okr.setOkrs(it);
+                    val okr2 = okr;
+                    return Mono.just(okr2);
+                }));
+        return response.next();
     }
 
-    public Mono<ServerResponse> listenGETOtherUseCase(ServerRequest serverRequest) {
-        // useCase2.logic();
-        return ServerResponse.ok().body("", String.class);
+
+    public Flux<RespuestaUsuarioDTO> findAllUserOKR(){
+        Flux<RespuestaUsuarioDTO> users = getAllUserUseCase.execute().map(mapperUserDTO.userResponseToDTO())
+                .flatMap(us ->
+                        findUserAllOkr(us.getId()));
+        return users;
     }
 
-    public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {
-        // usecase.logic();
-        return ServerResponse.ok().body("", String.class);
-    }
+
 }
