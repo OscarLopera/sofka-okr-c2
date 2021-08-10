@@ -28,7 +28,5 @@ public class UseCasesConfig {
         VerticalUseCase verticalUseCase(VerticalRepository verticalRepository){
                 return new VerticalUseCase(verticalRepository);
         }
-        ListVerticalUseCase listVerticalUseCase(VerticalRepository verticalRepository){
-                return new ListVerticalUseCase(verticalRepository);
-        }
+
 }

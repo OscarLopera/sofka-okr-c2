@@ -10,9 +10,4 @@ import reactor.core.publisher.Flux;
 @RequiredArgsConstructor
 public class ListPreguntasUseCase {
 
-    private final PreguntasRepository preguntasRepository;
-
-    public Flux<Preguntas> execute() {
-        return preguntasRepository.listPreguntas();
-    }
 }
