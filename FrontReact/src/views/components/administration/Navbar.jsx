@@ -17,6 +17,7 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
+import Campana from "../notifications/Campana";
 
 // const Nav = styled.div`
 //   background: #050531;
@@ -108,9 +109,9 @@ const Navbar = ({ logoutUser, user }) => {
                   </Link>
                 </li>
                 <li className={!user ? "d-none" : "nav-item"}>
-                  <Link className="nav-link text-white" to="/">
-                    Campana
-                  </Link>
+                 
+                    <Campana/>
+                
                 </li>
                 <li className={!user ? "d-none" : "nav-item"}>
                   {/* Usuario no logueado */}
