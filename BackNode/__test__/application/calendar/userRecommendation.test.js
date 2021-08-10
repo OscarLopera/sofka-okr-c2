@@ -1,5 +1,5 @@
-const {userRecommendationByName} = require('../../application/calendar/index')
-const UserRepository = require('../../domain/user/UserRepository')
+const {userRecommendationByName} = require('../../../application/calendar/index')
+const UserRepository = require('../../../domain/user/UserRepository')
 const mockUserRepository = new UserRepository()
 const {usersDummies,userError} = require("./dummies/users")
 

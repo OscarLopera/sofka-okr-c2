@@ -1,12 +1,12 @@
-const { filterUser } = require('../../application/calendar/index')
-const KRRepository = require('../../domain/okr/kr/KrRepository')
-const UserRepository = require('../../domain/user/UserRepository')
-const OKRRepository = require('../../domain/okr/okr/Okr-repository')
+const { filterUser } = require('../../../application/calendar/index')
+const KRRepository = require('../../../domain/okr/kr/KrRepository')
+const UserRepository = require('../../../domain/user/UserRepository')
+const OKRRepository = require('../../../domain/okr/okr/Okr-repository')
 
 const mockUserRepository = new UserRepository();
 const mockOkrRepository = new OKRRepository();
 const mockKrRepository = new KRRepository();
-const { usersDummies, okrDummies, krDummies, userError, okrError} = require("./dummies/index")
+const { usersDummies, okrDummies, krDummies} = require("./dummies/index")
 
 
 describe('Get users by OKR id', () => {
