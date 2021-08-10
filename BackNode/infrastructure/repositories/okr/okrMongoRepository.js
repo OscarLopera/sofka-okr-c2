@@ -3,7 +3,6 @@ const OkrSchema = require("../../database/mongo/schemas/OKR");
 
 class OkrRepositoryMongo extends OkrRepository {
   async createOkr(Okr) {
-    console.log(Okr);
     const newOkr = new OkrSchema({
       objective: Okr.objective,
       title: Okr.title,
@@ -12,8 +11,8 @@ class OkrRepositoryMongo extends OkrRepository {
       verticalId: Okr.verticalId,
       currentProgress: Okr.currentProgress,
     });
-    const response =await  newOkr.save()
-    console.log(response);
+    const response = await newOkr.save();
+    return response._id;
   }
 }
 module.exports = OkrRepositoryMongo;
