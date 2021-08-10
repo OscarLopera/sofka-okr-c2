@@ -4,7 +4,7 @@ import '../../assets/styles/okr/okr.css';
 
 const OkrFormCreate = ({addOkrs}) => {
 
-    const [_id, setId] = useState('');
+    
     const [objective, setObjective] = useState('');
     const [title, setTitle] = useState('');
     const [managerId, setManagerId] = useState('');
