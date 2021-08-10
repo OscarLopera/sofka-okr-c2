@@ -3,7 +3,12 @@ import {
   loadingOKR,
   loadingOKRSuccess,
   loadingOKRFailure,
+  loadingOKRid,
+  loadingOKRidSuccess,
+  loadingOKRidFailure,
+
 } from "../../../actions/dashboard/index.js";
+
 
 describe("Test of Reducer | OKRs por Usuario", () => {
   const dummyListOKRs = [
@@ -71,3 +76,76 @@ describe("Test of Reducer | OKRs por Usuario", () => {
     });
   });
 });
+
+describe("Test of Reducer OKR selected", () => {
+  const dummyOKRs =[
+    {
+      "id":1,
+      "objetivo":"Un objetivo de un usuario",
+      "title":"Titulo del OKR",
+      "description":"Descripcion del OKR",
+      "managerId":"1245",
+      "areainCharge":"Agile services",
+      "progress":80,
+      "krs":[
+          {
+          "_id": {
+          "$oid": "61106343609d16f1740ddf45"
+          },
+        "idOkr": "611061c6609d16f1740ddf39",
+        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
+        "managerId": "Pepito perez",
+        "startDate": "2021/08/14",
+        "endDate": "2021/08/16",
+        "loadValue": 5,
+        "progress": 10
+        },
+        {
+          "_id": {
+          "$oid": "61106343609d16f1740dd233"
+          },
+        "idOkr": "611061c6609d16f1740dd222",
+        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
+        "managerId": "Juanito Valenzuela",
+        "startDate": "2021/08/14",
+        "endDate": "2021/08/16",
+        "loadValue": 5,
+        "progress": 10
+        }
+      ]
+    }
+  
+  ]
+  const initialState = {
+    OKRs: [],
+    OKR: null,
+    error: null,
+    loading: false,
+  };
+  test("Reducer LOADINGOKRIDSUCCESS", () => {
+    const action = loadingOKRidSuccess(dummyOKRs);
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      OKR: dummyOKRs,
+    });
+  });
+  test("Reducer LOADINGOKRIDFAILURE", () => {
+    const action = loadingOKRidFailure("un error");
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      error: "un error",
+    });
+  });
+
+    test("Reducer LOADINGOKR case", () => {
+    const action = loadingOKRid("61106343609d16f1740ddf45");
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,loading:true
+    });
+  });
+})
