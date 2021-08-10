@@ -2,7 +2,7 @@ import {useState, React} from 'react';
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import '../../assets/styles/okr/okr.css';
 
-const Example = ({idCount, addOkrs}) => {
+const OkrFormCreate = ({addOkrs}) => {
 
     const [_id, setId] = useState('');
     const [objective, setObjective] = useState('');
@@ -15,9 +15,6 @@ const Example = ({idCount, addOkrs}) => {
     const okrCreateSubmit = (event) => {
         event.preventDefault();
         const publicationObject = {
-            idCount: idCount,
-
-            _id: _id,
             objective: objective,
             title: title,
             managerId: managerId,
@@ -88,11 +85,9 @@ const Example = ({idCount, addOkrs}) => {
                         className="bi bi-plus-square"/>
                     </button>
 
-        </FormGroup>
-        
+        </FormGroup>       
           
-      </Form>
-      
+      </Form>      
       </div>
       </div>
       </div>
@@ -100,4 +95,4 @@ const Example = ({idCount, addOkrs}) => {
     );
   }
   
-  export default Example;
+  export default OkrFormCreate;
