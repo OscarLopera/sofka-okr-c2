@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": " node infrastructure/server/server.js ",
     "dev": " nodemon infrastructure/server/server.js ",
     "test": "jest --watch"
   },

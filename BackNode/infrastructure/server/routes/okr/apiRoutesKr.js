@@ -16,8 +16,8 @@ function routesApiKr(app) {
   router.delete(
     "/delete/:id",
     /*validationHandler(krSchemas.createkrSchema),*/
-    async (req, res, next) =>
-      await krControllers.deleteKrController(req, res, next)
+    async (req, res, next) =>{
+      await krControllers.deleteKrController(req, res, next)}
   );
 
 }
