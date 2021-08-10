@@ -1,26 +1,25 @@
 const joi = require('@hapi/joi');
 
-const animalIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
+const idSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
 
-const pastureIdSchema = joi.string().regex(/^[0-9a-fA-F]{24}$/);
-const animalBreedSchema = joi.string().min(3).max(15);
-const animalAgeSchema = joi.number().max(100);
-const animalsGenderSchema = joi.string();
 
-const animalsIsVaccinatedSchema = joi.boolean();
+const objectiveSchema = joi.string();
+const titleSchema = joi.string().min(3).max(25);
+const managerIdSchema = joi.string();
+const descriptionSchema = joi.string().max(50);
+const verticalIdSchema = joi.string();
 
-const createAnimalSchema = {
-  pastureId: pastureIdSchema, 
-  breed: animalBreedSchema.required(),
-  age: animalAgeSchema.required(),
-  gender: animalsGenderSchema.required(),
+
+const createOkrSchema = {
+  objective: objectiveSchema, 
+  title: titleSchema.required(),
+  managerId: managerIdSchema.required(),
+  description: descriptionSchema,
+  verticalId: verticalIdSchema.required(),
 };
-const vaccinateAnimalSchema = {
-  isVaccinated: animalsIsVaccinatedSchema.required(),
-};
+
 
 module.exports = {
-  animalIdSchema,
-  createAnimalSchema,
-  vaccinateAnimalSchema,
+  idSchema,
+  createOkrSchema
 };

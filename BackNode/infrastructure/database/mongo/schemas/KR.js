@@ -2,33 +2,42 @@ const mongoose = require('mongoose')
 
 
 const KRSchema = mongoose.Schema({
-
-    idOkr :{
-        type: String
+    
+    title: {
+        type: String,
+        required: [true, "El titulo es requerido"],
     },
-    descripcion :{
-        type: String
+    idOkr :{
+        type: String,
+        required: [true, "El idOkr es requerido"],
+    },
+    description :{
+        type: String,
+        required: [true, "La descripcion es requerida"],
     },
     managerName :{
-        type: String
+        type: String,
+        required: [true, "El nombre de usuario responsable es requerido"],
     },
     managerEmail :{
-        type: String
+        type: String,
+        required: [true, "El email del usuario responsable es requerido"],
     },
     startDate :{
-        type: String
+        type: String,
+        required: [true, "La fecha de inicio es requerida"],
     },
     endDate :{
-        type: String
+        type: String,
+        required: [true, "La fecha de fin es requerida"],
     },
     loadValue :{
-        type: String
+        type: Number,
+        required: [true, "El peso % de este Kr para el Okr es requerido"],
     },
     progress :{
-        type: String
-    },
-    krs :{
-        type: Array
+        type: Number,
+        required: [true, "El progreso es requerido"],
     },
 }, {
     versionKey: false,

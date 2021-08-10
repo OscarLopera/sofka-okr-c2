@@ -1,4 +1,4 @@
-const LoadValueObject = (id) => {
+const LoadValueObject = (load) => {
   if (!load) {
     throw new Error("Debe contener una carga");
   }

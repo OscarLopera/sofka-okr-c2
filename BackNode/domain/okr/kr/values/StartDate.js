@@ -5,7 +5,7 @@ const StartDateValueObject = (startDate) => {
   if (!(typeof startDate == "string")) {
     throw new Error("La fecha de inicio debe ser del tipo fecha");
   }
-  return { startDate: name };
+  return { value: startDate };
 };
 
 module.exports = StartDateValueObject;

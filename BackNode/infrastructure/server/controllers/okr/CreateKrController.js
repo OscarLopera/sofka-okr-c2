@@ -1,12 +1,11 @@
-const krsService = require("../../../../application/okr/index");
-const KrRepository = require("../../../repositories/okr/KrRepository");
-const krRepository = new KrRepository();
+const KrService = require("../../../../application/okr/useCases/index")
+const KrRepositoryMongo = require("../../../repositories/okr/KrMongoRepository")
+const krRepository = new KrRepositoryMongo
 
 module.exports = async (req, res, next) => {
   const { body: kr } = req;
   try {
-    
-    const createdKrId = await krsService.createKr(
+    const createdKrId = await KrService.createKrUseCase(
       kr,
       krRepository
     )

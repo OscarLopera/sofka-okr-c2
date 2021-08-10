@@ -1,15 +1,22 @@
 const KrRepository = require("../../../domain/okr/kr/KrRepository");
-const CrudMongoRepository = require("../../database/mongo/schemas/CrudRepository");
-
-const collection = "KR";
+const KrSchema = require("../../database/mongo/schemas/KR");
 
 class KrRepositoryMongo extends KrRepository {
-  constructor() {
-    super();
-  }
-
   async createKr(Kr) {
-    return CrudMongoRepository.create(collection, Kr);
+    console.log(Kr);
+    const newKr = new KrSchema({
+      title: Kr.title,
+      idOkr : Kr.idOkr,
+      description : Kr.description,
+      managerName : Kr.managerName,
+      managerEmail : Kr.managerEmail,
+      startDate : Kr.startDate,
+      endDate : Kr.endDate,
+      loadValue : Kr.loadValue,
+      progress : Kr.progress,
+    });
+    const response =await  newKr.save()
+    console.log(response);
   }
 
   async deleteKr(KrId) {

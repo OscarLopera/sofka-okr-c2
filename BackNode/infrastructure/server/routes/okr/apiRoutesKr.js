@@ -1,17 +1,18 @@
 const express = require("express");
 const validationHandler = require("../../../utils/middleware/validationHandler");
-const krsControllers = require('../../controllers/okr/CreateKrController')
+//const krSchemas = require("../../../utils/schemas/okr/krScheme");
+const krControllers = require('../../controllers/okr/index')
 
-function routesApiOkr(app) {
+function routesApiKr(app) {
   const router = express.Router();
   app.use("/api/kr", router);
   
   router.post(
-    "/create",
-    /*validationHandler(animalSchemas.createAnimalSchema),*/
+    "/new",
+    /*validationHandler(krSchemas.createkrSchema),*/
     async (req, res, next) =>
-      await krsControllers.createKr(req, res, next)
+      await krControllers.createKrController(req, res, next)
   );
 }
 
-module.exports = routesApiOkr;
+module.exports = routesApiKr;

@@ -1,4 +1,4 @@
-const ProgressValueObject = (id) => {
+const ProgressValueObject = (progress) => {
   if (!progress) {
     throw new Error("Debe contener un progreso");
   }
