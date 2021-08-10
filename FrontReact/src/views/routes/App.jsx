@@ -18,6 +18,8 @@ import CalendarPage from "../pages/calendar/CalendarPage";
 import AdministrationPage from "../pages/administration/AdministrationPage";
 
 import "../assets/styles/administration/App.scss";
+import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
+
 
 const App = () => {
   return (
@@ -31,6 +33,7 @@ const App = () => {
         <Route exact path="/administration" component={AdministrationPage} />
         <Route exact path="/login" component={LoginPage} />
         <Route exact path="/principal" component={PrincipalPage} />
+        <Route exact path="/notificaciones" component={GestionNotificaciones} />
         <Route exact path="/" component={HomePage} />
       </Switch>
     </Router>
