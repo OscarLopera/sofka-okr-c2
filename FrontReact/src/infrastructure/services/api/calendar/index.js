@@ -22,13 +22,7 @@ const functions = {
                     Accept: 'application/json'
                 }
             })
-
-        let filterOkr = results.data.items.filter(item => {
-            if (item.summary === 'OKR') {
-                return item;
-            }
-        })
-        return filterOkr;
+        return results.data.items.filter(item => (item.summary === 'OKR')?item:null);
     }
 }
 

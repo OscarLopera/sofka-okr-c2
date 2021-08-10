@@ -1,10 +1,11 @@
 import React from "react";
 
-const CalendarAddComponent = ({AddEvent,token}) => {
+
+const CalendarAddComponent = ({AddEvent, token}) => {
 
     const addEvent = () => {
         const eventObject = {
-            kind: "calendar#rko",
+            kind: "calendar#event",
             summary: "OKR",
             description: "titulo del OKR",
             location: "veremos....",
@@ -45,16 +46,33 @@ const CalendarAddComponent = ({AddEvent,token}) => {
         AddEvent(eventObject, token)
     }
 
-  return(
-      <div>
-          <form action="">
-
-          </form>
-          <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
-                  onClick={() => addEvent()}>post<i className="bi bi-door-open-fill"/>
-          </button>
-      </div>
-  )
+    return (
+        <div>
+            <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"} data-toggle={"modal"}
+                    data-target={"#modalAddEvent"}
+            >Agregar Evento <i className="bi bi-plus-square"/>
+            </button>
+            <div id={"modalAddEvent"} className={"modal fade"}>
+                <div className="modal-dialog modal-lg" role="document">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <h5 className="modal-title" id="exampleModalLabel">Agregar Evento</h5>
+                            <button type="button" className={"btn close"} data-dismiss="modal">
+                                <i className="bi bi-x-lg"/>
+                            </button>
+                        </div>
+                        <div className="modal-body">
+                            <input/>
+                        </div>
+                        <div className="modal-footer">
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" className="btn btn-primary">Agregar Evento</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default CalendarAddComponent;
