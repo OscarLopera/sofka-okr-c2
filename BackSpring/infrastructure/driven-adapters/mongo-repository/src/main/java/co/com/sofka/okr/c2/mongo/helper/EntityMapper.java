@@ -22,7 +22,6 @@ public class EntityMapper {
                 newEntity.getManagerId(),
                 new Description(newEntity.getDescription()),
                 new VerticalId(newEntity.getVerticalId()),
-                newEntity.getAreaInCharge(),
                 newEntity.getProgress(),
                 newEntity.getHistoricalProgress(),
                 new ArrayList<>()
