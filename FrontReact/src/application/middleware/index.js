@@ -1,5 +1,7 @@
+import calendar from './calendar/calendarMiddleware';
 
-
-export default [
-    
+const middleware =[
+    ...calendar,
 ]
+
+export default middleware

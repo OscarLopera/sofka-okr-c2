@@ -21,7 +21,7 @@ const Sidebar = () => {
               id="btnGroupDrop1"
               type="button"
               className="btn dropdown-toggle text-dark rounded py-2 w-100 d-inline-block px-6"
-              activeClassName="active"
+             // activeClassName="active"
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
