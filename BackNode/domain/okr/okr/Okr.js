@@ -1,5 +1,4 @@
-const valueObjects = require("./valueObjects");
-
+const valueObjects = require("./valueObjects")
 class Okr {
   constructor({
     objective,
