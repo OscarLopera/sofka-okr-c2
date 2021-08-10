@@ -1,11 +1,12 @@
-import React from 'react'
+import React from "react";
+import "../../assets/styles/administration/App.scss";
 
-const AdministrationPage = () =>{
-    return (
-        <div>
-            <h1>AdministrationPage</h1>
-        </div>
-    )
-}
+const AdministrationPage = () => {
+  return (
+    <div className="administration">
+      <h1>AdministrationPage</h1>
+    </div>
+  );
+};
 
-export default AdministrationPage
+export default AdministrationPage;
