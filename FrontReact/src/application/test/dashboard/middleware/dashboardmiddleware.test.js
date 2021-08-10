@@ -4,7 +4,6 @@ import {
   loadingOKRSuccess,
   loadingOKRFailure,
 } from "../../../actions/dashboard/index.js";
-import { OKRConstanst } from "../../../types/dashboard/constants";
 
 describe("Middleware Test Dashboard", () => {
   const dummyListOKRs = [
@@ -75,7 +74,6 @@ describe("Middleware Test Dashboard", () => {
   };
     const action = loadingOKR(idUser);
     await loadingOKRFlow({ api })({ dispatch })(next)(action);
-    expect(dispatch).toHaveBeenCalledWith(loadingOKRFailure("Se ha generado un error")
-    );
+    expect(dispatch).toHaveBeenCalledWith(loadingOKRFailure("Se ha generado un error"));
   });
 });
