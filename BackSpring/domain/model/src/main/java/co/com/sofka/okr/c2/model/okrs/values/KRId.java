@@ -11,4 +11,8 @@ public class KRId {
         }
         this.value = value;
     }
+
+    public String getValue() {
+        return value;
+    }
 }
