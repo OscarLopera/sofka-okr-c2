@@ -5,17 +5,16 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
     next(action);
     if(action.type === types.LOGIN_USER){
         try{
-            const result = await firebase.user.authUserWithGoogle();
-            const userToken = result.credential.accessToken;
-            console.log(userToken); //crear accion
-
+            const resultAuth = await firebase.user.authUserWithGoogle();
+            
+            const userToken = resultAuth.credential.accessToken;
             const userId = await firebase.user.getUser().userId;
             const userEmail = await firebase.user.getUser().userEmail;
             const userName = await firebase.user.getUser().userName;
             const userPhone = await firebase.user.getUser().userPhone || "0000000";
             const userImage = await firebase.user.getUser().userImage;
 
-            const user = await api.user.validateUser(userId); 
+            const user = await api.user.validateUser(userId);
             let vertical = {verticalname: user.verticalId};
             
             if(user.firstTime){
@@ -31,7 +30,7 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                 }
                 await api.user.createUser(userFirebase); 
             } else{
-                vertical = await api.user.getVertical(user.verticalId); 
+                vertical = await api.user.getVertical(user.verticalId);
             }
 
             const userDataBase = {
@@ -39,7 +38,8 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                 userName: userName,
                 userImage: userImage,
                 userVertical: vertical.verticalname, 
-                firstTime: user.firstTime 
+                firstTime: user.firstTime, 
+                userToken: userToken
             }
             localStorage.setItem("user", JSON.stringify(userDataBase))
             dispatch(actions.loginUserSuccess(userDataBase));
