@@ -3,19 +3,20 @@ const UserRepositoryMongo = require("../../../repositories/calendar/UserReposito
 const OkrRepositoryMongo = require("../../../repositories/calendar/OkrRepository")
 const KrRepositoryMongo = require("../../../repositories/calendar/KrRepository")
 
-const UserRecommendationDTO = require("../../DTO/UserRecommendationDTO")
+const {UserRecommendationDTO, UserFilterDTO} = require("../../DTO/")
 
 const filterUsersOkr = async (req, res, next) => {
     try {
         const { id } = req.params;
 
         const filter = await filterUser(id, OkrRepositoryMongo.prototype, KrRepositoryMongo.prototype, UserRepositoryMongo.prototype)
-        return res.status(200).json(filter)
+
+        const filterDTO= filter.map(user => new UserFilterDTO(user))
+        return res.status(200).json(filterDTO)
 
     } catch (err) {
         next(err);
     }
-    
 
 }
 
