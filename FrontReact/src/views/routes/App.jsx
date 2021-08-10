@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 // import "../assets/styles/administration/index.css";
 // Importación componentes
 
-import Navegacion from "../components/administration/Navegacion";
+import Navbar from "../components/administration/Navbar";
 
 // Importación Páginas
 
@@ -16,11 +16,11 @@ import "../assets/styles/administration/App.scss";
 const App = () => {
   return (
     <Router>
-      {/* <Navegacion /> */}
+      <Navbar />
       <Switch>
-        <Route path="/login" component={LoginPage} />
-        <Route path="/principal" component={PrincipalPage} />
-        <Route path="/" component={HomePage} />
+        <Route exact path="/login" component={LoginPage} />
+        <Route exact path="/principal" component={PrincipalPage} />
+        <Route exact path="/" component={HomePage} />
       </Switch>
     </Router>
   );

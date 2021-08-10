@@ -9,7 +9,7 @@ import { IconContext } from "react-icons/lib";
 
 const Nav = styled.div`
   background: #050531;
-  height: 80px;
+  height: 20px;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -31,7 +31,7 @@ const SidebarNav = styled.nav`
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 0;
+  top: 50;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
   z-index: 10;
@@ -42,8 +42,8 @@ const SidebarWrap = styled.div`
 `;
 
 const Sidebar = () => {
-  const [sidebar, setSidebar] = useState(false);
-
+  const [sidebar, setSidebar] = useState(true);
+  console.log(setSidebar);
   const showSidebar = () => setSidebar(!sidebar);
 
   return (

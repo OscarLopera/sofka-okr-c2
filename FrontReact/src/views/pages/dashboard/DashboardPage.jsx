@@ -3,8 +3,12 @@ import "../../assets/styles/administration/App.scss";
 
 const DashboardPage = () => {
   return (
-    <div className="dashboard">
+    <div>
+      <center>
+        
       <h1>DashboardPage</h1>
+      <p>Christian Quiñones</p>
+      </center>
     </div>
   );
 };
