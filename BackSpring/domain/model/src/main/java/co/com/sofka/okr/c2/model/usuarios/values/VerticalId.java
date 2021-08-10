@@ -6,10 +6,11 @@ public class VerticalId {
     private final String value;
 
     public VerticalId(String value) {
-        this.value = Objects.requireNonNull(value,"the vertical field of the user is required");
+       this.value = value;
+        /*// this.value = Objects.requireNonNull(value,"the vertical field of the user is required");
         if (this.value.isEmpty()){
             throw new IllegalArgumentException("the vertical field of the user cannot be empty");
-        }
+        }*/
     }
 
     public String getValue() {

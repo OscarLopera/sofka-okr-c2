@@ -1,5 +1,8 @@
 package co.com.sofka.okr.c2.api;
 
+import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
+import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
+import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
 import co.com.sofka.okr.c2.usecase.okr.GetAllKrsByIdOkrUseCase;
 import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
@@ -17,10 +20,16 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class Handler {
+//private  final UseCase useCase;
+//private  final UseCase2 useCase2;
 
     private final MapperOKRDTO mapperOKRDTO;
+    private final MapperUserDTO mapperUserDTO;
     private final GetOkrByIdUseCase getOkrByIdUseCase;
     private final GetAllKrsByIdOkrUseCase getAllKrsByIdOkrUseCase;
+    private final GetUserOKRUseCase getUserOKRUseCase;
+    private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
+    private final GetAllUserUseCase getAllUserUseCase;
 
     public Mono<OKRSDTO> getOkrBiId(String id) {
         Mono<OKRSDTO> okr = getOkrByIdUseCase.execute(id).map(mapperOKRDTO.okrToDto());
@@ -35,13 +44,22 @@ public class Handler {
         return response.next();
     }
 
-    public Mono<ServerResponse> listenGETOtherUseCase(ServerRequest serverRequest) {
-        // useCase2.logic();
-        return ServerResponse.ok().body("", String.class);
+    public Mono<RespuestaUsuarioDTO> findUserAllOkr(String id){
+        Mono<RespuestaUsuarioDTO> user = getUserOKRUseCase.execute(id).map(mapperUserDTO.userResponseToDTO());
+        Flux<RespuestaUsuarioDTO> response = getAllOKRByUserUseCase.execute(id).buffer()
+                .flatMap(it -> user.flatMap(okr -> {
+                    okr.setOkrs(it);
+                    val okr2 = okr;
+                    return Mono.just(okr2);
+                }));
+        return response.next();
     }
 
-    public Mono<ServerResponse> listenPOSTUseCase(ServerRequest serverRequest) {
-        // usecase.logic();
-        return ServerResponse.ok().body("", String.class);
+
+    public Flux<RespuestaUsuarioDTO> findAllUserOKR(){
+        Flux<RespuestaUsuarioDTO> users = getAllUserUseCase.execute().map(mapperUserDTO.userResponseToDTO())
+                .flatMap(us ->
+                        findUserAllOkr(us.getId()));
+        return users;
     }
 }
