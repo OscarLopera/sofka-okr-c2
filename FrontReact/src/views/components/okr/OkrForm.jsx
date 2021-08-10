@@ -2,6 +2,8 @@ import {useState, React} from 'react';
 import { Form, FormGroup, Label, Input, FormText } from 'reactstrap';
 import '../../assets/styles/okr/okr.css';
 
+
+
 const OkrFormCreate = ({addOkrs}) => {
 
     
@@ -14,7 +16,7 @@ const OkrFormCreate = ({addOkrs}) => {
 
     const okrCreateSubmit = (event) => {
         event.preventDefault();
-        const publicationObject = {
+        const okrObject = {
             objective: objective,
             title: title,
             managerId: managerId,
@@ -22,7 +24,7 @@ const OkrFormCreate = ({addOkrs}) => {
             areaInCharge: areaInCharge,
             progress: progress,
         }
-        addOkrs(publicationObject)
+        addOkrs(okrObject)
         alert.success("add publication success")
     }
 
