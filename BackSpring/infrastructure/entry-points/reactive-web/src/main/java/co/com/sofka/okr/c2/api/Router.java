@@ -3,6 +3,7 @@ package co.com.sofka.okr.c2.api;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.reactive.function.BodyInserters;
 import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.ServerResponse;
@@ -48,6 +49,18 @@ public RouterFunction<ServerResponse> routerFunction(Handler handler) {
         return route(GET("/api/usuario/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok()
                         .body(handler.validarUsuario(request.pathVariable("id")), RespuestaLoginDTO.class)
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> UpdateUser(Handler handler) {
+        return route(PUT("/api/usuario/modificar").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(UsuarioDTO.class)
+                        .flatMap(usuarioDTO -> handler.updateUser(usuarioDTO)
+                                .flatMap(result -> ServerResponse.ok()
+                                        .contentType(MediaType.APPLICATION_JSON)
+                                        .bodyValue(result))
+                        )
         );
     }
 
