@@ -1,34 +1,37 @@
-const mongoose = require('mongoose')
+const mongoose = require("mongoose");
 
-
-const OkRSchema = mongoose.Schema({
-
-    objetctive :{
-        type: String
+const OkrSchema = mongoose.Schema(
+  {
+    objective: {
+      type: String,
+      required: [true, "El objetivo es requerido"],
     },
-    title :{
-        type: String
+    title: {
+      type: String,
+      required: [true, "El titulo es requerido"],
     },
-    managerId :{
-        type: String
+    managerId: {
+      type: String,
+      required: [true, "El titulo es requerido"],
     },
-    description :{
-        type: String
+    description: {
+      type: String,
     },
-    verticalId :{
-        type: String
+    verticalId: {
+      type: String,
+      required: [true, "El titulo es requerido"],
     },
-    currentProgress :{
-        type: String
+    currentProgress: {
+      type: Number,
     },
-    historicalProgress :{
-        type: Object
+    historicalProgress: {
+      type: Array,
     },
-
-}, {
+  },
+  {
     versionKey: false,
-    collection: 'okrs'
-})
+    collection: "Okrs",
+  }
+);
 
-
-module.exports= mongoose.model('OKR', OkRSchema)
+module.exports = mongoose.model("OKR", OkrSchema);
