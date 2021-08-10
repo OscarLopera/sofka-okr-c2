@@ -4,7 +4,7 @@ const User = require("../../../domain/user/User")
         const limit = 10 
         const users= await UserRepository.getUsersByName(name,limit)
         return users.map(user => new User(user._id,user.name,user.email,user.urlPhoto,user.phone,
-            user.isFirstTime,user.isFirstTime,user.verticalId,user.rol))
+            user.isFirstTime,user.verticalId,user.role))
      
 
 }
