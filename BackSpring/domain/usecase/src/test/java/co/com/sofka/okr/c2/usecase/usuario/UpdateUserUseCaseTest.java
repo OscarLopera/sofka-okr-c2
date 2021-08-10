@@ -32,9 +32,9 @@ class UpdateUserUseCaseTest {
 
     @Test
     @DisplayName("Test Modificar usuario")
-    public void  modificarUsuarioHappyTest(){
+    public void modificarUsuarioHappyTest() {
 
-        Usuarios usuarios=new Usuarios("1",
+        Usuarios usuarios = new Usuarios("1",
                 new Name("Omar"),
                 new Email("juan0087@gmail.com"),
                 new UrlPhoto("http://imagen/data1"),
@@ -57,6 +57,57 @@ class UpdateUserUseCaseTest {
         Assertions.assertEquals(respuesta.block().getFirstTime().getValue(), false);
         Assertions.assertEquals(respuesta.block().getVerticalId().getValue(), "123");
         Assertions.assertEquals(respuesta.block().getRol().getValue(), "QA");
+
+
+    }
+
+
+    @Test
+    @DisplayName("Sad test empty use case update user")
+    public void updateUserSadTestEmpty() throws InterruptedException {
+
+        Assertions.assertThrows(IllegalArgumentException.class, () -> {
+            updateUserUseCase.execute(new Usuarios("xxxx",
+                            new Name(""),
+                            new Email("juan0087@gmail.com"),
+                            new UrlPhoto("http://imagen/data1"),
+                            new Phone("3008765432"),
+                            new FirstTime(false),
+                            new VerticalId("12"),
+                            new Rol("QA")
+                    )
+
+            );
+        });
+
+        Assertions.assertThrows(IllegalArgumentException.class,()->{
+            updateUserUseCase.execute(new Usuarios("xxxx",
+                            new Name("juan"),
+                            new Email(""),
+                            new UrlPhoto("http://imagen/data1"),
+                            new Phone("3008765432"),
+                            new FirstTime(false),
+                            new VerticalId("zzzz"),
+                            new Rol("QA")
+                    )
+
+            );
+        });
+
+        Assertions.assertThrows(IllegalArgumentException.class,()->{
+            updateUserUseCase.execute(new Usuarios("",
+                            new Name("juan"),
+                            new Email("juank9225@gmail.com"),
+                            new UrlPhoto("http://imagen/data1"),
+                            new Phone(""),
+                            new FirstTime(false),
+                            new VerticalId("zzzz"),
+                            new Rol("QA")
+                    )
+
+            );
+        });
+
 
 
     }
