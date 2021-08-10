@@ -9,4 +9,4 @@ spring:
     include: null
   data:
     mongodb:
-      uri: "mongodb+srv://admin:Y2Gg8vyrgdN2KLFM@cluster0.2pbel.mongodb.net/proyectoOkrC2?retryWrites=true&w=majority"
+      uri: "mongodb+srv://desarrollo01:juank9225@cluster0.omffl.mongodb.net/okrs?retryWrites=true&w=majority"

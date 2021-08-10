@@ -1,6 +1,11 @@
-package co.com.sofka.okr.c2.api;
+package co.com.sofka.okr.c2.mongo.entities;
 
-public class UsuarioDTO {
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collection = "users")
+public class UsuariosEntity {
+    @Id
     private String id;
     private String name;
     private String email;
@@ -10,16 +15,16 @@ public class UsuarioDTO {
     private String verticalId;
     private String rol;
 
-    public UsuarioDTO() {
+    public UsuariosEntity() {
     }
 
-    public UsuarioDTO(String id, String name, String email, String urlPhoto, String phone, Boolean firstTime, String verticalId, String rol) {
+    public UsuariosEntity(String id, String name, String email, String urlPhoto, String phone, Boolean FirstTime, String verticalId, String rol) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.urlPhoto = urlPhoto;
         this.phone = phone;
-        this.firstTime = firstTime;
+        this.firstTime = FirstTime;
         this.verticalId = verticalId;
         this.rol = rol;
     }
