@@ -1,6 +1,7 @@
 package co.com.sofka.okr.c2.api;
 
 import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
+import co.com.sofka.okr.c2.usecase.okr.GetAllOkrsByUserIdUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
@@ -20,8 +21,6 @@ import java.util.stream.Collectors;
 @Component
 @RequiredArgsConstructor
 public class Handler {
-//private  final UseCase useCase;
-//private  final UseCase2 useCase2;
 
     private final MapperOKRDTO mapperOKRDTO;
     private final MapperUserDTO mapperUserDTO;
@@ -30,6 +29,7 @@ public class Handler {
     private final GetUserOKRUseCase getUserOKRUseCase;
     private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
     private final GetAllUserUseCase getAllUserUseCase;
+    private final GetAllOkrsByUserIdUseCase getAllOkrsByUserIdUseCase;
 
     public Mono<OKRSDTO> getOkrBiId(String id) {
         Mono<OKRSDTO> okr = getOkrByIdUseCase.execute(id).map(mapperOKRDTO.okrToDto());
@@ -57,9 +57,13 @@ public class Handler {
 
 
     public Flux<RespuestaUsuarioDTO> findAllUserOKR(){
-        Flux<RespuestaUsuarioDTO> users = getAllUserUseCase.execute().map(mapperUserDTO.userResponseToDTO())
+        return getAllUserUseCase.execute().map(mapperUserDTO.userResponseToDTO())
                 .flatMap(us ->
                         findUserAllOkr(us.getId()));
-        return users;
     }
+
+    public Flux<OKRSDTO> getAllOkrsByUser(String idUser){
+        return getAllOkrsByUserIdUseCase.execute(idUser).map(mapperOKRDTO.okrToDto());
+    }
+
 }

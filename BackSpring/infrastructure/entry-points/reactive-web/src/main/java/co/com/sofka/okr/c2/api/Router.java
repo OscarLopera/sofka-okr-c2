@@ -33,4 +33,11 @@ public class Router {
                         .body(BodyInserters.fromPublisher(handler.findAllUserOKR(), RespuestaUsuarioDTO.class)));
     }
 
+    @Bean
+    public  RouterFunction<ServerResponse> getAllOKRByUserId(Handler handler){
+        return route(GET("/api/getokrbyuserid/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(handler.getAllOkrsByUser(request.pathVariable("id")), OKRSDTO.class));
+    }
 }
