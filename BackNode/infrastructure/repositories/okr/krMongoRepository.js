@@ -1,6 +1,7 @@
 const KrRepository = require("../../../domain/okr/kr/KrRepository");
 const KrSchema = require("../../database/mongo/schemas/KR");
-const {deleteKrUseCase} = require("../../../application/okr/useCases/index")
+const {deleteKrUseCase} = require("../../../application/okr/useCases/index");
+const { findById } = require("../../database/mongo/schemas/KR");
 
 class KrRepositoryMongo extends KrRepository {
   async createKr(Kr) {
@@ -22,7 +23,9 @@ class KrRepositoryMongo extends KrRepository {
 
   async deleteKr(KrId) {
     console.log(KrId)
-    const response = await deleteKrUseCase(KrId)
+    const newKr = new KrSchema()
+
+    const response = await newKr.remove(newKr.findById(KrId))
     console.log("response")
     console.log(response)
   }
