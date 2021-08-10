@@ -1,4 +1,4 @@
-const RepositoryNotiManagerDb = require('../../../repositories/notifications/repositoryNotyManagerDb')
+const RepositoryNotiManagerDb = require('../../../repositories/notifications/repositoryNotiManagerDb')
 const {  createNotiManager, updateNotifications} = require('../../../../application/notifications/index')
 const { schema, UpdateSchema } = require("../../../utils/schemas/notifications/notificationManager")
 
