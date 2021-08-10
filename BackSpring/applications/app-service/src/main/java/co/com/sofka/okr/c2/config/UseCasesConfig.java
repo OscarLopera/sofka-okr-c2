@@ -1,7 +1,9 @@
 package co.com.sofka.okr.c2.config;
 
+import co.com.sofka.okr.c2.model.preguntas.gateways.PreguntasRepository;
 import co.com.sofka.okr.c2.model.usuarios.gateways.UsuariosRepository;
 import co.com.sofka.okr.c2.model.vertical.gateways.VerticalRepository;
+import co.com.sofka.okr.c2.usecase.preguntas.ListPreguntasUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.ListUserUseCase;
 
@@ -39,5 +41,9 @@ public class UseCasesConfig {
         UpdateUserUseCase updateUserUseCase(UsuariosRepository usuariosRepository){
                 return new UpdateUserUseCase(usuariosRepository);
 
+        }
+
+        ListPreguntasUseCase listPreguntasUseCase(PreguntasRepository preguntasRepository){
+                return new ListPreguntasUseCase(preguntasRepository);
         }
 }
