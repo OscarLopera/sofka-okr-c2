@@ -11,7 +11,7 @@ const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}/${DB_NAME}
   const connectDB =async ()=>{
     try{
         await mongoose
-        .connect("mongodb+srv://admin:SNkAijhmy63puCyG@proyectos.6bgcy.mongodb.net/ProyectoFinal?retryWrites=true&w=majority",{ useNewUrlParser: true,
+        .connect(MONGO_URI,{ useNewUrlParser: true,
                     useUnifiedTopology: true ,
                     useCreateIndex: true })
         console.log("Mongodb connected")
