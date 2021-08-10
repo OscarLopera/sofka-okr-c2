@@ -7,11 +7,12 @@ import listPlugin from '@fullcalendar/list';
 import {auth} from "../../../infrastructure/services/firebase/config/firebase";
 import {getCalendar} from "../../../application/selectors/calendar/calendarSelector";
 import {bindActionCreators} from "redux";
-import {AddEvent} from "../../../application/actions/calendar/calendarActions";
+import {AddEvent, ListEvents} from "../../../application/actions/calendar/calendarActions";
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
+// import CalendarListComponent from '../../components/calendar/CalendarListComponent'
 
-const CalendarPage = ({calendar, AddEvent}) => {
+const CalendarPage = ({calendar, AddEvent, ListEvents}) => {
 
     const [token, setToken] = useState('');
 
@@ -26,6 +27,8 @@ const CalendarPage = ({calendar, AddEvent}) => {
         })
     }
 
+    const list = () => ListEvents(token);
+
     return (
         <div className={"container"}>
             <div className="row">
@@ -35,6 +38,10 @@ const CalendarPage = ({calendar, AddEvent}) => {
                             onClick={() => load()}>authenticate<i className="bi bi-door-open-fill"/>
                     </button>
                     <CalendarAddComponent AddEvent={AddEvent} token={token}/>
+                    <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
+                            onClick={() => list()}>getListEvents<i className="bi bi-door-open-fill"/>
+                    </button>
+                    {/* <CalendarListComponent ListEvent={ListEvent} events={events} /> */}
                 </div>
             </div>
             <div className="row">
@@ -71,7 +78,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({AddEvent}, dispatch);
+    return bindActionCreators({AddEvent,ListEvents}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarPage);
