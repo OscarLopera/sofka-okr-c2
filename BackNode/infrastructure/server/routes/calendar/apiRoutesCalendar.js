@@ -14,7 +14,7 @@ function routesApiCalendar(app) {
   });
 
   router.get("/filterusersokr/:id", filterUsersOkr);
-  router.get("/usersbyname/:name",getUsersByNameRegex)
+  router.get("/usersbyname/:name", getUsersByNameRegex)
 
 }
 
