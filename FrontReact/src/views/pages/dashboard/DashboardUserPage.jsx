@@ -18,7 +18,6 @@ const DashboardUserPage = ({loadingOKR, okrs}) => {
   }, [loadingOKR])
 
   
-
   return (
     <div>
       <center>
@@ -35,6 +34,7 @@ const DashboardUserPage = ({loadingOKR, okrs}) => {
                 </option>
               ))}
             </select>
+            <button style={{padding:"4px",margin:"3px"}}>Ver info</button>
       </center>
     </div>
   );
