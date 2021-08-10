@@ -34,8 +34,17 @@ export const SidebarData = [
   },
   {
     title: "Administración",
-    path: "/administration",
+    // path: "/administration",
     icon: <FaIcons.FaRegSun />,
+    iconClosed: <RiIcons.RiArrowDownSFill />,
+    iconOpened: <RiIcons.RiArrowUpSFill />,
+    subNav: [
+      {
+        title: "Soporte",
+        path: "/administration",
+        icon: <FaIcons.FaOsi />,
+      },
+    ],
   },
 ];
 
