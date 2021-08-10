@@ -33,6 +33,14 @@ class RepositoryNotiManagerDb extends RepositoryNotificationManager{
       }, {new: true});
       return result
     }
+    async findNotificationManagerByUserId(_id){
+      const exists = await NotificationManager.findOne({userId: _id})
+      if(!exists){
+        throw new error("El usuario con el id ingresado no existe")
+      }
+      return exists
+
+    }
 
 };
 

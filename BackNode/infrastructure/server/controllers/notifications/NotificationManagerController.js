@@ -1,5 +1,5 @@
 const RepositoryNotiManagerDb = require('../../../repositories/notifications/repositoryNotiManagerDb')
-const {  createNotiManager, updateNotifications} = require('../../../../application/notifications/index')
+const {  createNotiManager, updateNotifications, getNotificationsManager} = require('../../../../application/notifications/index')
 const { schema, UpdateSchema } = require("../../../utils/schemas/notifications/notificationManager")
 
 
@@ -62,4 +62,18 @@ function updateNotificationManager(){
   }
 }
 
-module.exports = { updateNotificationManager, createNotificationManager };
+function getNotificationManager(){
+  return async (req,res)=>{
+    try{
+      const id = req.params._id
+      
+      const notificationManager = await getNotificationsManager(repositoryNotiManagerDb, id)
+
+      res.send(notificationManager)
+    }catch(error){
+      res.status(400).send(error)
+    }
+  }
+}
+
+module.exports = { updateNotificationManager, createNotificationManager, getNotificationManager };
