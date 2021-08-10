@@ -1,8 +1,7 @@
 const { filterUser, userRecommendationByName } = require("../../../../application/calendar/index")
 const UserRepositoryMongo = require("../../../repositories/calendar/UserRepository")
-
 const OkrRepositoryMongo = require("../../../repositories/calendar/OkrRepository")
-
+const KrRepositoryMongo = require("../../../repositories/calendar/KrRepository")
 
 const UserRecommendationDTO = require("../../DTO/UserRecommendationDTO")
 
@@ -10,7 +9,7 @@ const filterUsersOkr = async (req, res, next) => {
     try {
         const { id } = req.params;
 
-        const filter = await filterUser(id, OkrRepositoryMongo.prototype, UserRepositoryMongo.prototype)
+        const filter = await filterUser(id, OkrRepositoryMongo.prototype, KrRepositoryMongo.prototype, UserRepositoryMongo.prototype)
         return res.status(200).json(filter)
 
     } catch (err) {

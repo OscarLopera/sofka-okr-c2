@@ -1,9 +1,12 @@
 const { filterUser } = require('../../application/calendar/index')
+const KRRepository = require('../../domain/okr/kr/KrRepository')
 const UserRepository = require('../../domain/user/UserRepository')
 const OKRRepository = require('../../domain/okr/okr/Okr-repository')
+
 const mockUserRepository = new UserRepository();
 const mockOkrRepository = new OKRRepository();
-const { usersDummies, okrDummies, userError, okrError} = require("./dummies/index")
+const mockKrRepository = new KRRepository();
+const { usersDummies, okrDummies, krDummies, userError, okrError} = require("./dummies/index")
 
 
 describe('Get users by OKR id', () => {
@@ -11,12 +14,13 @@ describe('Get users by OKR id', () => {
     test('should bring list of users', async () => {
 
         mockUserRepository.getUsersById = () => usersDummies
-
+        mockUserRepository.getUsersByEmail = () => usersDummies
         mockOkrRepository.getByOkrId = () => okrDummies
+        mockKrRepository.getAllKr = () => krDummies
 
         const id = "611205b7c39a061e98cce51d"
 
-        const users = await filterUser(id, mockOkrRepository, mockUserRepository)
+        const users = await filterUser(id, mockOkrRepository, mockKrRepository, mockUserRepository)
 
         expect(typeof users).toEqual("object")
         expect (users.length).toEqual(1)
@@ -28,19 +32,19 @@ describe('Get users by OKR id', () => {
         expect(users[0].isFirstTime).toEqual(true)
         expect(users[0].verticalId).toEqual(true)
         expect(users[0].role).toEqual("prfsd165f1s56dueba")
-
     })
 
     test('should bring a void list',async () => {
-
+        
         mockUserRepository.getUsersById = () => usersDummies
-
+        mockUserRepository.getUsersByEmail = () => usersDummies
         mockOkrRepository.getByOkrId = () => okrDummies
+        mockKrRepository.getAllKr = () => krDummies
 
         const id = "611205b7c39a061e98cce51d"
 
 
-        const users = await filterUser(id, mockOkrRepository, mockUserRepository)
+        const users = await filterUser(id, mockOkrRepository, mockKrRepository, mockUserRepository)
 
         expect(typeof users).toEqual("object")
         expect (users.length).toEqual(1)
