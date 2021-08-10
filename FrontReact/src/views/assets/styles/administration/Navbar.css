@@ -7,3 +7,9 @@
 .navega {
   background-color: var(--primary) !important;
 }
+
+.imagen-usuario {
+  width: 30px;
+  height: 30px;
+  border-radius: 20px;
+}

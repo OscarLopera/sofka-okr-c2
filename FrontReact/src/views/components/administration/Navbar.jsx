@@ -13,7 +13,7 @@ import "../../assets/styles/administration/Navbar.css";
 // Importaciones componente Sidebar
 import styled from "styled-components";
 import * as FaIcons from "react-icons/fa";
-// import * as AiIcons from "react-icons/ai";
+import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
@@ -43,7 +43,7 @@ const SidebarNav = styled.nav`
   display: flex;
   justify-content: center;
   position: fixed;
-  top: 50;
+  top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
   transition: 350ms;
   z-index: 10;
@@ -113,12 +113,23 @@ const Navbar = ({ logoutUser, user }) => {
                   </Link>
                 </li>
                 <li className={!user ? "d-none" : "nav-item"}>
-                  <Link className="nav-link" to="/">
-                    <img src={LogoUsuario} alt="foto usuario" />
-                  </Link>
+                  {/* Usuario no logueado */}
+                  {!user && (
+                    <Link className="nav-link" to="/">
+                      <img src={LogoUsuario} alt="foto usuario" />
+                    </Link>
+                  )}
+                  {/* Usuario Logeado */}
+                  {user && (
+                    <div >
+                      <Link className="nav-link" to="/">
+                        <img src={user.userImage} alt="foto usuario" width="40px" height="40px" className="imagen-usuario" />
+                      </Link>
+                    </div>
+                  )}
                 </li>
                 <button
-                  className={!user ? "d-none" : "btn btn-outline-danger"}
+                  className={!user ? "d-none" : "btn btn-outline-danger btn-sm"}
                   onClick={logoutUser}
                 >
                   Cerrar Sesión
@@ -133,9 +144,9 @@ const Navbar = ({ logoutUser, user }) => {
       <IconContext.Provider value={{ color: "#ff7e06" }}>
         <SidebarNav sidebar={sidebar}>
           <SidebarWrap>
-            {/* <NavIcon to="#">
+            <NavIcon to="#">
               <AiIcons.AiOutlineClose onClick={showSidebar} />
-            </NavIcon> */}
+            </NavIcon>
             {SidebarData.map((item, index) => {
               return <SubMenu item={item} key={index} />;
             })}
