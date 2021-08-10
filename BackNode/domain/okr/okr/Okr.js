@@ -4,14 +4,14 @@ const ObjectiveValueObject = require("./values/objective");
 const ProgressValueObject = require("./values/progress");
 const TitleValueObject = require("./values/title");
 
-class Okr {
+class Okr  {
   constructor(
-    objective,
+    {objective,
     title,
     managerId,
     description,
     verticalId,
-    currentProgress
+    currentProgress}
   ) {
     this.objective = ObjectiveValueObject(objective).value;
     this.title = TitleValueObject(title).value;
