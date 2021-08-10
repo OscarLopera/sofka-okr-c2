@@ -1,24 +1,25 @@
 const User = require("../../../domain/user/User")
-const Okr = require("../../../domain/okr/okr/Okr");
 
 const filterUser = async (id, OkrRepository, UserRepository) => { 
-    const okrsId = await OkrRepository.getOkrByid(id)
+
+    const okrsId = await OkrRepository.getByOkrId(id)
 
     const usuariosList = []
+
 
     const managerOkrsId = okrsId.managerId;
     const foundUserOKR = await UserRepository.getUsersById(managerOkrsId)
     usuariosList.push(foundUserOKR[0])
 
-    const json = usuariosList.map(x => JSON.stringify(x))
     let result = [];
-    json.forEach(function (item, pos) {
-        if (json.indexOf(item) == pos) {
-            result.push(JSON.parse(item))
+
+    usuariosList.forEach(function(item,pos){
+        if(usuariosList.indexOf(item) == pos){
+            result.push(item)
         }
     })
-
-    return result.map(user => new User(null, user.name, user.email, user.urlPhoto, user.phone,
+    
+    return result.map(user => new User(user._id, user.name, user.email, user.urlPhoto, user.phone,
         user.isFirstTime, user.isFirstTime, user.verticalId, user.rol))
 
     /*

@@ -6,7 +6,9 @@ class UserRepositoryMongo extends UserRepository {
 
     async getUsersByName(name, limit) {
         const nameRegex = new RegExp(name)
-        return await UserSchema.find({ name: { $regex: nameRegex, $options: 'i' } }).limit(limit)
+        const test = await UserSchema.find({ name: { $regex: nameRegex, $options: 'i' } }).limit(limit)
+        console.log("TEST AAAAA => "+test)
+        return test
     }
 
     async getUsers() {

@@ -5,7 +5,7 @@ const usersDummies = [
         email: "juan@gmail.com",
         urlPhoto: "https://lh3.googleusercontent.com/ogw/ADea4I5m38rsb3mMMr0Lnosn5W_3JFp5Rx2ErzzkRTOD=s32-c-mo",
         phone: "12345678",
-        role: "estudainte",
+        role: "estudiante",
         verticalId: "prfsd165f1s56dueba",
         isFirstTime: true
       },

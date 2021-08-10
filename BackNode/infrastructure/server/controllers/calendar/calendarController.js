@@ -11,6 +11,7 @@ const UserRecommendationDTO = require("../../DTO/UserRecommendationDTO")
 const filterUsersOkr = async (req, res) => {
     try {
         const { id } = req.params;
+
         if (!id) {
             return res.json([]);
         }

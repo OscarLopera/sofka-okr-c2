@@ -24,7 +24,7 @@ describe('Get users by name with Regex', () => {
         expect(users[0].phone).toEqual("12345678")
         expect(users[0].isFirstTime).toEqual(true)
         expect(users[0].verticalId).toEqual("prfsd165f1s56dueba")
-        expect(users[0].role).toEqual("estudainte")
+        expect(users[0].role).toEqual("estudiante")
         expect(users[1].id).toEqual("610de277a6663b52ac859fdb")
         expect(users[1].name).toEqual("julio")
         expect(users[1].email).toEqual("julio@gmail.com")
