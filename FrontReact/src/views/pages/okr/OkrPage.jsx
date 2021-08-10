@@ -11,7 +11,11 @@ import EmptyMessage from "../../components/okr/EmptyMessage";
 const OkrPage = () => {
   const okrs = [];
   return (
+
+    
     <div className="container d-flex flex-column align-items-center py-5">
+   
+
       {okrs.length === 0 ? (
         <>
           <EmptyMessage />
