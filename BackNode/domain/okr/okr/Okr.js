@@ -1,8 +1,8 @@
-const DescriptionValueObject = require("./values/description");
+const DescriptionValueObject = require("./values/Description");
 const IdValueObject = require("./values/IdValue");
-const ObjectiveValueObject = require("./values/objective");
-const ProgressValueObject = require("./values/progress");
-const TitleValueObject = require("./values/title");
+const ObjectiveValueObject = require("./values/Objective");
+const ProgressValueObject = require("./values/Progress");
+const TitleValueObject = require("./values/Title");
 
 class Okr {
   constructor({
