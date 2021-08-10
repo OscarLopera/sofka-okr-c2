@@ -1,8 +1,16 @@
 import React from 'react';
 import Notificacion from './Notificacion';
-import '../../assets/styles/notifications/styleCampana.css'
+import '../../assets/styles/notifications/styleCampana.css';
+import { useHistory } from 'react-router';
+
+
+
+/* <button onClick={()=>{history.push("/notificaciones")}}>
+                    <i className="icon_cog1">⚙️</i>
+                  </button> */
 
 export default function Campana() {
+  const history = useHistory();
     return (
         <div class="notifications">
             <div class="icon_wrap"><i class="far fa-bell"></i></div>

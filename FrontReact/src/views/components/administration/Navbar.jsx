@@ -92,9 +92,9 @@ const Navbar = () => {
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link text-white" to="/">
+                  
                     <Campana/>
-                  </Link>
+                  
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/">
