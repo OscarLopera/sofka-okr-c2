@@ -1,7 +1,9 @@
-import api from './api';
+import firebase from "./firebase";
+import api from "./api";
 
 const services = {
-    api,
+    firebase,
+    api
 }
 
 export default services;
