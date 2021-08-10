@@ -83,7 +83,7 @@ const listEventsDummy = [
     }
 ]
 
-const [listEventFlow,] = calendarMiddleware;
+const [addEventFlow,listEventFlow] = calendarMiddleware;
 
 const dispatch = jest.fn();
 const next = jest.fn();
@@ -100,7 +100,7 @@ describe('middleware calendar list event test', () => {
         }
         const action = ListEvents(token)
         await listEventFlow({ api })({ dispatch })(next)(action);
-        // expect(dispatch).toHaveBeenCalledWith(ListEventsSuccess(listEventsDummy))
+        expect(dispatch).toHaveBeenCalledWith(ListEventsSuccess(listEventsDummy))
         expect(next).toHaveBeenCalledWith(action);
     })
     test('list event flow test sad path', async () => {
@@ -113,7 +113,7 @@ describe('middleware calendar list event test', () => {
         }
         const action = ListEvents(token);
         await listEventFlow({ api })({ dispatch })(next)(action);
-        // expect(dispatch).toHaveBeenCalledWith(ListEventsFailure("No se pudo listar los eventos"))
+        expect(dispatch).toHaveBeenCalledWith(ListEventsFailure("No se pudo listar los eventos"))
         expect(next).toHaveBeenCalledWith(action);
     })
 })

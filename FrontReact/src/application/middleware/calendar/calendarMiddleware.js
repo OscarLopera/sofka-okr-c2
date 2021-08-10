@@ -20,7 +20,7 @@ const listEventFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
             const events = await api.calendar.listEvents(action.token)
             dispatch(ListEventsSuccess(events))
         } catch (error) {
-            dispatch(ListEventsFailure(error))
+            dispatch(ListEventsFailure(error.message))
         }
     }
 }
