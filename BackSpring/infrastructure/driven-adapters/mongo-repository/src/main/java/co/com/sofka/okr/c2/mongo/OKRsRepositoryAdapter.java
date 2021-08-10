@@ -5,6 +5,7 @@ import co.com.sofka.okr.c2.model.okrs.OKRS;
 import co.com.sofka.okr.c2.model.okrs.gateways.OKRSRepository;
 import co.com.sofka.okr.c2.mongo.entities.OKREntity;
 import co.com.sofka.okr.c2.mongo.helper.AdapterOperations;
+import co.com.sofka.okr.c2.mongo.helper.EntityMapper;
 import org.reactivecommons.utils.ObjectMapper;
 import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Flux;
