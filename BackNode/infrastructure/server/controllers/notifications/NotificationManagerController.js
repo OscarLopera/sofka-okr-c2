@@ -34,5 +34,34 @@ function createNotificationManager(){
         }
     }
 }
+function updateNotificationManager(){
+  return async (req,res) => {
+      try{
+          const id = req.params._id
+          const body = req.body
+
+          const {error, value} = UpdateSchema.validate({ 
+              //userId :        body.userId,
+              mail:           body.mail,
+              screen:         body.screen,
+            });
+            if(!error){
+              let result = await updateNotifications(repositoryNotiManagerDb, id, body)
+              if(!result){
+                  res.status(400).json({
+                      error: "El ID del Notification Manager ingresado no existe"
+                  })
+              }
+              res.send(result)
+            }else{
+              res.status(400).json({
+                err: error
+              })
+            }
+      }catch(error){
+          res.send(error)
+      }
+  }
+}
 
 module.exports = { updateNotificationManager, createNotificationManager };

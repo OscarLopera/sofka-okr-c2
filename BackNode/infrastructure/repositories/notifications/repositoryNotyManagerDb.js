@@ -24,6 +24,15 @@ class RepositoryNotiManagerDb extends RepositoryNotificationManager{
       }
       return result(validation)
     }
+    async updateNotificationManager(_id, body) {
+      let result = await NotificationManager.findOneAndUpdate({userId: _id}, {
+        $set: {
+          mail:          body.mail,
+          screen:        body.screen
+        }
+      }, {new: true});
+      return result
+    }
 
 };
 
