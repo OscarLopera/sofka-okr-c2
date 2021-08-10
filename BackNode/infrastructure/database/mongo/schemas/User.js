@@ -35,7 +35,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Vertical id is required']
     },
-    rol:{
+    role:{
         type: String,
         required: [true, 'Rol is required'],
         minLength: [2, 'The minimum length of user`s role is 2 characters'],

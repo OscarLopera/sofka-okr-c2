@@ -1,6 +1,6 @@
 function UrlPhoto(urlPhoto) {
     if (urlPhoto == null || urlPhoto == "") {
-            throw new Error("the url  field cannot be empty or empty")
+            throw new Error("The url field cannot be empty or empty")
     }
 
     return {value: urlPhoto}

@@ -1,9 +1,12 @@
 const { filterUser, userRecommendationByName } = require("../../../../application/calendar/index")
 const UserRepositoryMongo = require("../../../repositories/calendar/UserRepository")
+
 const OkrRepositoryMongo = require("../../../repositories/calendar/OkrRepository")
 
 const okrRepository = new OkrRepositoryMongo
 const reposi = new UserRepositoryMongo()
+
+const UserRecommendationDTO = require("../../DTO/UserRecommendationDTO")
 
 const filterUsersOkr = async (req, res) => {
     try {
@@ -29,9 +32,10 @@ const getUsersByNameRegex = async (req, res) => {
         if (!name) {
             return res.json([]);
         }
-        const users = await userRecommendationByName(name, reposi)
-        return res.json(users)
-    } catch (err) {
+        const users = await userRecommendationByName(name,UserRepositoryMongo.prototype)
+        const usersDTO= users.map(user => new UserRecommendationDTO(user))
+        return res.json(usersDTO)
+    }catch(err){
         throw new Error(err)
     }
 
