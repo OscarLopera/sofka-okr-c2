@@ -1,13 +1,12 @@
-import {AddEvent, AddEventFailure, AddEventSuccess} from "../../actions/calendar/calendarActions";
+import { AddEvent, AddEventFailure, AddEventSuccess } from "../../actions/calendar/calendarActions";
 import calendarReducer from "../../reducers/calendar/calendarReducer";
-import * as events from "events";
 const initialState = {
     events: [],
     error: null,
     loading: false
 }
 
-describe('reducer calendar add test',()=> {
+describe('reducer calendar add test', () => {
     const dummyEvent = {
         kind: "calendar#rko",
         summary: "OKR",
@@ -25,20 +24,20 @@ describe('reducer calendar add test',()=> {
         conferenceData: {
             createRequest: {
                 requestId: "sample13",
-                conferenceSolutionKey: {type: "hangoutsMeet"}
+                conferenceSolutionKey: { type: "hangoutsMeet" }
             },
         },
         attendees: [
-            {email: "sebas99cano@gmail.com"},
-            {email: "sebas.cano1036@gmail.com"},
-            {email: "juan_cano82161@elpoli.edu.co"},
-            {email: "anahernandez814@gmail.com"}
+            { email: "sebas99cano@gmail.com" },
+            { email: "sebas.cano1036@gmail.com" },
+            { email: "juan_cano82161@elpoli.edu.co" },
+            { email: "anahernandez814@gmail.com" }
         ],
         reminders: {
             useDefault: "useDefault",
             overrides: [
-                {method: 'email', minutes: 60 * 24},
-                {method: 'popup', minutes: 10}
+                { method: 'email', minutes: 60 * 24 },
+                { method: 'popup', minutes: 10 }
             ]
         },
         sendUpdates: "all",
@@ -49,27 +48,27 @@ describe('reducer calendar add test',()=> {
     }
 
     test('reducer [calendar] add_event case', () => {
-        const action =  AddEvent();
+        const action = AddEvent();
         const state = calendarReducer(initialState, action);
-        expect(state).toEqual({...initialState, loading:true})
+        expect(state).toEqual({ ...initialState, loading: true })
     })
 
-    test('reducer [calendar] add_event_success case', () =>{
+    test('reducer [calendar] add_event_success case', () => {
         const action = AddEventSuccess(dummyEvent);
         const state = calendarReducer(initialState, action);
         const optional = initialState.events;
         optional.push(dummyEvent);
-        expect(state).toEqual({...initialState, events:optional,loading: false,error: null})
+        expect(state).toEqual({ ...initialState, events: optional, loading: false, error: null })
     })
 
     test('reducer [calendar] add_event_failure case', () => {
         const action = AddEventFailure("error Add_Event")
         const state = calendarReducer(initialState, action);
-        expect(state).toEqual({...initialState,error:"error Add_Event"})
+        expect(state).toEqual({ ...initialState, error: "error Add_Event" })
     })
 
     test('reducer default case', () => {
         const state = calendarReducer(initialState, "");
-        expect(state).toEqual({...initialState})
+        expect(state).toEqual({ ...initialState })
     })
 })
