@@ -5,7 +5,7 @@ const GetStatusNotificationFlow = ({ api }) => ({ dispatch }) => next => async (
     next(action);
     if (action.type === "OBTENER_NOTIFICACIONES") {
         try {
-            const okr = await api.notifications.getStatusNotify()
+            const okr = await api.notifications.getStatusNotify(action.payload)
             const arraymail = convertirobjetoToarray(okr)
             dispatch(getStatusNotifySuccess(arraymail))
         } catch (error) {

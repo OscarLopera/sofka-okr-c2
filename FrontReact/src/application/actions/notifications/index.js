@@ -1,5 +1,6 @@
-export const getStatusNotification = () =>({
+export const getStatusNotification = (id) =>({
     type: "OBTENER_NOTIFICACIONES",
+    payload:id
 });
 
 export const getStatusNotifySuccess = (notify) =>({
