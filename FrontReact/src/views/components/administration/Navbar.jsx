@@ -62,10 +62,10 @@ const Navbar = ({ logoutUser, user }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light navega">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link className="navbar-brand">
             {/* Usuario con Logueo */}
             {user && (
-              <NavIcon to="#">
+              <NavIcon>
                 <FaIcons.FaBars onClick={showSidebar} className="mx-3" />
                 <img src={Logo} alt="logo sofka" />
                 <span className="mx-3 my-3 text-white">SOFKA OKR</span>
