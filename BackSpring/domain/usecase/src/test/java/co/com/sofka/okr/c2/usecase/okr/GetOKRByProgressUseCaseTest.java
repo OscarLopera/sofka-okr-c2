@@ -14,20 +14,18 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import reactor.core.publisher.Flux;
 
-import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest(classes = GetOKRByCompletedUseCase.class)
-class GetOKRByCompletedUseCaseTest {
+@SpringBootTest(classes = GetOKRByProgressUseCase.class)
+class GetOKRByProgressUseCaseTest {
 
     @MockBean
     OKRSRepository okrsRepository;
-
     @SpyBean
-    GetOKRByCompletedUseCase getOKRByCompletedUseCase;
+    GetOKRByProgressUseCase getOKRByProgressUseCase;
 
     @Test
-    public void getOKRCompleted() {
+    public void getOKRProgress(){
         OKRS okrs = new OKRS(
                 IdOkr.of("1"),
                 Objective.of("Primer test"),
@@ -35,12 +33,14 @@ class GetOKRByCompletedUseCaseTest {
                 "14",
                 Description.of("Estamos en eso"),
                 VerticalId.of("21"),
-                100.0
+                15.0
         );
 
-        when(okrsRepository.findByCompleted(okrs.getManagerId())).thenReturn(Flux.just(okrs));
+        when(okrsRepository.findByProgress(okrs.getManagerId())).thenReturn(Flux.just(okrs));
 
-        Assertions.assertEquals(100.0, okrs.getProgress().byteValue());
+        Flux<OKRS> result = getOKRByProgressUseCase.execute(okrs.getManagerId());
+
+        Assertions.assertEquals(result.blockFirst().getProgress(),okrs.getProgress());
     }
 
 }
