@@ -1,11 +1,10 @@
 import { useState, React } from "react";
-import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import { Form, FormGroup} from "reactstrap";
 import {getOkrs} from '../../../application/selectors/okr/okr';
 import {bindActionCreators} from "redux";
 import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
 import {connect} from "react-redux";
 import "../../assets/styles/okr/okr.css";
-import OkrPage from "./OkrPage";
 
 const CrearOkrPage = ({ addOkrs, history }) => {
 
@@ -65,7 +64,7 @@ const CrearOkrPage = ({ addOkrs, history }) => {
            
             <FormGroup>
               <label className={"m-3"}>Descripcion</label>
-              <textarea name="description" className={"form-control text-center"} id="description" cols="58" placeholder={"Aqui puede agregar una descripcion mas detallada de su OKR"} rows="3" value={description}  required="required" onChange={(event) => setDescription(event.target.value)}></textarea>
+              <textarea name="description" className={"form-control text-center"} id="description" cols="58" placeholder={"Aqui puede agregar una descripcion mas detallada de su OKR"} rows="3" value={description}  required="required" onChange={(event) => setDescription(event.target.value)}/>
               {/*<input
                 type={"text"}
                 required="required"

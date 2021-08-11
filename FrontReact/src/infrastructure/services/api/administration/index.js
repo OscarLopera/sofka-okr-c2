@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default {
+const functions = {
     validateUser: async (userId) => {
         const response = await axios.get('https://admin-reto-final.herokuapp.com/api/usuario/validar/' + userId);
         return response.data;
@@ -22,3 +22,5 @@ export default {
         return response.data;
     },
 }
+
+export default functions;

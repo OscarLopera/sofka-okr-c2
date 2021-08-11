@@ -1,4 +1,3 @@
-import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import EmptyMessage from "../../components/okr/EmptyMessage";
@@ -107,10 +106,6 @@ const OkrPage = () => {
       },
     },
   ];
-
-  const NewOkr = () => {
-    <Redirect to="/create-okr" />;
-  };
 
   return (
     <div className="container d-flex flex-column align-items-center py-5">
