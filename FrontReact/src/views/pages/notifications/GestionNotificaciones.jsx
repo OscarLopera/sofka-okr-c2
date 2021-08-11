@@ -18,6 +18,7 @@ const GestionNotificaciones=({getStatusNotification,changeStatusNotification,sta
 
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus,stateIdUser.userId)
+        console.log()
     }
 
 
