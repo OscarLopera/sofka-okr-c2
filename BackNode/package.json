@@ -5,7 +5,12 @@
   "main": "index.js",
   "scripts": {
     "dev": " nodemon infrastructure/server/server.js ",
+
     "test": "jest --coverage"
+
+
+    "start": "node infrastructure/server/server.js"
+
   },
   "keywords": [],
   "author": "",

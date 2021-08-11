@@ -1,9 +1,10 @@
 const express = require("express");
 const validationHandler = require("../../../utils/middleware/validationHandler");
-const {updateNotificationManager, createNotificationManager} = require("../../controllers/notifications/NotificationManagerController")
+const {updateNotificationManager, createNotificationManager, getNotificationManager} = require("../../controllers/notifications/NotificationManagerController")
 
 let createNotiManager = createNotificationManager()
 let configureNotifications = updateNotificationManager()
+const getNotificationManagerCont = getNotificationManager()
 
 function routesApiNotifications(app) {
   const router = express.Router();
@@ -11,6 +12,7 @@ function routesApiNotifications(app) {
 
   router.post("/", createNotiManager);
   router.patch("/update-configuration/:_id", configureNotifications);
+  router.get('/:_id', getNotificationManagerCont)
 }
 
 module.exports = routesApiNotifications;
