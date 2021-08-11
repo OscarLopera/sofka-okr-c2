@@ -1,47 +1,64 @@
-import React from "react";
-
+import React, {useState} from 'react';
+import Select from "react-select";
 
 const CalendarAddComponent = ({AddEvent, token}) => {
 
+    const date = (new Date().toISOString().split('T', 8))
+
+    const [startDate, setStartDate] = useState(date[0]);
+    const [endDate, setEndDate] = useState(date[0]);
+    const [description, setDescription] = useState("");
+    const [attendees, setAttendees] = useState([]);
+
+    const attendeesList = [
+        {
+            value: {email: "sebas99cano@gmail.com"},
+            label: "sebas99cano@gmail.com"
+        },
+        {
+            value: {email: "sebas.cano1036@gmail.com"},
+            label: "sebas.cano1036@gmail.com"
+        },
+        {
+            value: {email: "anahernandez814@gmail.com"},
+            label: "anahernandez814@gmail.com"
+        },
+        {
+            value: {email: "danielaristy22@gmail.com"},
+            label: "danielaristy22@gmail.com"
+        },
+        {
+            value: {email: "dacastamerd@gmail.com"},
+            label: "dacastamerd@gmail.com"
+        }
+    ]
+    const addAttendees = (e) => {
+        setAttendees(Array.isArray(e) ? e.map(x => x.value) : []);
+    }
+
     const addEvent = () => {
         const eventObject = {
-            kind: "calendar#event",
             summary: "OKR",
-            description: "titulo del OKR",
-            location: "veremos....",
+            description: description,
             start: {
-                dateTime: "2021-08-10T13:00:00",
+                date: startDate,
                 timeZone: "America/Bogota"
             },
             end: {
-                dateTime: "2021-08-10T14:00:00",
+                date: endDate,
                 timeZone: "America/Bogota"
             },
-
             conferenceData: {
                 createRequest: {
                     requestId: "sample13",
                     conferenceSolutionKey: {type: "hangoutsMeet"}
                 },
             },
-            attendees: [
-                {email: "sebas99cano@gmail.com"},
-                {email: "sebas.cano1036@gmail.com"},
-                {email: "juan_cano82161@elpoli.edu.co"},
-                {email: "anahernandez814@gmail.com"}
-            ],
+            attendees: attendees,
             reminders: {
                 useDefault: "useDefault",
-                overrides: [
-                    {method: 'email', minutes: 60 * 24},
-                    {method: 'popup', minutes: 10}
-                ]
             },
-            sendUpdates: "all",
-            source: {
-                title: "example",
-                url: "http://localhost:3000"
-            }
+            sendUpdates: "all"
         }
         AddEvent(eventObject, token)
     }
@@ -62,11 +79,26 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <input/>
+                            <label>Fecha Inicial</label>
+                            <input type={"date"} min={startDate} value={startDate} className={"form-control"}
+                                   onChange={event => setStartDate(event.target.value)}/>
+                            <hr className="my-4"/>
+                            <label>Fecha Final</label>
+                            <input type={"date"} min={endDate} value={endDate} className={"form-control"}
+                                   onChange={event => setEndDate(event.target.value)}/>
+                            <hr className="my-4"/>
+                            <label>Descripcion</label>
+                            <input type={"text"} value={description} className={"form-control"}
+                                   onChange={event => setDescription(event.target.value)}/>
+                            <hr className="my-4"/>
+                            <Select isMulti options={attendeesList} onChange={addAttendees} placeholder={"Selecciona los correos"}/>
+
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" className="btn btn-primary">Agregar Evento</button>
+                            <button type="button" className="btn btn-primary" data-dismiss="modal"
+                                    onClick={() => addEvent()}>Agregar Evento
+                            </button>
                         </div>
                     </div>
                 </div>
