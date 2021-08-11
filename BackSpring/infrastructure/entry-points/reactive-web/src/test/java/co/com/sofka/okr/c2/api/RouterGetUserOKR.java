@@ -15,13 +15,13 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
-
 
 @WebFluxTest
 @ExtendWith(SpringExtension.class)
 @ContextConfiguration(classes = {Router.class})
-class RouterGetLastOKRTest {
+public class RouterGetUserOKR {
 
     @Autowired
     private WebTestClient webTestClient;
@@ -30,8 +30,10 @@ class RouterGetLastOKRTest {
     private Handler handler;
 
     @Test
-    @DisplayName("GET - Obtener último OKR del usuario")
-    public void getLastOkrTest() {
+    @DisplayName("GET - Obtener OKRs por usuario")
+
+    public void getUserOKRTest() {
+
         List<HistoricalProgress> list = new ArrayList<>();
         HistoricalProgress hp1 = new HistoricalProgress("2021/08/10", 20.0);
         list.add(hp1);
@@ -40,16 +42,20 @@ class RouterGetLastOKRTest {
         krsdtoList.add(kr);
         OKRSDTO okr = new OKRSDTO("id7", "objective", "titulo", "IdManager", "descripcion", "verticaID", 95.2, new ArrayList<>(), krsdtoList);
 
-        Mockito.when(handler.getLastOkr(Mockito.any(String.class))).thenReturn(Mono.just(okr));
+        RespuestaUsuarioDTO respuestaUsuarioDTO = new RespuestaUsuarioDTO(
+                "1",
+                "Cristian",
+                Collections.singletonList(okr)
+        );
 
-        webTestClient.get().uri("/api/getlastokrbyuserid/{id}", "id")
+        Mockito.when(handler.findUserAllOkr(Mockito.any(String.class))).thenReturn(Mono.just(respuestaUsuarioDTO));
+
+        webTestClient.get().uri("/api/get/userokr/{id}", "id")
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(OKRSDTO.class)
-                .value(respuesta ->{
-                    Assertions.assertThat(respuesta.getDescription()).isEqualTo("descripcion");
+                .expectBody(RespuestaUsuarioDTO.class)
+                .value(respuesta -> {
+                    Assertions.assertThat(respuesta.getName()).isEqualTo("Cristian");
                 });
-
     }
-
 }
