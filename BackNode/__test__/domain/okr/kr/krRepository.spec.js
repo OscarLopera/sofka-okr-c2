@@ -36,9 +36,9 @@ describe("repository methods (not implemented) Kr", () => {
   });
   it("getBy KrId ", () => {
     try {
-        krRepository.getByKrId()
+        krRepository.getMany()
     } catch (e) {
-      expect(e).toEqual(new Error("Error metodo getByKrId no implemenado"));
+      expect(e).toEqual(new Error("Error metodo getMany no implemenado"));
     }
     expect.hasAssertions();
   });

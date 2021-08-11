@@ -11,8 +11,8 @@ class KrRepository {
   updateKr(KrId, Kr) {
     throw new Error("Error metodo updateKr no implemenado");
   }
-  getByKrId(KrId) {
-    throw new Error("Error metodo getByKrId no implemenado");
+  getMany(KrId) {
+    throw new Error("Error metodo getMany no implemenado");
   }
 }
 module.exports = KrRepository;
