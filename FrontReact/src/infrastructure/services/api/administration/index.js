@@ -21,6 +21,10 @@ const functions = {
         const response = await axios.put('https://admin-reto-final.herokuapp.com/api/usuario/modificar', user);
         return response.data;
     },
+    getQuestions: async () => {
+        const response = await axios.get('https://admin-reto-final.herokuapp.com/api/preguntas/frecuentes');
+        return response.data;
+    }
 }
 
 export default functions;

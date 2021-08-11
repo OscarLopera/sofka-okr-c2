@@ -64,3 +64,17 @@ export const updateUserFailure = error => ({
     type: types.UPDATE_USER_FAILURE,
     payload: error
 });
+
+export const loadingQuestions = () => ({
+    type: types.LOADING_QUESTIONS
+});
+
+export const loadingQuestionsSuccess = questions => ({
+    type: types.LOADING_QUESTIONS_SUCCESS,
+    payload: questions
+});
+
+export const loadingQuestionsFailure = error => ({
+    type: types.LOADING_QUESTIONS_FAILURE,
+    payload: error
+});

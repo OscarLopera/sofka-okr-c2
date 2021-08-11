@@ -128,12 +128,25 @@ const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
     }
 }
 
+const loadingQuestionsFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === types.LOADING_QUESTIONS){
+        try{   
+            const questions = await api.user.getQuestions(); 
+            dispatch(actions.loadingQuestionsSuccess(questions));
+        }catch (error){
+            dispatch(actions.loadingQuestionsFailure(error.message));
+        }
+    }
+}
+
 const userMiddleware = [
     loginUserFlow,
     logoutUserFlow,
     closeWelcomeFlow,
     loadingVerticalsFlow,
-    updateUserFlow
+    updateUserFlow,
+    loadingQuestionsFlow
 ]
 
 export default userMiddleware;
