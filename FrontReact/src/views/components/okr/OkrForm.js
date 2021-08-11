@@ -1,5 +1,12 @@
 import { useState, React } from "react";
 import { Form, FormGroup, Label, Input, FormText } from "reactstrap";
+import {getOkrs} from '../../../application/selectors/okr/okr';
+import {bindActionCreators} from "redux";
+import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
+import {connect} from "react-redux";
+
+
+
 import "../../assets/styles/okr/okr.css";
 
 const OkrFormCreate = ({ addOkrs }) => {
@@ -17,11 +24,10 @@ const OkrFormCreate = ({ addOkrs }) => {
       title: title,
       managerId: managerId,
       description: description,
-      areaInCharge: areaInCharge,
-      progress: progress,
+      verticalId: areaInCharge
     };
     addOkrs(okrObject);
-    alert.success("add publication success");
+    alert("add publication success");
   };
 
   return (
@@ -105,4 +111,23 @@ const OkrFormCreate = ({ addOkrs }) => {
   );
 };
 
-export default OkrFormCreate;
+
+const mapStateToProps = (state) => {
+  return {
+      okr: getOkrs(state),
+     
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+     
+      addOkrs,
+      
+      deleteOkrs,
+     
+     
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps) (OkrFormCreate);

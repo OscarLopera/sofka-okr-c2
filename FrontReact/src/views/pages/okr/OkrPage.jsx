@@ -1,10 +1,13 @@
-import { Button } from "reactstrap";
+
+import React, { useState } from 'react';
+import { Button } from 'reactstrap';
+import { Redirect } from 'react-router';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import "../../assets/styles/okr/OkrPage.css";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
-import { createKr } from "../../../application/actions/okr/KrAction";
+import { Link } from 'react-router-dom';
 
 const OkrPage = () => {
   const okrs = [
@@ -108,26 +111,39 @@ const OkrPage = () => {
     },
   ];
 
+  const NewOkr = () => {
+    <Redirect to="/create-okr" />
+  }
+
   return (
     <div className="container d-flex flex-column align-items-center py-5">
+
       {okrs.length === 0 ? (
         <>
           <EmptyMessage />
-          <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4">
-            crear okr
-          </Button>
+          <Link to="/okr/create-okr">
+            <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4">
+
+              crear okr
+            </Button>
+          </Link>
         </>
       ) : (
         <>
-          <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4">
-            crear okr
-          </Button>
+          <Link to="/okr/create-okr">
+            <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4" >
+              crear okr
+            </Button>
+          </Link>
           <div className="container">
             <ul className="list-unstyled">
               {okrs.map((elem) => {
                 return (
-                  <li key={elem._id}>
-                    <OkrCard title={elem.title} />
+                  <li key={elem._id.$oid}>
+                    <OkrCard
+                      title={elem.title}
+                      progress={elem.currentProgress.$numberInt}
+                    />
                   </li>
                 );
               })}
@@ -141,7 +157,6 @@ const OkrPage = () => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators({
-      createKr,
     }, dispatch);
 };
 

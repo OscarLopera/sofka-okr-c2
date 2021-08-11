@@ -3,11 +3,11 @@ import axios from "axios";
 const functions = {
 
     loadOkr: async () => {
-        const response = await axios.get('http://localhost:3000/peliculas')
+        const response = await axios.get('')
         return response.data
     },
     createOkr: async (okr) => {
-        const response = await axios.post('http://localhost:3000/peliculas', okr)
+        const response = await axios.post('https://back-node-okr-qa.herokuapp.com/api/okr/new/', okr)
         return response.data
     },
     updateOkr: (okr) => {
@@ -19,7 +19,7 @@ const functions = {
         }
     },
     deleteOkr: async (idOkr) => {
-        await axios.delete('http://localhost:3000/peliculas'+idOkr).then(() => {
+        await axios.delete(''+idOkr).then(() => {
             return idOkr
         }).catch(error=>{
             return error
