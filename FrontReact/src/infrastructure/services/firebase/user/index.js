@@ -1,7 +1,7 @@
 import {auth} from "../firebase";
 import {signInWithGoogle, logout} from "../auth";
 
-export default {
+const functions ={
     getUser: () => {
         return {
             userName:auth().currentUser.displayName,
@@ -11,10 +11,12 @@ export default {
             userPhone: auth().currentUser.phoneNumber
         }
     },
-    authUserWithGoogle: () => { 
+    authUserWithGoogle: () => {
         return signInWithGoogle();
     },
     logout: () => {
         return logout();
     }
 }
+
+export default functions;

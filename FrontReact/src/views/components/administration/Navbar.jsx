@@ -62,7 +62,7 @@ const Navbar = ({ logoutUser, user }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light navega">
         <div className="container-fluid">
-          <Link className="navbar-brand">
+          <Link to={"/#"} className="navbar-brand">
             {/* Usuario con Logueo */}
             {user && (
               <NavIcon>
@@ -88,10 +88,10 @@ const Navbar = ({ logoutUser, user }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"/>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0"/>
             <form className="d-flex">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">

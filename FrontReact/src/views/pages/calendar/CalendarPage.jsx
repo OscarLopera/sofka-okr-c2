@@ -17,7 +17,7 @@ const CalendarPage = ({eventos, AddEvent, ListEvents, user}) => {
 
     useEffect(() => {
         ListEvents(user.userToken)
-    }, [])
+    }, [ListEvents, user.userToken])
 
     return (
         <>

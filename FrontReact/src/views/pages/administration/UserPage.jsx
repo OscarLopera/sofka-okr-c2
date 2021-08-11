@@ -20,7 +20,7 @@ const UserPage = ({ user, /*getVerticals NOVA*/verticals, loadingVerticals, upda
 
   useEffect(() => {
     loadingVerticals();
-  }, []);
+  }, [loadingVerticals]);
 
   return (
     <center>
