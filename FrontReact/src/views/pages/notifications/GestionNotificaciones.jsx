@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import '../../assets/styles/notifications/styleGestion.css';
 import OpcionPantallaEmail from '../../components/notifications/OpcionPantallaEmail';
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
     useEffect(() => {
 
         getStatusNotification(stateIdUser.userId)
-    }, [])
+    }, [getStatusNotification,stateIdUser.userId])
 
 
     const comprobar = () => {

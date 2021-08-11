@@ -1,5 +1,5 @@
-import { getStatusNotification, getStatusNotifySuccess } from "../../actions/notifications";
-import middlewareNotify, { convertirobjetoToarray } from "../../middleware/notifications/notificacionsMiddleware";
+import { changeStatusNotification, getStatusNotification, getStatusNotifySuccess } from "../../actions/notifications";
+import middlewareNotify, { convertirobjetoToarray,ChangeStatusNotificationFlow, convertirarrayToObjeto } from "../../middleware/notifications/notificacionsMiddleware";
 
 
 describe('middleware user test functions', () => {
@@ -34,11 +34,28 @@ describe('middleware user test functions', () => {
         }
       
 }
+
+    const dummyarray=[
+        ["OkrCreated",true,false],
+        ["KrCreated",true,false],
+        ["OkrUpdated",true,false],
+        ["KrUpdated",true,false],
+        ["OkrFinished",true,false],
+        ["KrFinished",true,false],
+        ["OkrExpired",true,false],
+        ["KrExpired",true,false],
+        ["OkrAssigned",true,false],
+        ["KrAssigned",true,false],
+        ["OkrDeleted",true,false],
+        ["krDeleted",true,false],]
     const api = {
         notifications: {
             getStatusNotify: () => {
                 return dummystatusNotify
             },
+            updateStatusNotify:()=>{
+                return dummystatusNotify
+            }
             
         }
     }
@@ -46,7 +63,7 @@ describe('middleware user test functions', () => {
     const dispatch = jest.fn();
     const next = jest.fn();
 
-    const [GetStatusNotificationFlow] = middlewareNotify;
+    const [GetStatusNotificationFlow,ChangeStatusNotificationFlow] = middlewareNotify;
 
     describe('status notification flow test', () => {
 
@@ -57,6 +74,20 @@ describe('middleware user test functions', () => {
             const okr = await api.notifications.getStatusNotify()
             const arraymail = convertirobjetoToarray(okr)
             expect(dispatch).toHaveBeenCalledWith(getStatusNotifySuccess(arraymail))
+            expect(next).toHaveBeenCalledWith(action);
+        });
+
+    })
+
+
+    describe('status getnotificationmanager flow test', () => {
+
+        const action = changeStatusNotification(dummyarray);
+
+        test('status changenotificationmanager flow test', async () => {
+            await ChangeStatusNotificationFlow({api})({dispatch})(next)(action);
+            const objeto = convertirarrayToObjeto(action.payload)
+            await api.notifications.updateStatusNotify(objeto, action.id)
             expect(next).toHaveBeenCalledWith(action);
         });
 
