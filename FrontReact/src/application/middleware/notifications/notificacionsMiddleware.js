@@ -19,7 +19,7 @@ const ChangeStatusNotificationFlow = ({ api }) => ({ dispatch }) => next => asyn
     if (action.type === "CAMBIAR_NOTIFICACION") {
         try {
             const objeto = convertirarrayToObjeto(action.payload)
-            const okr = await api.notifications.updateStatusNotify(objeto)
+            const okr = await api.notifications.updateStatusNotify(objeto, action.id)
             //dispatch(getStatusNotifySuccess(arraymail))
         } catch (error) {
             console.log(error)

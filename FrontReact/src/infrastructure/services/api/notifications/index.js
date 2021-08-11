@@ -11,8 +11,8 @@ const notifications = {
         return res.data
     },
 
-    updateStatusNotify: async (arraynotify) => {
-        const response = await axios.put("https://pruebabacknoti.herokuapp.com/api/notifications/update-configuration/611169b3a62cf558eff7a231",arraynotify)
+    updateStatusNotify: async (arraynotify, id) => {
+        const response = await axios.put("https://pruebabacknoti.herokuapp.com/api/notifications/update-configuration/"+id,arraynotify)
         return response.data
     },
 
