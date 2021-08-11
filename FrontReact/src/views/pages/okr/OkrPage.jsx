@@ -1,10 +1,12 @@
 
 import React, { useState } from 'react';
 import { Button } from 'reactstrap';
+import { Redirect } from 'react-router';
 
 import "../../assets/styles/okr/OkrPage.css";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
+import { Link } from 'react-router-dom';
 
 const OkrPage = () => {
   const okrs = [
@@ -108,21 +110,26 @@ const OkrPage = () => {
     },
   ];
 
+ const NewOkr = () =>{
+    <Redirect to="/create-okr" />
+  }
+
   return (
     <div className="container d-flex flex-column align-items-center py-5">
    
       {okrs.length === 0 ? (
         <>
           <EmptyMessage />
-          <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4">
+          <Link type="button" className="btn sofka-color-btn py-3 px-4 fs-4" to="/okr/create-okr" >
+         
             crear okr
-          </Button>
+          </Link>
         </>
       ) : (
         <>
-          <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4">
+          <Link type="button" className="btn sofka-color-btn py-3 px-4 fs-4" to="/okr/create-okr">
             crear okr
-          </Button>
+          </Link>
           <div className="container">
             <ul className="list-unstyled">
               {okrs.map((elem) => {
