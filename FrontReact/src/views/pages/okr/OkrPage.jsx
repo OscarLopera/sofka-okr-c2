@@ -123,8 +123,11 @@ const OkrPage = () => {
             <ul className="list-unstyled">
               {okrs.map((elem) => {
                 return (
-                  <li key={elem._id}>
-                    <OkrCard title={elem.title} />
+                  <li key={elem._id.$oid}>
+                    <OkrCard
+                      title={elem.title}
+                      progress={elem.currentProgress.$numberInt}
+                    />
                   </li>
                 );
               })}
