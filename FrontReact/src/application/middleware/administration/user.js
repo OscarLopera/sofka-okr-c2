@@ -5,31 +5,44 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
     next(action);
     if(action.type === types.LOGIN_USER){
         try{
-            await firebase.user.authUserWithGoogle()
-
+            const resultAuth = await firebase.user.authUserWithGoogle();
+            
+            const userToken = resultAuth.credential.accessToken;
             const userId = await firebase.user.getUser().userId;
             const userEmail = await firebase.user.getUser().userEmail;
             const userName = await firebase.user.getUser().userName;
-            const userPhone = await firebase.user.getUser().userPhone;
+            const userPhone = await firebase.user.getUser().userPhone || "0000000";
             const userImage = await firebase.user.getUser().userImage;
 
-            const userFirebase = {
-                userId: userId,
-                userEmail: userEmail,
-                userName: userName,
-                userPhone: userPhone,
-                userImage: userImage
+            const user = await api.user.validateUser(userId);
+            let vertical = {verticalname: user.verticalId};
+            
+            if(user.firstTime){
+                const userFirebase = {
+                    id: userId,
+                    name: userName,
+                    email: userEmail,
+                    urlPhoto: userImage,
+                    phone: userPhone,
+                    firstTime: false,
+                    verticalId:"verticalId",
+                    rol: "rol"
+                }
+                await api.user.createUser(userFirebase); 
+            } else{
+                vertical = await api.user.getVertical(user.verticalId);
             }
-            const user = await api.user.validateUser(userFirebase); //API
 
             const userDataBase = {
                 userId: userId,
                 userName: userName,
                 userImage: userImage,
-                userVertical: user.vertical //API
+                userVertical: vertical.verticalname, 
+                firstTime: user.firstTime, 
+                userToken: userToken
             }
             localStorage.setItem("user", JSON.stringify(userDataBase))
-            dispatch(actions.loginUserSuccess(user));
+            dispatch(actions.loginUserSuccess(userDataBase));
         }catch (error){
             dispatch(actions.loginUserFailure(error.message));
         }

@@ -9,39 +9,30 @@ import {connect} from "react-redux";
 
 import "../../assets/styles/okr/okr.css";
 
-
-
-const OkrFormCreate = ({addOkrs}) => {
-
-    
-  
-  const [objective, setObjective] = useState('');
-  const [title, setTitle] = useState('');
-  const [managerId, setManagerId] = useState('');
-  const [description, setDescription] = useState('');
-  const [areaInCharge, setAreaInCharge] = useState('');
-  const [progress, setProgress] = useState('');
+const OkrFormCreate = ({ addOkrs }) => {
+  const [objective, setObjective] = useState("");
+  const [title, setTitle] = useState("");
+  const [managerId, setManagerId] = useState("");
+  const [description, setDescription] = useState("");
+  const [areaInCharge, setAreaInCharge] = useState("");
+  const [progress, setProgress] = useState("");
 
   const okrCreateSubmit = (event) => {
-      event.preventDefault();
-      const publicationObject = {
-          
+    event.preventDefault();
+    const okrObject = {
+      objective: objective,
+      title: title,
+      managerId: managerId,
+      description: description,
+      verticalId: areaInCharge
+    };
+    addOkrs(okrObject);
+    alert("add publication success");
+  };
 
-        objective: objective,
-        title: title,
-        managerId: managerId,
-        description: description,
-        verticalId: areaInCharge
-      }
-      addOkrs(publicationObject);
-      alert('correcto')
-      
-  }
-
-
-    return (
-        <div className="container">     
-        <div className="card text-center">
+  return (
+    <div className="container">
+      <div className="card text-center">
         <div className="create text-center">
           <h1>Agregar OKR</h1>
           <Form>
