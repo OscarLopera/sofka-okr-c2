@@ -104,14 +104,12 @@ const Navbar = ({ logoutUser, user }) => {
                   </Link>
                 </li>
                 <li className={!user ? "d-none" : "nav-item"}>
-                  <Link className="nav-link text-white" to="/principal">
+                  <Link className="nav-link text-white mt-1" to="/principal">
                     Principal
                   </Link>
                 </li>
                 <li className={!user ? "d-none" : "nav-item"}>
-                 
-                    <Campana/>
-                
+                  <Campana />
                 </li>
                 <li className={!user ? "d-none" : "nav-item"}>
                   {/* Usuario no logueado */}
@@ -122,9 +120,15 @@ const Navbar = ({ logoutUser, user }) => {
                   )}
                   {/* Usuario Logeado */}
                   {user && (
-                    <div >
+                    <div>
                       <Link className="nav-link" to="/">
-                        <img src={user.userImage} alt="foto usuario" width="40px" height="40px" className="imagen-usuario" />
+                        <img
+                          src={user.userImage}
+                          alt="foto usuario"
+                          width="40px"
+                          height="40px"
+                          className="imagen-usuario"
+                        />
                       </Link>
                     </div>
                   )}
