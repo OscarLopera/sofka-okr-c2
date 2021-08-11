@@ -12,8 +12,8 @@ import { useHistory } from 'react-router';
 export default function Campana() {
   const history = useHistory();
     return (
-        <div class="notifications">
-            <div class="icon_wrap"><i class="far fa-bell"></i></div>
+        <div className="notifications">
+            <div className="icon_wrap"><i class="far fa-bell"></i></div>
             <div className="TinkerbellLayout-content">
               <div class="notification_dd">
                 <div className="TinkerbellLayout-top">
@@ -28,7 +28,7 @@ export default function Campana() {
                 {Notificacion()}
 
                 <div class="NotificationsFooter text-center">
-                  <a href="#">
+                  <a href="/">
                     <span>Ver todas ➡</span>
                   </a>
                 </div>
