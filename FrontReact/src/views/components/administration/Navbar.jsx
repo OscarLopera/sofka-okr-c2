@@ -103,11 +103,11 @@ const Navbar = ({ logoutUser, user }) => {
                     Home
                   </Link>
                 </li>
-                <li className={!user ? "d-none" : "nav-item"}>
+                {/* <li className={!user ? "d-none" : "nav-item"}>
                   <Link className="nav-link text-white mt-1" to="/principal">
                     Principal
                   </Link>
-                </li>
+                </li> */}
                 <li className={!user ? "d-none" : "nav-item"}>
                   <Campana />
                 </li>

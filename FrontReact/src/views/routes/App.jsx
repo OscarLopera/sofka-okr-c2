@@ -40,7 +40,7 @@ const App = ({user}) => {
         <PrivateRoute exact path={"/calendar"} component={CalendarPage} user={user}/>
         <PrivateRoute exact path={"/administration"} component={AdministrationPage} user={user}/>
         <Route exact path={"/login"} component={LoginPage} />
-        <PrivateRoute exact path={"/principal"} component={PrincipalPage} user={user} />
+        {/* <PrivateRoute exact path={"/principal"} component={PrincipalPage} user={user} /> */}
         <PrivateRoute exact path={"/notificaciones"} component={GestionNotificaciones} user={user} />
         <PrivateRoute exact path={"/userPage"} component={UserPage} user={user} />
         <PublicRoute exact path="/" component={HomePage} user={user}/>
