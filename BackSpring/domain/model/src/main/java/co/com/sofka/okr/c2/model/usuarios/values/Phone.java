@@ -16,6 +16,11 @@ public class Phone {
         return value;
     }
 
+    public static Phone of(String value){
+        return new Phone(value);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

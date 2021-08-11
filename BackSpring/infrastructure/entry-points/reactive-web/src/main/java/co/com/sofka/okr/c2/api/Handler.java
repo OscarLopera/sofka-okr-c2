@@ -1,27 +1,23 @@
 package co.com.sofka.okr.c2.api;
 
-import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
+import co.com.sofka.okr.c2.usecase.okr.*;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
-import co.com.sofka.okr.c2.usecase.okr.GetAllKrsByIdOkrUseCase;
-import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
-import org.springframework.web.reactive.function.server.ServerRequest;
-import org.springframework.web.reactive.function.server.ServerResponse;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+
 import java.util.ArrayList;
+
 import java.util.stream.Collectors;
 
 @Component
 @RequiredArgsConstructor
 public class Handler {
-//private  final UseCase useCase;
-//private  final UseCase2 useCase2;
 
     private final MapperOKRDTO mapperOKRDTO;
     private final MapperUserDTO mapperUserDTO;
@@ -30,6 +26,8 @@ public class Handler {
     private final GetUserOKRUseCase getUserOKRUseCase;
     private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
     private final GetAllUserUseCase getAllUserUseCase;
+    private final GetOKRByCompletedUseCase getOKRByCompletedUseCase;
+    private final GetOKRByProgressUseCase getOKRByProgressUseCase;
 
     public Mono<OKRSDTO> getOkrBiId(String id) {
         Mono<OKRSDTO> okr = getOkrByIdUseCase.execute(id).map(mapperOKRDTO.okrToDto());
@@ -48,7 +46,7 @@ public class Handler {
         Mono<RespuestaUsuarioDTO> user = getUserOKRUseCase.execute(id).map(mapperUserDTO.userResponseToDTO());
         Flux<RespuestaUsuarioDTO> response = getAllOKRByUserUseCase.execute(id).buffer()
                 .flatMap(it -> user.flatMap(okr -> {
-                    okr.setOkrs(it);
+                    okr.setOkrs(it.stream().map(mapperOKRDTO.okrToDto()).collect(Collectors.toList()));
                     val okr2 = okr;
                     return Mono.just(okr2);
                 }));
@@ -61,5 +59,15 @@ public class Handler {
                 .flatMap(us ->
                         findUserAllOkr(us.getId()));
         return users;
+    }
+
+    public Flux<OKRSDTO> getCompleted(String id){
+        Flux<OKRSDTO> okrs = getOKRByCompletedUseCase.execute(id).map(mapperOKRDTO.okrToDto());
+        return okrs;
+    }
+
+    public Flux<OKRSDTO> getProgress(String id){
+        Flux<OKRSDTO> okrs = getOKRByProgressUseCase.execute(id).map(mapperOKRDTO.okrToDto());
+        return okrs;
     }
 }

@@ -17,4 +17,8 @@ public class HistoricalProgress {
     public Double getProgress() {
         return progress;
     }
+
+    public static HistoricalProgress of(String date, Double progress){
+        return new HistoricalProgress(date,progress);
+    }
 }

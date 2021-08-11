@@ -17,4 +17,8 @@ public class IdOkr {
     public String getValue() {
         return value;
     }
+
+    public static IdOkr of(String value){
+        return new IdOkr(value);
+    }
 }

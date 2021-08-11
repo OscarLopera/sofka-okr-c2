@@ -15,4 +15,8 @@ public class KRId {
     public String getValue() {
         return value;
     }
+
+    public static KRId of(String value){
+        return new KRId(value);
+    }
 }

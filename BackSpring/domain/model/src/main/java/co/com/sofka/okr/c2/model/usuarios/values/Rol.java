@@ -17,6 +17,11 @@ public class Rol {
         return value;
     }
 
+    public static Rol of(String value){
+        return new Rol(value);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

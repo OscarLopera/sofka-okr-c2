@@ -3,6 +3,7 @@ package co.com.sofka.okr.c2.config;
 import co.com.sofka.okr.c2.model.okrs.gateways.OKRSRepository;
 import co.com.sofka.okr.c2.model.usuarios.gateways.UsuariosRepository;
 import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
+import co.com.sofka.okr.c2.usecase.okr.GetOKRByCompletedUseCase;
 import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
@@ -33,5 +34,9 @@ public class UseCasesConfig {
 
         public GetOkrByIdUseCase getOkrByIdUseCase(OKRSRepository repository){
                 return new GetOkrByIdUseCase(repository);
+        }
+
+        public GetOKRByCompletedUseCase getOKRByCompleted(OKRSRepository repository){
+                return new GetOKRByCompletedUseCase(repository);
         }
 }

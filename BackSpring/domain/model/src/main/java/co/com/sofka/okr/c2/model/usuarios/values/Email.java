@@ -1,5 +1,7 @@
 package co.com.sofka.okr.c2.model.usuarios.values;
 
+import co.com.sofka.okr.c2.model.okrs.values.Objective;
+
 import java.util.Objects;
 
 public class Email {
@@ -23,6 +25,11 @@ public class Email {
     public String getValue() {
         return value;
     }
+
+    public static Email of(String value){
+        return new Email(value);
+    }
+
 
     @Override
     public boolean equals(Object o) {
