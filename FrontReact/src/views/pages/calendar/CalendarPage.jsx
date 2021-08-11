@@ -67,7 +67,12 @@ const CalendarPage = ({eventos, AddEvent, ListEvents,DeleteEvent, user}) => {
                 </tr>
                 </thead>
                 <tbody>
-                <CalendarItem eventos={eventos} DeleteEvent={DeleteEvent} token={user.userToken}/>
+                    {
+                        (eventos === undefined)? (<div className="spinner-border text-info m-5 justify-content-center" role="status">
+                        <span className="sr-only" ></span></div>): 
+                        <CalendarItem eventos={eventos} DeleteEvent={DeleteEvent} token={user.userToken}/>
+                    }
+               
                 </tbody>
             </table>
         </div>
