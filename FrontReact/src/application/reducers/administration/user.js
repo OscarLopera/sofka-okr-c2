@@ -22,6 +22,10 @@ const reducer = (state = initialState, action) => {
             return {...state, verticals: action.payload, error: null };
         case types.LOADING_VERTICALS_FAILURE:
             return {...state, verticals: [], error: action.payload };
+        case types.UPDATE_USER_SUCCESS: 
+            return {...state, user: action.payload, error: null };
+        case types.UPDATE_USER_FAILURE:
+            return {...state, error: action.payload };
         default:
             return state;
     }

@@ -5,14 +5,17 @@ import {
   getUser,
   getVerticals,
 } from "../../../application/selectors/administration/user";
-import { loadingVerticals } from "../../../application/actions/administration/user";
+import { loadingVerticals, updateUser } from "../../../application/actions/administration/user";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 
-const UserPage = ({ user, getVerticals, verticals, loadingVerticals }) => {
+const UserPage = ({ user, /*getVerticals NOVA*/verticals, loadingVerticals, updateUser }) => {
   const { register, handleSubmit } = useForm();
+
   const onSubmit = (data) => {
-    console.log(data.vertical);
+    const userInState = user;
+    userInState.userVerticalId = data.vertical
+    updateUser(userInState);
   };
 
   useEffect(() => {
@@ -54,7 +57,7 @@ const UserPage = ({ user, getVerticals, verticals, loadingVerticals }) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ loadingVerticals }, dispatch);
+  return bindActionCreators({ loadingVerticals, updateUser}, dispatch);
 };
 
 const mapStateToProps = (state) => {

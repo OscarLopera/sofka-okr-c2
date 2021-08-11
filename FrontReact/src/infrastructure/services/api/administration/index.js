@@ -17,4 +17,8 @@ export default {
         const response = await axios.get('https://admin-reto-final.herokuapp.com/api/usuario/verticales');
         return response.data;
     },
+    updateUser: async (user) => {
+        const response = await axios.put('https://admin-reto-final.herokuapp.com/api/usuario/modificar', user);
+        return response.data;
+    },
 }
