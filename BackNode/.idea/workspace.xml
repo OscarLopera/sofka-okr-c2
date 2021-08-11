@@ -8,10 +8,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6a59aeb3-d2be-46f5-9877-1cf37e5e4a6b" name="Changes" comment="">
+    <list default="true" id="7412713a-758b-4f1e-bb2e-2b0ae8577712" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_08_2021_9_11_p__m___Changes_.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Checkout_at_10_08_2021_9_11_p__m___Changes_.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/__test__/infrastructure/dataBaseConnection.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/__test__/infrastructure/dataBaseConnection.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/calendar/useCases/userRecommendationByName.js" beforeDir="false" afterPath="$PROJECT_DIR$/application/calendar/useCases/userRecommendationByName.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FrontReact/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FrontReact/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
