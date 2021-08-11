@@ -1,7 +1,6 @@
 import * as actions from '../../actions/administration/user';
 import * as types from '../../types/administration/user';
 
-
 const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action) => {
     next(action);
     if(action.type === types.LOGIN_USER){
@@ -30,7 +29,8 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                     rol: "rol"
                 }
                 await api.user.createUser(userFirebase);
-                await api.notifications.createNotificationsManager({userId:userId}) 
+                await api.notifications.createNotificationsManager({userId:userId})
+
             } else{
                 vertical = await api.user.getVertical(user.verticalId);
             }

@@ -18,8 +18,6 @@ const notifications = {
 
     createNotificationsManager: async (id) => {
         const response = await axios.post('https://pruebabacknoti.herokuapp.com/api/notifications',id)
-        
-        console.log(response.data)
         return response.data
     }
     
