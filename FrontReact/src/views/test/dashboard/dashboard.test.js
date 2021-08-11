@@ -60,7 +60,7 @@ describe('Prueba del componente DashboardUserPage', () =>{
     const {getByTestId, getByText} = renderWithRedux(<DashboardUserPage/>)
   })
   */
-  console.log("Prueba de componente")
+  console.log("Prueba de componente");
 
 })
 
