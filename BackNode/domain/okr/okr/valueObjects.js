@@ -4,11 +4,9 @@ const ObjectiveValueObject = require("./values/objective");
 const ProgressValueObject = require("./values/progress");
 const TitleValueObject = require("./values/title");
 
-
-module.exports = valueObjects = {
-  DescriptionValueObject,
-  IdValueObject,
-  ObjectiveValueObject,
-  ProgressValueObject,
-  TitleValueObject,
-};
+module.exports = {
+    DescriptionValueObject, 
+    IdValueObject, 
+    ObjectiveValueObject, 
+    ProgressValueObject, 
+    TitleValueObject}

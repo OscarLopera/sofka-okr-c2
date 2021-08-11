@@ -25,3 +25,16 @@ export const ListEventsFailure = (error) => ({
     type: CalendarTypes.LIST_EVENTS_FAILURE,
     payload: error
 })
+export const DeleteEvent = (id,token) => ({
+    type: CalendarTypes.DELETE_EVENT,
+    token: token,
+    payload:id
+})
+export const DeleteEventSuccess = (event) => ({
+    type: CalendarTypes.DELETE_EVENT_SUCCESS,
+    payload: event
+})
+export const DeleteEventFailure = (error) => ({
+    type: CalendarTypes.DELETE_EVENT_FAILURE,
+    payload: error
+})

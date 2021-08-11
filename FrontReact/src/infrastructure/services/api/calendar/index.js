@@ -23,7 +23,18 @@ const functions = {
                 }
             })
         return results.data.items.filter(item => (item.summary === 'OKR')?item:null);
-    }
+    },
+    
+    deleteEvent: async (id, token) => {
+        await axios.delete(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${id}?sendUpdates=all&key=${API_KEY}`,
+            {
+            headers: {
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        });
+    },
 }
 
 export default functions
