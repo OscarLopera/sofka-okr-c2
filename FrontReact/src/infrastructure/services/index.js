@@ -5,9 +5,6 @@ const services = {
 
     api,
     firebase,
-
-
-    
 }
 
 export default services;

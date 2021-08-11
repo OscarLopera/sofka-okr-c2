@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import '../../assets/styles/notifications/styleGestion.css';
 import OpcionPantallaEmail from '../../components/notifications/OpcionPantallaEmail';
-import { useDispatch, useSelector } from 'react-redux';
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import { changeStatusNotification, getStatusNotification } from '../../../application/actions/notifications';
+import { getUser } from '../../../application/selectors/administration/user';
 
-export default function GestionNotificaciones() {
+const GestionNotificaciones=({getStatusNotification,changeStatusNotification,stateIdUser,initialstate})=> {
 
 
-    const dispatch = useDispatch()
+   
     useEffect(() => {
-        dispatch(getStatusNotification())
-    }, [dispatch])
+        
+        getStatusNotification(stateIdUser.userId)
+    }, [])
 
-    const initialstate = useSelector(state => state.notification)
 
     const comprobar = () => {
-        dispatch(changeStatusNotification(initialstate.notificationstatus))
+        changeStatusNotification(initialstate.notificationstatus,stateIdUser.userId)
+        console.log()
     }
 
 
@@ -38,3 +41,19 @@ export default function GestionNotificaciones() {
 
     )
 }
+
+const mapDispatchToProps = (dispatch) => {
+    return bindActionCreators(
+      { getStatusNotification,changeStatusNotification },dispatch
+      
+    );
+  };
+  
+  const mapStateToProps = (state) => {
+    return {
+      stateIdUser: getUser(state),
+      initialstate: state.notification
+    };
+  };
+  
+  export default connect(mapStateToProps, mapDispatchToProps)(GestionNotificaciones)

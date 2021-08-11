@@ -1,13 +1,10 @@
-
-import React, { useState } from 'react';
-import { Button } from 'reactstrap';
-import { Redirect } from 'react-router';
+import { Redirect } from "react-router";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import "../../assets/styles/okr/OkrPage.css";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import OkrBtn from "../../components/okr/OkrBtn";
 
 const OkrPage = () => {
   const okrs = [
@@ -112,28 +109,22 @@ const OkrPage = () => {
   ];
 
   const NewOkr = () => {
-    <Redirect to="/create-okr" />
-  }
+    <Redirect to="/create-okr" />;
+  };
 
   return (
     <div className="container d-flex flex-column align-items-center py-5">
-
       {okrs.length === 0 ? (
         <>
           <EmptyMessage />
           <Link to="/okr/create-okr">
-            <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4">
-
-              crear okr
-            </Button>
+            <OkrBtn text="Crear OKR" />
           </Link>
         </>
       ) : (
         <>
           <Link to="/okr/create-okr">
-            <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4" >
-              crear okr
-            </Button>
+            <OkrBtn text="Crear OKR" />
           </Link>
           <div className="container">
             <ul className="list-unstyled">
@@ -156,8 +147,7 @@ const OkrPage = () => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    }, dispatch);
+  return bindActionCreators({}, dispatch);
 };
 
 export default connect(mapDispatchToProps)(OkrPage);
