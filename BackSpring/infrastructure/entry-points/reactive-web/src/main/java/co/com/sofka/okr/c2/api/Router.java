@@ -44,7 +44,14 @@ public class Router {
                 request -> ServerResponse.ok()
                         .contentType(MediaType.APPLICATION_JSON)
                         .body(BodyInserters.fromPublisher(handler.findVerticalById(request.pathVariable("id")), VerticalDTO.class))
-        );
+                         .onErrorResume(
+                                 error -> {
+                                     if(error instanceof IllegalAccessError){
+                                         return ServerResponse.badRequest().bodyValue("No se encuentra la vertical");
+                                     }
+                                     return ServerResponse.badRequest().build();
+                                 })
+                         );
     }
 
 

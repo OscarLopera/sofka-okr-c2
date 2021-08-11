@@ -51,7 +51,7 @@ public class Handler {
     }
 
     public Mono<VerticalDTO> findVerticalById(String id) {
-        return listVerticalUseCase.listVertical(id).map(mapperVerticalDTO.toVerticalDTO());
+        return listVerticalUseCase.listVertical(id).map(mapperVerticalDTO.toVerticalDTO()).switchIfEmpty(Mono.error(new IllegalAccessError()));
     }
 
     public Flux<VerticalDTO> getVertical() {

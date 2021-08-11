@@ -7,4 +7,5 @@ public interface UsuariosRepository {
     Mono<Usuarios> adduser(Usuarios usuarios);
     Mono<Usuarios> listUser(String id);
     Mono<Usuarios> updateUser(Usuarios usuarios);
+
 }
