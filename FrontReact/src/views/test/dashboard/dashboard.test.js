@@ -45,12 +45,22 @@ describe('Prueba del componente DashboardUserPage', () =>{
     .create(<DashboardUserPage loadingOKR={loadingOKR} okrs={okrs}/>)
     .toJSON();
   expect(tree).toMatchSnapshot();
-  */
 
+  afterEach(cleanup)
+
+  function reducer(state = {})
+
+  function renderWithRedux(component, {initialState,store = createStore(reducer,initialState)} = {}
+) {
+    return {
+    ...render(<Provider store={store}>{component}</Provider>)
+    }
+  }
   it("renders with redux", () =>{
-    console.log("Prueba con redux");
-    //const {getByTestId, getByText} = render(<DashboardUserPage/>)
+    const {getByTestId, getByText} = renderWithRedux(<DashboardUserPage/>)
   })
+  */
+  console.log("Prueba de componente")
 
 })
 
