@@ -128,10 +128,12 @@ const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
     }
 }
 
-export default [
+const userMiddleware = [
     loginUserFlow,
     logoutUserFlow,
     closeWelcomeFlow,
     loadingVerticalsFlow,
     updateUserFlow
 ]
+
+export default userMiddleware;

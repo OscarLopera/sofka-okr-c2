@@ -1,5 +1,7 @@
 import user from './user';
 
-export default {
+const firebase = {
     user,
 };
+
+export default firebase;

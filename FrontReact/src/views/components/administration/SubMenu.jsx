@@ -65,11 +65,17 @@ const SubMenu = ({ item, user }) => {
           return (
             <DropdownLink to={item.path} key={index}>
               {item.icon}
-              {item.title === "Usuario" ? (
-                <SidebarLabel>{user.userName}</SidebarLabel>
-              ) : (
-                <SidebarLabel>{item.title}</SidebarLabel>
-              )}
+              {user ? (
+                user.userName ? (
+                  <div>
+                    {item.title === "Usuario" ? (
+                      <SidebarLabel>{user.userName}</SidebarLabel>
+                    ) : (
+                      <SidebarLabel>{item.title}</SidebarLabel>
+                    )}
+                  </div>
+                ) : null
+              ) : null}
             </DropdownLink>
           );
         })}

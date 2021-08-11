@@ -1,11 +1,11 @@
-const OkrService = require("../../../../application/okr/useCases/index");
+const OkrServices = require("../../../../application/okr/useCases/index");
 const OkrRepositoryMongo = require("../../../repositories/okr/okrMongoRepository");
 const okrRepository = new OkrRepositoryMongo
 
 module.exports = async (req, res, next) => {
   const { body: okr } = req;
   try {
-    const createdOkrId = await OkrService.createOkrUseCase(
+    const createdOkrId = await OkrServices.createOkrUseCase(
       okr,
       okrRepository
     );

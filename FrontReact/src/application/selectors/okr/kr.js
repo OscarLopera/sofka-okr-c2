@@ -1,0 +1,1 @@
+export const getKrs = state => state.kr.kr

@@ -11,12 +11,14 @@
         <module name="app-service_main" />
         <module name="usecase_test" />
         <module name="model_test" />
+        <module name="test_test" />
         <module name="reactive-web_main" />
         <module name="mongo-repository_test" />
         <module name="app-service_test" />
         <module name="model_main" />
         <module name="usecase_main" />
         <module name="reactive-web_test" />
+        <module name="test_main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />
