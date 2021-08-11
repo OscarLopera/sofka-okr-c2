@@ -6,20 +6,20 @@ public class UsuarioDTO {
     private String email;
     private String urlPhoto;
     private String phone;
-    private Boolean FirstTime;
+    private Boolean firstTime;
     private String verticalId;
     private String rol;
 
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String id, String name, String email, String urlPhoto, String phone, Boolean FirstTime, String verticalId, String rol) {
+    public UsuarioDTO(String id, String name, String email, String urlPhoto, String phone, Boolean firstTime, String verticalId, String rol) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.urlPhoto = urlPhoto;
         this.phone = phone;
-        this.FirstTime = FirstTime;
+        this.firstTime = firstTime;
         this.verticalId = verticalId;
         this.rol = rol;
     }
@@ -81,10 +81,10 @@ public class UsuarioDTO {
     }
 
     public Boolean getFirstTime() {
-        return FirstTime;
+        return firstTime;
     }
 
     public void setFirstTime(Boolean firstTime) {
-        FirstTime = firstTime;
+        this.firstTime = firstTime;
     }
 }

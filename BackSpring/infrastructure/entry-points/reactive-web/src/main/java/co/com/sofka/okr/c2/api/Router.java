@@ -13,6 +13,70 @@ import static org.springframework.web.reactive.function.server.RequestPredicates
 
 @Configuration
 public class Router {
+
+
+    @Bean
+    public RouterFunction<ServerResponse> createUser(Handler handler) {
+        return route(POST("/api/usuario/crear").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(UsuarioDTO.class)
+                        .flatMap(usuarioDTO -> handler.createUser(usuarioDTO)
+                                .flatMap(result -> ServerResponse.ok()
+                                        .contentType(MediaType.APPLICATION_JSON)
+                                        .bodyValue(result))
+                        )
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> routerGetAllVerticals(Handler handler) {
+        return route(
+                GET("/api/usuario/verticales").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(handler.getVertical(), VerticalDTO.class))
+        );
+
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> consultVertical(Handler handler) {
+        return route(GET("/api/vertical/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(handler.findVerticalById(request.pathVariable("id")), VerticalDTO.class))
+        );
+    }
+
+
+    @Bean
+    public RouterFunction<ServerResponse> consultUser(Handler handler) {
+        return route(GET("/api/usuario/validar/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .body(handler.validarUsuario(request.pathVariable("id")), RespuestaLoginDTO.class)
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> UpdateUser(Handler handler) {
+        return route(PUT("/api/usuario/modificar").and(accept(MediaType.APPLICATION_JSON)),
+                request -> request.bodyToMono(UsuarioDTO.class)
+                        .flatMap(usuarioDTO -> handler.updateUser(usuarioDTO)
+                                .flatMap(result -> ServerResponse.ok()
+                                        .contentType(MediaType.APPLICATION_JSON)
+                                        .bodyValue(result))
+                        )
+        );
+    }
+
+    @Bean
+    public RouterFunction<ServerResponse> routerGetPreguntas(Handler handler) {
+        return route(
+                GET("/api/preguntas/frecuentes").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(BodyInserters.fromPublisher(handler.listPreguntas(), PreguntasDTO.class))
+        );
+    }
     @Bean
     public RouterFunction<ServerResponse> getOKRById(Handler handler) {
         return route(GET("/api/getokrbyid/{id}").and(accept(MediaType.APPLICATION_JSON)),
@@ -38,6 +102,7 @@ public class Router {
         return route(GET("/api/get/completed/{id}").and(accept(MediaType.APPLICATION_JSON)),
                 request -> ServerResponse.ok().contentType(MediaType.APPLICATION_JSON)
                         .body(handler.getCompleted(request.pathVariable("id")), OKRSDTO.class));
+
 
     }
 

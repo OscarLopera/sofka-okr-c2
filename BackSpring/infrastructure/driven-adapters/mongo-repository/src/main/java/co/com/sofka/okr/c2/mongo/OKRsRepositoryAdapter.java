@@ -12,13 +12,16 @@ import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
 
+
 @Repository
 public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity,OKREntity, String, OKRsDBRepository>
  implements OKRSRepository
+
 {
     private EntityMapper entityMapper = new EntityMapper();
 
     public OKRsRepositoryAdapter(OKRsDBRepository repository, ObjectMapper mapper) {
+
         super(repository, mapper, d -> mapper.map(d, OKREntity.class));
     }
 
@@ -52,5 +55,6 @@ public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity,OKREntity
     @Override
     public Mono<OKRS> getOkrById(String id) {
         return this.repository.findById(id).map(entityMapper.fromOKREntity());
+
     }
 }

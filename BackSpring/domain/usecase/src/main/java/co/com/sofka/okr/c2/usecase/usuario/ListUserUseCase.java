@@ -6,12 +6,11 @@ import lombok.RequiredArgsConstructor;
 import reactor.core.publisher.Mono;
 
 @RequiredArgsConstructor
-public class CreateUserUseCase {
+public class ListUserUseCase {
 
     private final UsuariosRepository usuariosRepository;
 
-    public Mono<Usuarios> execute(Usuarios usuarios){
-        return usuariosRepository.adduser(usuarios);
+    public Mono<Usuarios> execute(String id){
+        return usuariosRepository.listUser(id);
     }
-
 }
