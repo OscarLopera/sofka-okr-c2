@@ -92,7 +92,7 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                                    onChange={event => setStartDate(event.target.value)}/>
                             <label className="col">Hora Inicial</label>
                             <label className="col">Hora Final</label>
-                            <div class="w-100"></div>
+                            <div className="w-100"/>
                             <input placeholder="Selected time" type={"time"} id={"input_starttime"} className={"form-control col"}
                              onChange={event => setStartTime(event.target.value)}/>
                             <input placeholder="Selected time" type={"time"} id={"input_endttime"} className={"form-control timepicker col"} 
