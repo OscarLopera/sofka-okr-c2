@@ -110,25 +110,29 @@ const OkrPage = () => {
     },
   ];
 
- const NewOkr = () =>{
+  const NewOkr = () => {
     <Redirect to="/create-okr" />
   }
 
   return (
     <div className="container d-flex flex-column align-items-center py-5">
-   
+
       {okrs.length === 0 ? (
         <>
           <EmptyMessage />
-          <Link type="button" className="btn sofka-color-btn py-3 px-4 fs-4" to="/okr/create-okr" >
-         
-            crear okr
+          <Link to="/okr/create-okr">
+            <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4">
+
+              crear okr
+            </Button>
           </Link>
         </>
       ) : (
         <>
-          <Link type="button" className="btn sofka-color-btn py-3 px-4 fs-4" to="/okr/create-okr">
-            crear okr
+          <Link to="/okr/create-okr">
+            <Button type="button" className="btn sofka-color-btn py-3 px-4 fs-4" >
+              crear okr
+            </Button>
           </Link>
           <div className="container">
             <ul className="list-unstyled">
