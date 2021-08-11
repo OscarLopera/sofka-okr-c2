@@ -3,26 +3,32 @@ import React, {useEffect, useState}from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 //Selectors
-import { getOkrs } from './../../../application/selectors/dashboard/okrs';
+import { getOkrs, getOkr } from './../../../application/selectors/dashboard/okrs';
 //Acciones
-import { loadingOKR } from './../../../application/actions/dashboard/index';
+import { loadingOKR,loadingOKRid } from './../../../application/actions/dashboard/index';
+//Componentes
+import Okruser from './user/OkrsUser';
 
-const DashboardUserPage = ({loadingOKR, okrs}) => {
-  //Para sacar el id del elemento
-  const [idokr,setidokr] = useState("");
-  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "61106133609d16f1740ddf34";
-
+const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
+  const [idokr, setidokr] = useState("");
+ //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
+ const idUser = "6112ef6370e2131bb4730d1a";
   useEffect(() => {
-    loadingOKR(idUser)
-  }, [loadingOKR])
+    loadingOKR(idUser);
+  }, [loadingOKR]);
 
-  
+  const handlerokrid = () =>{
+    loadingOKRid(idokr)
+  }
+
   return (
     <div>
-      <center>
-      <h1>Mis OKrs</h1>
-        <select
+      <div className="row">
+        <center>
+          <div className="col-2"></div>
+          <div className="col-8">
+            <h1>Mis OKRs</h1>
+            <select
               style={{ width: "320px", height: "35px" }}
               name="idokr"
               value={idokr}
@@ -34,16 +40,21 @@ const DashboardUserPage = ({loadingOKR, okrs}) => {
                 </option>
               ))}
             </select>
-            <button style={{padding:"4px",margin:"3px"}}>Ver info</button>
-      </center>
+            <button className="btn btn-outline-warning" onClick={() => handlerokrid()}>Ver info</button>
+            <Okruser okr={okr}/>
+          </div>
+          <div className="col-2"></div>
+        </center>
+      </div>
     </div>
   );
+  
 };
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       loadingOKR,
+      loadingOKRid,
     },
     dispatch
   );
@@ -51,7 +62,9 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    okrs: getOkrs(state)
+    okrs: getOkrs(state),
+    okr: getOkr(state),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardUserPage);
