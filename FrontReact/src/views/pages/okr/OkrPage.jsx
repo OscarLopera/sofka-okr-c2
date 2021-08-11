@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import OkrForm from '../../components/okr/OkrForm'
+import { Button } from 'reactstrap';
+
 import "../../assets/styles/okr/OkrPage.css";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 
@@ -15,7 +15,6 @@ const OkrPage = () => {
     
     <div className="container d-flex flex-column align-items-center py-5">
    
-
       {okrs.length === 0 ? (
         <>
           <EmptyMessage />
