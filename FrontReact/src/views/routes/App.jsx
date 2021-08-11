@@ -22,6 +22,7 @@ import DashboardPage from "../pages/dashboard/DashboardPage";
 import DashboardUserPage from "../pages/dashboard/DashboardUserPage";
 import CalendarPage from "../pages/calendar/CalendarPage";
 import AdministrationPage from "../pages/administration/AdministrationPage";
+import UserPage from "../pages/administration/UserPage";
 
 import "../assets/styles/administration/App.scss";
 import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
@@ -41,6 +42,7 @@ const App = ({user}) => {
         <Route exact path={"/login"} component={LoginPage} />
         <PrivateRoute exact path={"/principal"} component={PrincipalPage} user={user} />
         <PrivateRoute exact path={"/notificaciones"} component={GestionNotificaciones} user={user} />
+        <PrivateRoute exact path={"/userPage"} component={UserPage} user={user} />
         <PublicRoute exact path="/" component={HomePage} user={user}/>
       </Switch>
     </Router>
