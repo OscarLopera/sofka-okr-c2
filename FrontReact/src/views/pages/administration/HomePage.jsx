@@ -1,14 +1,11 @@
 import { bindActionCreators } from "redux";
-import {
-  loginUser,
-  logoutUser,
-} from "../../../application/actions/administration/user";
+import {loginUser, logoutUser, closeWelcome} from "../../../application/actions/administration/user";
 import { connect } from "react-redux";
 import { getUser } from "../../../application/selectors/administration/user";
 
 import { Modal, Button } from "react-bootstrap";
 
-const HomePage = ({ loginUser, logoutUser, user }) => {
+const HomePage = ({ loginUser, logoutUser, closeWelcome, user }) => {
   return (
     <div className="container text-center">
       {user ? (
@@ -24,7 +21,7 @@ const HomePage = ({ loginUser, logoutUser, user }) => {
               </Modal.Body>
 
               <Modal.Footer>
-                <Button variant="secondary">Close</Button>
+                <Button variant="secondary" onClick={closeWelcome}>Close</Button>
                 <Button variant="primary">Save changes</Button>
               </Modal.Footer>
             </Modal.Dialog>
@@ -67,7 +64,7 @@ const HomePage = ({ loginUser, logoutUser, user }) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({ loginUser, logoutUser }, dispatch);
+  return bindActionCreators({ loginUser, logoutUser, closeWelcome }, dispatch);
 };
 
 const mapStateToProps = (state) => {
