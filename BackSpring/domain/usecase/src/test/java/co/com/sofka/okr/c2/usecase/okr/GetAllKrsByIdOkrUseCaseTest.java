@@ -60,8 +60,8 @@ class GetAllKrsByIdOkrUseCaseTest {
 
         Flux<KRS> result = getAllKrsByIdOkrUseCase.execute(krs.getIdOkr().getValue());
 
-        Assertions.assertEquals("12", krs.getIdOkr().getValue());
-        Assertions.assertEquals("12", krs2.getIdOkr().getValue());
+        Assertions.assertEquals("12", result.blockFirst().getIdOkr().getValue());
+        Assertions.assertEquals("1", result.blockFirst().getKrId().getValue());
 
     }
 

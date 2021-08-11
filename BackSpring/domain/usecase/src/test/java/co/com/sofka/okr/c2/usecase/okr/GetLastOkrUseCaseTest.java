@@ -9,26 +9,26 @@ import co.com.sofka.okr.c2.model.okrs.values.Title;
 import co.com.sofka.okr.c2.model.usuarios.values.VerticalId;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.test.mock.mockito.SpyBean;
 import reactor.core.publisher.Flux;
+import reactor.core.publisher.Mono;
 
-import java.util.Objects;
+import static org.junit.jupiter.api.Assertions.*;
 
-import static org.mockito.Mockito.when;
-
-@SpringBootTest(classes = GetOKRByCompletedUseCase.class)
-class GetOKRByCompletedUseCaseTest {
+@SpringBootTest(classes = GetLastOkrUseCaseTest.class)
+class GetLastOkrUseCaseTest {
 
     @MockBean
-    OKRSRepository okrsRepository;
+    private OKRSRepository repository;
 
     @SpyBean
-    GetOKRByCompletedUseCase getOKRByCompletedUseCase;
+    private GetLastOkrUseCase useCase;
 
     @Test
-    public void getOKRCompleted() {
+    public void getLastOkrTest(){
         OKRS okrs = new OKRS(
                 IdOkr.of("1"),
                 Objective.of("Primer test"),
@@ -39,10 +39,10 @@ class GetOKRByCompletedUseCaseTest {
                 100.0
         );
 
-        when(okrsRepository.findByCompleted(okrs.getManagerId())).thenReturn(Flux.just(okrs));
+        Mockito.when(repository.getLastOkr(Mockito.any(String.class))).thenReturn(Flux.just(okrs));
 
-        Flux<OKRS> result = getOKRByCompletedUseCase.execute("14");
-        Assertions.assertEquals(100.0, result.blockFirst().getProgress().doubleValue());
+        Flux<OKRS> response= useCase.execute("123");
+        Assertions.assertEquals("Primer test",response.blockLast().getObjective().getValue());
     }
 
 }
