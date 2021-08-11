@@ -1,7 +1,18 @@
-import calendar from './calendar/calendarMiddleware';
+import okr from './okr/okr';
+import kr from './okr/KrMiddleware';
 import user from './administration/user';
-const middleware =[
+import middlewareNotify from "./notifications/notificacionsMiddleware";
+import dashboardmiddleware from './dashboard/dashboardmiddleware';
+import calendar from './calendar/calendarMiddleware';
+
+const middleware = [
     ...calendar,
-    ...user
+    ...kr,
+    ...okr,
+    ...user,
+    ...middlewareNotify,
+    ...dashboardmiddleware,
 ]
-export default middleware
+
+export default middleware;
+
