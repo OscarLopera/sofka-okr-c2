@@ -12,6 +12,6 @@ public interface OKRSRepository {
     Flux<OKRS> getAllOkrByUser(String id);
     Flux<OKRS> findByCompleted(String id);
     Flux<OKRS> findByProgress(String id);
-    Mono<OKRS> getLastOkr (String id);
+    Flux<OKRS> getLastOkr (String id);
     Flux<OKRS> getAllOkrByUserId(String id);
 }

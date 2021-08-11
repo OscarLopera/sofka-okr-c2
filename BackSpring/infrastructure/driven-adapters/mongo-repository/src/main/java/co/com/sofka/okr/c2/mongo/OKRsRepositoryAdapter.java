@@ -38,8 +38,8 @@ public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity,OKREntity
     }
 
     @Override
-    public Mono<OKRS> getLastOkr(String id) {
-        return this.repository.findAllByManagerId(id).map(entityMapper.fromOKREntity()).last();
+    public Flux<OKRS> getLastOkr(String id) {
+        return this.repository.findAllByManagerId(id).map(entityMapper.fromOKREntity());
     }
 
     @Override

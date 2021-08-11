@@ -1,12 +1,9 @@
 package co.com.sofka.okr.c2.api;
 
-import co.com.sofka.okr.c2.usecase.okr.GetAllOKRByUserUseCase;
-import co.com.sofka.okr.c2.usecase.okr.GetAllOkrsByUserIdUseCase;
+import co.com.sofka.okr.c2.usecase.okr.*;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
-import co.com.sofka.okr.c2.usecase.okr.GetAllKrsByIdOkrUseCase;
-import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
@@ -30,6 +27,7 @@ public class Handler {
     private final GetAllOKRByUserUseCase getAllOKRByUserUseCase;
     private final GetAllUserUseCase getAllUserUseCase;
     private final GetAllOkrsByUserIdUseCase getAllOkrsByUserIdUseCase;
+    private final GetLastOkrUseCase getLastOkrUseCase;
 
     public Mono<OKRSDTO> getOkrBiId(String id) {
         Mono<OKRSDTO> okr = getOkrByIdUseCase.execute(id).map(mapperOKRDTO.okrToDto());
@@ -64,6 +62,10 @@ public class Handler {
 
     public Flux<OKRSDTO> getAllOkrsByUser(String idUser){
         return getAllOkrsByUserIdUseCase.execute(idUser).map(mapperOKRDTO.okrToDto());
+    }
+
+    public Mono<OKRSDTO> getLastOkr(String id){
+        return getLastOkrUseCase.execute(id).map(mapperOKRDTO.okrToDto()).defaultIfEmpty(new OKRSDTO()).last();
     }
 
 }
