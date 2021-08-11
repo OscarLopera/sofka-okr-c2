@@ -1,8 +1,9 @@
 import React from 'react'
+import '../../assets/styles/administration/App.scss'
 
 const CalendarPage = () => {
     return(
-        <div>
+        <div className="calendar">
             <h1>Calendar Page</h1>
         </div>
     )
