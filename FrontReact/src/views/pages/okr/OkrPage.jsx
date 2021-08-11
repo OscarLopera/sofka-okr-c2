@@ -1,5 +1,4 @@
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { Redirect } from "react-router";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
 import { Link } from "react-router-dom";
@@ -141,8 +140,4 @@ const OkrPage = () => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({}, dispatch);
-};
-
-export default connect(mapDispatchToProps)(OkrPage);
+export default OkrPage;
