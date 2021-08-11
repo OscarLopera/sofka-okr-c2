@@ -1,7 +1,10 @@
 import { Button } from "reactstrap";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 import "../../assets/styles/okr/OkrPage.css";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
+import { createKr } from "../../../application/actions/okr/KrAction";
 
 const OkrPage = () => {
   const okrs = [
@@ -136,4 +139,10 @@ const OkrPage = () => {
   );
 };
 
-export default OkrPage;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+      createKr,
+    }, dispatch);
+};
+
+export default connect(mapDispatchToProps)(OkrPage);
