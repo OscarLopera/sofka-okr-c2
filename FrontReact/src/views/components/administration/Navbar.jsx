@@ -129,11 +129,16 @@ const Navbar = ({ logoutUser, user }) => {
                           height="40px"
                           className="imagen-usuario"
                         />
+                        <span className="text-white me-3">{user.userName}</span>
+                        {user.userVertical ? (
+                          <span className="text-white">
+                            {user.userVertical}
+                          </span>
+                        ) : null}
                       </Link>
                     </div>
                   )}
                 </li>
-
               </ul>
             </form>
           </div>

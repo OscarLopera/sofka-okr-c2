@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
+import { getUser } from "../../../application/selectors/administration/user";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
@@ -38,7 +40,7 @@ const DropdownLink = styled(Link)`
   }
 `;
 
-const SubMenu = ({ item }) => {
+const SubMenu = ({ item, user }) => {
   const [subnav, setSubnav] = useState(false);
 
   const showSubnav = () => setSubnav(!subnav);
@@ -63,7 +65,11 @@ const SubMenu = ({ item }) => {
           return (
             <DropdownLink to={item.path} key={index}>
               {item.icon}
-              <SidebarLabel>{item.title}</SidebarLabel>
+              {item.title === "Usuario" ? (
+                <SidebarLabel>{user.userName}</SidebarLabel>
+              ) : (
+                <SidebarLabel>{item.title}</SidebarLabel>
+              )}
             </DropdownLink>
           );
         })}
@@ -71,4 +77,10 @@ const SubMenu = ({ item }) => {
   );
 };
 
-export default SubMenu;
+const mapStateToProps = (state) => {
+  return {
+    user: getUser(state),
+  };
+};
+
+export default connect(mapStateToProps)(SubMenu);
