@@ -34,14 +34,17 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
             } else{
                 vertical = await api.user.getVertical(user.verticalId);
             }
-
+            
             const userDataBase = {
                 userId: userId,
                 userName: userName,
+                userEmail: userEmail,
                 userImage: userImage,
-                userVertical: vertical.verticalname, 
+                userPhone: userPhone,
                 firstTime: user.firstTime, 
-                userToken: userToken
+                userVertical: vertical.verticalname, 
+                userToken: userToken,
+                userRol: "super usuario"
             }
             localStorage.setItem("user", JSON.stringify(userDataBase))
             dispatch(actions.loginUserSuccess(userDataBase));
@@ -64,8 +67,19 @@ const logoutUserFlow = ({firebase}) => ({dispatch}) => next => async (action) =>
     }
 }
 
+const closeWelcomeFlow = () => ({dispatch, getState}) => next => async (action) => { 
+    next(action);
+    if(action.type === types.CLOSE_WELCOME){
+        const currentUser = getState().user.user;
+        const newUser = {...currentUser, firstTime: false};
+        localStorage.setItem("user", JSON.stringify(newUser));
+        dispatch(actions.closeWelcomeSuccess(newUser));
+    }
+}
+
 
 export default [
     loginUserFlow,
-    logoutUserFlow
+    logoutUserFlow,
+    closeWelcomeFlow
 ]

@@ -5,6 +5,9 @@
 
  .icon_wrap{
   cursor: pointer;
+  color: white;
+  margin-left: 15px;
+  margin-right: 0;
 }
 
 .notifications{

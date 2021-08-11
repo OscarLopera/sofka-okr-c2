@@ -12,12 +12,13 @@ const notifications = {
     },
 
     updateStatusNotify: async (arraynotify) => {
-        const response = await axios.patch("https://pruebabacknoti.herokuapp.com/api/notifications/update-configuration/611169b3a62cf558eff7a231",arraynotify)
+        const response = await axios.put("https://pruebabacknoti.herokuapp.com/api/notifications/update-configuration/611169b3a62cf558eff7a231",arraynotify)
         return response.data
     },
 
     createNotificationsManager: async (id) => {
         const response = await axios.post('https://pruebabacknoti.herokuapp.com/api/notifications',id)
+        
         console.log(response.data)
         return response.data
     }

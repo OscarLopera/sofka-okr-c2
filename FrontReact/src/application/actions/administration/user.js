@@ -26,3 +26,12 @@ export const logoutFailure = error => ({
     type: types.LOGOUT_FAILURE,
     payload: error
 });
+
+export const closeWelcome = () => ({ 
+    type: types.CLOSE_WELCOME
+});
+
+export const closeWelcomeSuccess = user => ({ 
+    type: types.CLOSE_WELCOME_SUCCESS,
+    payload: user
+});
