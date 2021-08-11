@@ -85,37 +85,25 @@ describe("Middleware Test Dashboard", () => {
 describe("Middleware Test OKR by id", () => {
   const dummyListOKRs = [
     {
-      "id":1,
-      "objetivo":"Un objetivo de un usuario",
-      "title":"Titulo del OKR",
-      "description":"Descripcion del OKR",
-      "managerId":"1245",
-      "areainCharge":"Agile services",
-      "progress":80,
-      "krs":[
+      id:1,
+      objetivo:"Un objetivo de un usuario",
+      title:"Titulo del OKR",
+      description:"Descripcion del OKR",
+      managerId:"1245",
+      areainCharge:"Agile services",
+      progress:80,
+      krs:[
           {
-          "_id": {
-          "$oid": "61106343609d16f1740ddf45"
+          _id: {
+          $oid: "61106343609d16f1740ddf45"
           },
-        "idOkr": "611061c6609d16f1740ddf39",
-        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
-        "managerId": "Pepito perez",
-        "startDate": "2021/08/14",
-        "endDate": "2021/08/16",
-        "loadValue": 5,
-        "progress": 10
-        },
-        {
-          "_id": {
-          "$oid": "61106343609d16f1740dd233"
-          },
-        "idOkr": "611061c6609d16f1740dd222",
-        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
-        "managerId": "Juanito Valenzuela",
-        "startDate": "2021/08/14",
-        "endDate": "2021/08/16",
-        "loadValue": 5,
-        "progress": 10
+        idOkr: "611061c6609d16f1740ddf39",
+        description: "Socialización de la dificultades que no permitieron el alcance de objetivos",
+        managerId: "Pepito perez",
+        startDate: "2021/08/14",
+        endDate: "2021/08/16",
+        loadValue: 5,
+        progress: 10
         }
       ]
     }
@@ -142,4 +130,6 @@ describe("Middleware Test OKR by id", () => {
     await loadingOKRidFlow({ api })({ dispatch })(next)(action);
     expect(next).toHaveBeenCalledWith(action);
   });
+
+  
 });
