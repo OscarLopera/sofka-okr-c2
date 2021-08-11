@@ -12,7 +12,7 @@ import "../../assets/styles/administration/index.css";
 // import AdministrationPage from "../../pages/administration/AdministrationPage";
 
 import "../../assets/styles/administration/App.scss";
-import Switch from "react-bootstrap/esm/Switch";
+// import Switch from "react-bootstrap/esm/Switch";
 
 const PrincipalPage = () => {
   return (

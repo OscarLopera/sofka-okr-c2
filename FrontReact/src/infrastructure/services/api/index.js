@@ -1,10 +1,14 @@
-import okr from '../api/okr/okrApi/index';
-import kr from '../api/okr/krApi/index'
+import okr from './okr/okrApi/index';
+import kr from './okr/krApi/index';
+import user from './administration';
+import notifications from "./notifications";
 
 const api = {
 
     okr,
     kr,
+    user,
+    notifications
 
 }
 
