@@ -1,5 +1,5 @@
 const createOkrController = require("./createOkrController");
-const createKrController = require("./createKrController");
+const createKrController = require("./CreateKrController");
 const deleteKrController = require("./deleteKrController");
 const updateKrProgressController = require("./updateKrProgressController");
 
