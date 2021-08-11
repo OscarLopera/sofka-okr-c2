@@ -133,16 +133,17 @@ const Navbar = ({ logoutUser, user }) => {
                     </div>
                   )}
                 </li>
-                <button
-                  className={!user ? "d-none" : "btn btn-outline-danger btn-sm"}
-                  onClick={logoutUser}
-                >
-                  Cerrar Sesión
-                </button>
+
               </ul>
             </form>
           </div>
         </div>
+        <button
+          className={!user ? "d-none" : "btn btn-outline-danger btn-sm mx-3"}
+          onClick={logoutUser}
+        >
+          Cerrar Sesión
+        </button>
       </nav>
 
       {/* Sidebar */}
