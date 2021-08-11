@@ -40,6 +40,7 @@ class GetOKRByCompletedUseCaseTest {
 
         when(okrsRepository.findByCompleted(okrs.getManagerId())).thenReturn(Flux.just(okrs));
 
+        Flux<OKRS> result = getOKRByCompletedUseCase.execute(okrs.getId().getValue());
         Assertions.assertEquals(100.0, okrs.getProgress().byteValue());
     }
 
