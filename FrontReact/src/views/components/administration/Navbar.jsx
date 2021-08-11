@@ -55,7 +55,7 @@ const SidebarWrap = styled.div`
 
 const Navbar = ({ logoutUser, user }) => {
   const [sidebar, setSidebar] = useState(false);
-  console.log(setSidebar);
+  // console.log(setSidebar);
   const showSidebar = () => setSidebar(!sidebar);
   return (
     <>

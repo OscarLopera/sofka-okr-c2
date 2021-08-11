@@ -1,6 +1,5 @@
 import React from "react";
 
-
 const CalendarAddComponent = ({AddEvent, token}) => {
 
     const addEvent = () => {
@@ -62,11 +61,13 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <input/>
+                            <input value={'OKR'}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" className="btn btn-primary">Agregar Evento</button>
+                            <button type="button" className="btn btn-primary"
+                            onClick={() => addEvent()}
+                            >Agregar Evento</button>
                         </div>
                     </div>
                 </div>

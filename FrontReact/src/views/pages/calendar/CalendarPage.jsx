@@ -1,43 +1,32 @@
-import React, { useState, useEffect } from 'react'
+import React, {useEffect} from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
-import {getCalendar} from "../../../application/selectors/calendar/calendarSelector";
+import {getEvents} from "../../../application/selectors/calendar/calendarSelector";
 import {bindActionCreators} from "redux";
 import {AddEvent, ListEvents} from "../../../application/actions/calendar/calendarActions";
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
-import CalendarListComponent from '../../components/calendar/CalendarListComponent'
-import CalendarTable from '../../components/calendar/CalendarTableComponent'
 import {getUser} from "../../../application/selectors/administration/user";
+import CalendarItem from '../../components/calendar/CalendarItem'
 
-// import CalendarListComponent from '../../components/calendar/CalendarListComponent'
 
-const CalendarPage = ({calendar, AddEvent, ListEvents, user}) => {
-
-    const list = () => ListEvents(user.userToken);
-    const [listEventos, setListEventos] = useState('');
+const CalendarPage = ({eventos, AddEvent, ListEvents, user}) => {
 
     useEffect(() => {
-            list();
-            loadList();
-    }, []);
-
-    const loadList = () => {
-        setListEventos(calendar.events)
-    }
+        ListEvents(user.userToken)
+    }, [])
 
     return (
+        <>
         <div className={"container"}>
             <div className="row">
                 <div className="col-md-12">
                     <h1>Instructions</h1>
 
                     <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}/>
-
-                    {/* <CalendarListComponent ListEvent={ListEvent} events={events} /> */}
                 </div>
             </div>
             <div className="row">
@@ -63,21 +52,33 @@ const CalendarPage = ({calendar, AddEvent, ListEvents, user}) => {
                     />
                 </div>
             </div>
-            {listEventos.length > 0 && (
-                    <CalendarTable>
-                        {listEventos.map((item) => (
-                            <CalendarListComponent key={item.id} {...item} />
-                        ))}
-                    </CalendarTable>
-                )}
-
         </div>
+        <div className="container py-5">
+            <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}/>
+            <table className="table table-striped table-hover">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Titulo</th>
+                    <th scope="col">Ubicación</th>
+                    <th scope="col">Organizador</th>
+                    <th scope="col">Link</th>
+                    <th scope="col">Fecha Reunión</th>
+                    <th scope="col">Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <CalendarItem eventos={eventos} />
+                </tbody>
+            </table>
+        </div>
+        </>
     )
 }
 
 const mapStateToProps = (state) => {
     return {
-        calendar: getCalendar(state),
+        eventos: getEvents(state),
         user: getUser(state)
     }
 }
