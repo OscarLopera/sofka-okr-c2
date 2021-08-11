@@ -20,7 +20,8 @@ function routesApiKr(app) {
   );
   router.patch(
     "/update/:id",
-    /*validationHandler(krSchemas.createkrSchema),*/
+    validationHandler({ id: krSchemas.idSchema}, "params"),
+    validationHandler(krSchemas.updateProgressSchema),
     async (req, res, next) =>{
       await krControllers.updateKrProgressController(req, res, next)}
   );

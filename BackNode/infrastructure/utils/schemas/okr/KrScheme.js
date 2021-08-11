@@ -24,8 +24,13 @@ const createKrSchema = {
   progress:progressSchema.required()
 };
 
+const updateProgressSchema = {
+  progress:progressSchema.required()
+}
+
 
 module.exports = {
   idSchema,
-  createKrSchema
+  createKrSchema,
+  updateProgressSchema
 };
