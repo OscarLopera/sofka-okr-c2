@@ -1,6 +1,6 @@
 function Name(name) {
     if (name == null || name == "") {
-            throw new Error("the name field cannot be empty or empty")
+            throw new Error("the field name cannot be empty  or null")
     }
 
     return {value: name}

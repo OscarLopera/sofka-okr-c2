@@ -16,6 +16,11 @@ public class UrlPhoto {
         return value;
     }
 
+    public static UrlPhoto of(String value){
+        return new UrlPhoto(value);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
