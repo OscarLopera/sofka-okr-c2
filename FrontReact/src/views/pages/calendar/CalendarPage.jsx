@@ -6,7 +6,7 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
 import {getEvents} from "../../../application/selectors/calendar/calendarSelector";
 import {bindActionCreators} from "redux";
-import {AddEvent, ListEvents} from "../../../application/actions/calendar/calendarActions";
+import {AddEvent, ListEvents, DeleteEvent} from "../../../application/actions/calendar/calendarActions";
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
 import {getUser} from "../../../application/selectors/administration/user";
