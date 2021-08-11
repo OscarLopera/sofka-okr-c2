@@ -33,7 +33,7 @@ const CalendarListComponent = (props) => {
         <td>{summary}</td>
         <td>{location}</td>
         <td>{organizer.email}</td>
-        <td><a href={hangoutLink}>{hangoutLink}</a></td>
+        <td><a href={hangoutLink}>meet</a></td>
         <td>{start.dateTime}</td>
         <td>
             <button class="button button1">

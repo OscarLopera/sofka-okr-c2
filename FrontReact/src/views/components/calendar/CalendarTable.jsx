@@ -6,6 +6,7 @@ const CalentarTable = ({ children }) => (
     <section>
         <h1>Lista de eventos</h1>
         <div class="tbl-header">
+            
             <table cellpadding="0" cellspacing="0" border="0">
                 <thead>
                     <tr>

@@ -42,7 +42,7 @@ const dummyEvent = {
 }
 
 
-const [addEventFlow,] = calendarMiddleware;
+const [addEventFlow,listEventFlow] = calendarMiddleware;
 
 const dispatch = jest.fn();
 const next = jest.fn();

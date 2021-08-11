@@ -1,44 +1,33 @@
 import React, { useState, useEffect } from 'react'
+
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
-import { auth } from "../../../infrastructure/services/firebase/config/firebase";
-import { getCalendar } from "../../../application/selectors/calendar/calendarSelector";
-import { bindActionCreators } from "redux";
-import { AddEvent, ListEvents } from "../../../application/actions/calendar/calendarActions";
-import { connect } from "react-redux";
+import {getCalendar} from "../../../application/selectors/calendar/calendarSelector";
+import {bindActionCreators} from "redux";
+import {AddEvent, ListEvents} from "../../../application/actions/calendar/calendarActions";
+import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
 import CalendarListComponent from '../../components/calendar/CalendarListComponent'
 import CalendarTable from '../../components/calendar/CalendarTable'
+import {getUser} from "../../../application/selectors/administration/user";
 
-const CalendarPage = ({ calendar, AddEvent, ListEvents }) => {
+// import CalendarListComponent from '../../components/calendar/CalendarListComponent'
 
-    const [token, setToken] = useState('');
+const CalendarPage = ({calendar, AddEvent, ListEvents, user}) => {
+
+    const list = () => ListEvents(user.userToken);
     const [listEventos, setListEventos] = useState('');
-    const list = () => ListEvents(token);
 
     useEffect(() => {
-        if (token) {
-            loadList()
-        }
-    }, [token]);
+            list();
+            loadList();
+    }, []);
 
     const loadList = () => {
-        ListEvents(token);
         setListEventos(calendar.events)
-    }
-
-    const load = () => {
-        let provider = new auth.GoogleAuthProvider();
-        provider.addScope('https://www.googleapis.com/auth/calendar.events');
-        auth().signInWithPopup(provider).then(result => {
-            setToken(result.credential.accessToken)
-            console.log("token", token)
-        }).catch(error => {
-            console.log(error)
-        })
     }
 
     return (
@@ -46,16 +35,9 @@ const CalendarPage = ({ calendar, AddEvent, ListEvents }) => {
             <div className="row">
                 <div className="col-md-12">
                     <h1>Instructions</h1>
-                    <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
-                        onClick={() => load()}>authenticate<i className="bi bi-door-open-fill" />
-                    </button>
-                    <CalendarAddComponent AddEvent={AddEvent} token={token} />
-                    <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
-                        onClick={() => list()}>getListEvents<i className="bi bi-door-open-fill" />
-                    </button>
-                    <button className=" mr-3 btn btn-primary px-4" data-testid={"btn-test"}
-                        onClick={() => loadList()}>gsetListEvents<i className="bi bi-door-open-fill" />
-                    </button>
+
+                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}/>
+
                     {/* <CalendarListComponent ListEvent={ListEvent} events={events} /> */}
                 </div>
             </div>
@@ -96,7 +78,8 @@ const CalendarPage = ({ calendar, AddEvent, ListEvents }) => {
 
 const mapStateToProps = (state) => {
     return {
-        calendar: getCalendar(state)
+        calendar: getCalendar(state),
+        user: getUser(state)
     }
 }
 
