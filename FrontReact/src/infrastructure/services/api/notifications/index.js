@@ -6,8 +6,8 @@ const baseUrl = 'http://localhost:4000/noti';
 
 const notifications = {
     
-    getStatusNotify: async () => {
-        const res = await axios.get("https://pruebabacknoti.herokuapp.com/api/notifications/611169b3a62cf558eff7a231")
+    getStatusNotify: async (id) => {
+        const res = await axios.get("https://pruebabacknoti.herokuapp.com/api/notifications/"+id)
         return res.data
     },
 
