@@ -1,6 +1,6 @@
 const express = require("express");
 const validationHandler = require("../../../utils/middleware/validationHandler");
-const krSchemas = require("../../../utils/schemas/okr/krScheme");
+const krSchemas = require("../../../utils/schemas/okr/KrScheme");
 const krControllers = require('../../controllers/okr/index')
 
 function routesApiKr(app) {
