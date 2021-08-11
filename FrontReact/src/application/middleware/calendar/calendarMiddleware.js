@@ -1,5 +1,5 @@
 import { CalendarTypes } from "../../types/calendar/calendarTypes";
-import { AddEventFailure, AddEventSuccess, ListEventsFailure, ListEventsSuccess } from "../../actions/calendar/calendarActions";
+import { AddEventFailure, AddEventSuccess, ListEventsFailure, ListEventsSuccess, DeleteEvent, DeleteEventFailure, DeleteEventSuccess} from "../../actions/calendar/calendarActions";
 
 const addEventFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
     next(action)
@@ -25,9 +25,22 @@ const listEventFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
     }
 }
 
+const deleteEventFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
+    next(action)
+    if (action.type === CalendarTypes.DELETE_EVENT) {
+        try {
+            const event = await api.calendar.deleteEvent(action.payload, action.token)
+            dispatch(DeleteEventSuccess(event))
+        } catch (error) {
+            dispatch(DeleteEventFailure(error.message))
+        }
+    }
+}
+
 const calendarMiddleware = [
     addEventFlow,
-    listEventFlow
+    listEventFlow,
+    deleteEventFlow
 ]
 
 export default calendarMiddleware
