@@ -3,7 +3,7 @@ import api from "./api";
 
 const services = {
     firebase,
-    api
+    api,
 }
 
 export default services;

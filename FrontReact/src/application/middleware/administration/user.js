@@ -67,6 +67,7 @@ const logoutUserFlow = ({firebase}) => ({dispatch}) => next => async (action) =>
     }
 }
 
+<<<<<<< HEAD
 const closeWelcomeFlow = () => ({dispatch, getState}) => next => async (action) => { 
     next(action);
     if(action.type === types.CLOSE_WELCOME){
@@ -78,6 +79,8 @@ const closeWelcomeFlow = () => ({dispatch, getState}) => next => async (action) 
 }
 
 
+=======
+>>>>>>> a7953e8192c5fa4f908e761a9464a8c4bfc2ae97
 export default [
     loginUserFlow,
     logoutUserFlow,

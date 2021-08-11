@@ -8,7 +8,6 @@ const DB_NAME = config.dbName;
 
 const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}/${DB_NAME}?retryWrites=true&w=majority`;
 
-
   const connectDB =async ()=>{
     try{
         await mongoose
