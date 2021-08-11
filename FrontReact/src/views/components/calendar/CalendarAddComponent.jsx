@@ -79,7 +79,19 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                             </button>
                         </div>
                         <div className="modal-body">
-                            <input value={'OKR'}/>
+                            <label>Fecha Inicial</label>
+                            <input type={"date"} min={startDate} value={startDate} className={"form-control"}
+                                   onChange={event => setStartDate(event.target.value)}/>
+                            <hr className="my-4"/>
+                            <label>Fecha Final</label>
+                            <input type={"date"} min={endDate} value={endDate} className={"form-control"}
+                                   onChange={event => setEndDate(event.target.value)}/>
+                            <hr className="my-4"/>
+                            <label>Descripcion</label>
+                            <input type={"text"} value={description} className={"form-control"}
+                                   onChange={event => setDescription(event.target.value)}/>
+                            <hr className="my-4"/>
+                            <Select isMulti options={attendeesList} onChange={addAttendees} placeholder={"Selecciona los correos"}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
