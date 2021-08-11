@@ -1,9 +1,7 @@
-import React, { useEffect, useState } from "react";
-import "../../assets/styles/okr/OkrPage.css";
 import { Button } from "reactstrap";
+import "../../assets/styles/okr/OkrPage.css";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
-import axios from "axios";
 
 const OkrPage = () => {
   const okrs = [

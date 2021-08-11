@@ -1,5 +1,10 @@
+import api from './api/index'
 
 const services = {
+
+    api,
+
+
     
 }
 
