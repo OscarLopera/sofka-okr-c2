@@ -4,7 +4,11 @@ import co.com.sofka.okr.c2.model.usuarios.gateways.UsuariosRepository;
 import co.com.sofka.okr.c2.model.vertical.gateways.VerticalRepository;
 import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.ListUserUseCase;
+
 import co.com.sofka.okr.c2.usecase.vertical.ListVerticalUseCase;
+
+import co.com.sofka.okr.c2.usecase.usuario.UpdateUserUseCase;
+
 import co.com.sofka.okr.c2.usecase.vertical.VerticalUseCase;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -29,4 +33,14 @@ public class UseCasesConfig {
                 return new VerticalUseCase(verticalRepository);
         }
 
+<<<<<<< HEAD
+=======
+        ListVerticalUseCase listVerticalUseCase(VerticalRepository verticalRepository) {
+                return new ListVerticalUseCase(verticalRepository);
+        }
+        UpdateUserUseCase updateUserUseCase(UsuariosRepository usuariosRepository){
+                return new UpdateUserUseCase(usuariosRepository);
+
+        }
+>>>>>>> 21ce400bb1c03550e4b18ea9af02e3a2cfb1b6b0
 }
