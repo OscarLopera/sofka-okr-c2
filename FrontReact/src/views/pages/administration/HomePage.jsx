@@ -44,7 +44,7 @@ const HomePage = ({ loginUser, logoutUser, closeWelcome, user }) => {
       <div>
         <img
           src="https://www.sofka.com.co/wp-content/uploads/2020/09/grupo7.png"
-          alt="sofka-image"
+          alt="logo sofka"
         />
       </div>
       <button
@@ -52,12 +52,6 @@ const HomePage = ({ loginUser, logoutUser, closeWelcome, user }) => {
         onClick={loginUser}
       >
         <i className="bi bi-google" /> Iniciar sesion con Google
-      </button>
-      <button
-        className={!user ? "d-none" : "mt-5 btn btn-primary px-4"}
-        onClick={logoutUser}
-      >
-        <i className="bi bi-google" /> Salir
       </button>
     </div>
   );

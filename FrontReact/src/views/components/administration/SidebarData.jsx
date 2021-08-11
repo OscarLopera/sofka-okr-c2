@@ -16,7 +16,7 @@ export const SidebarData = [
     iconOpened: <RiIcons.RiArrowUpSFill />,
     subNav: [
       {
-        title: "General",
+        title: "Todas las dashboards",
         path: "/dashboard",
         icon: <FaIcons.FaChartArea />,
       },
