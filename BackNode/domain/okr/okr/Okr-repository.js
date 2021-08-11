@@ -14,5 +14,10 @@ class OkrRepository {
   getByOkrId(OkrId) {
     throw new Error("Error metodo getByOkrId no implemenado");
   }
+
+  getOkrByIdFilter(id) {
+    throw new Error("METHOD_NOT_IMPLEMENTED");
+
+  }
 }
 module.exports = OkrRepository;

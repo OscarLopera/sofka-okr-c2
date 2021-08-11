@@ -56,13 +56,13 @@ const SidebarWrap = styled.div`
 
 const Navbar = ({ logoutUser, user }) => {
   const [sidebar, setSidebar] = useState(false);
-  console.log(setSidebar);
+  // console.log(setSidebar);
   const showSidebar = () => setSidebar(!sidebar);
   return (
     <>
       <nav className="navbar navbar-expand-lg navbar-light navega">
         <div className="container-fluid">
-          <Link className="navbar-brand">
+          <Link to={"/#"} className="navbar-brand">
             {/* Usuario con Logueo */}
             {user && (
               <NavIcon>
@@ -88,10 +88,10 @@ const Navbar = ({ logoutUser, user }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"/>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0"/>
             <form className="d-flex">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">

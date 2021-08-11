@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const routesApiOkr = require("./infrastructure/server/routes/okr/apiRoutesOkr");
+const routesApiKr = require("./infrastructure/server/routes/okr/apiRoutesKr");
 const routesApiCalendar = require("./infrastructure/server/routes/calendar/apiRoutesCalendar");
 const routesApiNotifications = require("./infrastructure/server/routes/notifications/apiRoutesNotifications");
 const connectDB = require("./infrastructure/database/connection")
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(cors());
 
 routesApiOkr(app);
+routesApiKr(app);
 routesApiCalendar(app);
 routesApiNotifications(app);
 

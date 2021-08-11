@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import KrForm from "../../components/okr/KrForm";
+import { createKr } from "../../../application/actions/okr/KrAction";
 
-const CrearKrPage = () => {
-    return (
-        <div>
-            <h1>Crear Kr</h1>
-        </div>
-    )
-}
+const CrearKrPage = ({ createKr }) => {
+  return (
+    <div>
+      <KrForm />
+    </div>
+  );
+};
 
-export default CrearKrPage
+export default CrearKrPage;
