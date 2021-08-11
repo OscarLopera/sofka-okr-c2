@@ -19,6 +19,11 @@ public class VerticalId {
         return value;
     }
 
+    public static VerticalId of(String value){
+        return new VerticalId(value);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,10 +35,6 @@ public class VerticalId {
     @Override
     public int hashCode() {
         return Objects.hash(value);
-    }
-
-    public static VerticalId of(String value){
-        return new VerticalId(value);
     }
 
 }

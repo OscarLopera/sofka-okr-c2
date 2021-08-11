@@ -22,6 +22,11 @@ public class FirstTime {
         return Objects.equals(value, that.value);
     }
 
+    public static FirstTime of(Boolean value){
+        return new FirstTime(value);
+    }
+
+
     @Override
     public int hashCode() {
         return Objects.hash(value);
