@@ -1,7 +1,6 @@
 
 import React, { useState } from 'react';
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-import OkrForm from '../../components/okr/OkrForm'
+import { Button } from 'reactstrap';
 import "../../assets/styles/okr/OkrPage.css";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 
