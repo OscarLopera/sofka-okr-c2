@@ -23,7 +23,7 @@ class ListUserUseCaseTest {
     private ListUserUseCase listUserUseCase;
 
     @Test
-    @DisplayName("Happy test use case list user")
+    @DisplayName("Test use case list user")
     public void listUserHappyTest(){
         Usuarios user = new Usuarios("xxxx",
                 new Name("juan"),

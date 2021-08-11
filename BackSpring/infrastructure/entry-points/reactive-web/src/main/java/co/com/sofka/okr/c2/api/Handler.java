@@ -1,6 +1,7 @@
 package co.com.sofka.okr.c2.api;
 
 import co.com.sofka.okr.c2.model.vertical.Vertical;
+import co.com.sofka.okr.c2.usecase.preguntas.ListPreguntasUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
 
 import co.com.sofka.okr.c2.usecase.vertical.ListVerticalUseCase;
@@ -23,9 +24,11 @@ public class Handler {
     private final CreateUserUseCase createUserUseCase;
     private final ListUserUseCase listUserUseCase;
     private final ListVerticalUseCase listVerticalUseCase;
+    private final ListPreguntasUseCase listPreguntasUseCase;
     private MapperRespuestaLoginDTO respuesta = new MapperRespuestaLoginDTO();
     private MapperUserDTO mapperUserDTO = new MapperUserDTO();
     private  MapperVerticalDTO mapperVerticalDTO=new MapperVerticalDTO();
+    private MapperPreguntasDTO mapperPreguntasDTO = new MapperPreguntasDTO();
 
     private  final VerticalUseCase verticalUseCase;
 
@@ -55,9 +58,9 @@ public class Handler {
     }
 
     public Flux<VerticalDTO> getVertical() {
-
         return verticalUseCase.execute().map(mapperVerticalDTO.toVerticalDTO());
     }
+
     public Mono<RespuestaLoginDTO> validarUsuario(String id){
         Mono<RespuestaLoginDTO> resp = listUserUseCase.execute(id).map(respuesta.toDTOTrue())
                 .switchIfEmpty(Mono.just(new RespuestaLoginDTO())).map(respuestaLoginDTO->{
@@ -75,6 +78,11 @@ public class Handler {
         Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
                 .map(mapperUserDTO.toDTO());
         return user;
+    }
+
+    public Flux<PreguntasDTO> listPreguntas(){
+        Flux<PreguntasDTO> preguntas = listPreguntasUseCase.execute().map(mapperPreguntasDTO.toDTO());
+        return preguntas;
     }
 
 
