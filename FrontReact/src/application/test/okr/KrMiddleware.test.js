@@ -1,5 +1,5 @@
-import { middlewareKr } from '../../middleware/okr/KrMiddleware';
-import { createKr, createKrSuccess, deleteKr, deleteKrSuccess } from '../../actions/okr/KrAction';
+import middlewareKr from '../../middleware/okr/KrMiddleware';
+import { createKr, createKrSuccess, createKrError, deleteKr, deleteKrSuccess, deleteKrError } from '../../actions/okr/KrAction';
 
 
 const dummyKr = {
@@ -35,14 +35,46 @@ describe('middleware KR test functions', () => {
         expect(next).toHaveBeenCalledWith(action);
     })
 
-    test('delete KR flow test', async () => {
+    test('create KR flow test error', async () => {
         const api = {
             kr: {
-                deleteKr: ()=>{
-                    return 
+                createKr: () => {
+                    throw new Error("Error al crear KR");
                 }
             }
         }
+        const action = createKr(dummyKr);
+        await createKrFlow({ api })({ dispatch })(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(createKrError("Error al crear KR"));
+        expect(next).toHaveBeenCalledWith(action);
+    })
+
+    test('delete KR flow test', async () => {
+        const api = {
+            kr: {
+                deleteKr: () => {
+                    return dummyKr
+                }
+            }
+        }
+        const action = deleteKr();
+        await deleteKrFlow({ api })({ dispatch })(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(deleteKrSuccess());
+        expect(next).toHaveBeenCalledWith(action);
+    })
+
+    test('delete KR flow test error', async () => {
+        const api = {
+            kr: {
+                deleteKr: () => {
+                    throw new Error("Error al eliminar KR");
+                }
+            }
+        }
+        const action = deleteKr();
+        await deleteKrFlow({ api })({ dispatch })(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(deleteKrError("Error al eliminar KR"));
+        expect(next).toHaveBeenCalledWith(action);
     })
 })
 
