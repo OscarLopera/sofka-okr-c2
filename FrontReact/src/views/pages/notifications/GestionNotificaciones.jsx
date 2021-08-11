@@ -22,10 +22,10 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
 
 
     return (
-        <div class="EditProfilePrivacy ">
+        <div className="EditProfilePrivacy ">
             <h1 className="text-center">Bienvenido a la gestion de notificaciones</h1>
             <p className="text-center pt-3 pb-3">Seleccione que notificaciones deseas recibir por medio de correo y de pantalla</p>
-            <div class="EditProfilePrivacy-options">
+            <div className="EditProfilePrivacy-options">
                 <div className="EditProfilePrivacy-option">
                     <div className="EditProfilePrivacy-text">
                         <h3 className="pb-1">Notificacion</h3>
@@ -36,7 +36,7 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
                 </div>
                 {initialstate.notificationstatus.length &&
                     initialstate.notificationstatus.map(noti => {
-                        return <OpcionPantallaEmail props={noti} />
+                        return <OpcionPantallaEmail props={noti} key={noti[0]} />
                     })
                 }
 
