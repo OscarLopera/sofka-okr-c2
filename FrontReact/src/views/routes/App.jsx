@@ -11,7 +11,11 @@ import HomePage from "../pages/administration/HomePage";
 import LoginPage from "../pages/administration/LoginPage";
 import PrincipalPage from "../pages/administration/PrincipalPage";
 
+//Rutas OKR
 import OkrPage from "../pages/okr/OkrPage";
+import CrearOkrPage from "../pages/okr/CrearOkrPage";
+import CrearkrPage from "../pages/okr/CrearKrPage";
+
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import DashboardUserPage from "../pages/dashboard/DashboardUserPage";
 import CalendarPage from "../pages/calendar/CalendarPage";
@@ -20,13 +24,14 @@ import AdministrationPage from "../pages/administration/AdministrationPage";
 import "../assets/styles/administration/App.scss";
 import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
 
-
 const App = () => {
   return (
     <Router>
       <Navbar />
       <Switch>
         <Route exact path="/okr" component={OkrPage} />
+        <Route exact path="/okr/create-okr" component={CrearOkrPage} />
+        <Route exact path="/okr/create-kr" component={CrearkrPage} />
         <Route exact path="/dashboard" component={DashboardPage} />
         <Route exact path="/userdash" component={DashboardUserPage} />
         <Route exact path="/calendar" component={CalendarPage} />
