@@ -18,11 +18,16 @@ export const changeStatusNotificationscreen = (notification) =>({
     payload: notification
 });
 
-export const changeStatusNotification = (notification) =>({
+export const changeStatusNotification = (notification, id) =>({
     type: "CAMBIAR_NOTIFICACION",
-    payload: notification
+    payload: notification,
+    id: id
 });
 
+// export const createNotificationManagerForNewUser = (notification) =>({
+//     type: "CAMBIAR_NOTIFICACION",
+//     payload: notification
+// });
 // export const changeStatusNotificationSuccess = (notification) =>({
 //     type: "CAMBIAR_NOTIFICACION_SUCCESS",
 //     payload: notification

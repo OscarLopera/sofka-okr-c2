@@ -121,7 +121,7 @@ const Navbar = ({ logoutUser, user }) => {
                   {/* Usuario Logeado */}
                   {user && (
                     <div>
-                      <Link className="nav-link" to="/">
+                      <Link className="nav-link" to="/userPage">
                         <img
                           src={user.userImage}
                           alt="foto usuario"
