@@ -11,6 +11,7 @@ const AdministrationPage = () => {
       <br />
 
       <div className="accordion" id="accordionExample">
+        
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingOne">
             <button
@@ -35,6 +36,8 @@ const AdministrationPage = () => {
             </div>
           </div>
         </div>
+
+        
         <div className="accordion-item">
           <h2 className="accordion-header" id="headingTwo">
             <button
