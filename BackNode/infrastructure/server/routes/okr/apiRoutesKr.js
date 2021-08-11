@@ -16,7 +16,8 @@ function routesApiKr(app) {
   router.delete(
     "/delete/:id",
     async (req, res, next) =>{
-      await krControllers.deleteKrController(req, res, next)}
+      await krControllers.deleteKrController(req, res, next)
+    },
   );
   router.patch(
     "/update/:id",

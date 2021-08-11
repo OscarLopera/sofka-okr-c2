@@ -21,7 +21,9 @@ class KrRepositoryMongo extends KrRepository {
 
   async deleteKr(KrId) {
     const Kr = new KrSchema()
-    const response = await KrSchema.deleteOne({_id:KrId})
+    const response = await KrSchema.findByIdAndDelete({_id:KrId})
+    
+    return response
   }
 
   async getAllKrs() {

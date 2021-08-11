@@ -10,7 +10,7 @@ describe("delete-kr test", () => {
       .mockImplementation(() => krFakes.krId);
   })
   it("Happypath delete kr succesfully", async () => {
-    const newIdKr = {value:"asfdsfsdfdf"}
+    const newIdKr = krFakes.krId
 
     //act
     const deletedKrId = await krServices.deleteKrUseCase(newIdKr, repository);
