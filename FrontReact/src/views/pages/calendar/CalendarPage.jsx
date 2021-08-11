@@ -13,11 +13,10 @@ import {getUser} from "../../../application/selectors/administration/user";
 import CalendarItem from '../../components/calendar/CalendarItem'
 
 
-const CalendarPage = ({eventos, AddEvent, ListEvents, user}) => {
-
+const CalendarPage = ({eventos, AddEvent, ListEvents,DeleteEvent, user}) => {
     useEffect(() => {
         ListEvents(user.userToken)
-    }, [])
+    }, [ListEvents])
 
     return (
         <>
@@ -68,7 +67,7 @@ const CalendarPage = ({eventos, AddEvent, ListEvents, user}) => {
                 </tr>
                 </thead>
                 <tbody>
-                    <CalendarItem eventos={eventos} />
+                <CalendarItem eventos={eventos} DeleteEvent={DeleteEvent} token={user.userToken}/>
                 </tbody>
             </table>
         </div>
@@ -84,7 +83,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({ AddEvent, ListEvents }, dispatch);
+    return bindActionCreators({ AddEvent, ListEvents, DeleteEvent}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarPage);
