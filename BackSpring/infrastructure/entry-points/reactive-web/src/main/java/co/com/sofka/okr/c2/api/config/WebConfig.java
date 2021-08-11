@@ -1,4 +1,5 @@
-package co.com.sofka.okr.c2.api;
+package co.com.sofka.okr.c2.api.config;
+
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +9,7 @@ import org.springframework.web.reactive.config.WebFluxConfigurerComposite;
 
 @Configuration
 public class WebConfig {
+
     @Bean
     public WebFluxConfigurer corsConfigure() {
         return new WebFluxConfigurerComposite() {

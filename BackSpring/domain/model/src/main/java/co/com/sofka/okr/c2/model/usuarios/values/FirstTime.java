@@ -6,7 +6,8 @@ public class FirstTime {
     private final Boolean value;
 
     public FirstTime(Boolean value) {
-        this.value = Objects.requireNonNull(value,"The required user first time");
+        this.value = value;
+       // this.value = Objects.requireNonNull(value,"The required user first time");
     }
 
     public Boolean getValue() {
@@ -20,6 +21,11 @@ public class FirstTime {
         FirstTime that = (FirstTime) o;
         return Objects.equals(value, that.value);
     }
+
+    public static FirstTime of(Boolean value){
+        return new FirstTime(value);
+    }
+
 
     @Override
     public int hashCode() {
