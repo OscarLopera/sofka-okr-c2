@@ -4,7 +4,6 @@ const {deleteKrUseCase} = require("../../../application/okr/useCases/index");
 
 class KrRepositoryMongo extends KrRepository {
   async createKr(Kr) {
-    console.log(Kr);
     const newKr = new KrSchema({
       title: Kr.title,
       idOkr : Kr.idOkr,
@@ -17,28 +16,31 @@ class KrRepositoryMongo extends KrRepository {
       progress : Kr.progress,
     });
     const response = await  newKr.save()
-    console.log(response);
+    return response._id;
   }
 
   async deleteKr(KrId) {
-    console.log(KrId)
     const Kr = new KrSchema()
-
-    const response = await KrSchema.deleteOne({_id:KrId})
-    console.log("response")
-    console.log(response)
+    const response = await KrSchema.findByIdAndDelete({_id:KrId})
+    
+    return response
   }
 
   async getAllKrs() {
     return CrudMongoRepository.getAll(collection);
   }
 
-  async updateKr(KrId, KrData) {
-    return CrudMongoRepository.update(collection, KrId, KrData);
+  async updateKr(idKr, krVal) {
+    const kr = await KrSchema.findOne({_id:idKr})
+    if(!kr){
+      throw new Error("Id de Kr a actualizar no existe");
+    }
+    const updatedKr = await KrSchema.findByIdAndUpdate({_id:idKr},krVal,{new: true})
+    return updatedKr;
   }
 
-  async getByKrId(KrId) {
-    return CrudMongoRepository.getById(collection, KrId);
+  async getMany(value) {
+    return await KrSchema.find(value)
   }
 
 }
