@@ -16,15 +16,17 @@ test('Happy path test add new notification manager', async () => {
   expect(mockRepositoryNotificationManager.createNotificationManager).toHaveBeenCalledWith(new NotificationManager ("abc123", "mail", "screen"));
   expect(notiManager).toEqual(persistedNotiManager);
 });
+
 test('Sad path test add new notification manager', async () => {
   // given
   const persistedNotiManager = new NotificationManager("abc123", "mail", "screen");
   mockRepositoryNotificationManager.createNotificationManager = jest.fn(() => persistedNotiManager);
 
   // when
-  const notiManager = await createNewNotificationManager(mockRepositoryNotificationManager, {userId: "abc123", mail:"mail", screen:"screen"} );
+  await createNewNotificationManager(mockRepositoryNotificationManager, {userId: "abc123", mail:"mail", screen:"screen"} )
+    .then(() => expect(new Error("Error metodo no implemenado")))
+    .catch((e) => {
+      expect(e).toEqual(new Error("Error metodo no implemenado"))
+    })
 
-  // then
-  expect(mockRepositoryNotificationManager.createNotificationManager).toHaveBeenCalledWith(new NotificationManager ("abc123", "mail", "screen"));
-  expect(notiManager).toEqual(persistedNotiManager);
 });
