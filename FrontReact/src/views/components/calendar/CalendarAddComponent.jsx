@@ -10,7 +10,7 @@ const CalendarAddComponent = ({AddEvent, token}) => {
     const [description, setDescription] = useState("");
     const [attendees, setAttendees] = useState([]);
     const [startTime,setStartTime]= useState(time)
-    const [endTime,setEndTime]= useState("")
+    const [endTime,setEndTime]= useState(time)
 
     const attendeesList = [
         {
@@ -38,6 +38,14 @@ const CalendarAddComponent = ({AddEvent, token}) => {
 
     const addAttendees = (e) => {
         setAttendees(Array.isArray(e) ? e.map(x => x.value) : []);
+    }
+
+    const clearData = () => {
+      setStartDate(date[0])
+        setDescription("")
+        setAttendees([])
+        setStartTime(time)
+        setEndTime(time)
     }
 
     const addEvent = () => {
@@ -69,6 +77,7 @@ const CalendarAddComponent = ({AddEvent, token}) => {
         setStartTime(time)
         setEndTime("")
         AddEvent(eventObject, token)
+        clearData()
     }
 
     return (
@@ -95,7 +104,8 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                             <div className="w-100"/>
                             <input placeholder="Selected time" type={"time"} id={"input_starttime"} className={"form-control col"}
                              onChange={event => setStartTime(event.target.value)}/>
-                            <input placeholder="Selected time" type={"time"} id={"input_endttime"} className={"form-control timepicker col"} 
+                            <input placeholder="Selected time" type={"time"} id={"input_endttime"} className={"form-control timepicker col"}
+                                   min={startTime}
                                     onChange={event => setEndTime(event.target.value)}/>
                             <hr className="my-4"/>
                             <label>Descripcion</label>
@@ -106,7 +116,8 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                             <Select isMulti options={attendeesList} onChange={addAttendees} placeholder={"Selecciona los correos"}/>
                         </div>
                         <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" className="btn btn-secondary" data-dismiss="modal"
+                            onClick={() => clearData()}>Cancelar</button>
                             <button type="button" className="btn btn-primary" data-dismiss="modal"
                             onClick={() => addEvent()}
                             >Agregar Evento</button>
