@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react'
-
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import timeGridPlugin from '@fullcalendar/timegrid'
@@ -11,7 +10,7 @@ import {AddEvent, ListEvents} from "../../../application/actions/calendar/calend
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
 import CalendarListComponent from '../../components/calendar/CalendarListComponent'
-import CalendarTable from '../../components/calendar/CalendarTable'
+import CalendarTable from '../../components/calendar/CalendarTableComponent'
 import {getUser} from "../../../application/selectors/administration/user";
 
 // import CalendarListComponent from '../../components/calendar/CalendarListComponent'

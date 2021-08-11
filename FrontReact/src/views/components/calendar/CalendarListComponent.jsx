@@ -1,7 +1,4 @@
 import React from 'react'
-
-
-
 const CalendarListComponent = (props) => {
     const {
         kind,
