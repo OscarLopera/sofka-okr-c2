@@ -41,7 +41,7 @@ const KRSchema = mongoose.Schema({
     },
 }, {
     versionKey: false,
-    collection: 'krs'
+    collection: 'Krs'
 })
 
 

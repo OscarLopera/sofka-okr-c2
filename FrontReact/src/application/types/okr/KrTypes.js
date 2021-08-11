@@ -1,0 +1,7 @@
+export const CREATE_KR = "CREATE_KR";
+export const CREATE_KR_SUCCESS = "CREATE_KR_SUCCESS";
+export const CREATE_KR_ERROR = "CREATE_KR_ERROR";
+
+export const DELETE_KR = "DELETE_KR";
+export const DELETE_KR_SUCCESS = "DELETE_KR_SUCCESS";
+export const DELETE_KR_ERROR = "DELETE_KR_ERROR";

@@ -1,4 +1,4 @@
-const valueObjects = require("./valueObjects")
+const valueObjects = require("./ValueObjects")
 class Okr {
   constructor({
     objective,
@@ -13,8 +13,7 @@ class Okr {
     this.managerId = valueObjects.IdValueObject(managerId).value;
     this.description = valueObjects.DescriptionValueObject(description).value;
     this.verticalId = valueObjects.IdValueObject(verticalId).value;
-    this.currentProgress =
-      valueObjects.ProgressValueObject(currentProgress).value;
+    this.currentProgress =valueObjects.ProgressValueObject(currentProgress).value;
   }
 }
 

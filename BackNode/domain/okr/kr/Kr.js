@@ -1,13 +1,4 @@
-const {
-    DescriptionValueObject, 
-    IdOkrValueObject, 
-    ProgressValueObject, 
-    TitleValueObject, 
-    ManagerNameValueObject, 
-    ManagerMailValueObject, 
-    StartDateValueObject, 
-    EndDateValueObject, 
-    LoadValueObject} = require('./ValueObjects')
+const valueObjects = require('./ValueObjects')
 
 class Kr {
   constructor({
@@ -21,15 +12,15 @@ class Kr {
     description,
     progress
   }) {
-    this.idOkr = IdOkrValueObject(idOkr).value 
-    this.managerName = ManagerNameValueObject(managerName).value
-    this.managerEmail = ManagerMailValueObject(managerEmail).value 
-    this.startDate = StartDateValueObject(startDate).value
-    this.endDate = EndDateValueObject(endDate).value
-    this.loadValue = LoadValueObject(loadValue).value
-    this.title = TitleValueObject(title).value
-    this.description = DescriptionValueObject(description).value
-    this.progress = ProgressValueObject(progress).value
+    this.idOkr = valueObjects.IdOkrValueObject(idOkr).value 
+    this.managerName = valueObjects.ManagerNameValueObject(managerName).value
+    this.managerEmail = valueObjects.ManagerMailValueObject(managerEmail).value 
+    this.startDate = valueObjects.StartDateValueObject(startDate).value
+    this.endDate = valueObjects.EndDateValueObject(endDate).value
+    this.loadValue = valueObjects.LoadValueObject(loadValue).value
+    this.title = valueObjects.TitleValueObject(title).value
+    this.description = valueObjects.DescriptionValueObject(description).value
+    this.progress = valueObjects.ProgressValueObject(progress).value
 
   }
 }

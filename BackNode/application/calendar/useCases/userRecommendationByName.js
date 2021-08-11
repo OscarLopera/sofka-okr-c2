@@ -9,5 +9,4 @@ const User = require("../../../domain/user/User")
      
 }
 
-
 module.exports = userRecommendationByName

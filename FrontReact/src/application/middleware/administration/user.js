@@ -28,18 +28,23 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                     verticalId:"verticalId",
                     rol: "rol"
                 }
-                await api.user.createUser(userFirebase); 
+                await api.user.createUser(userFirebase);
+                await api.notifications.createNotificationsManager({userId:userId})
+
             } else{
                 vertical = await api.user.getVertical(user.verticalId);
             }
-
+            
             const userDataBase = {
                 userId: userId,
                 userName: userName,
+                userEmail: userEmail,
                 userImage: userImage,
-                userVertical: vertical.verticalname, 
+                userPhone: userPhone,
                 firstTime: user.firstTime, 
-                userToken: userToken
+                userVertical: vertical.verticalname, 
+                userToken: userToken,
+                userRol: "super usuario"
             }
             localStorage.setItem("user", JSON.stringify(userDataBase))
             dispatch(actions.loginUserSuccess(userDataBase));
@@ -62,7 +67,73 @@ const logoutUserFlow = ({firebase}) => ({dispatch}) => next => async (action) =>
     }
 }
 
-export default [
+const closeWelcomeFlow = () => ({dispatch, getState}) => next => async (action) => { 
+    next(action);
+    if(action.type === types.CLOSE_WELCOME){
+        const currentUser = getState().user.user;
+        const newUser = {...currentUser, firstTime: false};
+        localStorage.setItem("user", JSON.stringify(newUser));
+        dispatch(actions.closeWelcomeSuccess(newUser));
+    }
+}
+
+const loadingVerticalsFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === types.LOADING_VERTICALS){
+        try{   
+            const verticals = await api.user.getVerticals(); 
+            dispatch(actions.loadingVerticalsSuccess(verticals));
+        }catch (error){
+            dispatch(actions.loadingVerticalsFailure(error.message));
+        }
+    }
+}
+
+const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === types.UPDATE_USER){
+        try{   
+            const user = action.payload;
+
+            const userInfo = {
+                id: user.userId,
+                name: user.userName,
+                email: user.userEmail,
+                urlPhoto: user.userImage,
+                phone: user.userPhone,
+                firstTime: false,
+                verticalId: user.userVerticalId,
+                rol: "super usuario"
+            }
+            await api.user.updateUser(userInfo); 
+
+            const vertical = await api.user.getVertical(user.userVerticalId);
+
+            const userToState = {
+                userId: user.userId,
+                userName: user.userName,
+                userEmail: user.userEmail,
+                userImage: user.userImage,
+                userPhone: user.userPhone,
+                firstTime: false, 
+                userVertical: vertical.verticalname, 
+                userToken: user.userToken,
+                userRol: "super usuario"
+            }
+            localStorage.setItem("user", JSON.stringify(userToState))
+            dispatch(actions.updateUserSuccess(userToState));
+        }catch (error){
+            dispatch(actions.updateUserFailure(error.message));
+        }
+    }
+}
+
+const userMiddleware = [
     loginUserFlow,
-    logoutUserFlow
+    logoutUserFlow,
+    closeWelcomeFlow,
+    loadingVerticalsFlow,
+    updateUserFlow
 ]
+
+export default userMiddleware;

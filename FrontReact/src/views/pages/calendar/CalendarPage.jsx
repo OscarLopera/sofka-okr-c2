@@ -6,33 +6,29 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
 import {getEvents} from "../../../application/selectors/calendar/calendarSelector";
 import {bindActionCreators} from "redux";
-import {AddEvent, ListEvents, DeleteEvent} from "../../../application/actions/calendar/calendarActions";
+import {AddEvent, DeleteEvent, ListEvents} from "../../../application/actions/calendar/calendarActions";
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
 import {getUser} from "../../../application/selectors/administration/user";
 import CalendarItem from '../../components/calendar/CalendarItem'
 
-
 const CalendarPage = ({eventos, AddEvent, ListEvents, DeleteEvent, user}) => {
     useEffect(() => {
         ListEvents(user.userToken)
-    }, [ListEvents])
+
+    }, [ListEvents, user.userToken])
 
     const listEventsCalendar = () => {
         if (eventos) {
-            const test = eventos.map(function (event) {
+            return eventos.map(function (event) {
                 return {
                     title: event.summary,
                     start: event.start.dateTime,
                     end: event.end.dateTime
                 }
-            })
-            return test;
+            });
         }
     }
-
-    console.log(listEventsCalendar())
-
 
     return (
         <>

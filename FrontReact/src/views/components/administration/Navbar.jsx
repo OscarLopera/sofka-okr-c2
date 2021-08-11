@@ -17,6 +17,7 @@ import * as AiIcons from "react-icons/ai";
 import { SidebarData } from "./SidebarData";
 import SubMenu from "./SubMenu";
 import { IconContext } from "react-icons/lib";
+import Campana from "../notifications/Campana";
 
 // const Nav = styled.div`
 //   background: #050531;
@@ -61,10 +62,10 @@ const Navbar = ({ logoutUser, user }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light navega">
         <div className="container-fluid">
-          <Link className="navbar-brand" to="/">
+          <Link to={"/#"} className="navbar-brand">
             {/* Usuario con Logueo */}
             {user && (
-              <NavIcon to="#">
+              <NavIcon>
                 <FaIcons.FaBars onClick={showSidebar} className="mx-3" />
                 <img src={Logo} alt="logo sofka" />
                 <span className="mx-3 my-3 text-white">SOFKA OKR</span>
@@ -87,10 +88,10 @@ const Navbar = ({ logoutUser, user }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"></span>
+            <span className="navbar-toggler-icon"/>
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0"></ul>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0"/>
             <form className="d-flex">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
@@ -102,15 +103,13 @@ const Navbar = ({ logoutUser, user }) => {
                     Home
                   </Link>
                 </li>
-                <li className={!user ? "d-none" : "nav-item"}>
-                  <Link className="nav-link text-white" to="/principal">
+                {/* <li className={!user ? "d-none" : "nav-item"}>
+                  <Link className="nav-link text-white mt-1" to="/principal">
                     Principal
                   </Link>
-                </li>
+                </li> */}
                 <li className={!user ? "d-none" : "nav-item"}>
-                  <Link className="nav-link text-white" to="/">
-                    Campana
-                  </Link>
+                  <Campana />
                 </li>
                 <li className={!user ? "d-none" : "nav-item"}>
                   {/* Usuario no logueado */}
@@ -121,23 +120,35 @@ const Navbar = ({ logoutUser, user }) => {
                   )}
                   {/* Usuario Logeado */}
                   {user && (
-                    <div >
-                      <Link className="nav-link" to="/">
-                        <img src={user.userImage} alt="foto usuario" width="40px" height="40px" className="imagen-usuario" />
+                    <div>
+                      <Link className="nav-link" to="/userPage">
+                        <img
+                          src={user.userImage}
+                          alt="foto usuario"
+                          width="40px"
+                          height="40px"
+                          className="imagen-usuario"
+                        />
+                        <span className="text-white me-3">{user.userName}</span>
+                        {user.userVertical ? (
+                          <span className="text-white">
+                            {user.userVertical}
+                          </span>
+                        ) : null}
                       </Link>
                     </div>
                   )}
                 </li>
-                <button
-                  className={!user ? "d-none" : "btn btn-outline-danger btn-sm"}
-                  onClick={logoutUser}
-                >
-                  Cerrar Sesión
-                </button>
               </ul>
             </form>
           </div>
         </div>
+        <button
+          className={!user ? "d-none" : "btn btn-outline-danger btn-sm mx-3"}
+          onClick={logoutUser}
+        >
+          Cerrar Sesión
+        </button>
       </nav>
 
       {/* Sidebar */}
