@@ -131,7 +131,7 @@ const CrearOkrPage = ({ addOkrs, history }) => {
             <FormGroup>
               <button type="submit"
                 
-                className="btn sofka-color-btn px-5 mt-4 "
+                className="btn sofka-color-btn py-1 px-4 fs-4 text-white"
               >
                 Añadir OKR <i className="bi bi-plus-square" />
               </button>
