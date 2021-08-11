@@ -13,11 +13,8 @@ const krVal = { progress: krFakes.krList[0].progress };
 const getDateNow = () => {
     const date = new Date();
     const day = date.getDate();
-    const month = date.getMonth() + 1;
+    const month = ("0" + (date.getMonth() + 1)).slice(-2)
     const year = date.getFullYear();
-    if (month < 10) {
-      return `${year}/0${month}/${day}`;
-    }
     return `${year}/${month}/${day}`;
   };
 
