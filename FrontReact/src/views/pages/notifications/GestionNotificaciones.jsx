@@ -11,12 +11,14 @@ const GestionNotificaciones=({getStatusNotification,changeStatusNotification,sta
 
    
     useEffect(() => {
-        getStatusNotification("611169b3a62cf558eff7a231")
+        
+        getStatusNotification(stateIdUser.userId)
     }, [])
 
 
     const comprobar = () => {
-        changeStatusNotification(initialstate.notificationstatus)
+        changeStatusNotification(initialstate.notificationstatus,stateIdUser.userId)
+        console.log()
     }
 
 
