@@ -33,12 +33,13 @@ class KrRepositoryMongo extends KrRepository {
     return CrudMongoRepository.getAll(collection);
   }
 
-  // async updateKr(KrId, KrData) {
-  //   return CrudMongoRepository.update(collection, KrId, KrData);
-  // }
+  async updateKr(idKr, krVal) {
+    const updatedKr = await KrSchema.findByIdAndUpdate({_id:idKr},krVal,{new: true})
+    return updatedKr;
+  }
 
-  async getByKrId(KrId) {
-    return CrudMongoRepository.getById(collection, KrId);
+  async getMany(value) {
+    return await KrSchema.find(value)
   }
 
 }
