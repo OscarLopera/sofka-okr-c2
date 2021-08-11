@@ -8,6 +8,8 @@ import { getOkrs, getOkr } from './../../../application/selectors/dashboard/okrs
 import { loadingOKR,loadingOKRid } from './../../../application/actions/dashboard/index';
 //Componentes
 import Okruser from './user/OkrsUser';
+import Barchart from './user/BarChart';
+
 
 const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
   const [idokr, setidokr] = useState("");
@@ -42,6 +44,7 @@ const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
             </select>
             <button className="btn btn-outline-warning" onClick={() => handlerokrid()}>Ver info</button>
             <Okruser okr={okr}/>
+            <Barchart okr={okr}/>
           </div>
           <div className="col-2"></div>
         </center>
