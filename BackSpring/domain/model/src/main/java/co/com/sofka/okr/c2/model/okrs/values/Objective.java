@@ -17,4 +17,8 @@ public class Objective {
     public String getValue() {
         return value;
     }
+
+    public static Objective of(String value){
+        return new Objective(value);
+    }
 }

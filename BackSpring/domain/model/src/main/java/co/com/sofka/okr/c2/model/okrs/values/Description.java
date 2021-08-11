@@ -17,4 +17,8 @@ public class Description {
     public String getValue() {
         return value;
     }
+
+    public static Description of(String value){
+        return new Description(value);
+    }
 }

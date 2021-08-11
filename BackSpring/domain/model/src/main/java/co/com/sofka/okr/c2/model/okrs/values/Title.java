@@ -18,4 +18,8 @@ public class Title {
     public String getValue() {
         return value;
     }
+
+    public static Title of(String value){
+        return new Title(value);
+    }
 }

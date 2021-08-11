@@ -35,6 +35,16 @@ public class OKRS {
         this.krs = krs;
     }
 
+    public OKRS(IdOkr id, Objective objective, Title title, String managerId, Description description, VerticalId verticalId, Double progress) {
+        this.id = id;
+        this.objective = objective;
+        this.title = title;
+        this.managerId = managerId;
+        this.description = description;
+        this.verticalId = verticalId;
+        this.progress = progress;
+    }
+
     public IdOkr getId() {
         return id;
     }

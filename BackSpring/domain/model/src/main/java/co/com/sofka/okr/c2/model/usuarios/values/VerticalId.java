@@ -1,5 +1,7 @@
 package co.com.sofka.okr.c2.model.usuarios.values;
 
+import co.com.sofka.okr.c2.model.okrs.values.Objective;
+
 import java.util.Objects;
 
 public class VerticalId {
@@ -29,4 +31,9 @@ public class VerticalId {
     public int hashCode() {
         return Objects.hash(value);
     }
+
+    public static VerticalId of(String value){
+        return new VerticalId(value);
+    }
+
 }
