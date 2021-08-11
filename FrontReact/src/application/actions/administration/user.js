@@ -35,3 +35,17 @@ export const closeWelcomeSuccess = user => ({
     type: types.CLOSE_WELCOME_SUCCESS,
     payload: user
 });
+
+export const loadingVerticals = () => ({
+    type: types.LOADING_VERTICALS,
+});
+
+export const loadingVerticalsSuccess = verticals => ({
+    type: types.LOADING_VERTICALS_SUCCESS,
+    payload: verticals
+});
+
+export const loadingVerticalsFailure = error => ({
+    type: types.LOADING_VERTICALS_FAILURE,
+    payload: error
+});

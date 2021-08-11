@@ -77,9 +77,21 @@ const closeWelcomeFlow = () => ({dispatch, getState}) => next => async (action) 
     }
 }
 
+const loadingVerticalsFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === types.LOADING_VERTICALS){
+        try{   
+            const verticals = await api.user.getVerticals(); 
+            dispatch(actions.loadingVerticalsSuccess(verticals));
+        }catch (error){
+            dispatch(actions.loadingVerticalsFailure(error.message));
+        }
+    }
+}
 
 export default [
     loginUserFlow,
     logoutUserFlow,
-    closeWelcomeFlow
+    closeWelcomeFlow,
+    loadingVerticalsFlow
 ]

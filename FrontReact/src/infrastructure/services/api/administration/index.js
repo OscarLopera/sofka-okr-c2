@@ -13,4 +13,8 @@ export default {
         const response = await axios.get('https://admin-reto-final.herokuapp.com/api/vertical/' + verticalId);
         return response.data;
     },
+    getVerticals: async () => {
+        const response = await axios.get('https://admin-reto-final.herokuapp.com/api/usuario/verticales');
+        return response.data;
+    },
 }

@@ -1,14 +1,21 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
-import { getUser } from "../../../application/selectors/administration/user";
+import { getUser, getVerticals } from "../../../application/selectors/administration/user";
+import { loadingVerticals } from "../../../application/actions/administration/user";
 import { useForm } from "react-hook-form";
 import { NavLink } from "react-router-dom";
 
-const UserPage = ({ user }) => {
+const UserPage = ({ user, getVerticals, verticals, loadingVerticals }) => {
   const { register, handleSubmit } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data.vertical)
   };
+
+  useEffect(() => {
+    loadingVerticals();
+  }, []);
+
   return (
     <center>
       <h1>Información Usuario</h1>
@@ -18,12 +25,23 @@ const UserPage = ({ user }) => {
         <div>
           <label htmlFor="verticales">¿ A qué vertical Perteneces?</label>
           <br />
-          <select {...register("vertical")} id="vertical">
+          <div>
+            <select {...register("vertical")} id="vertical">
+            {verticals != null &&
+              verticals.map((vertical) => {
+                return (
+                      <option key={vertical.id} value={vertical.id}>{vertical.verticalname}</option>
+                );
+              })}
+              </select>
+ 
+          </div>
+          {/* <select {...register("vertical")} id="vertical">
             <option value="DEV">DEV</option>
             <option value="QA">QA</option>
             <option value="INFRASTRUCTURE">INFRASTRUCTURE</option>
             <option value="TALENTO HUMANO">TALENTO HUMANO</option>
-          </select>
+          </select> */}
         </div>
         <button type="submit" className="btn btn-success">
           Enviar
@@ -38,9 +56,15 @@ const UserPage = ({ user }) => {
     </center>
   );
 };
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({ loadingVerticals }, dispatch);
+};
+
 const mapStateToProps = (state) => {
   return {
     user: getUser(state),
+    verticals: getVerticals(state)
   };
 };
-export default connect(mapStateToProps)(UserPage);
+export default connect(mapStateToProps, mapDispatchToProps)(UserPage);
