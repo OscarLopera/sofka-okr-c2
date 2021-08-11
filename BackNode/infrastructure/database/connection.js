@@ -13,7 +13,7 @@ const MONGO_URI = `mongodb+srv://${USER}:${PASSWORD}@${config.dbHost}/${DB_NAME}
         await mongoose
         .connect(MONGO_URI,{ useNewUrlParser: true,
                     useUnifiedTopology: true ,
-                    
+                    useFindAndModify: false,
                     useCreateIndex: true })
         console.log("Mongodb connected")
     }

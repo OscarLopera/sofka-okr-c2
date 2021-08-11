@@ -11,7 +11,7 @@ function routesApiNotifications(app) {
   app.use("/api/notifications", router);
 
   router.post("/", createNotiManager);
-  router.patch("/update-configuration/:_id", configureNotifications);
+  router.put("/update-configuration/:_id", configureNotifications);
   router.get('/:_id', getNotificationManagerCont)
 }
 
