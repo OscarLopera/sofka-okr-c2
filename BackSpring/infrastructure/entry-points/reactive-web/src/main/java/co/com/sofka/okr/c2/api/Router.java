@@ -48,4 +48,19 @@ public class Router {
                         .body(handler.getProgress(request.pathVariable("id")),OKRSDTO.class));
     }
 
+    @Bean
+    public  RouterFunction<ServerResponse> getAllOKRByUserId(Handler handler){
+        return route(GET("/api/getokrbyuserid/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(handler.getAllOkrsByUser(request.pathVariable("id")), OKRSDTO.class));
+    }
+
+    @Bean
+    public  RouterFunction<ServerResponse> getLastOKRByUserId(Handler handler){
+        return route(GET("/api/getlastokrbyuserid/{id}").and(accept(MediaType.APPLICATION_JSON)),
+                request -> ServerResponse.ok()
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .body(handler.getLastOkr(request.pathVariable("id")), OKRSDTO.class));
+    }
 }

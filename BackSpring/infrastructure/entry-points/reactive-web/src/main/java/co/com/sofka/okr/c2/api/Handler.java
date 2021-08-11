@@ -4,15 +4,15 @@ import co.com.sofka.okr.c2.usecase.okr.*;
 import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
 import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
+import co.com.sofka.okr.c2.usecase.okr.GetAllKrsByIdOkrUseCase;
+import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
 import lombok.RequiredArgsConstructor;
 import lombok.val;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-
 import java.util.ArrayList;
-
 import java.util.stream.Collectors;
 
 @Component
@@ -28,6 +28,8 @@ public class Handler {
     private final GetAllUserUseCase getAllUserUseCase;
     private final GetOKRByCompletedUseCase getOKRByCompletedUseCase;
     private final GetOKRByProgressUseCase getOKRByProgressUseCase;
+    private final GetAllOkrsByUserIdUseCase getAllOkrsByUserIdUseCase;
+    private final GetLastOkrUseCase getLastOkrUseCase;
 
     public Mono<OKRSDTO> getOkrBiId(String id) {
         Mono<OKRSDTO> okr = getOkrByIdUseCase.execute(id).map(mapperOKRDTO.okrToDto());
@@ -55,10 +57,13 @@ public class Handler {
 
 
     public Flux<RespuestaUsuarioDTO> findAllUserOKR(){
-        Flux<RespuestaUsuarioDTO> users = getAllUserUseCase.execute().map(mapperUserDTO.userResponseToDTO())
+        return getAllUserUseCase.execute().map(mapperUserDTO.userResponseToDTO())
                 .flatMap(us ->
                         findUserAllOkr(us.getId()));
-        return users;
+    }
+
+    public Flux<OKRSDTO> getAllOkrsByUser(String idUser){
+        return getAllOkrsByUserIdUseCase.execute(idUser).map(mapperOKRDTO.okrToDto());
     }
 
     public Flux<OKRSDTO> getCompleted(String id){
@@ -70,4 +75,9 @@ public class Handler {
         Flux<OKRSDTO> okrs = getOKRByProgressUseCase.execute(id).map(mapperOKRDTO.okrToDto());
         return okrs;
     }
+
+    public Mono<OKRSDTO> getLastOkr(String id){
+        return getLastOkrUseCase.execute(id).map(mapperOKRDTO.okrToDto()).defaultIfEmpty(new OKRSDTO()).last();
+    }
+
 }
