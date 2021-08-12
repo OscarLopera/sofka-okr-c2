@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import { Link } from "react-router-dom";
+import { Link,useHistory } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 
 //Redux
@@ -8,12 +8,19 @@ import { bindActionCreators } from "redux";
 //Selectors
 import { _getOkrProgress } from "../../../../application/selectors/dashboard/okrs";
 //Acciones
-import { getOkrProgress } from "../../../../application/actions/dashboard/index";
+import { getOkrProgress,getOkrId } from "../../../../application/actions/dashboard/index";
 
 
-function StateOkrsp({getOkrProgress,okrs}) {
+function StateOkrsp({getOkrProgress,getOkrId,okrs}) {
 
     const idUser = "61157aaca2605b535bfab3ab";
+    const history = useHistory();
+
+    const handleviewokr = id =>{
+    //Prueba inicial solo redirijo
+    history.push("/viewdashokr")
+    getOkrId(id);
+    }
 
     useEffect(() => {
     getOkrProgress(idUser);
@@ -43,7 +50,7 @@ function StateOkrsp({getOkrProgress,okrs}) {
         <br />
         <h5 className="text-center">Okrs en Progreso</h5>
         <hr/>
-        <div className="row row-cols-1 row-cols-md-2 g-4">
+        <div className="row row-cols-1 row-cols-md-2 g-4 text-center">
           {(okrs.length > 0) ? 
           (okrs.map((kr) => (
           <div className="col">
@@ -52,8 +59,13 @@ function StateOkrsp({getOkrProgress,okrs}) {
                 <p className="card-title">{kr.title}</p>
                 <CircularProgressbar value={kr.currentProgress}  text={`${kr.currentProgress}%`} />
               </div>
-              <div className="card-footer">
-                <button className="btn btn-dark">Ver OKR</button>
+              <div 
+                className="card-footer">
+                <center>
+                <button 
+                  onClick={()=> handleviewokr(kr.id)}
+                  className="btn btn-dark" style={{backgroundColor:"#0A0939"}}>Ver OKR</button>
+                </center>
               </div>
             </div>
           </div>
