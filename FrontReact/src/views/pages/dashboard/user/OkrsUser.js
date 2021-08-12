@@ -43,7 +43,7 @@ return (
                   <td>{description}</td>
                   <td>{objective}</td>
                    <td>
-                      <div style={{ width: "60%" }}>
+                      <div style={{ width: "50%" }}>
                         <CircularProgressbar
                           value={okr?.currentProgress || 0}
                           text={`${okr?.currentProgress}%`}
@@ -87,7 +87,7 @@ return (
                     </td>
                   
                       <td>
-                        <div style={{ width: "35%" }}>
+                        <div style={{ width: "70px", marginLeft:"50px"}}>
                           <CircularProgressbar
                             value={kr.progress}
                             text={`${kr.progress}%`}

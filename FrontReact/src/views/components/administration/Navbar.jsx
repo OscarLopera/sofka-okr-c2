@@ -139,10 +139,10 @@ const Navbar = ({ logoutUser, user }) => {
           </div>
         </div>
         <button
-          className={!user ? "d-none" : "btn btn-outline-danger btn-sm mx-3"}
+          className={!user ? "d-none" : "btn btn-outline-danger mx-3"}
           onClick={logoutUser}
         >
-          Cerrar Sesión
+          Logout
         </button>
       </nav>
 

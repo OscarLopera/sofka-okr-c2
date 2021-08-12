@@ -1,4 +1,5 @@
 import * as actions from '../../actions/administration/user';
+
 import { gethistory } from '../../actions/notifications';
 import * as types from '../../types/administration/user';
 
@@ -20,7 +21,7 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
             
             if(user.firstTime){
                 const userFirebase = {
-                    id: userId,
+                    idUser: userId,
                     name: userName,
                     email: userEmail,
                     urlPhoto: userImage,
@@ -35,7 +36,6 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
 
             } else{
                 vertical = await api.user.getVertical(user.verticalId);
-                
             }
             dispatch(gethistory(userId))
             
@@ -85,7 +85,7 @@ const loadingVerticalsFlow = ({api}) => ({dispatch}) => next => async (action) =
     next(action);
     if(action.type === types.LOADING_VERTICALS){
         try{   
-            const verticals = await api.user.getVerticals(); 
+            const verticals = await api.user.getVerticals();  
             dispatch(actions.loadingVerticalsSuccess(verticals));
         }catch (error){
             dispatch(actions.loadingVerticalsFailure(error.message));
@@ -100,7 +100,7 @@ const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
             const user = action.payload;
 
             const userInfo = {
-                id: user.userId,
+                idUser: user.userId,
                 name: user.userName,
                 email: user.userEmail,
                 urlPhoto: user.userImage,

@@ -65,7 +65,7 @@ const HomePage = ({ loginUser, logoutUser, closeWelcome, user }) => {
               src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg"
               alt="Google"
             />{" "}
-            Iniciar sesion con Google
+            Iniciar sesión con Google
           </button>
         </center>
       </section>
