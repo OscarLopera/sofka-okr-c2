@@ -1,31 +1,47 @@
 import React from 'react';
 import Notificacion from './Notificacion';
 import '../../assets/styles/notifications/styleCampana.css';
+import { useHistory } from 'react-router';
+import { connect } from "react-redux";
 
-/* <button onClick={()=>{history.push("/notificaciones")}}>
-                    <i className="icon_cog1">⚙️</i>
-                  </button> */
+const Campana = ({ initialstate }) => {
 
-export default function Campana() {
+    const history = useHistory();
     return (
         <div className="notifications">
-            <div className="icon_wrap"><i className="far fa-bell"/></div>
+            <div className="icon_wrap"><i className="far fa-bell" /></div>
             <div className="TinkerbellLayout-content">
                 <div className="notification_dd">
                     <div className="TinkerbellLayout-top">
                         <div className="TinkerbellLayout-tittle">
                             <span>Tus notificaciones</span>
                         </div>
-                        <a href="/notificaciones">
+                        <a onClick={() => { history.push("/notificaciones") }}>
                             <i className="icon_cog1">⚙️</i>
                         </a>
                     </div>
-                    {Notificacion()}
-                    {Notificacion()}
+                    
+                    {initialstate.historynotify !== null &&
+                    <>{ initialstate.historynotify !== "este usuario no existe" && initialstate.
+                    historynotify.length !== 0  &&
+                    <>{ initialstate.historynotify.length >= 2 &&
+                        <><Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 1]} />
+                            <Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 2]} />
+
+                        </>}
+                        {initialstate.historynotify.length === 1 &&
+                        <Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 1]} />}</>
+                    }
+                    {
+                        initialstate.historynotify.length === 0 &&
+                        <p>Usted no tiene notificaciones</p>
+                    }</>
+                    }
+                
 
                     <div className="NotificationsFooter text-center">
-                        <a href="/">
-                            <span>Ver todas ➡</span>
+                        <a onClick={() => { history.push("/historialnotificaciones") }}>
+                            <span className="vertodas">Ver todas ➡</span>
                         </a>
                     </div>
                 </div>
@@ -33,3 +49,12 @@ export default function Campana() {
         </div>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        initialstate: state.notification
+    };
+};
+
+export default connect(mapStateToProps, null)(Campana)
+

@@ -39,7 +39,34 @@ describe("Middleware Test Dashboard", () => {
     },
   ];
 
+    const dummyListidOKRs = [
+    {
+      id:1,
+      objetivo:"Un objetivo de un usuario",
+      title:"Titulo del OKR",
+      description:"Descripcion del OKR",
+      managerId:"1245",
+      areainCharge:"Agile services",
+      progress:80,
+      krs:[
+          {
+          _id: {
+          $oid: "61106343609d16f1740ddf45"
+          },
+        idOkr: "611061c6609d16f1740ddf39",
+        description: "Socialización de la dificultades que no permitieron el alcance de objetivos",
+        managerId: "Pepito perez",
+        startDate: "2021/08/14",
+        endDate: "2021/08/16",
+        loadValue: 5,
+        progress: 10
+        }
+      ]
+    }
+  ];
+
   const idUser = "61106133609d16f1740ddf34";
+  const idOkr = "611061c6609d16f1740dd222";
 
   const api = {
     dashboard: {
@@ -52,7 +79,7 @@ describe("Middleware Test Dashboard", () => {
   const dispatch = jest.fn();
   const next = jest.fn();
 
-  const [loadingOKRFlow] = dashboardmiddleware;
+  const [loadingOKRFlow,loadingOKRidFlow] = dashboardmiddleware;
 
   const action = loadingOKR(idUser);
 
@@ -67,7 +94,6 @@ describe("Middleware Test Dashboard", () => {
   });
 
   //Test Failure
-
   test("Test Failure", async () => {
   const api = {
     dashboard: {
@@ -80,66 +106,13 @@ describe("Middleware Test Dashboard", () => {
     await loadingOKRFlow({ api })({ dispatch })(next)(action);
     expect(dispatch).toHaveBeenCalledWith(loadingOKRFailure("Se ha generado un error"));
   });
-})
 
-describe("Middleware Test OKR by id", () => {
-  const dummyListOKRs = [
-    {
-      "id":1,
-      "objetivo":"Un objetivo de un usuario",
-      "title":"Titulo del OKR",
-      "description":"Descripcion del OKR",
-      "managerId":"1245",
-      "areainCharge":"Agile services",
-      "progress":80,
-      "krs":[
-          {
-          "_id": {
-          "$oid": "61106343609d16f1740ddf45"
-          },
-        "idOkr": "611061c6609d16f1740ddf39",
-        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
-        "managerId": "Pepito perez",
-        "startDate": "2021/08/14",
-        "endDate": "2021/08/16",
-        "loadValue": 5,
-        "progress": 10
-        },
-        {
-          "_id": {
-          "$oid": "61106343609d16f1740dd233"
-          },
-        "idOkr": "611061c6609d16f1740dd222",
-        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
-        "managerId": "Juanito Valenzuela",
-        "startDate": "2021/08/14",
-        "endDate": "2021/08/16",
-        "loadValue": 5,
-        "progress": 10
-        }
-      ]
-    }
-  ];
-
-  const idOkr = "611061c6609d16f1740dd222";
-
-  const api = {
-    dashboard: {
-      loadingOKRid: (idOkr) => {
-        return dummyListOKRs;
-      },
-    },
-  };
-
-  const dispatch = jest.fn();
-  const next = jest.fn();
-
-  const [loadingOKRidFlow] = dashboardmiddleware;
-
-  const action = loadingOKRid(idOkr);
-
-  test("Test Functional", async () => {
-    await loadingOKRidFlow({ api })({ dispatch })(next)(action);
+  //Test por id OKR
+  test("Test Functional idOKR", async () => {
+   await loadingOKRidFlow({ api })({ dispatch })(next)(action);
     expect(next).toHaveBeenCalledWith(action);
   });
-});
+
+
+})
+ 
