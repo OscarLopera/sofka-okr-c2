@@ -1,13 +1,13 @@
 import React from 'react'
 import CalendarUpdateModal from './CalendarUpdateModal'
 
-const EventItem = ({events, DeleteEvent, UpdateEvent, token, email}) => {
+export const EventItemComponent = ({events, DeleteEvent, UpdateEvent, token, email}) => {
     const deleteEvent = (id) => {
         DeleteEvent(id, token)
     }
 
     return (
-        (events.length === 0) ? null: (
+        (events.length === 0) ? "No hay elementos": (
             events.map((item, i) => {
                 return (
                     <tr key={i}>
@@ -50,4 +50,4 @@ const EventItem = ({events, DeleteEvent, UpdateEvent, token, email}) => {
 
 }
 
-export default EventItem
+export default EventItemComponent

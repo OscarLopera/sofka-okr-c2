@@ -5,10 +5,10 @@ import {AddEvent, DeleteEvent, ListEvents,UpdateEvent} from "../../../applicatio
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
 import {getUser} from "../../../application/selectors/administration/user";
-import TableEvent from '../../components/calendar/TableEvent'
-import Calendar from '../../components/calendar/Calendar'
+import TableEventComponent from '../../components/calendar/TableEventComponent'
+import CalendarComponent from '../../components/calendar/CalendarComponent'
 
-const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, user}) => {
+export const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, user}) => {
 
     useEffect(() => {
         ListEvents(user.userToken)
@@ -24,10 +24,10 @@ const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, us
                 </div>
             </div>
             <div className={"row"}>
-                <TableEvent events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail}/>
+                <TableEventComponent events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail}/>
             </div>
             <br/><br/>
-            <Calendar events={events}/>
+            <CalendarComponent events={events}/>
         </div>
     )
 }

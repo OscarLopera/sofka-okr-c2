@@ -4,7 +4,6 @@ import Select from "react-select";
 export const CalendarAddComponent = ({AddEvent, token}) => {
 
     let currentDate = new Date()
-
     const date = (currentDate.toISOString().split('T', 8))
     const time = currentDate.getHours() + ":" + currentDate.getMinutes()
 
@@ -54,7 +53,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
     }
 
     const addEvent = () => {
-        if(externalAttendees!==""){
+        if (externalAttendees !== "") {
             let inv = attendees;
             inv.push({email: externalAttendees});
             setAttendees(inv)
@@ -95,7 +94,8 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
             <button className=" mr-3 btn btn-primary px-4"
                     data-testid={"btn-test-openModalAddEvent"}
                     data-toggle={"modal"}
-                    data-target={"#modalAddEvent"}>Agregar Evento <i className="bi bi-plus-square"/>
+                    data-target={"#modalAddEvent"}>
+                    Agregar Evento <i className="bi bi-plus-square"/>
             </button>
             <div id={"modalAddEvent"} className={"modal fade container"}>
                 <div className="modal-dialog modal-lg" role="document">

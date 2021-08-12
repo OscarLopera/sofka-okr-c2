@@ -36,7 +36,7 @@ describe('calendar add component test', () => {
         const dummyToken = "token";
 
         const { getByTestId } = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} />
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken}/>
         )
 
         const inputDescription = getByTestId("input-test-descriptionAddEvent")
@@ -65,7 +65,7 @@ describe('calendar add component test', () => {
 
         fireEvent.change(inputExternal,{target:{value:"sebas99cano@gmail.com"}});
 
-        fireEvent.click(buttonAddEvent);
+        fireEvent.submit(buttonAddEvent);
 
         expect(AddEvent).toHaveBeenCalledWith(dummyEvent, dummyToken)
     })
@@ -77,6 +77,7 @@ describe('calendar add component test', () => {
 
         const { getByTestId } = render(
             <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} />
+
         )
         const buttonCancelEvent = getByTestId("btn-test-cancelEvent")
 
