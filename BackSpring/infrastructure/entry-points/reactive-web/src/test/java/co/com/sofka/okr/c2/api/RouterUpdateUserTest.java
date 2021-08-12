@@ -43,7 +43,7 @@ public class RouterUpdateUserTest {
                 .expectStatus().isOk()
                 .expectBody(UsuarioDTO.class)
                 .value(response->{
-                    Assertions.assertThat(response.getId()).isEqualTo("1");
+                    Assertions.assertThat(response.getIdUser()).isEqualTo("1");
                 });
 
     }

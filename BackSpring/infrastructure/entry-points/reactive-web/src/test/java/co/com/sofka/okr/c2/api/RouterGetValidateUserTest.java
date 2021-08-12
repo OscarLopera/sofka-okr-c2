@@ -31,7 +31,7 @@ public class RouterGetValidateUserTest {
                 "http//foto","23423",true,"1","Super usuario");
         RespuestaLoginDTO respuestaLoginDTO = new RespuestaLoginDTO(true,null);
 
-        Mockito.when(handler.validarUsuario(usuarioDTO.getId())).thenReturn(Mono.just(respuestaLoginDTO));
+        Mockito.when(handler.validarUsuario(usuarioDTO.getIdUser())).thenReturn(Mono.just(respuestaLoginDTO));
 
         webTestClient.get()
                 .uri("/api/usuario/validar/{id}", "1")

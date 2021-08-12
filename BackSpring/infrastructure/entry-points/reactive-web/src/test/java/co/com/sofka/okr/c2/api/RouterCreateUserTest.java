@@ -40,7 +40,7 @@ public class RouterCreateUserTest {
                 .isOk()
                 .expectBody(UsuarioDTO.class)
                 .value(response -> {
-                    Assertions.assertThat(response.getId()).isEqualTo("1");
+                    Assertions.assertThat(response.getIdUser()).isEqualTo("1");
                     Assertions.assertThat(response.getEmail()).isEqualTo("diego@mail.com");
                     Assertions.assertThat(response.getName()).isEqualTo("Diego Urrego");
                     Assertions.assertThat(response.getUrlPhoto()).isEqualTo("http/:hajsdh");
