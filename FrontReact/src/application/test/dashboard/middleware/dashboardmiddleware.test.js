@@ -39,51 +39,7 @@ describe("Middleware Test Dashboard", () => {
     },
   ];
 
-  const idUser = "61106133609d16f1740ddf34";
-
-  const api = {
-    dashboard: {
-      loadingOKR: (idUser) => {
-        return dummyListOKRs;
-      },
-    },
-  };
-
-  const dispatch = jest.fn();
-  const next = jest.fn();
-
-  const [loadingOKRFlow] = dashboardmiddleware;
-
-  const action = loadingOKR(idUser);
-
-  test("Test Functional", async () => {
-    await loadingOKRFlow({ api })({ dispatch })(next)(action);
-    expect(next).toHaveBeenCalledWith(action);
-  });
-
-  test("Test Happy", async () => {
-    await loadingOKRFlow({ api })({ dispatch })(next)(action);
-    expect(dispatch).toHaveBeenCalledWith(loadingOKRSuccess(dummyListOKRs));
-  });
-
-  //Test Failure
-
-  test("Test Failure", async () => {
-  const api = {
-    dashboard: {
-      loadingOKR: (idUser) => {
-        throw new Error ("Se ha generado un error");
-      },
-    },
-  };
-    const action = loadingOKR(idUser);
-    await loadingOKRFlow({ api })({ dispatch })(next)(action);
-    expect(dispatch).toHaveBeenCalledWith(loadingOKRFailure("Se ha generado un error"));
-  });
-})
-
-describe("Middleware Test OKR by id", () => {
-  const dummyListOKRs = [
+    const dummyListidOKRs = [
     {
       id:1,
       objetivo:"Un objetivo de un usuario",
@@ -109,11 +65,12 @@ describe("Middleware Test OKR by id", () => {
     }
   ];
 
+  const idUser = "61106133609d16f1740ddf34";
   const idOkr = "611061c6609d16f1740dd222";
 
   const api = {
     dashboard: {
-      loadingOKRid: (idOkr) => {
+      loadingOKR: (idUser) => {
         return dummyListOKRs;
       },
     },
@@ -122,14 +79,40 @@ describe("Middleware Test OKR by id", () => {
   const dispatch = jest.fn();
   const next = jest.fn();
 
-  const [loadingOKRidFlow] = dashboardmiddleware;
+  const [loadingOKRFlow,loadingOKRidFlow] = dashboardmiddleware;
 
-  const action = loadingOKRid(idOkr);
+  const action = loadingOKR(idUser);
 
   test("Test Functional", async () => {
-    await loadingOKRidFlow({ api })({ dispatch })(next)(action);
+    await loadingOKRFlow({ api })({ dispatch })(next)(action);
     expect(next).toHaveBeenCalledWith(action);
   });
 
-  
-});
+  test("Test Happy", async () => {
+    await loadingOKRFlow({ api })({ dispatch })(next)(action);
+    expect(dispatch).toHaveBeenCalledWith(loadingOKRSuccess(dummyListOKRs));
+  });
+
+  //Test Failure
+  test("Test Failure", async () => {
+  const api = {
+    dashboard: {
+      loadingOKR: (idUser) => {
+        throw new Error ("Se ha generado un error");
+      },
+    },
+  };
+    const action = loadingOKR(idUser);
+    await loadingOKRFlow({ api })({ dispatch })(next)(action);
+    expect(dispatch).toHaveBeenCalledWith(loadingOKRFailure("Se ha generado un error"));
+  });
+
+  //Test por id OKR
+  test("Test Functional idOKR", async () => {
+   await loadingOKRidFlow({ api })({ dispatch })(next)(action);
+    expect(next).toHaveBeenCalledWith(action);
+  });
+
+
+})
+ 
