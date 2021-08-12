@@ -21,8 +21,8 @@ import PieChart from "./user/PieChart";
 const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) => {
   const [idokr, setidokr] = useState("");
  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "6110122d2bbf9c8b67ccab72";
-  const idlast = "6110122d2bbf9c8b67ccab72";
+  const idUser = "6112ef6370e2131bb4730d1a";
+  const idlast = "6112ef6370e2131bb4730d1a";
   //const idUser = "611461004b98615d2dc035f2";
   //const idlast = "611461004b98615d2dc035f2";
   useEffect(() => {
