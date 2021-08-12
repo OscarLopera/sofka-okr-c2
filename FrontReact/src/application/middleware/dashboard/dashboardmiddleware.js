@@ -2,7 +2,12 @@ import{
     loadingOKRSuccess,
     loadingOKRFailure,
     loadingOKRidSuccess,
-    loadingOKRidFailure
+    loadingOKRidFailure,
+    getidOkrLastSuccess,
+    getidOkrLastFailure,
+    getAllOkrs,
+    getAllOkrsSuccess,
+    getAllOkrsFailure,
 } from '../../actions/dashboard/index';
 import {OKRConstanst} from '../../types/dashboard/constants';
 
@@ -31,9 +36,36 @@ const loadingOKRidFlow = ({api}) => ({dispatch}) => next => async(action) =>{
     }
 }
 
+const getidOKRLastFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === OKRConstanst.GET_OKR_LAST){
+        try {
+            const okr = await api.dashboard.getidOKRLast(action.payload)
+            dispatch(getidOkrLastSuccess(okr))
+        } catch (error) {
+            dispatch(getidOkrLastFailure(error)) 
+            console.log("Error",error, "id", action.payload);    
+        }
+    }
+}
+
+const getAllOkrsFlow = ({api}) => ({dispatch}) => next => async(action) => {
+    next(action);
+    if(action.type === OKRConstanst.GET_ALL_OKRS){
+        try{
+            const okrs = await api.dashboard.getAllOkrs(action.payload)
+            dispatch(getAllOkrsSuccess(okrs))
+        }catch(error) {
+            dispatch(getAllOkrsFailure(error))
+        }
+    }
+}
+
 const middlewareOKRs = [
   loadingOKRFlow, 
-  loadingOKRidFlow
+  loadingOKRidFlow,
+  getidOKRLastFlow,
+  getAllOkrsFlow,
 ]
 
 export default middlewareOKRs

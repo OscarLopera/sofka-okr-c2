@@ -31,6 +31,7 @@ const GetHistoryNotify = ({ api }) => ({ dispatch }) => next => async (action) =
     if (action.type === "OBTENER_HISTORIAL_NOTIFICACIONES") {
         try {
             const history = await api.notifications.getHistoryNotifications(action.payload)
+            localStorage.setItem("historynotify", JSON.stringify(history))
             dispatch(gethistorysuccess(history))
         } catch (error) {
             console.log(error)
@@ -38,6 +39,17 @@ const GetHistoryNotify = ({ api }) => ({ dispatch }) => next => async (action) =
     }
 }
 
+const AddNotify = ({ api }) => ({ dispatch }) => next => async (action) => {
+    next(action);
+    if (action.type === "ENVIAR_NOTIFICACION") {
+        try {
+            const noti = await api.notifications.addNotification(action.id,action.payload)
+            console.log(noti)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
 
 export const convertirarrayToObjeto = (array) => {
     const objeto = {
@@ -87,7 +99,8 @@ export const convertirobjetoToarray = (okr) => {
 const middlewareNotify = [
     GetStatusNotificationFlow,
     ChangeStatusNotificationFlow,
-    GetHistoryNotify
+    GetHistoryNotify,
+    AddNotify
 ]
 
 export default middlewareNotify
