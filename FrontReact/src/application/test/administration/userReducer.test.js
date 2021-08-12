@@ -42,8 +42,6 @@ describe("reducer user test functions", () => {
     verticalname: "QA"
   }
 
-  const dummyVer
-
   test("reducer LOGIN_USER_SUCCESS case", () => {
     const action = loginUserSuccess(dummyUser);
     const state = reducer(initialState, action);
