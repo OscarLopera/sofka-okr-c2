@@ -26,10 +26,6 @@ class KrRepositoryMongo extends KrRepository {
     return response
   }
 
-  async getAllKrs() {
-    return CrudMongoRepository.getAll(collection);
-  }
-
   async updateKr(idKr, krVal) {
     const kr = await KrSchema.findOne({_id:idKr})
     if(!kr){
