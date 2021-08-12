@@ -62,7 +62,7 @@ const Navbar = ({ logoutUser, user }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light navega">
         <div className="container-fluid">
-          <Link to={"/#"} className="navbar-brand">
+          <Link className="navbar-brand">
             {/* Usuario con Logueo */}
             {user && (
               <NavIcon>
@@ -88,10 +88,10 @@ const Navbar = ({ logoutUser, user }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"/>
+            <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0"/>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0" />
             <form className="d-flex">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
@@ -103,11 +103,6 @@ const Navbar = ({ logoutUser, user }) => {
                     Home
                   </Link>
                 </li>
-                {/* <li className={!user ? "d-none" : "nav-item"}>
-                  <Link className="nav-link text-white mt-1" to="/principal">
-                    Principal
-                  </Link>
-                </li> */}
                 <li className={!user ? "d-none" : "nav-item"}>
                   <Campana />
                 </li>
@@ -144,10 +139,10 @@ const Navbar = ({ logoutUser, user }) => {
           </div>
         </div>
         <button
-          className={!user ? "d-none" : "btn btn-outline-danger btn-sm mx-3"}
+          className={!user ? "d-none" : "btn btn-outline-danger mx-3"}
           onClick={logoutUser}
         >
-          Cerrar Sesión
+          Logout
         </button>
       </nav>
 

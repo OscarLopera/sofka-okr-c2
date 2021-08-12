@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deb2cff-e23b-48e5-a6c6-e0964362a645" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" afterDir="false" />
-    </list>
+    <list default="true" id="5deb2cff-e23b-48e5-a6c6-e0964362a645" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
