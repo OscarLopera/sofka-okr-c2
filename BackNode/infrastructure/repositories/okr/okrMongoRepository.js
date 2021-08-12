@@ -15,8 +15,12 @@ class OkrRepositoryMongo extends OkrRepository {
     return response._id;
   }
   async updateOkr(idOkr, okrVal) {
-    const updatedOkr = await OkrSchema.findByIdAndUpdate({_id:idOkr},okrVal,{new: true})
+    const updatedOkr = await OkrSchema.findByIdAndUpdate({ _id: idOkr }, okrVal, { new: true })
     return updatedOkr;
+  }
+
+  async deleteOkr(OkrId) {
+    return await OkrSchema.findByIdAndDelete({ _id: OkrId })
   }
 }
 module.exports = OkrRepositoryMongo;
