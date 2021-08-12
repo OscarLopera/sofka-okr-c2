@@ -58,9 +58,15 @@ describe('reducer calendar update test', ()=>{
     })
 
     test('reducer [calendar] update_event_success', ()=>{
+        const initialStateWithItems = {
+            events: [dummyEvent],
+            error: null,
+            loading: false
+        }
         const action = UpdateEventSuccess(dummyEvent);
-        const state = calendarReducer(initialState, action);
-        expect(state).toEqual({ ...initialState, loading: false, events:[], error: null})
+        const state = calendarReducer(initialStateWithItems, action);
+        const aux = initialStateWithItems.events.map(event => event.id !== action.payload.id? action.payload : event)
+        expect(state).toEqual({ ...initialStateWithItems, loading: false, events: aux, error: null})
     })
 
     test('[calendar] update_event_failure', ()=>{
