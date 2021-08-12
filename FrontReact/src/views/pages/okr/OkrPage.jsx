@@ -1,4 +1,3 @@
-import { Redirect } from "react-router";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
 import { Link } from "react-router-dom";
