@@ -3,6 +3,8 @@ const app = require("../../index");
 
 
 
-app.listen(config.port, () => {
+const server = app.listen(config.port, () => {
   console.log(`listen at http://localhost:${config.port}`);
 });
+
+module.exports = server
