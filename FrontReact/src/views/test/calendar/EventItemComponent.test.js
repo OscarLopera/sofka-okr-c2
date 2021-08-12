@@ -5,7 +5,7 @@ const eventsDummy = [
     {
         kind: 'calendar#event',
         etag: '"3257494568730000"',
-        id: 'ululbsrf6lshff5iaeq90vltao',
+        id: 'ululbsrf6lshff5iaeq90vlta',
         status: 'confirmed',
         htmlLink: 'https://www.google.com/calendar/event?eid=dWx1bGJzcmY2bHNoZmY1aWFlcTkwdmx0YW8gZGFuaWVsYXJpc3R5MjJAbQ',
         created: '2021-08-12T05:48:04.000Z',
@@ -136,9 +136,10 @@ describe('Event Items component test', () => {
             <EventItem events={events} DeleteEvent={DeleteEvent} UpdateEvent={UpdateEvent} token={dummyToken} email={email} />
         )
 
-        const buttonDeleteEvent = getByTestId("btn-test-deleteEvent");
+        const buttonDeleteEvent = getByTestId("btn-test-deleteEvent-ululbsrf6lshff5iaeq90vltad");
 
         fireEvent.click(buttonDeleteEvent);
-        expect(DeleteEvent).toHaveBeenCalledWith('ululbsrf6lshff5iaeq90vltad', token)
+
+        expect(DeleteEvent).toHaveBeenCalledWith('ululbsrf6lshff5iaeq90vltad', dummyToken)
     })
 })
