@@ -68,13 +68,12 @@ const DashboardUserPage = ({
                 </Link>
               </li>
             </ul>
-            {/* <h1>Mis OKRs</h1> */}
             <select
               style={{
                 width: "70%",
                 height: "34px",
                 marginTop: "11px",
-                borderRadius: "5px",
+                borderRadius: "5px"
               }}
               name="idokr"
               value={idokr}
