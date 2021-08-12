@@ -15,6 +15,10 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
     useEffect(() => {
 
         getStatusNotification(stateIdUser.userId)
+        socket.on(stateIdUser.userId, (data) => {
+            console.log(data)
+           
+         })
     }, [getStatusNotification, stateIdUser.userId])
 
 
@@ -35,15 +39,12 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
             icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
           })
     
-        socket.emit("actualizar-kr",{id:"iigbNlNwuCMiWhMOj4O3WTr64a13", manager: "Mateo"});
+        socket.emit("actualizar-kr",{id:stateIdUser.userId, manager: "Mateo"});
         
 
     }
 
-    socket.on(stateIdUser.userId, (data) => {
-        console.log(data)
-       
-     })
+    
 
     return (
         <div className="EditProfilePrivacy ">
