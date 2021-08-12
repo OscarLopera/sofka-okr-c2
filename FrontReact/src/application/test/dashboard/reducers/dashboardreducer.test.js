@@ -6,6 +6,9 @@ import {
   loadingOKRid,
   loadingOKRidSuccess,
   loadingOKRidFailure,
+  getidOkrLast,
+  getidOkrLastSuccess,
+  getidOkrLastFailure,
 
 } from "../../../actions/dashboard/index.js";
 
@@ -149,3 +152,56 @@ describe("Test of Reducer OKR selected", () => {
     });
   });
 })
+describe("Test of Reducer |ultimo OKR por Usuario", () => {
+  const dummyOKRLast = [
+    {
+      id: "61109c8ea304d0a23abc3484",
+      objective:
+        "Optimizar la planeación del proyecto final del Ciclo 2 - Training - Cristian",
+      title:
+        "Plan de optimización de la planeación del proyecto final del Ciclo 2 - Training - Cristian",
+      managerId: "61106133609d16f1740ddf34",
+      description:
+        "Se buscará la organización e implementación de una serie de actividades para la optimización de la planeación del proyecto final - Cristian",
+      areaInCharge: "Agile Services",
+      progress: 100,
+      krs: [],
+    }
+  
+  ];
+
+  const initialState = {
+    OKR: null,
+    error: null,
+    loading: false,
+  };
+
+  const idUser = "12345asad";
+  test("Reducer GET_OKR_LAST_SUCCESS case", () => {
+    const action = getidOkrLastSuccess(dummyOKRLast);
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      OKR: dummyOKRLast,
+    });
+  });
+
+  test("Reducer GET_OKR_LAST_FAILURE case", () => {
+    const action = getidOkrLastFailure("un error");
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      error: "un error",
+    });
+  });
+
+    test("Reducer GET_OKR_LAST case", () => {
+    const action = getidOkrLast(idUser);
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,loading:true
+    });
+  });
+});
