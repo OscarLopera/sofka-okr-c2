@@ -39,3 +39,15 @@ test('filterUser error', async () => {
         .expect(402)
         .expect('Content-Type', /application\/json/)
 })
+
+test('get all users are return as json', async () => {
+    await api
+        .get('/api/calendar/getallusers')
+        .expect(200)
+        .expect('Content-Type', /application\/json/)
+})
+
+test('get all users for two users', async () => {
+    const response = await api.get('/api/calendar/getallusers')
+    expect(response.body).toHaveLength(2);
+})
