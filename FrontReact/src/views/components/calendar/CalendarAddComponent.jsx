@@ -13,6 +13,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
     const [attendees, setAttendees] = useState([]);
     const [startTime, setStartTime] = useState(time)
     const [endTime, setEndTime] = useState(time)
+    const [externalAttendees, setExternalAttendees] = useState("");
     const [attendeesList, setAttendeesList] = useState([
         {
             value: {email: "sebas99cano@gmail.com"},
@@ -47,12 +48,17 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
     const clearData = () => {
         setStartDate(date[0])
         setDescription("")
-        setAttendees([])
         setStartTime(time)
         setEndTime(time)
+        setExternalAttendees("")
     }
 
     const addEvent = () => {
+        if(externalAttendees!==""){
+            let inv = attendees;
+            inv.push({email: externalAttendees});
+            setAttendees(inv)
+        }
         const eventObject = {
             summary: "OKR",
             description: description,
@@ -103,57 +109,71 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
                             </button>
                         </div>
                         <div className="modal-body container row">
-                            <label>Dia del Evento</label>
-                            <input data-testid={"input-test-date"}
-                                   type={"date"}
-                                   min={date[0]}
-                                   value={startDate}
-                                   className={"form-control"}
-                                   onChange={event => setStartDate(event.target.value)}/>
-                            <label className="col">Hora Inicial</label>
-                            <label className="col">Hora Final</label>
-                            <div className="w-100"/>
-                            <input data-testid={"input-test-timeStart"}
-                                   placeholder="Selected time" type={"time"}
-                                   id={"input_starttime"}
-                                   className={"form-control col"}
-                                   onChange={event => setStartTime(event.target.value)}/>
-                            <input data-testid={"input-test-timeEnd"}
-                                   placeholder="Selected time"
-                                   type={"time"}
-                                   id={"input_endttime"}
-                                   className={"form-control timepicker col"}
-                                   min={startTime}
-                                   onChange={event => setEndTime(event.target.value)}/>
-                            <hr className="my-4"/>
-                            <label>Descripcion</label>
-                            <input data-testid={"input-test-descriptionAddEvent"}
-                                   type={"text"}
-                                   value={description}
-                                   className={"form-control"}
-                                   onChange={event => setDescription(event.target.value)}/>
-                            <hr className="my-4"/>
-                            <label>Invitados</label>
-                            <Select isMulti
-                                    options={attendeesList}
-                                    onChange={addAttendees}
-                                    placeholder={"Selecciona los correos"}/>
-                        </div>
-                        <div className="modal-footer">
-                            <button data-testid={"btn-test-cancelEvent"}
-                                    type="button"
-                                    className="btn btn-secondary"
-                                    data-dismiss="modal"
-                                    onClick={() => clearData()}>
-                                Cancelar
-                            </button>
-                            <button data-testid={"btn-test-addEvent"}
-                                    type="button"
-                                    className="btn btn-primary"
-                                    data-dismiss="modal"
-                                    onClick={() => addEvent()}
-                            >Agregar Evento
-                            </button>
+                            <form onSubmit={addEvent} >
+                                <label>Dia del Evento</label>
+                                <input data-testid={"input-test-date"}
+                                       required={true}
+                                       type={"date"}
+                                       min={date[0]}
+                                       value={startDate}
+                                       className={"form-control"}
+                                       onChange={event => setStartDate(event.target.value)}/>
+                                <hr className="my-4"/>
+                                <label className="col">Hora Inicial</label>
+                                <input data-testid={"input-test-timeStart"}
+                                       required={true}
+                                       placeholder="Selected time" type={"time"}
+                                       id={"input_starttime"}
+                                       className={"form-control col"}
+                                       onChange={event => setStartTime(event.target.value)}/>
+                                <hr className="my-4"/>
+                                <label className="col">Hora Final</label>
+                                <input data-testid={"input-test-timeEnd"}
+                                       required={true}
+                                       placeholder="Selected time"
+                                       type={"time"}
+                                       id={"input_endttime"}
+                                       className={"form-control timepicker col"}
+                                       min={startTime}
+                                       onChange={event => setEndTime(event.target.value)}/>
+                                <hr className="my-4"/>
+                                <label>Descripcion</label>
+                                <input data-testid={"input-test-descriptionAddEvent"}
+                                       required={true}
+                                       minLength={5}
+                                       maxLength={20}
+                                       type={"text"}
+                                       value={description}
+                                       className={"form-control"}
+                                       onChange={event => setDescription(event.target.value)}/>
+                                <hr className="my-4"/>
+                                <label>Invitados Internos</label>
+                                <Select isMulti
+                                        options={attendeesList}
+                                        onChange={addAttendees}
+                                        placeholder={"Selecciona los correos"}/>
+                                <hr className="my-4"/>
+                                <label>Invitados Externos</label>
+                                <input data-testid={"input-test-external"}
+                                       className={"form-control"}
+                                       minLength={5}
+                                       maxLength={35}
+                                       type={"email"}
+                                       value={externalAttendees}
+                                       onChange={event => setExternalAttendees(event.target.value)}/>
+                                <hr className="my-4"/>
+                                <button data-testid={"btn-test-cancelEvent"}
+                                        type="button"
+                                        className={"btn btn-secondary px-5 mr-4"}
+                                        data-dismiss="modal"
+                                        onClick={() => clearData()}>
+                                    Cancelar
+                                </button>
+                                <button data-testid={"btn-test-addEvent"}
+                                        type="submit"
+                                        className="btn btn-primary px-5 ">Agregar Evento
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>
