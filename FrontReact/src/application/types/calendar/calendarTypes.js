@@ -11,4 +11,7 @@ export const CalendarTypes = {
    DELETE_EVENT: '[calendar] delete_event',
    DELETE_EVENT_FAILURE: '[calendar] delete_events_failure',
    DELETE_EVENT_SUCCESS: '[calendar] delete_events_success',
+   UPDATE_EVENT: '[calendar] update_event',
+   UPDATE_EVENT_SUCCESS: '[calendar] update_event_success',
+   UPDATE_EVENT_FAILURE: '[calendar] update_event_failure',
 }

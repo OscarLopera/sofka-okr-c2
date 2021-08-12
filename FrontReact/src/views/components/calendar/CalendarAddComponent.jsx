@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import Select from "react-select";
 
 const CalendarAddComponent = ({AddEvent, token}) => {
-    const currentDate = new Date()
+    const currentDate =  new Date().toLocaleDateString().split('/');
+    currentDate[1]= currentDate[1] < 10 ? '0'+currentDate[1] : currentDate[1];
+    currentDate = currentDate[2]+'-'+currentDate[1]+'-'+currentDate[0];
     const date = (currentDate.toISOString().split('T', 8))
     const time= currentDate.getHours()+":"+ currentDate.getMinutes()
 
@@ -97,7 +99,7 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                         </div>
                         <div className="modal-body container row">
                             <label>Dia del Evento</label>
-                            <input type={"date"} min={startDate} value={startDate} className={"form-control"}
+                            <input type={"date"} min={date[0]} value={startDate} className={"form-control"}
                                    onChange={event => setStartDate(event.target.value)}/>
                             <label className="col">Hora Inicial</label>
                             <label className="col">Hora Final</label>

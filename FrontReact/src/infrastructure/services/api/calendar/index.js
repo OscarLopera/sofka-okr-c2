@@ -35,6 +35,20 @@ const functions = {
             }
         });
     },
+
+    updateEvent: async (event, token) => {
+        console.log(event)
+        let melo= await axios.put(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${event.id}?conferenceDataVersion=1&sendNotifications=true&sendUpdates=all&key=${API_KEY}`, 
+         event,{
+            headers: {
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            }
+        })
+        console.log(melo)
+        return melo.data
+    }
 }
 
 export default functions

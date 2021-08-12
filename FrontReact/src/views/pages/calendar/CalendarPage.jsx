@@ -6,13 +6,13 @@ import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
 import {getEvents} from "../../../application/selectors/calendar/calendarSelector";
 import {bindActionCreators} from "redux";
-import {AddEvent, DeleteEvent, ListEvents} from "../../../application/actions/calendar/calendarActions";
+import {AddEvent, DeleteEvent, ListEvents,UpdateEvent} from "../../../application/actions/calendar/calendarActions";
 import {connect} from "react-redux";
 import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
 import {getUser} from "../../../application/selectors/administration/user";
 import CalendarItem from '../../components/calendar/CalendarItem'
 
-const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent, user}) => {
+const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, user}) => {
 
     useEffect(() => {
         ListEvents(user.userToken)
@@ -35,11 +35,11 @@ const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent, user}) => {
         <div className={"container"}>
             <div className="row">
                 <div className="col-md-12">
-                    <h1>Instructions</h1>
+                    <h1>Eventos</h1>
                 </div>
             </div>
             <div className={"row"}>
-                <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}/>
+                <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}  />
                 <div className="table-wrapper-scroll-y my-custom-scrollbar text-center">
                     <table className="table table-striped table-hover">
                         <thead>
@@ -50,15 +50,16 @@ const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent, user}) => {
                             <th scope="col">Organizador</th>
                             <th scope="col">Link</th>
                             <th scope="col">Fecha Reunión</th>
+                            <th scope="col">Hora</th>
                             <th scope="col">Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {
+                        {   
                             (events === undefined) ? (
                                     <div className="spinner-border text-info m-5 justify-content-center" role="status">
                                         <span className="sr-only"/></div>) :
-                                <CalendarItem events={events} DeleteEvent={DeleteEvent} token={user.userToken}/>
+                                <CalendarItem events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail}/>
                         }
                         </tbody>
                     </table>
@@ -96,7 +97,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = (dispatch) => {
-    return bindActionCreators({AddEvent, ListEvents, DeleteEvent}, dispatch);
+    return bindActionCreators({AddEvent, ListEvents, DeleteEvent,UpdateEvent}, dispatch);
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CalendarPage);
