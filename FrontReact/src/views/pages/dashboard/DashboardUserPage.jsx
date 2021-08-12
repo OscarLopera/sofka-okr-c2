@@ -9,6 +9,7 @@ import { loadingOKR,loadingOKRid } from './../../../application/actions/dashboar
 //Componentes
 import Okruser from './user/OkrsUser';
 import Barchart from './user/BarChart';
+import PieChart from "./user/PieChart";
 
 
 const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
@@ -45,6 +46,7 @@ const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
             <button className="btn btn-outline-warning" onClick={() => handlerokrid()}>Ver info</button>
             <Okruser okr={okr}/>
             <Barchart okr={okr}/>
+            <PieChart okr={okr}/>
           </div>
           <div className="col-2"></div>
         </center>
