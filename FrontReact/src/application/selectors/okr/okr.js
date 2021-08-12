@@ -1,0 +1,1 @@
+export const getOkrs = state => state.okr.okr

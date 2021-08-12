@@ -10,7 +10,6 @@ const filterUser = async (id, OkrRepository, KrRepository, UserRepository) => {
 
     for (let i = 0; i < krList.length; i++) {
         const krId = krList[i];
-
         if (krList[i].idOkr === id) {
             listOkr.push(krId)
         }
