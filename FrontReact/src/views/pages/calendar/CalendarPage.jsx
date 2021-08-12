@@ -8,7 +8,7 @@ import {getUser} from "../../../application/selectors/administration/user";
 import TableEventComponent from '../../components/calendar/TableEventComponent'
 import CalendarComponent from '../../components/calendar/CalendarComponent'
 
-const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, user}) => {
+export const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, user}) => {
 
     useEffect(() => {
         ListEvents(user.userToken)
