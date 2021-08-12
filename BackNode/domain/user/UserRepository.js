@@ -10,7 +10,6 @@ class UserRepository{
 
     getUsersByName(name){
         throw new Error("METHOD_NOT_IMPLEMENTED");
-
     }
 }
 

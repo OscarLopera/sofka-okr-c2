@@ -42,7 +42,7 @@ const dummyEvent = {
 }
 
 
-const [addEventFlow,listEventFlow] = calendarMiddleware;
+const [addEventFlow] = calendarMiddleware;
 
 const dispatch = jest.fn();
 const next = jest.fn();
@@ -63,7 +63,6 @@ describe('middleware calendar add event test', () => {
         expect(next).toHaveBeenCalledWith(action);
     })
     test('add event flow test sad path', async () => {
-
         const api = {
             calendar: {
                 addEvent: () => {

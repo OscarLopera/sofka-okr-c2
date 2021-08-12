@@ -1,4 +1,4 @@
-import { changeStatusNotification, changeStatusNotificationmail, changeStatusNotificationscreen, getStatusNotifySuccess } from '../../actions/notifications';
+import { changeStatusNotification, changeStatusNotificationmail, changeStatusNotificationscreen,  gethistorysuccess, getStatusNotifySuccess } from '../../actions/notifications';
 import notificationReducer from '../../reducers/notifications/notificationReducer';
 
 describe('reducer notification test functions', () => {
@@ -51,6 +51,9 @@ describe('reducer notification test functions', () => {
 
     ]
 
+    const dummyhistory =[{message:"hola mundo",
+    date:"12/7/2021"}]
+
     const dummymail = [
         "OkrCreated",false,true
     ]
@@ -67,6 +70,13 @@ describe('reducer notification test functions', () => {
         const action = getStatusNotifySuccess(dummyarray);
         const state = notificationReducer(initialstate, action);
         expect(state).toEqual({ ...initialstate,  notificationstatus: dummyarray})
+    })
+
+
+    test('reducer OBTENER_HISTORIAL_NOTIFICACIONES case', () => {
+        const action = gethistorysuccess(dummyhistory);
+        const state = notificationReducer(initialstate, action);
+        expect(state).toEqual({ ...initialstate,  historynotify: dummyhistory})
     })
 
     test('reducer CAMBIAR_NOTIFICACION_MAIL case', () => {
