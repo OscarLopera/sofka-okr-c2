@@ -3,10 +3,11 @@ import '../../assets/styles/notifications/styleGestion.css';
 import OpcionPantallaEmail from '../../components/notifications/OpcionPantallaEmail';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { changeStatusNotification, getStatusNotification} from '../../../application/actions/notifications';
+import { changeStatusNotification, getStatusNotification,sendNotification} from '../../../application/actions/notifications';
 import { getUser } from '../../../application/selectors/administration/user';
+import Push from 'push.js';
 
-const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate }) => {
+const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate,sendNotification }) => {
 
 
 
@@ -18,6 +19,14 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
 
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus, stateIdUser.userId)
+        sendNotification("CqzZjI0KtrdmiZMT8rGiamI8UUj2",{
+            "userEmail": "mateojaras@gmail.com",
+            "message":"Hola Jaras! "
+        })
+        Push.create("nueva notificacion",{
+            body:"se ha guardado exitosamente la configuracion de notificaciones",
+            icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
+          })
        
     }
 
@@ -55,7 +64,7 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
-        { getStatusNotification, changeStatusNotification }, dispatch
+        { getStatusNotification, changeStatusNotification,sendNotification }, dispatch
 
     );
 };

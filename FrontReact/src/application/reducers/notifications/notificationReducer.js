@@ -1,7 +1,7 @@
 
 const initialState = {
     notificationstatus: {},
-    historynotify:[]
+    historynotify: JSON.parse(localStorage.getItem('historynotify'))
 };
 
 const notificationReducer = (state = initialState, action) => {
