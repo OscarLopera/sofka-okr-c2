@@ -12,6 +12,6 @@ test('Happy path test get notification manager by id', async () => {
   const notiManager = await getNotificationManager(mockRepositoryNotificationManager, "abc123");
 
   // then
-  expect(mockRepositoryNotificationManager.findNotificationManagerByUserId).toHaveBeenCalledWith("abc123", "mail", "screen");
+  expect(mockRepositoryNotificationManager.findNotificationManagerByUserId).toHaveBeenCalledWith("abc123");
   expect(notiManager).toEqual(persistedNotiManager);
 });
