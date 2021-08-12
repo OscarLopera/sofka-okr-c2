@@ -20,11 +20,10 @@ const AdministrationPage = ({ loadingQuestions, questions }) => {
 
       <div className="accordion" id="accordionExample">
         
-        <div className="accordion-item">
           {questions != null &&
             questions.map((question,index) => {
               return (
-              <>
+              <div className="accordion-item">
                 <h2 className="accordion-header" id={"heading"+index}>
                   <button
                     className="accordion-button"
@@ -44,13 +43,13 @@ const AdministrationPage = ({ loadingQuestions, questions }) => {
                   data-bs-parent="#accordionExample"
                 >
                   <div className="accordion-body">
-                  {question.respuesta}
+                    {question.respuesta}
                   </div>
                 </div>
-                </>
+              </div>
               );
             })}
-        </div>
+
       </div>
       
     </center>
