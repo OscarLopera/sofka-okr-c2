@@ -16,26 +16,29 @@ const CrearOkrPage = ({
   history,
   loadingVerticals,
   vertical,
-  okr,
+  users,
   krs,
 }) => {
   useEffect(() => {
     loadingVerticals();
+    loadOkrs();
   }, [loadingVerticals, loadOkrs]);
 
   const [objective, setObjective] = useState("");
   const [title, setTitle] = useState("");
   const [managerId, setManagerId] = useState("");
+  const [nameUser, setNameUser] = useState("");
   const [description, setDescription] = useState("");
   const [areaInCharge, setAreaInCharge] = useState("");
   const [KrVisible, setKrVisible] = useState(false);
+  const [formState, setFormState] = useState("");
 
   const okrCreateSubmit = (event) => {
     event.preventDefault();
     const okrObject = {
       objective: objective,
       title: title,
-      managerId: "asdfgfgdg345",
+      managerId: managerId,
       description: description,
       verticalId: areaInCharge,
     };
@@ -43,6 +46,11 @@ const CrearOkrPage = ({
     addOkrs(values);
     alert("Se agrego el OKR Correctamente");
   };
+  const handleChange = (value) => {
+    console.log(value);
+    loadOkrs(value.target.value)
+    setManagerId(value.target.value);
+}
 
   return (
     <div className="container py-5">
@@ -77,7 +85,6 @@ const CrearOkrPage = ({
               onChange={(event) => setTitle(event.target.value)}
             />
           </FormGroup>
-
           <FormGroup className="d-flex flex-column my-3">
             <label className={"m-3 text-center"}>Descripcion</label>
             <textarea
@@ -118,19 +125,19 @@ const CrearOkrPage = ({
               <FormGroup className="d-flex flex-column my-3">
                 <label className={"m-3"}>Encargado</label>
                 <br />
-
-                <datalist
-                  className="custom-select"
-                  value={managerId}
-                  onChange={(event) => setManagerId(event.target.value)}
-                >
-                  {okr.length &&
-                    okr.map((usuario) => (
-                      <option key={usuario.id} value={usuario.name}>
-                        {usuario.email}
-                      </option>
-                    ))}
-                </datalist>
+                <input
+                type={"text"}
+                required="required"
+                placeholder={"Ingresa el nombre"}
+                // className={"form-control text-center"}
+                value={managerId}
+                onChange={(event) => handleChange(event)}
+                list="data"  />
+                <datalist id="data" >
+                  {users.map((item, key) =>
+                    (<option key={key} dataid={item.id} value={item.name}> {item.email} </option>)
+                  )}
+                </datalist>        
               </FormGroup>
             </Col>
           </Row>
@@ -178,7 +185,7 @@ const CrearOkrPage = ({
 };
 const mapStateToProps = (state) => {
   return {
-    okr: getOkrs(state),
+    users: getOkrs(state),
     vertical: getVerticals(state),
     krs: getKrs(state),
   };
