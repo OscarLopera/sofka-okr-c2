@@ -61,9 +61,11 @@ function StateOkrs({getOkrCompleted,getOkrId,okrs}) {
                 <CircularProgressbar value={kr.currentProgress}  text={`${kr.currentProgress}%`} />
               </div>
               <div className="card-footer">
+                <center>
                 <button 
                 onClick={()=> handleviewokr(kr.id)}
-                className="btn btn-dark">Ver OKR</button>
+               className="btn btn-dark" style={{backgroundColor:"#0A0939"}}>Ver OKR</button>
+              </center>
               </div>
             </div>
           </div>

@@ -36,7 +36,7 @@ const ViewOKR = ({ loadingOKRid, okrs, okr, okrid }) => {
 
   return (
     <div>
-      <div className="row">
+      <div className="row mt-4">
         <center>
           <div className="col-2"></div>
           <div className="col-8">
