@@ -1,6 +1,7 @@
 import {CalendarAddComponent} from "../../components/calendar/CalendarAddComponent";
 import {fireEvent, render} from "@testing-library/react";
 
+
 const dummyEvent = {
     summary: "OKR",
     description: "new description",
@@ -18,13 +19,14 @@ const dummyEvent = {
             conferenceSolutionKey: {type: "hangoutsMeet"}
         },
     },
-    attendees:[{email: "",},
+    attendees:[{email: "sebas99cano@gmail.com",},
    ],
     reminders: {
         useDefault: "useDefault",
     },
     sendUpdates: "all"
 }
+
 
 describe('calendar add component test',() => {
 
@@ -46,6 +48,8 @@ describe('calendar add component test',() => {
 
         const inputDate= getByTestId("input-test-date")
 
+        const inputExternal= getByTestId("input-test-external")
+
         const buttonAddEvent = getByTestId("btn-test-addEvent")
 
         const buttonOpenModalAddEvent = getByTestId("btn-test-openModalAddEvent")
@@ -59,6 +63,8 @@ describe('calendar add component test',() => {
         fireEvent.change(inputTimeEnd,{target:{value:"20:43"}})
 
         fireEvent.change(inputDescription,{target:{value:"new description"}});
+
+        fireEvent.change(inputExternal,{target:{value:"sebas99cano@gmail.com"}});
 
         fireEvent.click(buttonAddEvent);
 
