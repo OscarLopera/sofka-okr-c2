@@ -32,8 +32,8 @@ implements UsuariosRepository {
     }
 
     @Override
-    public Mono<Usuarios> listUser(String id) {
-        Mono<Usuarios> user = this.repository.findById(id).map(userMapper.fromUsuariosEntity());
+    public Mono<Usuarios> listUser(String idUser) {
+        Mono<Usuarios> user =  this.repository.findByidUser(idUser).map(userMapper.fromUsuariosEntity());
         return user;
     }
 

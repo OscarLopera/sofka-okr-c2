@@ -12,6 +12,7 @@ public class UserMapper {
     public Function<UsuariosEntity, Usuarios> fromUsuariosEntity() {
         return newEntity -> new Usuarios(
                 newEntity.getId(),
+                newEntity.getIdUser(),
                 new Name(newEntity.getName()),
                 new Email(newEntity.getEmail()),
                 new UrlPhoto(newEntity.getUrlPhoto()),
@@ -25,6 +26,7 @@ public class UserMapper {
     public Function<Usuarios,UsuariosEntity> fromUsuarios(){
         return newUsuarios->new UsuariosEntity(
                 newUsuarios.getId(),
+                newUsuarios.getIdUser(),
                 newUsuarios.getName().getValue(),
                 newUsuarios.getEmail().getValue(),
                 newUsuarios.getUrlPhoto().getValue(),

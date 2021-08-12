@@ -38,7 +38,7 @@ class CreateUserUseCaseTest {
 
         Mono<Usuarios> resp = createUserUseCase.execute(user);
 
-        Assertions.assertEquals(resp.block().getId(),"xxxx");
+        Assertions.assertEquals(resp.block().getIdUser(),"xxxx");
         Assertions.assertEquals(resp.block().getName().getValue(),"juan");
         Assertions.assertEquals(resp.block().getRol().getValue(),"QA");
     }
@@ -47,7 +47,7 @@ class CreateUserUseCaseTest {
     @DisplayName("Sab test use case create user")
     public void createUserSabTestRequired(){
         Usuarios user = new Usuarios();
-        user.setId("xxx");
+        user.setIdUser("xxx");
         user.setEmail(new Email("juank99@gmail.com"));
         user.setUrlPhoto(new UrlPhoto("juan0087@gmail.com"));
         user.setPhone(new Phone("3008765432"));

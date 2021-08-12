@@ -49,7 +49,7 @@ class UpdateUserUseCaseTest {
 
         var respuesta = updateUserUseCase.execute(usuarios);
 
-        Assertions.assertEquals(respuesta.block().getId(), "1");
+        Assertions.assertEquals(respuesta.block().getIdUser(), "1");
         Assertions.assertEquals(respuesta.block().getName().getValue(), "Omar");
         Assertions.assertEquals(respuesta.block().getEmail().getValue(), "juan0087@gmail.com");
         Assertions.assertEquals(respuesta.block().getUrlPhoto().getValue(), "http://imagen/data1");

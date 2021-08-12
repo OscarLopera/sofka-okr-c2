@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class UsuariosEntity {
     @Id
     private String id;
+    private String idUser;
     private String name;
     private String email;
     private String urlPhoto;
@@ -18,13 +19,25 @@ public class UsuariosEntity {
     public UsuariosEntity() {
     }
 
-    public UsuariosEntity(String id, String name, String email, String urlPhoto, String phone, Boolean FirstTime, String verticalId, String rol) {
+    public UsuariosEntity(String id, String idUser,String name, String email, String urlPhoto, String phone, Boolean FirstTime, String verticalId, String rol) {
         this.id = id;
+        this.idUser = idUser;
         this.name = name;
         this.email = email;
         this.urlPhoto = urlPhoto;
         this.phone = phone;
         this.firstTime = FirstTime;
+        this.verticalId = verticalId;
+        this.rol = rol;
+    }
+
+    public UsuariosEntity(String idUser, String name, String email, String urlPhoto, String phone, Boolean firstTime, String verticalId, String rol) {
+        this.idUser = idUser;
+        this.name = name;
+        this.email = email;
+        this.urlPhoto = urlPhoto;
+        this.phone = phone;
+        this.firstTime = firstTime;
         this.verticalId = verticalId;
         this.rol = rol;
     }
@@ -35,6 +48,14 @@ public class UsuariosEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
