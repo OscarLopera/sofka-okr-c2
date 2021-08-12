@@ -3,29 +3,35 @@ import React, {useEffect, useState}from "react";
 import {connect} from "react-redux";
 import {bindActionCreators} from "redux";
 //Selectors
-import { getOkrs } from './../../../application/selectors/dashboard/okrs';
+import { getOkrs, getOkr } from './../../../application/selectors/dashboard/okrs';
 //Acciones
-import { loadingOKR,getidOkrLast } from './../../../application/actions/dashboard/index';
-
-const DashboardUserPage = ({loadingOKR,getidOkrLast,okrs}) => {
-  //Para sacar el id del elemento
-  const [idokr,setidokr] = useState("");
-  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "61106133609d16f1740ddf34";
-  const idlast = "6112ef6370e2131bb4730d1a";
-
+import { loadingOKR,loadingOKRid,getidOkrLast } from './../../../application/actions/dashboard/index';
+//Componentes
+import Okruser from './user/OkrsUser';
+import Barchart from './user/BarChart';
+const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) => {
+  const [idokr, setidokr] = useState("");
+ //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
+ const idUser = "6112ef6370e2131bb4730d1a";
+ const idlast = "6112ef6370e2131bb4730d1a";
   useEffect(() => {
     loadingOKR(idUser);
-    getidOkrLast(idlast);  
+    getidOkrLast(idlast); 
   }, [loadingOKR])
 
 
-     
+  const handlerokrid = () =>{
+    loadingOKRid(idokr)
+  }
+
   return (
     <div>
-      <center>
-      <h1>Mis OKrs</h1>
-        <select
+      <div className="row">
+        <center>
+          <div className="col-2"></div>
+          <div className="col-8">
+            <h1>Mis OKRs</h1>
+            <select
               style={{ width: "320px", height: "35px" }}
               name="idokr"
               value={idokr}
@@ -37,17 +43,23 @@ const DashboardUserPage = ({loadingOKR,getidOkrLast,okrs}) => {
                 </option>
               ))}
             </select>
-            <button style={{padding:"4px",margin:"3px"}}>Ver info</button>
-      </center>
+            <button className="btn btn-outline-warning" onClick={() => handlerokrid()}>Ver info</button>
+            <Okruser okr={okr}/>
+            <Barchart okr={okr}/>
+          </div>
+          <div className="col-2"></div>
+        </center>
+      </div>
     </div>
   );
+  
 };
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       loadingOKR,
       getidOkrLast,
+      loadingOKRid,
     },
     dispatch
   );
@@ -55,7 +67,9 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    okrs: getOkrs(state)
+    okrs: getOkrs(state),
+    okr: getOkr(state),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardUserPage);
