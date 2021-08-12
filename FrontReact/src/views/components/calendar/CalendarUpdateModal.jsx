@@ -2,6 +2,7 @@ import React, {Fragment, useState} from 'react'
 import Select from "react-select";
 
 const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
+   
     let date = new Date().toLocaleDateString().split('/');
     date[1] = date[1] < 10 ? '0' + date[1] : date[1];
     date = date[2] + '-' + date[1] + '-' + date[0];
@@ -9,13 +10,38 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
     const currentDescription = item.description
     const currentStartTime = item.start.dateTime.substring(11, 16)
     const currentEndTime = item.end.dateTime.substring(11, 16)
-    const currentAtenders = item.attendees
+    let currentAtenders = item.attendees!==[] ? item.attendees : []
+    currentAtenders= currentAtenders.map(element => element.email)
+
     const [startDate, setStartDate] = useState(currentDate);
     const [description, setDescription] = useState(currentDescription);
-    const [attendees, setAttendees] = useState(currentAtenders);
     const [startTime, setStartTime] = useState(currentStartTime)
     const [endTime, setEndTime] = useState(currentEndTime)
+    
+    const [errorEmail,setErrorEmail] =useState(false);
+    const [guest,setGuest] =useState("");
+    const [guestsList, setGuestList] = useState(currentAtenders);
+    
+    const updateGuestList = () => {
+        const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(regexEmail.test(guest)){
+        setGuestList(prevArrau=> [...prevArrau,guest]);
+        setGuest('');
+        }
+        setErrorEmail(true);
+        setTimeout(function(){ 
+            setErrorEmail(false);
+        }, 3000);
+    }
+    const deletGuest = (item) => {
+        setGuestList(guestsList.filter((element)=> item!==element));
+    }
 
+    const clearData=() => {
+        setGuest("")
+        setGuestList([])
+    }
+   
 
     const updateEvent = () => {
         const eventObject = {
@@ -36,7 +62,7 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
                     conferenceSolutionKey: {type: "hangoutsMeet"}
                 },
             },
-            attendees: attendees,
+            attendees: guestsList,
             reminders: {
                 useDefault: "useDefault",
             },
@@ -48,9 +74,10 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
 
     return (
         <Fragment>
-            <button className="btn btn-primary mx-2" data-testid={"btn-test"} data-toggle={"modal"}
+            <button className="btn btn-primary mx-2" 
+                    data-testid={"btn-test"} data-toggle={"modal"}
                     data-target={"#modalUpdateEvent"}
-            ><i className="bi bi-pencil-square"/>
+                     ><i className="bi bi-pencil-square"/>
             </button>
 
             <div id={"modalUpdateEvent"} className={"modal fade container"}>
@@ -63,40 +90,73 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
                             </button>
                         </div>
                         <div className="modal-body container row">
+                        <form onSubmit={updateEvent}>
                             <label>Dia del Evento</label>
-                            <input type={"date"} min={date} value={startDate} className={"form-control"}
+                            <input type={"date"}
+                                   min={date} 
+                                   required={true}
+                                   value={startDate} 
+                                   className={"form-control"}
                                    onChange={event => setStartDate(event.target.value)}/>
                             <label className="col">Hora Inicial</label>
                             <label className="col">Hora Final</label>
                             <div className="w-100"/>
-                            <input placeholder="Selected time" type={"time"} id={"input_starttime"}
-                                   className={"form-control col"} value={startTime}
-                                   onChange={event => setStartTime(event.target.value)}/>
-                            <input placeholder="Selected time" type={"time"} id={"input_endttime"}
-                                   className={"form-control timepicker col"} value={endTime}
+                            <input placeholder="Selected time" 
+                                   type={"time"} 
+                                   id={"input_starttime"}
+                                   className={"form-control col"} 
+                                   value={startTime}
+                                   onChange={event => setStartTime(event.target.value)}
+                                   required={true}/>
+                            <input placeholder="Selected time" 
+                                   type={"time"} id={"input_endttime"}
+                                   className={"form-control timepicker col"} 
+                                   value={endTime}
                                    min={startTime}
+                                   required={true}
                                    onChange={event => setEndTime(event.target.value)}/>
                             <hr className="my-4"/>
                             <label>Descripcion</label>
-                            <input type={"text"} value={description} className={"form-control"}
+                            <input type={"text"} value={description} 
+                                   className={"form-control"}
+                                   required={true}
                                    onChange={event => setDescription(event.target.value)}/>
-
                             <hr className="my-4"/>
                             <label>Invitados</label>
-                            <Select isMulti options={attendees} placeholder={"Selecciona los correos"}/>
-                        </div>
-                        <div className="modal-footer">
-                            <button type="button" className="btn btn-secondary" data-dismiss="modal"
+
+                           {errorEmail?<label>Ingrese un correo valido</label>:<></>}
+                            <input type="email" className="form-control" placeholder="email" onChange={event =>setGuest(event.target.value)} value={guest} />
+                            <a onClick={updateGuestList} className="btn btn-primary form-control"> Agregar invitado</a>
+                            {
+                                guestsList.map((item, index) =>{
+                                    return <label 
+                                                className="border border-dark rounded bg-light" >
+                                                     {item} <a 
+                                                                onClick={event=> deletGuest(item, index)} 
+                                                                className="bi bi-x-circle"></a></label>
+                                })
+                            }
+                            <button type="button" 
+                                    className="btn btn-secondary" 
+                                    data-dismiss="modal"
+                                    onClick={event=>{clearData()}}
                             >Cancelar
                             </button>
-                            <button type="button" className="btn btn-primary" data-dismiss="modal"
-                                    onClick={() => updateEvent()}
+                            <button type="submit" 
+                                    className="btn btn-primary" 
                             >Actualizar Evento
                             </button>
-                        </div>
+                       </form> 
+
+                       
+                       </div>
+
                     </div>
+                    
                 </div>
+                
             </div>
+            
         </Fragment>
     )
 }
