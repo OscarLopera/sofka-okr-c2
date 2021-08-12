@@ -27,7 +27,6 @@ const dummyEvent = {
     sendUpdates: "all"
 }
 
-
 describe('calendar add component test',() => {
 
     test('testing add button component', () => {

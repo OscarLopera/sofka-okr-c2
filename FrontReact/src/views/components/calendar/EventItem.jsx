@@ -2,6 +2,7 @@ import React from 'react'
 import CalendarUpdateModal from './CalendarUpdateModal'
 
 const CalendarItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
+
     const deleteEvent = (id) => {
         DeleteEvent(id, token)
     }

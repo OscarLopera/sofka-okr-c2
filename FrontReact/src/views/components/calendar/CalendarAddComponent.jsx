@@ -53,11 +53,12 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
         setExternalAttendees("")
     }
 
-    const addEvent = (e) => {
-        e.preventDefault()
-        let inv = attendees;
-        inv.push({email: externalAttendees});
-        setAttendees(inv)
+    const addEvent = () => {
+        if(externalAttendees!==""){
+            let inv = attendees;
+            inv.push({email: externalAttendees});
+            setAttendees(inv)
+        }
         const eventObject = {
             summary: "OKR",
             description: description,
@@ -108,7 +109,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
                             </button>
                         </div>
                         <div className="modal-body container row">
-                            <form onSubmit={addEvent}>
+                            <form onSubmit={addEvent} >
                                 <label>Dia del Evento</label>
                                 <input data-testid={"input-test-date"}
                                        required={true}
