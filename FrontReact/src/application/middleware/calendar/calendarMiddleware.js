@@ -7,7 +7,6 @@ import {
     ListEventsSuccess, 
     DeleteEventFailure, 
     DeleteEventSuccess,
-    UpdateEvent,
     UpdateEventFailure,
     UpdateEventSuccess
 } from "../../actions/calendar/calendarActions";

@@ -55,7 +55,7 @@ const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, us
                         </tr>
                         </thead>
                         <tbody>
-                        {   
+                        {
                             (events === undefined) ? (
                                     <div className="spinner-border text-info m-5 justify-content-center" role="status">
                                         <span className="sr-only"/></div>) :

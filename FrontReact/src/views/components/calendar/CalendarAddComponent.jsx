@@ -1,22 +1,19 @@
 import React, {useState} from 'react';
 import Select from "react-select";
 
-const CalendarAddComponent = ({AddEvent, token}) => {
+export const CalendarAddComponent = ({AddEvent, token}) => {
 
-    let currentDate =  new Date().toLocaleDateString().split('/');
-    currentDate[1]= currentDate[1] < 10 ? '0'+currentDate[1] : currentDate[1];
-    currentDate = currentDate[2]+'-'+currentDate[1]+'-'+currentDate[0];
+    let currentDate = new Date()
 
     const date = (currentDate.toISOString().split('T', 8))
-    const time = currentDate.getHours()+":"+ currentDate.getMinutes()
+    const time = currentDate.getHours() + ":" + currentDate.getMinutes()
 
     const [startDate, setStartDate] = useState(date[0]);
     const [description, setDescription] = useState("");
     const [attendees, setAttendees] = useState([]);
-    const [startTime,setStartTime]= useState(time)
-    const [endTime,setEndTime]= useState(time)
-
-    const attendeesList = [
+    const [startTime, setStartTime] = useState(time)
+    const [endTime, setEndTime] = useState(time)
+    const [attendeesList, setAttendeesList] = useState([
         {
             value: {email: "sebas99cano@gmail.com"},
             label: "sebas99cano@gmail.com"
@@ -37,10 +34,13 @@ const CalendarAddComponent = ({AddEvent, token}) => {
             value: {email: "dacastamerd@gmail.com"},
             label: "dacastamerd@gmail.com"
         }
-    ]
-
+    ])
 
     const addAttendees = (e) => {
+        // eslint-disable-next-line array-callback-return
+        e.map(eElement => {
+            setAttendeesList(attendeesList.filter(listElement => eElement !== listElement))
+        })
         setAttendees(Array.isArray(e) ? e.map(x => x.value) : []);
     }
 
@@ -57,11 +57,11 @@ const CalendarAddComponent = ({AddEvent, token}) => {
             summary: "OKR",
             description: description,
             start: {
-                dateTime: startDate+"T"+startTime + ":00-05:00",
+                dateTime: startDate + "T" + startTime + ":00-05:00",
                 timeZone: "America/Bogota"
             },
             end: {
-                dateTime: startDate + "T" + endTime+":00-05:00",
+                dateTime: startDate + "T" + endTime + ":00-05:00",
                 timeZone: "America/Bogota"
             },
             conferenceData: {
@@ -99,7 +99,7 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                             <button type="button"
                                     className={"btn close"}
                                     data-dismiss="modal">
-                                    <i className="bi bi-x-lg"/>
+                                <i className="bi bi-x-lg"/>
                             </button>
                         </div>
                         <div className="modal-body container row">
@@ -145,13 +145,15 @@ const CalendarAddComponent = ({AddEvent, token}) => {
                                     className="btn btn-secondary"
                                     data-dismiss="modal"
                                     onClick={() => clearData()}>
-                                    Cancelar</button>
+                                Cancelar
+                            </button>
                             <button data-testid={"btn-test-addEvent"}
                                     type="button"
                                     className="btn btn-primary"
                                     data-dismiss="modal"
                                     onClick={() => addEvent()}
-                                    >Agregar Evento</button>
+                            >Agregar Evento
+                            </button>
                         </div>
                     </div>
                 </div>

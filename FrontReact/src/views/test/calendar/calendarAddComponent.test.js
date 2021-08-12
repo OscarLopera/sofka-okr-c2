@@ -1,4 +1,4 @@
-import CalendarAddComponent from "../../components/calendar/CalendarAddComponent";
+import {CalendarAddComponent} from "../../components/calendar/CalendarAddComponent";
 import {fireEvent, render} from "@testing-library/react";
 
 const dummyEvent = {

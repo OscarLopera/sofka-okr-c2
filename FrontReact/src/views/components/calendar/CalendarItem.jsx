@@ -35,10 +35,6 @@ const CalendarItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
                         <button className="btn btn-secondary mx-2" disabled ><i
                         className="bi bi-calendar2-x-fill"/></button>
                                 </>}
-                        
-                       
-
-
                         </div>
                     </tr>
                 </>)
