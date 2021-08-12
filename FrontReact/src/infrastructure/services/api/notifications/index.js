@@ -17,6 +17,11 @@ const notifications = {
         return response.data
     },
 
+    createHistoryNotification: async (idemail) => {
+        const response = await axios.post('https://pruebabacknoti.herokuapp.com/api/notifications/notification/',idemail)
+        return response.data
+    },
+
     getHistoryNotifications:async (id) => {
         const response = await axios.get('https://pruebabacknoti.herokuapp.com/api/notifications/usernotifications/'+id)
         return response.data
