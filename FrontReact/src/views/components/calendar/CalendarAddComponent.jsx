@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Select from "react-select";
 
-export const CalendarAddComponent = ({AddEvent, token}) => {
+export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
 
     let currentDate = new Date()
     const date = (currentDate.toISOString().split('T', 8))
@@ -13,29 +13,20 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
     const [startTime, setStartTime] = useState(time)
     const [endTime, setEndTime] = useState(time)
     const [externalAttendees, setExternalAttendees] = useState("");
-    const [attendeesList, setAttendeesList] = useState([
-        {
-            value: {email: "sebas99cano@gmail.com"},
-            label: "sebas99cano@gmail.com"
-        },
-        {
-            value: {email: "sebas.cano1036@gmail.com"},
-            label: "sebas.cano1036@gmail.com"
-        },
-        {
-            value: {email: "anahernandez814@gmail.com"},
-            label: "anahernandez814@gmail.com"
-        },
-        {
-            value: {email: "danielaristy22@gmail.com"},
-            label: "danielaristy22@gmail.com"
-        },
-        {
-            value: {email: "dacastamerd@gmail.com"},
-            label: "dacastamerd@gmail.com"
-        }
-    ])
+    const [attendeesList, setAttendeesList] = useState([])
 
+    useEffect(() => {
+        setAttendeesList(listTransform(userEmails))
+    },[userEmails])
+
+    const listTransform = (list) => {
+        return list.map(item => {
+            return {
+                value: {email: item.email},
+                label: item.name + " - " + item.email
+            }
+        })
+    }
     const addAttendees = (e) => {
         // eslint-disable-next-line array-callback-return
         e.map(eElement => {
@@ -95,7 +86,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
                     data-testid={"btn-test-openModalAddEvent"}
                     data-toggle={"modal"}
                     data-target={"#modalAddEvent"}>
-                    Agregar Evento <i className="bi bi-plus-square"/>
+                Agregar Evento <i className="bi bi-plus-square"/>
             </button>
             <div id={"modalAddEvent"} className={"modal fade container"}>
                 <div className="modal-dialog modal-lg" role="document">
@@ -109,7 +100,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
                             </button>
                         </div>
                         <div className="modal-body container row">
-                            <form onSubmit={addEvent} >
+                            <form onSubmit={addEvent}>
                                 <label>Dia del Evento</label>
                                 <input data-testid={"input-test-date"}
                                        required={true}

@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5deb2cff-e23b-48e5-a6c6-e0964362a645" name="Changes" comment="" />
+    <list default="true" id="5deb2cff-e23b-48e5-a6c6-e0964362a645" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarGetEmailsMiddleware.test.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarGetEmailsReducer.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/actions/calendar/calendarActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/actions/calendar/calendarActions.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/middleware/calendar/calendarMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/middleware/calendar/calendarMiddleware.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/reducers/calendar/calendarReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/reducers/calendar/calendarReducer.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/selectors/calendar/calendarSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/selectors/calendar/calendarSelector.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarAddMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarAddMiddleware.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarAddReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarAddReducer.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarDeleteMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarDeleteMiddleware.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarDeleteReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarDeleteReducer.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarListMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarListMiddleware.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarListReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarListReducer.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarUpdateMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarUpdateMiddleware.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarUpdateReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarUpdateReducer.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/types/calendar/calendarTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/types/calendar/calendarTypes.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/services/api/calendar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/services/api/calendar/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/EventItemComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/EventItemComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/calendar/CalendarPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/calendar/CalendarPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarPage.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarPage.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/EventItemComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/EventItemComponent.test.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -41,7 +65,13 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.calendar add component test">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Desktop\Reto final\sofka-okr-c2\FrontReact\src\application\test\calendar\reducerCalendar" />
+      <recent name="C:\Users\admin\Desktop\Reto final\sofka-okr-c2\FrontReact\src\application\test\calendar\middlewareCalendar" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.test calendar page">
     <configuration name="calendar add component test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
@@ -55,61 +85,65 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="calendar add component test.testing add button component" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="middleware get users emails happy path" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarGetEmailsMiddleware.test.js" />
       <test-names>
-        <test-name value="calendar add component test" />
-        <test-name value="testing add button component" />
+        <test-name value="middleware get users emails happy path" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="calendar add component test.testing cancel button in add event" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="middleware get users emails" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarGetEmailsMiddleware.test.js" />
       <test-names>
-        <test-name value="calendar add component test" />
-        <test-name value="testing cancel button in add event" />
+        <test-name value="middleware get users emails" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="coverage" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="coverage" />
-      </scripts>
+    <configuration name="reducer calendar get users emails" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
       <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarGetEmailsReducer.test.js" />
+      <test-names>
+        <test-name value="reducer calendar get users emails" />
+      </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
+    <configuration name="test calendar page" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
       <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarPage.test.js" />
+      <test-names>
+        <test-name value="test calendar page" />
+      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Jest.test calendar page" />
         <item itemvalue="Jest.calendar add component test" />
-        <item itemvalue="Jest.calendar add component test.testing add button component" />
-        <item itemvalue="Jest.calendar add component test.testing cancel button in add event" />
-        <item itemvalue="npm.coverage" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="Jest.middleware get users emails happy path" />
+        <item itemvalue="Jest.middleware get users emails" />
+        <item itemvalue="Jest.reducer calendar get users emails" />
       </list>
     </recent_temporary>
   </component>

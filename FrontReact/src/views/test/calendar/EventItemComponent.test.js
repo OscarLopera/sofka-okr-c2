@@ -21,12 +21,5 @@ describe('Event Items component test', () => {
 
         expect(DeleteEvent).toHaveBeenCalledWith('ululbsrf6lshff5iaeq90vltad', dummyToken)
     })
-    test('testing event item component with length = 0', () => {
 
-        const { getByText } = render(
-            <EventItemComponent events={[]} />
-        )
-
-        expect(getByText("No hay elementos")).toBeInTheDocument()
-    })
 })

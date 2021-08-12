@@ -1,6 +1,6 @@
 import { CalendarAddComponent } from "../../components/calendar/CalendarAddComponent";
 import { fireEvent, render } from "@testing-library/react";
-
+import {dummyList} from "../../../application/test/calendar/reducerCalendar/calendarGetEmailsReducer.test";
 
 const dummyEvent = {
     summary: "OKR",
@@ -36,7 +36,7 @@ describe('calendar add component test', () => {
         const dummyToken = "token";
 
         const { getByTestId } = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken}/>
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} userEmails={dummyList}/>
         )
 
         const inputDescription = getByTestId("input-test-descriptionAddEvent")
@@ -76,8 +76,7 @@ describe('calendar add component test', () => {
         const dummyToken = "token";
 
         const { getByTestId } = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} />
-
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} userEmails={dummyList}/>
         )
         const buttonCancelEvent = getByTestId("btn-test-cancelEvent")
 

@@ -7,7 +7,7 @@ export const EventItemComponent = ({events, DeleteEvent, UpdateEvent, token, ema
     }
 
     return (
-        (events.length === 0) ? "No hay elementos": (
+        (events.length === 0) ? null: (
             events.map((item, i) => {
                 return (
                     <tr key={i}>

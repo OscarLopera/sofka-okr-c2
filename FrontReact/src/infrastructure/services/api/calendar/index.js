@@ -47,6 +47,10 @@ const functions = {
         })
         console.log(melo)
         return melo.data
+    },
+    getEmailUser: async () => {
+         const data = await axios.get('https://okr-final-app.herokuapp.com/api/calendar/getallusers');
+        return data.data
     }
 }
 
