@@ -5,7 +5,7 @@ function UserOkrItems({kr}) {
     console.log("prueba",kr)
     return (
 
-        <div className="col-xl-3 col-sm-6 col-12 m-lg-1">
+        <div className="col-xl-3 col-sm-6 col-12">
             <div className="card">
                 <div className="card-content">
                     <div className="card-body">
