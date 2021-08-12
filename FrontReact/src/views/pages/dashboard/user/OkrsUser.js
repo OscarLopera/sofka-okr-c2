@@ -72,8 +72,8 @@ return (
               <tbody>
                 {krs.map((kr) => (
                   <tr>
-                    <td>{kr.titleKr}</td>
-                    <td>{kr.description.value}</td>
+                    <td>{kr.title}</td>
+                    <td>{kr.description}</td>
                     <td>{kr.startDate}</td>
                     <td>{kr.endDate}</td>
                     <td>
