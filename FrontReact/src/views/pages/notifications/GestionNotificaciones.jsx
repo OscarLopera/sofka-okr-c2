@@ -20,8 +20,8 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus, stateIdUser.userId)
         sendNotification("CqzZjI0KtrdmiZMT8rGiamI8UUj2",{
-            "userEmail": "mateojaras@gmail.com",
-            "message":"Hola Jaras! "
+            "userEmail": "sergio.pinedas94@gmail.com",
+            "message":"Hola Sergio como vamos ! "
         })
         Push.create("nueva notificacion",{
             body:"se ha guardado exitosamente la configuracion de notificaciones",
