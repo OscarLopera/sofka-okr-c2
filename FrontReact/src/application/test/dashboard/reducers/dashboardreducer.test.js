@@ -15,6 +15,9 @@ import {
   getOkrCompletedSuccess,
   getOkrCompletedFailure,
   getOkrCompleted,
+  getOkrProgressSuccess,
+  getOkrProgressFailure,
+  getOkrProgress,
 } from "../../../actions/dashboard/index.js";
 
 
@@ -278,6 +281,79 @@ describe("Test of Reducer get All Okrs completed", () => {
 
   test("Reducer GET_OKR_COMPLETED case", () => {
     const action = getOkrCompleted("61106343609d16f1740ddf45");
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState, loading: true
+    });
+  });
+})
+
+describe("Test of Reducer get All Okrs progress", () => {
+  const dummyOKRs = [
+    {
+      "id": 1,
+      "objetivo": "Un objetivo de un usuario",
+      "title": "Titulo del OKR",
+      "description": "Descripcion del OKR",
+      "managerId": "1245",
+      "areainCharge": "Agile services",
+      "progress": 10,
+      "krs": [
+        {
+          "_id": {
+            "$oid": "61106343609d16f1740ddf45"
+          },
+          "idOkr": "611061c6609d16f1740ddf39",
+          "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
+          "managerId": "Pepito perez",
+          "startDate": "2021/08/14",
+          "endDate": "2021/08/16",
+          "loadValue": 50,
+          "progress": 10
+        },
+        {
+          "_id": {
+            "$oid": "61106343609d16f1740dd233"
+          },
+          "idOkr": "611061c6609d16f1740dd222",
+          "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
+          "managerId": "Juanito Valenzuela",
+          "startDate": "2021/08/14",
+          "endDate": "2021/08/16",
+          "loadValue": 50,
+          "progress": 10
+        }
+      ]
+    }
+
+  ]
+  const initialState = {
+    OKRProgress: [],
+    OKR: null,
+    error: null,
+    loading: false
+  };
+  test("Reducer GET_OKR_PROGRESS_SUCCESS case", () => {
+    const action = getOkrProgressSuccess(dummyOKRs);
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      OKRProgress: dummyOKRs,
+    });
+  });
+  test("Reducer GET_OKR_PROGRESS_FAILURE case", () => {
+    const action = getOkrProgressFailure("un error");
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      error: "un error",
+    });
+  });
+
+  test("Reducer GET_OKR_PROGRESS case", () => {
+    const action = getOkrProgress("61106343609d16f1740ddf45");
     const state = reducer(initialState, action);
     expect(state).toEqual({
       ...initialState, loading: true
