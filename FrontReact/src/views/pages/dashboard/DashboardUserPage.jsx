@@ -1,18 +1,23 @@
 import React, { useEffect, useState } from "react";
+
 //Redux
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+
 //Selectors
 import {
   getOkrs,
   getOkr,
 } from "./../../../application/selectors/dashboard/okrs";
+
 //Acciones
 import { loadingOKR,loadingOKRid,getidOkrLast } from './../../../application/actions/dashboard/index';
+
 //Componentes
 import Okruser from './user/OkrsUser';
 import Barchart from './user/BarChart';
 import PieChart from "./user/PieChart";
+
 const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) => {
   const [idokr, setidokr] = useState("");
  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
