@@ -60,3 +60,18 @@ export const getAllOkrsFailure = (error) => ({
     type: OKRConstanst.GET_ALL_OKRS_FAILURE,
     payload: error
 });
+
+export const getOkrCompleted = (id) =>  ({
+    type: OKRConstanst.GET_OKR_COMPLETED,
+    payload: id
+});
+
+export const getOkrCompletedSuccess = (okrs) => ({
+    type: OKRConstanst.GET_OKR_COMPLETED_SUCCESS,
+    payload: okrs
+});
+
+export const getOkrCompletedFailure = (error) => ({
+    type: OKRConstanst.GET_OKR_COMPLETED_FAILURE,
+    payload: error
+});
