@@ -1,7 +1,7 @@
 import React from 'react'
 import EventItem from '../../components/calendar/EventItem'
 
-const TableEvent = ({events, DeleteEvent, token }) => {
+const TableEvent = ({events, DeleteEvent, UpdateEvent, email, token }) => {
     return (
         <div className="table-wrapper-scroll-y my-custom-scrollbar text-center">
             <table className="table table-striped table-hover">
@@ -21,7 +21,7 @@ const TableEvent = ({events, DeleteEvent, token }) => {
                         (events === undefined) ? (
                             <div className="spinner-border text-info m-5 justify-content-center" role="status">
                             <span className="sr-only"/></div>):
-                            <EventItem events={events} DeleteEvent={DeleteEvent} token={token}/>
+                            <EventItem events={events} DeleteEvent={DeleteEvent} token={token} UpdateEvent={UpdateEvent} email={email}/>
                     }
                 </tbody>
             </table>

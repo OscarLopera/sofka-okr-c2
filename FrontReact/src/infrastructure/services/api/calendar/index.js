@@ -22,19 +22,32 @@ const functions = {
                     Accept: 'application/json'
                 }
             })
-        return results.data.items.filter(item => (item.summary === 'OKR')?item:null);
+        return results.data.items.filter(item => (item.summary === 'OKR') ? item : null);
     },
-    
+
     deleteEvent: async (id, token) => {
         await axios.delete(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${id}?sendUpdates=all&key=${API_KEY}`,
             {
+                headers: {
+                    Authorization: 'Bearer ' + token,
+                    Accept: 'application/json',
+                    'Content-Type': 'application/json',
+                }
+            });
+    },
+
+    updateEvent: async (event, token) => {
+        let melo = await axios.put(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${event.id}?conferenceDataVersion=1&sendNotifications=true&sendUpdates=all&key=${API_KEY}`,
+            event, {
             headers: {
                 Authorization: 'Bearer ' + token,
                 Accept: 'application/json',
                 'Content-Type': 'application/json',
             }
-        });
-    },
+        })
+        console.log(melo)
+        return melo.data
+    }
 }
 
 export default functions
