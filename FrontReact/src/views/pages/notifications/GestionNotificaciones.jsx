@@ -25,19 +25,16 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
   
          
     
-
-
-
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus, stateIdUser.userId)
          sendNotification(stateIdUser.userId,{
              "userEmail": stateIdUser.userEmail,
-             "message":`Hola ${stateIdUser.userName}, has actualizado exitosamente tus preferencias de notificaciones `
+             "message":`Hola ${stateIdUser.userName}, has actualizado exitosamente tus preferencias de  `
          })
-        // Push.create("nueva notificacion",{
-        //     body:"se ha guardado exitosamente la configuracion de notificaciones",
-        //     icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
-        //   })
+        Push.create("nueva notificacion",{
+            body:"se ha guardado exitosamente la configuracion de notificaciones",
+            icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
+          })
     
         socket.emit("actualizar-kr",{id:stateIdUser.userId, manager: stateIdUser.userName});
         

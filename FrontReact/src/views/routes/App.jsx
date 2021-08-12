@@ -49,7 +49,10 @@ const App = ({user,gethistory}) => {
 
   useEffect(() => {
     socket.on(user.userId,()=>{
-      gethistory(user.userId)
+      setTimeout(() => {
+        gethistory(user.userId)
+      }, 500);
+      
     })
   }, [gethistory,user.userId])
 
