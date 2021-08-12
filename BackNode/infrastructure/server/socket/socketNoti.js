@@ -13,3 +13,5 @@ io.on("connection", (socket)=>{
         io.sockets.emit((data.id),`${data.manager} se han actualizado tus preferencias de notificaciones`)
     })
 })
+
+module.exports = io
