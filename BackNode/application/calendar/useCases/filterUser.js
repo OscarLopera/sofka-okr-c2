@@ -30,7 +30,7 @@ const filterUser = async (id, OkrRepository, KrRepository, UserRepository) => {
         [item.email, item])).values()];
 
     return arrayUniqueByKey.map(user => new User(user._id, user.name, user.email, user.urlPhoto, user.phone,
-        user.isFirstTime, user.isFirstTime, user.verticalId, user.rol))
+        user.firstTime, user.verticalId, user.rol))
 };
 
 module.exports = filterUser
