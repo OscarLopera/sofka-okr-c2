@@ -1,7 +1,7 @@
 import React from 'react'
 import CalendarUpdateModal from './CalendarUpdateModal'
 
-const CalendarItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
+const EventItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
     const deleteEvent = (id) => {
         DeleteEvent(id, token)
     }
@@ -18,18 +18,22 @@ const CalendarItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
                         <td><a target={(item.hangoutLink === undefined) ? '' : '_target'}
                                href={(item.hangoutLink === undefined) ? '/calendar' : item.hangoutLink}>{(item.hangoutLink === undefined) ? 'Reunión Presencial' : 'Meet'}</a>
                         </td>
-                        <td>{item.start.dateTime.substring(0, 10).replaceAll("-","/")}</td>
+                        {/* <td>{item.start.dateTime.substring(0, 10).replaceAll("-","/")}</td> */}
                         <td>{item.start.dateTime.substring(11, 16)}</td>
                         <div>
 
-                        {item.organizer.email=== email?<>
+                        {item.organizer.email=== email?
+                        <>
                             <CalendarUpdateModal item={item} token={token} UpdateEvent={UpdateEvent}/>
-                        <button className="btn btn-danger mx-2" onClick={() => deleteEvent(item.id)}><i
-                                className="bi bi-calendar2-x-fill"/></button>
+                        <button 
+                            data-testid={"btn-test-deleteEvent"}
+                            className="btn btn-danger mx-2"
+                            onClick={() => deleteEvent(item.id)}><i
+                            className="bi bi-calendar2-x-fill"/></button>
                         </>:<>
                         <button className="btn btn-secondary mx-2" data-testid={"btn-test"} data-toggle={"modal"}
-                        data-target={"#modalUpdateEvent"} disabled
-                        ><i className="bi bi-pencil-square"/>
+                           data-target={"#modalUpdateEvent"} disabled
+                           ><i className="bi bi-pencil-square"/>
                         </button>
                         <button className="btn btn-secondary mx-2" disabled ><i
                         className="bi bi-calendar2-x-fill"/></button>
@@ -43,4 +47,4 @@ const CalendarItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
 
 }
 
-export default CalendarItem
+export default EventItem
