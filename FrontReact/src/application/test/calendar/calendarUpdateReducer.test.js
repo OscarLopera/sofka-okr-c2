@@ -60,8 +60,6 @@ describe('reducer calendar update test', ()=>{
     test('reducer [calendar] update_event_success', ()=>{
         const action = UpdateEventSuccess(dummyEvent);
         const state = calendarReducer(initialState, action);
-        const optional = initialState.events;
-        optional.push(dummyEvent);
         expect(state).toEqual({ ...initialState, loading: false, events:[], error: null})
     })
 
