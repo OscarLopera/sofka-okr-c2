@@ -2,6 +2,7 @@ package co.com.sofka.okr.c2.api;
 
 public class UsuarioDTO {
     private String id;
+    private String idUser;
     private String name;
     private String email;
     private String urlPhoto;
@@ -13,8 +14,20 @@ public class UsuarioDTO {
     public UsuarioDTO() {
     }
 
-    public UsuarioDTO(String id, String name, String email, String urlPhoto, String phone, Boolean firstTime, String verticalId, String rol) {
+    public UsuarioDTO(String id, String idUser,String name, String email, String urlPhoto, String phone, Boolean firstTime, String verticalId, String rol) {
         this.id = id;
+        this.idUser = idUser;
+        this.name = name;
+        this.email = email;
+        this.urlPhoto = urlPhoto;
+        this.phone = phone;
+        this.firstTime = firstTime;
+        this.verticalId = verticalId;
+        this.rol = rol;
+    }
+
+    public UsuarioDTO(String idUser, String name, String email, String urlPhoto, String phone, Boolean firstTime, String verticalId, String rol) {
+        this.idUser = idUser;
         this.name = name;
         this.email = email;
         this.urlPhoto = urlPhoto;
@@ -30,6 +43,14 @@ public class UsuarioDTO {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public String getName() {
