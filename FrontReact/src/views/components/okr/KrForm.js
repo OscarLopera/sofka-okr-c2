@@ -5,7 +5,7 @@ import { Col, Row, Button, Form, FormGroup, Label, Input } from "reactstrap";
 import { createKr } from "../../../application/actions/okr/KrAction";
 import "../../assets/styles/okr/OkrPage.css";
 
-const KrForm = ({  createKr }) => {
+const KrForm = ({ createKr }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -16,7 +16,6 @@ const KrForm = ({  createKr }) => {
 
   const handleSubmitCreateKr = (event) => {
     event.preventDefault();
-    console.log("en funcion");
     const KrObject = {
       title: title,
       description: description,
@@ -25,8 +24,8 @@ const KrForm = ({  createKr }) => {
       loadValue: loadValue,
       managerName: managerName,
       managerEmail: managerEmail,
+      progress: 5,
     };
-    console.log(KrObject);
     createKr(KrObject);
     alert("KR creado correctamente");
   };
@@ -35,9 +34,7 @@ const KrForm = ({  createKr }) => {
     <>
       <div className="container py-5">
         <div className="shadow form-floating p-5">
-          <Form
-          // onSubmit={handleSubmitCreateKr}
-          >
+          <Form>
             <FormGroup className="d-flex flex-column my-3">
               <Label className="my-2" for="title-kr">
                 Título
@@ -101,10 +98,11 @@ const KrForm = ({  createKr }) => {
               </Label>
               <Input
                 type="number"
-                name="loadValue"
+                name={loadValue}
                 value={loadValue}
                 id="loadValue"
-                onChange={(event) => setLoadValue(event.target.value)}
+
+                onChange={(event) => setLoadValue(event.target.valueAsNumber)}
                 placeholder="Valor porcentual del KR"
               />
             </FormGroup>
@@ -137,7 +135,6 @@ const KrForm = ({  createKr }) => {
             <FormGroup>
               <div className="d-flex py-3">
                 <Button
-                  // type="submit"
                   onClick={handleSubmitCreateKr}
                   className="sofka-color-btn py-2 px-4 fs-6 m-auto"
                 >

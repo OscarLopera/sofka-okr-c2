@@ -1,10 +1,20 @@
-import { Redirect } from "react-router";
 import EmptyMessage from "../../components/okr/EmptyMessage";
 import OkrCard from "../../components/okr/OkrCard";
 import { Link } from "react-router-dom";
 import OkrBtn from "../../components/okr/OkrBtn";
+import { getOkrs } from "../../../application/selectors/dashboard/okrs";
+import { loadingOKR } from "../../../application/actions/dashboard";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 
-const OkrPage = () => {
+const OkrPage = ({ okr, loadingOKR }) => {
+  const id = "61106133609d16f1740ddf34";
+
+  useEffect(() => {
+    loadingOKR(id);
+  }, [loadingOKR]);
+
   const okrs = [
     {
       _id: {
@@ -108,7 +118,7 @@ const OkrPage = () => {
 
   return (
     <div className="container d-flex flex-column align-items-center py-5">
-      {okrs.length === 0 ? (
+      {okr.length === 0 ? (
         <>
           <EmptyMessage />
           <Link to="/okr/create-okr">
@@ -122,13 +132,10 @@ const OkrPage = () => {
           </Link>
           <div className="container">
             <ul className="list-unstyled">
-              {okrs.map((elem) => {
+              {okr.map((elem) => {
                 return (
-                  <li key={elem._id.$oid}>
-                    <OkrCard
-                      title={elem.title}
-                      progress={elem.currentProgress.$numberInt}
-                    />
+                  <li key={elem.id}>
+                    <OkrCard title={elem.objective} progress={elem.title} />
                   </li>
                 );
               })}
@@ -140,4 +147,19 @@ const OkrPage = () => {
   );
 };
 
-export default OkrPage;
+const mapStateToProps = (state) => {
+  return {
+    okr: getOkrs(state),
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    {
+      loadingOKR,
+    },
+    dispatch
+  );
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(OkrPage);
