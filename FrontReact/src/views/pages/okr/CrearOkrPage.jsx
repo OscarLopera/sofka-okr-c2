@@ -117,7 +117,7 @@ const CrearOkrPage = ({
                 <label className={"m-3"}>Encargado</label>
                 <br />
 
-                <select
+                <datalist
                   className="custom-select"
                   value={managerId}
                   onChange={(event) => setManagerId(event.target.value)}
@@ -128,7 +128,7 @@ const CrearOkrPage = ({
                         {usuario.verticalname}
                       </option>
                     ))}
-                </select>
+                </datalist>
               </FormGroup>
             </Col>
           </Row>
