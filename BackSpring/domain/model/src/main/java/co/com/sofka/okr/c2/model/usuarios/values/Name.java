@@ -16,6 +16,11 @@ public class Name {
         return value;
     }
 
+    public static Name of(String value){
+        return new Name(value);
+    }
+
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
