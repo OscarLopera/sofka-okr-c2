@@ -21,11 +21,21 @@ import OkrPage from "../pages/okr/OkrPage";
 import CrearOkrPage from "../pages/okr/CrearOkrPage";
 import CrearkrPage from "../pages/okr/CrearKrPage";
 
+//Dashboard
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import DashboardUserPage from "../pages/dashboard/DashboardUserPage";
+import StateOkrs from './../pages/dashboard/user/StateOkrs';
+import StateOkrsp from './../pages/dashboard/user/StateOkrsp';
+import ViewOKR from '../pages/dashboard/user/ViewOKR.js';
+
+//Calendar
 import CalendarPage from "../pages/calendar/CalendarPage";
+
+//Administration
 import AdministrationPage from "../pages/administration/AdministrationPage";
 import UserPage from "../pages/administration/UserPage";
+
+
 import "../assets/styles/administration/App.scss";
 import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
 import HistorialNotificaciones from "../pages/notifications/HistorialNotificaciones";
@@ -53,6 +63,9 @@ const App = ({user,gethistory}) => {
         <PrivateRoute exact path={"/okr/create-kr"} component={CrearkrPage} user={user}/>
         <PrivateRoute exact path={"/dashboard"} component={DashboardPage} user={user}/>
         <PrivateRoute exact path={"/userdash"} component={DashboardUserPage} user={user}/>
+        <PrivateRoute exact path={"/statedashokrs"} component={StateOkrs} user={user} />
+        <PrivateRoute exact path={"/statedashokrsp"} component={StateOkrsp} user={user}/>
+        <PrivateRoute exact path={"/viewdashokr"} component={ViewOKR} user={user} />
         <PrivateRoute exact path={"/calendar"} component={CalendarPage} user={user}/>
         <PrivateRoute exact path={"/administration"} component={AdministrationPage} user={user}/>
         <PrivateRoute exact path={"/historialnotificaciones"} component={HistorialNotificaciones} user={user}/>
