@@ -53,6 +53,7 @@ const addOkrFlow =
           } catch (e) {
             console.log(e);
           }
+
         });
         console.log("EN MIDDLEWARE");
         console.log(krsReadys);
