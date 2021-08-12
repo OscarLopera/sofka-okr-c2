@@ -142,15 +142,9 @@ const OkrCard = ({ id, title, progress }) => {
           <ProgressBar variant="success" animated now={progress} label={`${progress}%`} style={{ height: "1.5rem" }} />
         </div>
         <div className="d-flex">
-          <Link className="text-decoration-none" data-tip data-for="create-kr-tip" to="/okr/create-kr">
-            <div className="fs-2 mx-3" >📌</div>
-          </Link>
           <div className="fs-2 mx-3" data-tip data-for="edit-okr-tip">✏️</div>
           <div className="fs-2 mx-3" data-tip data-for="delete-okr-tip">❌</div>
 
-          <ReactTooltip id="create-kr-tip" place="top" effect="solid">
-            Crear KR
-          </ReactTooltip>
           <ReactTooltip id="edit-okr-tip" place="top" effect="solid">
             Editar OKR
           </ReactTooltip>

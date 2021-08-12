@@ -3,4 +3,16 @@
   border-color: #ff7e06 !important;
   font-weight: bold !important;
   text-transform: uppercase !important;
+  border-radius: 0.3rem !important;
+}
+
+.formgroup {
+  display: flex !important;
+  flex-direction: column !important;
+  margin-top: 1rem !important;
+  margin-bottom: 1rem !important;
+}
+
+label {
+  font-weight: bold !important;
 }
