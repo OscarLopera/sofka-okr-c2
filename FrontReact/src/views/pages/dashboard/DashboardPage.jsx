@@ -4,7 +4,7 @@ import "../../assets/styles/administration/App.scss";
 const DashboardPage = () => {
   return (
     <div className="dashboard">
-      <h1>DashboardPage</h1>
+      <h1>Los tesos</h1>
     </div>
   );
 };

@@ -45,3 +45,18 @@ export const getidOkrLastFailure = (error) =>({
     type: OKRConstanst.GET_OKR_LAST_FAILURE,
     payload: error
 });
+
+export const getAllOkrs = () =>({
+    type: OKRConstanst.GET_ALL_OKRS,
+
+});
+
+export const getAllOkrsSuccess = (okrs) => ({
+    type: OKRConstanst.GET_ALL_OKRS_SUCCESS,
+    payload: okrs
+});
+
+export const getAllOkrsFailure = (error) => ({
+    type: OKRConstanst.GET_ALL_OKRS_FAILURE,
+    payload: error
+});

@@ -1,6 +1,7 @@
 import {OKRConstanst} from "../../types/dashboard/constants";
 
 const initialState ={
+    OKRsAll:[],
     OKRs:[],
     OKR:null,
     error:null,
@@ -27,6 +28,12 @@ const dashboardReducer = (state=initialState,action) =>{
             return{...state,loading:false,OKR:action.payload};
         case OKRConstanst.GET_OKR_LAST_FAILURE:
             return{...state,loading:false,error:action.payload};
+        case OKRConstanst.GET_ALL_OKRS:
+            return{...state,loading:true};
+        case OKRConstanst.GET_ALL_OKRS_SUCCESS:
+            return{...state,loading:false, OKRsAll:action.payload};
+        case OKRConstanst.GET_ALL_OKRS_FAILURE:
+            return{...state,loading:false, error:action.payload};
         default:
             return state;
     }

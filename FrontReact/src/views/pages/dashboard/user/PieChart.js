@@ -15,7 +15,7 @@ function PieChart({okr}){
     krs = okr.krs;
     //Arreglo de titulos
     krs.forEach(kr => {
-      arraylabels.push(kr.id);
+      arraylabels.push(kr.title);
       krinOKR = kr.loadValue*kr.progress/100
       acum = krinOKR + acum;
       datapercent.push(krinOKR);
