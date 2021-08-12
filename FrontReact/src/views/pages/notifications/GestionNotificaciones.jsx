@@ -3,7 +3,7 @@ import '../../assets/styles/notifications/styleGestion.css';
 import OpcionPantallaEmail from '../../components/notifications/OpcionPantallaEmail';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { changeStatusNotification, getStatusNotification } from '../../../application/actions/notifications';
+import { changeStatusNotification, getStatusNotification} from '../../../application/actions/notifications';
 import { getUser } from '../../../application/selectors/administration/user';
 
 const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate }) => {
@@ -18,6 +18,7 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
 
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus, stateIdUser.userId)
+       
     }
 
 
