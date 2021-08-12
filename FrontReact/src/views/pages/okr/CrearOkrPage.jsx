@@ -70,6 +70,10 @@ const CrearOkrPage = ({
     setManagerName(valueName);
   }
 
+  const closeKrForm = () => {
+    setKrVisible(false);
+  };
+
   return (
     <div className="container py-5">
       <div className="shadow-lg rounded form-floating p-5 pb-2">
