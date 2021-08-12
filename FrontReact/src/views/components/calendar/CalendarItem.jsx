@@ -6,7 +6,6 @@ const CalendarItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
         DeleteEvent(id, token)
     }
 
-
     return (
         (events.length === 0) ? <p>No existen datos</p> : (
             events.map((item, i) => {
