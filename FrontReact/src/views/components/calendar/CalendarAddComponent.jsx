@@ -53,7 +53,8 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
         setExternalAttendees("")
     }
 
-    const addEvent = () => {
+    const addEvent = (e) => {
+        e.preventDefault()
         if(externalAttendees!==""){
             let inv = attendees;
             inv.push({email: externalAttendees});
@@ -88,6 +89,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
         setEndTime("")
         AddEvent(eventObject, token)
         clearData()
+
     }
 
     return (

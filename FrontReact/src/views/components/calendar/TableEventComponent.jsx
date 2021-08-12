@@ -1,7 +1,7 @@
 import React from 'react'
-import EventItem from '../../components/calendar/EventItem'
+import EventItemComponent from './EventItemComponent'
 
-const TableEvent = ({events, DeleteEvent, UpdateEvent, email, token}) => {
+const TableEventComponent = ({events, DeleteEvent, UpdateEvent, email, token}) => {
     return (
         <table className="table table-striped table-hover">
             <thead>
@@ -21,15 +21,15 @@ const TableEvent = ({events, DeleteEvent, UpdateEvent, email, token}) => {
                 (events === undefined) ? (
                         <div className="spinner-border text-info m-5 justify-content-center" role="status">
                             <span className="sr-only"/></div>) :
-                    <EventItem events={events}
-                               DeleteEvent={DeleteEvent}
-                               token={token}
-                               UpdateEvent={UpdateEvent}
-                               email={email}/>
+                    <EventItemComponent events={events}
+                                        DeleteEvent={DeleteEvent}
+                                        token={token}
+                                        UpdateEvent={UpdateEvent}
+                                        email={email}/>
             }
             </tbody>
         </table>
     )
 }
 
-export default TableEvent;
+export default TableEventComponent;
