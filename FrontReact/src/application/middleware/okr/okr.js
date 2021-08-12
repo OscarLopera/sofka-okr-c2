@@ -42,6 +42,7 @@ const addOkrFlow =
           if (action.type === ADD_OKRS) {
             try {
               const values = action.payload;
+              console.log("OKR", values.okrObject)
               const { dataId } = await api.okr.createOkr(values.okrObject);
               const krsByIdOkr = values.krs.map((kr) => {
                 return { ...kr, idOkr: dataId };

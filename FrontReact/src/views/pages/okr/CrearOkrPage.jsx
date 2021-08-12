@@ -3,16 +3,10 @@ import { Form, FormGroup, Row, Col } from "reactstrap";
 import { getOkrs } from "../../../application/selectors/okr/okr";
 import { getKrs } from "../../../application/selectors/okr/kr";
 import KrForm from "../../components/okr/KrForm";
-import {
-  getVerticals,
-  getUser,
-} from "../../../application/selectors/administration/user";
+import { getVerticals } from "../../../application/selectors/administration/user";
 import { bindActionCreators } from "redux";
 import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
-import {
-  loadingVerticals,
-  loginUser,
-} from "../../../application/actions/administration/user";
+import { loadingVerticals } from "../../../application/actions/administration/user";
 import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
 
@@ -20,14 +14,12 @@ const CrearOkrPage = ({
   addOkrs,
   history,
   loadingVerticals,
-  user,
   vertical,
-  loginUser,
+  krs,
 }) => {
   useEffect(() => {
     loadingVerticals();
-    loginUser();
-  }, [loadingVerticals, loginUser]);
+  }, [loadingVerticals]);
 
   const [objective, setObjective] = useState("");
   const [title, setTitle] = useState("");
@@ -41,11 +33,12 @@ const CrearOkrPage = ({
     const okrObject = {
       objective: objective,
       title: title,
-      managerId: managerId,
+      managerId: "asdfgfgdg345",
       description: description,
       verticalId: areaInCharge,
     };
-    addOkrs(okrObject);
+    const values = { okrObject, krs };
+    addOkrs(values);
     alert("Se agrego el OKR Correctamente");
   };
 
@@ -184,7 +177,6 @@ const CrearOkrPage = ({
 const mapStateToProps = (state) => {
   return {
     okr: getOkrs(state),
-    user: getUser(state),
     vertical: getVerticals(state),
     krs: getKrs(state),
   };
@@ -196,7 +188,6 @@ const mapDispatchToProps = (dispatch) => {
       addOkrs,
       deleteOkrs,
       loadingVerticals,
-      loginUser,
     },
     dispatch
   );
