@@ -44,7 +44,6 @@ const AddNotify = ({ api }) => ({ dispatch }) => next => async (action) => {
     if (action.type === "ENVIAR_NOTIFICACION") {
         try {
             const noti = await api.notifications.addNotification(action.id,action.payload)
-            console.log(noti)
         } catch (error) {
             console.log(error)
         }
