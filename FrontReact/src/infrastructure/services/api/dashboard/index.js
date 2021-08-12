@@ -16,6 +16,11 @@ const functions = {
         //const id = "6112ef6370e2131bb4730d1a"
         const response = await axios.get('https://back-spring-grupo-5.herokuapp.com/api/getlastokrbyuserid/'+id);
         return response.data
+    },
+
+    getAllOkrs: async () => {
+        const response = await axios.get('https://back-spring-grupo-5.herokuapp.com/api/get/all');
+        return response.data
     }
 
 }
