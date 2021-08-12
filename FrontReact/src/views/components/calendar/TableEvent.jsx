@@ -9,10 +9,11 @@ const TableEvent = ({events, DeleteEvent, UpdateEvent, email, token }) => {
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Titulo</th>
-                        <th scope="col">Ubicación</th>
+                        <th scope="col">Descripcion</th>
                         <th scope="col">Organizador</th>
                         <th scope="col">Link</th>
                         <th scope="col">Fecha Reunión</th>
+                        <th scope="col">Hora</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
