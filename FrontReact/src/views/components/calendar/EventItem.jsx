@@ -13,7 +13,7 @@ const CalendarItem = ({events, DeleteEvent,UpdateEvent, token,email}) => {
                     <tr>
                         <th scope="row">{i + 1}</th>
                         <td>{item.summary}</td>
-                        <td>{(item.location === undefined) ? 'Quedate en Casa' : item.location}</td>
+                        <td>{(item.description === undefined)?'No existe descripción':item.description}</td>
                         <td>{item.organizer.email}</td>
                         <td><a target={(item.hangoutLink === undefined) ? '' : '_target'}
                                href={(item.hangoutLink === undefined) ? '/calendar' : item.hangoutLink}>{(item.hangoutLink === undefined) ? 'Reunión Presencial' : 'Meet'}</a>
