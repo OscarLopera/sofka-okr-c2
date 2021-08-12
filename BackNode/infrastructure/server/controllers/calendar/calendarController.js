@@ -23,9 +23,7 @@ const filterUsersOkr = async (req, res, next) => {
 const getUsersByNameRegex = async (req, res, next) => {
     try {
         const { name } = req.params;
-        if (!name) {
-            return res.json([]);
-        }
+
         const users = await userRecommendationByName(name,UserRepositoryMongo.prototype)
         const usersDTO= users.map(user => new UserRecommendationDTO(user))
         return res.status(200).json(usersDTO)

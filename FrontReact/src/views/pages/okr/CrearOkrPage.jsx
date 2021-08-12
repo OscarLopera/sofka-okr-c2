@@ -13,7 +13,6 @@ import {
 import { loadingVerticals } from "../../../application/actions/administration/user";
 import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
-import KrCard from "../../components/okr/KrCard";
 
 const CrearOkrPage = ({
   addOkrs,
@@ -21,32 +20,43 @@ const CrearOkrPage = ({
   history,
   loadingVerticals,
   vertical,
-  okr,
+  users,
   krs,
 }) => {
   useEffect(() => {
     loadingVerticals();
+    loadOkrs();
   }, [loadingVerticals, loadOkrs]);
 
   const [objective, setObjective] = useState("");
   const [title, setTitle] = useState("");
   const [managerId, setManagerId] = useState("");
+  const [nameUser, setNameUser] = useState("");
   const [description, setDescription] = useState("");
   const [areaInCharge, setAreaInCharge] = useState("");
   const [KrVisible, setKrVisible] = useState(false);
+  const [formState, setFormState] = useState("");
 
   const okrCreateSubmit = (event) => {
     event.preventDefault();
     const okrObject = {
       objective: objective,
       title: title,
-      managerId: "asdfgfgdg345",
+      managerId: managerId,
       description: description,
       verticalId: areaInCharge,
     };
     const values = { okrObject, krs };
     addOkrs(values);
     alert("Se agrego el OKR Correctamente");
+  };
+  const handleChange = (value) => {
+    console.log(value);
+    loadOkrs(value.target.value);
+    setManagerId(value.target.value);
+  };
+  const onClickName = (event) => {
+    console.log("click ", event);
   };
 
   const closeKrForm = () => {
@@ -107,7 +117,6 @@ const CrearOkrPage = ({
               <FormGroup className="formgroup">
                 <label className={"my-3"}>Vertical</label>
                 <br />
-
                 <select
                   className="custom-select form-control"
                   value={areaInCharge}
@@ -126,19 +135,23 @@ const CrearOkrPage = ({
               <FormGroup className="formgroup">
                 <label className={"my-3"}>Encargado</label>
                 <br />
-
-                <select
-                  className="custom-select form-control"
+                <input
+                  type={"text"}
+                  required="required"
+                  placeholder={"Ingresa el nombre"}
+                  className={"form-control"}
                   value={managerId}
-                  onChange={(event) => setManagerId(event.target.value)}
-                >
-                  {okr.length &&
-                    okr.map((usuario) => (
-                      <option key={usuario.id} value={usuario.name}>
-                        {usuario.email}
-                      </option>
-                    ))}
-                </select>
+                  onChange={(event) => handleChange(event)}
+                  list="data"
+                />
+                <datalist id="data">
+                  {users.map((item, key) => (
+                    <option key={key} data-id={item.id} value={item.name}>
+                      {" "}
+                      {item.email}{" "}
+                    </option>
+                  ))}
+                </datalist>
               </FormGroup>
             </Col>
           </Row>
@@ -211,7 +224,7 @@ const CrearOkrPage = ({
 };
 const mapStateToProps = (state) => {
   return {
-    okr: getOkrs(state),
+    users: getOkrs(state),
     vertical: getVerticals(state),
     krs: getKrs(state),
   };
