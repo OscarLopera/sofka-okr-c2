@@ -13,8 +13,9 @@ import {
     DELETE_OKRS_FAILURE
 } from '../../types/okr/okr'
 
-export const loadOkrs = () => ({
+export const loadOkrs = (okrName) => ({
     type: LOAD_OKRS,
+    payload: okrName
 })
 
 export const loadOkrsSuccess = (okr) => ({

@@ -5,35 +5,40 @@ import { getKrs } from "../../../application/selectors/okr/kr";
 import KrForm from "../../components/okr/KrForm";
 import { getVerticals } from "../../../application/selectors/administration/user";
 import { bindActionCreators } from "redux";
-import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
+import { loadOkrs,addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
 import { loadingVerticals } from "../../../application/actions/administration/user";
 import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
 
 const CrearOkrPage = ({
   addOkrs,
+  loadOkrs,
   history,
   loadingVerticals,
   vertical,
+  users,
   krs,
 }) => {
   useEffect(() => {
     loadingVerticals();
-  }, [loadingVerticals]);
+    loadOkrs();
+  }, [loadingVerticals, loadOkrs]);
 
   const [objective, setObjective] = useState("");
   const [title, setTitle] = useState("");
   const [managerId, setManagerId] = useState("");
+  const [nameUser, setNameUser] = useState("");
   const [description, setDescription] = useState("");
   const [areaInCharge, setAreaInCharge] = useState("");
   const [KrVisible, setKrVisible] = useState(false);
+  const [formState, setFormState] = useState("");
 
   const okrCreateSubmit = (event) => {
     event.preventDefault();
     const okrObject = {
       objective: objective,
       title: title,
-      managerId: "asdfgfgdg345",
+      managerId: managerId,
       description: description,
       verticalId: areaInCharge,
     };
@@ -41,6 +46,11 @@ const CrearOkrPage = ({
     addOkrs(values);
     alert("Se agrego el OKR Correctamente");
   };
+  const handleChange = (value) => {
+    console.log(value);
+    loadOkrs(value.target.value)
+    setManagerId(value.target.value);
+}
 
   return (
     <div className="container py-5">
@@ -75,7 +85,6 @@ const CrearOkrPage = ({
               onChange={(event) => setTitle(event.target.value)}
             />
           </FormGroup>
-
           <FormGroup className="d-flex flex-column my-3">
             <label className={"m-3 text-center"}>Descripcion</label>
             <textarea
@@ -116,19 +125,19 @@ const CrearOkrPage = ({
               <FormGroup className="d-flex flex-column my-3">
                 <label className={"m-3"}>Encargado</label>
                 <br />
-
-                <select
-                  className="custom-select"
-                  value={managerId}
-                  onChange={(event) => setManagerId(event.target.value)}
-                >
-                  {vertical.length &&
-                    vertical.map((usuario) => (
-                      <option key={usuario.id} value={usuario.verticalname}>
-                        {usuario.verticalname}
-                      </option>
-                    ))}
-                </select>
+                <input
+                type={"text"}
+                required="required"
+                placeholder={"Ingresa el nombre"}
+                // className={"form-control text-center"}
+                value={managerId}
+                onChange={(event) => handleChange(event)}
+                list="data"  />
+                <datalist id="data" >
+                  {users.map((item, key) =>
+                    (<option key={key} dataid={item.id} value={item.name}> {item.email} </option>)
+                  )}
+                </datalist>        
               </FormGroup>
             </Col>
           </Row>
@@ -176,7 +185,7 @@ const CrearOkrPage = ({
 };
 const mapStateToProps = (state) => {
   return {
-    okr: getOkrs(state),
+    users: getOkrs(state),
     vertical: getVerticals(state),
     krs: getKrs(state),
   };
@@ -188,6 +197,7 @@ const mapDispatchToProps = (dispatch) => {
       addOkrs,
       deleteOkrs,
       loadingVerticals,
+      loadOkrs
     },
     dispatch
   );
