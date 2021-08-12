@@ -16,7 +16,7 @@ const reducer = (state = initialState, action) => {
         case types.LOGOUT_SUCCESS: 
             return {...state, user: null, error: null };
         case types.LOGOUT_FAILURE:
-            return {...state, user: null, error: action.payload };
+            return {...state, error: action.payload };
         case types.CLOSE_WELCOME_SUCCESS: 
             return {...state, user: action.payload, error: null};
         case types.LOADING_VERTICALS_SUCCESS: 
