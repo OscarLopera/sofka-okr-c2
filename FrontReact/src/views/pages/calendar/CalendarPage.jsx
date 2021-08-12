@@ -36,10 +36,10 @@ const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, us
             <div className="row">
                 <div className="col-md-12">
                     <h1>Eventos</h1>
+                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}  />
                 </div>
             </div>
             <div className={"row"}>
-                <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}  />
                 <div className="table-wrapper-scroll-y my-custom-scrollbar text-center">
                     <table className="table table-striped table-hover">
                         <thead>
