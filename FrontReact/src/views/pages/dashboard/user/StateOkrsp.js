@@ -6,18 +6,18 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 //Selectors
-import { _getOkrCompleted } from "../../../../application/selectors/dashboard/okrs";
+import { _getOkrProgress } from "../../../../application/selectors/dashboard/okrs";
 //Acciones
-import { getOkrCompleted } from "../../../../application/actions/dashboard/index";
+import { getOkrProgress } from "../../../../application/actions/dashboard/index";
 
 
-function StateOkrs({getOkrCompleted,okrs}) {
+function StateOkrsp({getOkrProgress,okrs}) {
 
     const idUser = "6114bf415f29ff49b805d9dc";
 
     useEffect(() => {
-    getOkrCompleted(idUser);
-  }, [getOkrCompleted]);
+    getOkrProgress(idUser);
+  }, [getOkrProgress]);
 
   return (
     <div className="row">
@@ -41,7 +41,7 @@ function StateOkrs({getOkrCompleted,okrs}) {
           </li>
         </ul>
         <br />
-        <h5 className="text-center">Okrs Completados</h5>
+        <h5 className="text-center">Okrs en Progreso</h5>
         <hr/>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {(okrs.length > 0) ? 
@@ -58,7 +58,7 @@ function StateOkrs({getOkrCompleted,okrs}) {
             </div>
           </div>
           ))
-        ) : <p>No tiene Okrs Completados</p> }
+        ) : <p>No tiene Okrs en Progreso</p> }
           
           </div>
       </div>
@@ -70,7 +70,7 @@ function StateOkrs({getOkrCompleted,okrs}) {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-    getOkrCompleted
+    getOkrProgress
     },
     dispatch
   );
@@ -78,9 +78,9 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    okrs: _getOkrCompleted(state)
+    okrs: _getOkrProgress(state)
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(StateOkrs);
+export default connect(mapStateToProps, mapDispatchToProps)(StateOkrsp);
 

@@ -32,8 +32,8 @@ const DashboardUserPage = ({
 }) => {
   const [idokr, setidokr] = useState("");
   //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "6114bf415f29ff49b805d9dc";
-  const idlast = "6114bf415f29ff49b805d9dc";
+  const idUser = "6115453d6d583f63600cc43a";
+  const idlast = "6115453d6d583f63600cc43a";
   //const idUser = "611461004b98615d2dc035f2";
   //const idlast = "611461004b98615d2dc035f2";
   useEffect(() => {
@@ -63,7 +63,7 @@ const DashboardUserPage = ({
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to="/statedashokrs">
+                <Link class="nav-link" to="/statedashokrsp">
                   En progreso
                 </Link>
               </li>

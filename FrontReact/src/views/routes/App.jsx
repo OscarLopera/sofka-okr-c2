@@ -20,6 +20,7 @@ import CrearkrPage from "../pages/okr/CrearKrPage";
 import DashboardPage from "../pages/dashboard/DashboardPage";
 import DashboardUserPage from "../pages/dashboard/DashboardUserPage";
 import StateOkrs from './../pages/dashboard/user/StateOkrs';
+import StateOkrsp from './../pages/dashboard/user/StateOkrsp';
 import CalendarPage from "../pages/calendar/CalendarPage";
 import AdministrationPage from "../pages/administration/AdministrationPage";
 import UserPage from "../pages/administration/UserPage";
@@ -38,6 +39,7 @@ const App = ({user}) => {
         <PrivateRoute exact path={"/dashboard"} component={DashboardPage} user={user}/>
         <PrivateRoute exact path={"/userdash"} component={DashboardUserPage} user={user}/>
         <PrivateRoute exact path={"/statedashokrs"} component={StateOkrs} user={user} />
+        <PrivateRoute exact path={"/statedashokrsp"} component={StateOkrsp} user={user}/>
         <PrivateRoute exact path={"/calendar"} component={CalendarPage} user={user}/>
         <PrivateRoute exact path={"/administration"} component={AdministrationPage} user={user}/>
         <Route exact path={"/login"} component={LoginPage} />
