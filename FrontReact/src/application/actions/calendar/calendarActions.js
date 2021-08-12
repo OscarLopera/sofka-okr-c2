@@ -30,9 +30,8 @@ export const DeleteEvent = (id,token) => ({
     token: token,
     payload:id
 })
-export const DeleteEventSuccess = (event) => ({
+export const DeleteEventSuccess = () => ({
     type: CalendarTypes.DELETE_EVENT_SUCCESS,
-    payload: event
 })
 export const DeleteEventFailure = (error) => ({
     type: CalendarTypes.DELETE_EVENT_FAILURE,

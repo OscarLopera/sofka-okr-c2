@@ -39,8 +39,8 @@ const deleteEventFlow = ({ api }) => ({ dispatch }) => next => async (action) =>
     next(action)
     if (action.type === CalendarTypes.DELETE_EVENT) {
         try {
-            const event = await api.calendar.deleteEvent(action.payload, action.token)
-            dispatch(DeleteEventSuccess(event))
+            await api.calendar.deleteEvent(action.payload, action.token)
+            dispatch(DeleteEventSuccess())
             dispatch(ListEvents(action.token))
         } catch (error) {
             dispatch(DeleteEventFailure(error.message))
