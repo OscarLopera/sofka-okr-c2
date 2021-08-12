@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 
 //Redux
 import { connect } from "react-redux";
@@ -53,7 +53,7 @@ const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) =
               value={idokr}
               onChange={(e) => setidokr(e.target.value)}
             >
-              {okrs.map((okr) => (
+              {(okrs === null || "" || undefined) ? "No hay datos" : okrs.map((okr) => (
                 <option value={okr.id} key={okr.id}>
                   {okr.title}
                 </option>
@@ -67,7 +67,9 @@ const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) =
               Ver info
             </button>
             <div>
-              <Okruser okr={okr} />
+            {(okrs === null || "" || undefined) ? ("No hay datos"): ( 
+               <Fragment>
+               <Okruser okr={okr} />
               <div className="row">
                 <div className="col-xl-12 col-sm-6">
                   <div className="media d-flex">
@@ -75,7 +77,9 @@ const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) =
                       <PieChart okr={okr} />
                     </div>
                 </div>
-              </div>
+              </div></Fragment>)
+              }
+            
             </div>
           </div>
           <div className="col-2 "></div>
