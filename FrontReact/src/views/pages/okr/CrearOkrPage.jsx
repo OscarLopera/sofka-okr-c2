@@ -1,168 +1,169 @@
-import { useState, React } from "react";
-import { Form, FormGroup} from "reactstrap";
-import {getOkrs} from '../../../application/selectors/okr/okr';
-import {bindActionCreators} from "redux";
+import { useState, React, useEffect } from "react";
+import { Form, FormGroup, Row, Col } from "reactstrap";
+import { getOkrs } from '../../../application/selectors/okr/okr';
+import { getVerticals, getUser } from "../../../application/selectors/administration/user";
+import { bindActionCreators } from "redux";
 import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
-import {connect} from "react-redux";
+import { loadingVerticals, loginUser } from "../../../application/actions/administration/user";
+import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
 
-const CrearOkrPage = ({ addOkrs, history }) => {
+const CrearOkrPage = ({ addOkrs, history, loadingVerticals, user, vertical, loginUser }) => {
 
-  const [objective, setObjective] = useState("");
-  const [title, setTitle] = useState("");
-  const [managerId, setManagerId] = useState("");
-  const [description, setDescription] = useState("");
-  const [areaInCharge, setAreaInCharge] = useState("");
-  
+    useEffect(() => {
+        loadingVerticals()
+        loginUser()
+    }, [loadingVerticals, loginUser])
 
-  const okrCreateSubmit = (event) => {
-    event.preventDefault();
-    const okrObject = {
-      objective: objective,
-      title: title,
-      managerId: managerId,
-      description: description,
-      verticalId: areaInCharge
+    const [objective, setObjective] = useState("");
+    const [title, setTitle] = useState("");
+    const [managerId, setManagerId] = useState("");
+    const [description, setDescription] = useState("");
+    const [areaInCharge, setAreaInCharge] = useState("");
+
+
+    const okrCreateSubmit = (event) => {
+        event.preventDefault();
+        const okrObject = {
+            objective: objective,
+            title: title,
+            managerId: managerId,
+            description: description,
+            verticalId: areaInCharge
+        };
+        addOkrs(okrObject);
+        alert("Se agrego el OKR Correctamente");
+
     };
-    addOkrs(okrObject);
-    alert("add publication success");
-    
-  };
 
-  return (
-    <div className="container">
-      <div className="card text-center shadow">
-        <div className="create text-center form-floating mb-3">
-          <h1>Agregar OKR</h1>
-          <Form onSubmit={okrCreateSubmit}>
-            <FormGroup>
-              <label for="floatingInput" className={"m-3"}>Objetivo</label>
-              <input
-                type={"text"}
-                required="required"
-                minLength="2"
-                maxLength="20"
-                placeholder={"Ingresa tu objetivo"}
-                className={"form-control text-center"}
-                value={objective}
-                onChange={(event) => setObjective(event.target.value)}
-              />
-            </FormGroup>
-            <FormGroup>
-              <label className={"m-3"}>Titulo</label>
-              <input
-                type={"text"}
-                required="required"
-                minLength="4"
-                maxLength="20"
-                placeholder={"Ingresa el titulo de tu Okr"}
-                className={"form-control text-center"}
-                value={title}
-                onChange={(event) => setTitle(event.target.value)}
-              />
-            </FormGroup>
-           
-            <FormGroup>
-              <label className={"m-3"}>Descripcion</label>
-              <textarea name="description" className={"form-control text-center"} id="description" cols="58" placeholder={"Aqui puede agregar una descripcion mas detallada de su OKR"} rows="3" value={description}  required="required" onChange={(event) => setDescription(event.target.value)}/>
-              {/*<input
-                type={"text"}
-                required="required"
-                minLength="4"
-                maxLength="20"
-                placeholder={"Descripcion"}
-                className={"form-control text-center"}
-                value={description}
-                onChange={(event) => setDescription(event.target.value)}
-              />*/}
-            </FormGroup>
-            <FormGroup>
-              <label className={"m-3"}>Area Encargada</label>
-            {  /*<input
-                type={"text"}
-                required="required"
-                minLength="4"
-                maxLength="20"
-                placeholder={"Area Encargada"}
-                className={"form-control text-center"}
-                value={areaInCharge}
-                onChange={(event) => setAreaInCharge(event.target.value)}
-  />*/}
-  
-  
-  <select className="custom-select"
-  value={areaInCharge}
-  onChange={(event => setAreaInCharge(event.target.value))}>
-  <option selected>Debes seleccionar un area de la lista</option>
-<option value="Recursos Humanos">Recursos Humanos</option>
-<option value="Desarrollo">Desarrollo</option>
-<option value="Calidad">Calidad</option>
-<option value="Gestion Ambiental">Gestion Ambiental</option>
-</select>
+    return (
+        <div className="container py-5">
+            <div className="shadow form-floating p-5">
+                <h1 className="text-center">Agregar OKR</h1>
+                <Form onSubmit={okrCreateSubmit}>
+                    <FormGroup className="d-flex flex-column my-3">
+                        <label for="floatingInput" className={"m-3 text-center"} >Objetivo</label>
+                        <input
+                            type={"text"}
+                            required="required"
+                            minLength="5"
+                            maxLength="50"
+                            placeholder={"Ingresa tu objetivo"}
+                            className={"form-control text-center"}
+                            value={objective}
+                            onChange={(event) => setObjective(event.target.value)}
+                        />
+                    </FormGroup>
+                    <FormGroup className="d-flex flex-column my-3">
+                        <label className={"m-3 text-center"}>Titulo</label>
+                        <input
+                            type={"text"}
+                            required="required"
+                            minLength="5"
+                            maxLength="50"
+                            placeholder={"Ingresa el titulo de tu Okr"}
+                            className={"form-control text-center"}
+                            value={title}
+                            onChange={(event) => setTitle(event.target.value)}
+                        />
+                    </FormGroup>
 
-            </FormGroup>
 
-            <FormGroup>
-            <label className={"m-3"}>Manager</label>
-           {/* <input
-              type={"text"}
-              required="required"
-              minLength="4"
-              maxLength="20"
-              placeholder={"Manger"}
-              className={"form-control text-center"}
-              value={managerId}
-              onChange={(event) => setManagerId(event.target.value)}
-           />*/}
-           
-           <select className="custom-select"
-                      value={managerId}
-                      onChange={(event => setManagerId(event.target.value))}>
-                      <option selected>Seleccionar un encargado de la lista</option>
-                      <option value="Jesus">Jesus</option>
-                  <option value="Brian">Brian</option>
-                  <option value="Nicolas">Nicolas</option>
-                  <option value="Nixon">Nixon</option>
-              </select>
 
-          </FormGroup>
-            
-            <FormGroup>
-              <button type="submit"
-                
-                className="btn sofka-color-btn py-1 px-4 fs-4 text-white"
-              >
-                Añadir OKR <i className="bi bi-plus-square" />
-              </button>
-            </FormGroup>
-          </Form>
+                    <FormGroup className="d-flex flex-column my-3">
+                        <label className={"m-3 text-center"}>Descripcion</label>
+                        <textarea name="description" className={"form-control text-center"} id="description" cols="58" placeholder={"Aqui puede agregar una descripcion mas detallada de su OKR"} rows="3" value={description} required="required" onChange={(event) => setDescription(event.target.value)} />
+                    </FormGroup>
+                    <Row className="row" form>
+                        <Col md={6}>
+                            <FormGroup className="d-flex flex-column my-3">
+
+
+
+                                <label className={"m-3"}>Vertical</label>
+                                <br />
+
+                                <select className="custom-select"
+                                    value={areaInCharge}
+                                    onChange={(event => setAreaInCharge(event.target.value))}>
+                                    {vertical.length &&
+                                        vertical.map((usuario) => (
+
+                                            <option key={usuario.id} value={usuario.verticalname}>{usuario.verticalname}</option>
+                                        ))}
+
+                                </select>
+
+                            </FormGroup>
+
+                        </Col>
+                        <Col md={6}>
+
+                            <FormGroup className="d-flex flex-column my-3">
+
+
+
+                                <label className={"m-3"}>Encargado</label>
+                                <br />
+
+
+                                <select className="custom-select"
+                                    value={managerId}
+                                    onChange={(event => setManagerId(event.target.value))}>
+                                    {vertical.length &&
+                                        vertical.map((usuario) => (
+
+                                            <option key={usuario.id} value={usuario.verticalname}>{usuario.verticalname}</option>
+                                        ))}
+
+                                </select>
+
+
+                            </FormGroup>
+
+                        </Col>
+                    </Row>
+
+                    <FormGroup className="d-flex flex-column my-3">
+                        <div className="d-flex py-3">
+                            <button type="submit"
+
+                                className="sofka-color-btn py-2 px-4 fs-6 m-auto text-white">Agregar OKR
+                            </button>
+                        </div>
+                    </FormGroup>
+                </Form>
+
+            </div>
+
+            <div>
+
+            </div>
         </div>
-      </div>
-
-      <div>
-      
-      </div>
-    </div>
-  );
+    );
 };
 
 
 const mapStateToProps = (state) => {
-  return {
-      okr: getOkrs(state),
-     
-  }
+    return {
+        okr: getOkrs(state),
+        user: getUser(state),
+        vertical: getVerticals(state),
+
+    }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-     
-      addOkrs,      
-      deleteOkrs,
-     
-     
-  }, dispatch);
+    return bindActionCreators({
+
+        addOkrs,
+        deleteOkrs,
+        loadingVerticals,
+        loginUser
+
+
+    }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps) (CrearOkrPage);
+export default connect(mapStateToProps, mapDispatchToProps)(CrearOkrPage);
 
