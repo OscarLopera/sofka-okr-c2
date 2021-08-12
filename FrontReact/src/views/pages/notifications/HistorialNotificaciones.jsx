@@ -14,7 +14,7 @@ const HistorialNotificaciones= ({gethistory,stateIdUser,initialstate})=> {
     return (
         <div>
             <h1 className="text-center pt-3 pb-4">Historial de notificaciones</h1>
-            {initialstate.historynotify.length &&
+            {initialstate.historynotify && initialstate.historynotify.length &&
                     initialstate.historynotify.map(noti => {
                         return <div>
                             <p className="text-center">🟠   {noti.message} - {noti.date}</p>
