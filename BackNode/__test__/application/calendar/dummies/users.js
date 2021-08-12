@@ -22,7 +22,6 @@ const usersDummies = [
       },
 ]
 
-
 const userError = [{
        _id: "610de277a6663b52ac859fdb",
         name: "",
