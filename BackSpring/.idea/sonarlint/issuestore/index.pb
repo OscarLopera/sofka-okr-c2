@@ -7,5 +7,3 @@ e
 5infrastructure/entry-points/reactive-web/build.gradle,d\2\d2966ebb4a871b9e47f007eda52fcb7496f1f099
 K
 domain/usecase/build.gradle,5\c\5c96f00951402a7edbeee4b1e86a7559aab6e245
-”
-dinfrastructure/entry-points/reactive-web/src/main/java/co/com/sofka/okr/c2/api/config/WebConfig.java,d\7\d7a4520db6159fad49b8e484aa76bddd8b62cdfa
