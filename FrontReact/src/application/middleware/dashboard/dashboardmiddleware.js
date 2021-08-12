@@ -9,6 +9,8 @@ import{
     getAllOkrsFailure,
     getOkrCompletedSuccess,
     getOkrCompletedFailure,
+    getOkrProgressSuccess,
+    getOkrProgressFailure,
 } from '../../actions/dashboard/index';
 import {OKRConstanst} from '../../types/dashboard/constants';
 
@@ -72,6 +74,19 @@ const getOkrCompletedFlow = ({api}) => ({dispatch}) => next => async(action) => 
             dispatch(getOkrCompletedFailure(error))
         }
     }
+}
+
+const getOkrProgressFlow = ({api}) => ({dispatch}) => next => async(action) => {
+    next(action);
+    if(action.type === OKRConstanst.GET_OKR_PROGRESS){
+        try{
+            const okrs = await api.dashboard.getOkrProgressFlow(action.payload)
+            dispatch(getOkrProgressSuccess(okrs))
+        }catch(error){
+            dispatch(getOkrProgressFailure(error))
+        }
+    }
+
 }
 
 const middlewareOKRs = [
