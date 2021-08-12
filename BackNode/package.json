@@ -6,7 +6,8 @@
   "scripts": {
     "start": " node infrastructure/server/server.js ",
     "dev": " nodemon infrastructure/server/server.js ",
-    "test": "jest --watch"
+    "test": "jest --verbose --silent",
+    "test:watch": "npm run test -- --watch"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +20,8 @@
     "jest": "^27.0.6",
     "mongoose": "^5.13.5",
     "nodemon": "^2.0.12"
+  },
+  "devDependencies": {
+    "supertest": "^6.1.5"
   }
 }
