@@ -5,8 +5,8 @@ import { CircularProgressbar } from "react-circular-progressbar";
 function StateOkrs() {
   return (
     <div className="row">
-      <div className="col-3"></div>
-      <div className="col-7">
+      <div className="col-2"></div>
+      <div className="col-8">
         <ul class="nav nav-tabs justify-content-center">
           <li class="nav-item">
             <Link class="nav-link" to="/userdash">
@@ -25,37 +25,28 @@ function StateOkrs() {
           </li>
         </ul>
         <br />
-        <h1>Okrs Completados | Progreso</h1>
-        <div className="card-group">
-           <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Titulo del Okr</h5>
-            <CircularProgressbar value="60" text="60%" />
-            <button className="btn btn-warning">
-              Ver info
-            </button>
-          </div>
+        <h1 className="text-center">Okrs Completados | Progreso</h1>
+        <div className="row row-cols-1 row-cols-md-2 g-4">
+          <div className="col">
+            <div className="card">
+              <div className="card-header">
+                <img
+                  src="https://miro.medium.com/max/735/1*6PNh95LDUuIzyj5MlY5L7Q.jpeg"
+                  className="card-img-top"
+                  alt="..."
+                />
+              </div>
+              <div className="card-body">
+                <p className="card-title">Titulo de Okrs</p>
+                <CircularProgressbar value="60" text="60%" />
+              </div>
+              <div class="card-footer">
+                <button class="btn btn-dark">Ver OKR</button>
+              </div>
             </div>
-                       <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Titulo del Okr</h5>
-            <CircularProgressbar value="50" text="60%" />
-            <button className="btn btn-warning">
-              Ver info
-            </button>
           </div>
-            </div>
-                       <div className="card">
-          <div className="card-body">
-            <h5 className="card-title">Titulo del Okr</h5>
-            <CircularProgressbar value="50" text="60%" />
-            <button className="btn btn-danger">
-              Ver info
-            </button>
-          </div>
-            </div>
         </div>
-        </div>
+      </div>
       <div className="col-2"></div>
     </div>
   );
