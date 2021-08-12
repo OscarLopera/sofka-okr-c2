@@ -8,17 +8,17 @@ import { getUser } from '../../../application/selectors/administration/user';
 const HistorialNotificaciones= ({gethistory,stateIdUser,initialstate})=> {
 
     useEffect(() => {
-        gethistory("611169b3a62cf558eff7a231")
+        gethistory(stateIdUser.userId)
     }, [gethistory])
     
     return (
         <div>
-            <h1>Historial</h1>
+            <h1 className="text-center pt-3 pb-4">Historial de notificaciones</h1>
             {initialstate.historynotify.length &&
                     initialstate.historynotify.map(noti => {
-                        return <li>
-                            <h5>{noti.message}</h5>
-                        </li>
+                        return <div>
+                            <p className="text-center">🟠   {noti.message} - {noti.date}</p>
+                        </div>
                     })
                 }
         </div>

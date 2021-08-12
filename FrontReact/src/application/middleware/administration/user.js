@@ -1,4 +1,5 @@
 import * as actions from '../../actions/administration/user';
+import { gethistory } from '../../actions/notifications';
 import * as types from '../../types/administration/user';
 
 const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action) => {
@@ -33,6 +34,7 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
 
             } else{
                 vertical = await api.user.getVertical(user.verticalId);
+                dispatch(gethistory(userId))
             }
             
             const userDataBase = {
