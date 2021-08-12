@@ -186,7 +186,7 @@ describe('Get users by name with Regex', () => {
         let name = "j"
         
         await userRecommendationByName(name,mockUserRepository).catch(error => {
-            expect(error).toEqual(new Error("the rol field cannot be empty or null"))
+            expect(error).toEqual(new Error("the role field cannot be empty or null"))
         })
     })
 
@@ -197,7 +197,7 @@ describe('Get users by name with Regex', () => {
         let name = "j"
         
         await userRecommendationByName(name,mockUserRepository).catch(error => {
-            expect(error).toEqual(new Error("the rol field cannot be empty or null"))
+            expect(error).toEqual(new Error("the role field cannot be empty or null"))
         })
     })
 })

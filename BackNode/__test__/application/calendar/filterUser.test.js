@@ -30,8 +30,8 @@ describe('Get users by OKR id', () => {
         expect(users[0].urlPhoto).toEqual("https://lh3.googleusercontent.com/ogw/ADea4I5m38rsb3mMMr0Lnosn5W_3JFp5Rx2ErzzkRTOD=s32-c-mo")
         expect(users[0].phone).toEqual("12345678")
         expect(users[0].firstTime).toEqual(true)
-        expect(users[0].verticalId).toEqual(true)
-        expect(users[0].rol).toEqual("prfsd165f1s56dueba")
+        expect(users[0].verticalId).toEqual("prfsd165f1s56dueba")
+        expect(users[0].rol).toEqual("estudiante")
     })
 
     test('should bring a void list',async () => {
