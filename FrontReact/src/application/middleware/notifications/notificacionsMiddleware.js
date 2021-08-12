@@ -31,6 +31,7 @@ const GetHistoryNotify = ({ api }) => ({ dispatch }) => next => async (action) =
     if (action.type === "OBTENER_HISTORIAL_NOTIFICACIONES") {
         try {
             const history = await api.notifications.getHistoryNotifications(action.payload)
+            console.log(history)
             localStorage.setItem("historynotify", JSON.stringify(history))
             dispatch(gethistorysuccess(history))
         } catch (error) {

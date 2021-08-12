@@ -1,7 +1,11 @@
-import React from "react";
+import React,{useEffect} from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { getUser } from "../../application/selectors/administration/user";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+//importacion socket
+import socket from "../../infrastructure/services/api/notifications/socket";
 // import "../assets/styles/administration/index.css";
 // Importación componentes
 
@@ -22,16 +26,25 @@ import DashboardUserPage from "../pages/dashboard/DashboardUserPage";
 import CalendarPage from "../pages/calendar/CalendarPage";
 import AdministrationPage from "../pages/administration/AdministrationPage";
 import UserPage from "../pages/administration/UserPage";
-
 import "../assets/styles/administration/App.scss";
 import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
 import HistorialNotificaciones from "../pages/notifications/HistorialNotificaciones";
 
+//importacion historial de notificaciones
+import { gethistory } from "../../application/actions/notifications";
+
 //import moment from "moment";
 
-const App = ({user}) => {
+const App = ({user,gethistory}) => {
+
+  useEffect(() => {
+    socket.on(user.userId,()=>{
+      gethistory(user.userId)
+    })
+  }, [gethistory,user.userId])
+
+
   return (
-    
     <Router>
       <Navbar />
       <Switch>
@@ -52,11 +65,18 @@ const App = ({user}) => {
   );
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+      { gethistory  }, dispatch
+
+  );
+};
+
 const mapStateToProps = (state) => {
   return {
     user: getUser(state)
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps,mapDispatchToProps)(App);
 
