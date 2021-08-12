@@ -1,6 +1,7 @@
 import { fireEvent, render } from "@testing-library/react";
-import EventItemComponent from "../../components/calendar/EventItemComponent"
+import {EventItemComponent} from "../../components/calendar/EventItemComponent"
 import {eventsDummy} from "./CalendarComponent.test";
+import '@testing-library/jest-dom'
 
 describe('Event Items component test', () => {
     test('testing delete button component', () => {
@@ -19,5 +20,13 @@ describe('Event Items component test', () => {
         fireEvent.click(buttonDeleteEvent);
 
         expect(DeleteEvent).toHaveBeenCalledWith('ululbsrf6lshff5iaeq90vltad', dummyToken)
+    })
+    test('testing event item component with length = 0', () => {
+
+        const { getByText } = render(
+            <EventItemComponent events={[]} />
+        )
+
+        expect(getByText("No hay elementos")).toBeInTheDocument()
     })
 })
