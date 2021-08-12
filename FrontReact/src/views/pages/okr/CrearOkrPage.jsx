@@ -36,7 +36,6 @@ const CrearOkrPage = ({
   const [description, setDescription] = useState("");
   const [areaInCharge, setAreaInCharge] = useState("");
   const [KrVisible, setKrVisible] = useState(false);
-  const [formState, setFormState] = useState("");
 
   const okrCreateSubmit = (event) => {
     event.preventDefault();
@@ -150,7 +149,7 @@ const CrearOkrPage = ({
                 type={"text"}
                 required="required"
                 placeholder={"Ingresa el nombre"}
-                // className={"form-control text-center"}
+                className={"form-control"}
                 value={managerName}
                 onChange={(event) => handleChange(event.target.value)}
                 list="data"  />
@@ -224,8 +223,6 @@ const CrearOkrPage = ({
           </FormGroup>
         </Form>
       </div>
-
-      <div></div>
     </div>
   );
 };
