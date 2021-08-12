@@ -1,5 +1,6 @@
-import {CalendarAddComponent} from "../../components/calendar/CalendarAddComponent";
-import {fireEvent, render} from "@testing-library/react";
+import { CalendarAddComponent } from "../../components/calendar/CalendarAddComponent";
+import { fireEvent, render } from "@testing-library/react";
+
 
 const dummyEvent = {
     summary: "OKR",
@@ -15,17 +16,18 @@ const dummyEvent = {
     conferenceData: {
         createRequest: {
             requestId: "sample13",
-            conferenceSolutionKey: {type: "hangoutsMeet"}
+            conferenceSolutionKey: { type: "hangoutsMeet" }
         },
     },
-    attendees: [],
+    attendees:[{email: "sebas99cano@gmail.com",},
+   ],
     reminders: {
         useDefault: "useDefault",
     },
     sendUpdates: "all"
 }
 
-describe('calendar add component test',() => {
+describe('calendar add component test', () => {
 
     test('testing add button component', () => {
 
@@ -33,17 +35,19 @@ describe('calendar add component test',() => {
 
         const dummyToken = "token";
 
-        const {getByTestId} = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken}/>
+        const { getByTestId } = render(
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} />
         )
 
         const inputDescription = getByTestId("input-test-descriptionAddEvent")
 
         const inputTimeStart = getByTestId("input-test-timeStart")
 
-        const inputTimeEnd= getByTestId("input-test-timeEnd")
+        const inputTimeEnd = getByTestId("input-test-timeEnd")
 
-        const inputDate= getByTestId("input-test-date")
+        const inputDate = getByTestId("input-test-date")
+
+        const inputExternal= getByTestId("input-test-external")
 
         const buttonAddEvent = getByTestId("btn-test-addEvent")
 
@@ -51,17 +55,19 @@ describe('calendar add component test',() => {
 
         fireEvent.click(buttonOpenModalAddEvent);
 
-        fireEvent.change(inputDate,{target:{value:"2021-08-13"}})
+        fireEvent.change(inputDate, { target: { value: "2021-08-13" } })
 
-        fireEvent.change(inputTimeStart,{target:{value:"20:43"}})
+        fireEvent.change(inputTimeStart, { target: { value: "20:43" } })
 
-        fireEvent.change(inputTimeEnd,{target:{value:"20:43"}})
+        fireEvent.change(inputTimeEnd, { target: { value: "20:43" } })
 
-        fireEvent.change(inputDescription,{target:{value:"new description"}});
+        fireEvent.change(inputDescription, { target: { value: "new description" } });
+
+        fireEvent.change(inputExternal,{target:{value:"sebas99cano@gmail.com"}});
 
         fireEvent.click(buttonAddEvent);
 
-        expect(AddEvent).toHaveBeenCalledWith(dummyEvent,dummyToken)
+        expect(AddEvent).toHaveBeenCalledWith(dummyEvent, dummyToken)
     })
 
     test('testing cancel button in add event', () => {
@@ -69,8 +75,8 @@ describe('calendar add component test',() => {
 
         const dummyToken = "token";
 
-        const {getByTestId} = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken}/>
+        const { getByTestId } = render(
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} />
         )
         const buttonCancelEvent = getByTestId("btn-test-cancelEvent")
 
@@ -80,7 +86,7 @@ describe('calendar add component test',() => {
 
         fireEvent.click(buttonOpenModalAddEvent);
 
-        fireEvent.change(inputDescription,{target:{value:"new description"}});
+        fireEvent.change(inputDescription, { target: { value: "new description" } });
 
         fireEvent.click(buttonCancelEvent);
 
