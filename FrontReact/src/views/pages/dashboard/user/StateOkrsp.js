@@ -13,7 +13,7 @@ import { getOkrProgress } from "../../../../application/actions/dashboard/index"
 
 function StateOkrsp({getOkrProgress,okrs}) {
 
-    const idUser = "6114bf415f29ff49b805d9dc";
+    const idUser = "61157aaca2605b535bfab3ab";
 
     useEffect(() => {
     getOkrProgress(idUser);
