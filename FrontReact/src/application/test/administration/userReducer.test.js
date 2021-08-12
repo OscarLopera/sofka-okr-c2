@@ -13,7 +13,7 @@ describe("reducer user test functions", () => {
     user: {
       userId: 'duBJ1kLZHPg1TRNNMilrCG3Nl0J2',
       userName: 'Diego Vélez',
-      userEmail: 'vegodiego@hotmail.com',
+      userEmail: 'vegodiego@mail.com',
       userImage: 'https://lh3.googleusercontent.com/a-/AOh14Gj7uZNPmXxUq75fXmElWOoIYVGluejFdU4y5VjiMA=s96-c',
       userPhone: '0000000',
       firstTime: true,
