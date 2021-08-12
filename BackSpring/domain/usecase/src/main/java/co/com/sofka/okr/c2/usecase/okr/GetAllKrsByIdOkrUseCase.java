@@ -11,7 +11,7 @@ public class GetAllKrsByIdOkrUseCase {
     private final KRSRepository repository;
 
     public Flux<KRS> execute(String id){
-        return repository.listKr(id);
+        return repository.listKr(id).onErrorResume(e-> Flux.just(new KRS()));
     }
 
 }

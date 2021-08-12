@@ -28,6 +28,13 @@ public class OKRSDTO {
         this.krs = krs;
     }
 
+    public OKRSDTO(String id, String title, String managerId, String description) {
+        this.id = id;
+        this.title = title;
+        this.managerId = managerId;
+        this.description = description;
+    }
+
     public OKRSDTO() {
     }
 

@@ -146,7 +146,20 @@ public class Handler {
 
 
     public Mono<OKRSDTO> getLastOkr(String id){
-        return getLastOkrUseCase.execute(id).map(mapperOKRDTO.okrToDto()).defaultIfEmpty(new OKRSDTO()).last();
+        return getLastOkrUseCase.execute(id).last().flatMap(list->{
+            if (list.getId()== null){
+                return Mono.just(new OKRSDTO());
+            }
+            Mono<OKRSDTO> response = getAllKrsByIdOkrUseCase.execute(list.getId().getValue()).buffer().flatMap(it ->{
+                if (it.get(0).getIdOkr() == null) {
+                    list.setKrs(new ArrayList<>());
+                } else {
+                    list.setKrs(it);
+                }
+                return Mono.just(list);
+            }).next().map(mapperOKRDTO.okrsToOkrDto());
+            return response;
+        });
     }
 
 }
