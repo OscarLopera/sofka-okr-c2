@@ -21,7 +21,7 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
             
             if(user.firstTime){
                 const userFirebase = {
-                    id: userId,
+                    userId: userId,
                     name: userName,
                     email: userEmail,
                     urlPhoto: userImage,
@@ -35,9 +35,7 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                 await api.notifications.createNotificationsManager({userId:userId})
 
             } else{
-                console.log("eNTRO QUI");
                 vertical = await api.user.getVertical(user.verticalId);
-                
             }
             dispatch(gethistory(userId))
             
@@ -102,7 +100,7 @@ const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
             const user = action.payload;
 
             const userInfo = {
-                id: user.userId,
+                userId: user.userId,
                 name: user.userName,
                 email: user.userEmail,
                 urlPhoto: user.userImage,
