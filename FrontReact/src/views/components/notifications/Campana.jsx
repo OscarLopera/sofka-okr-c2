@@ -20,12 +20,21 @@ const Campana = ({ initialstate }) => {
                             <i className="icon_cog1">⚙️</i>
                         </a>
                     </div>
-                    {initialstate.historynotify !== "este usuario no existe" && initialstate.historynotify.length &&
+                    
+                    {initialstate.historynotify !== "este usuario no existe" && initialstate.historynotify.length !== 0  &&
+                    <>{ initialstate.historynotify.length >= 2 &&
                         <><Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 1]} />
                             <Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 2]} />
 
-                        </>
+                        </>}
+                        {initialstate.historynotify.length === 1 &&
+                        <Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 1]} />}</>
                     }
+                    {
+                        initialstate.historynotify.length === 0 &&
+                        <p>Usted no tiene notificaciones</p>
+                    }
+                
 
                     <div className="NotificationsFooter text-center">
                         <a onClick={() => { history.push("/historialnotificaciones") }}>
