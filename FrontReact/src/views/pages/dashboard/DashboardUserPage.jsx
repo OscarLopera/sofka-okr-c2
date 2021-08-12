@@ -32,8 +32,8 @@ const DashboardUserPage = ({
 }) => {
   const [idokr, setidokr] = useState("");
   //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "6115453d6d583f63600cc43a";
-  const idlast = "6115453d6d583f63600cc43a";
+  const idUser = "61157aaca2605b535bfab3ab";
+  const idlast = "61157aaca2605b535bfab3ab";
   //const idUser = "611461004b98615d2dc035f2";
   //const idlast = "611461004b98615d2dc035f2";
   useEffect(() => {
@@ -63,18 +63,17 @@ const DashboardUserPage = ({
                 </Link>
               </li>
               <li class="nav-item">
-                <Link class="nav-link" to="/statedashokrsp">
+                <Link class="nav-link" to="/statedashokrs">
                   En progreso
                 </Link>
               </li>
             </ul>
-            {/* <h1>Mis OKRs</h1> */}
             <select
               style={{
                 width: "70%",
                 height: "34px",
                 marginTop: "11px",
-                borderRadius: "5px",
+                borderRadius: "5px"
               }}
               name="idokr"
               value={idokr}

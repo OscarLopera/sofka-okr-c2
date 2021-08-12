@@ -1,5 +1,6 @@
 import React from 'react';
 import { CircularProgressbar } from "react-circular-progressbar";
+import { Link } from "react-router-dom";
 
 function UserOkrItems({ kr }) {
     console.log("prueba", kr)

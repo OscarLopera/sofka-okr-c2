@@ -28,17 +28,19 @@ return (
     <div>
     
       <div>
-            <table className="table"style={{padding:"5px"}}>
+            <table >
               <thead>
-                <tr>
-                  <th scope="col">Titulo</th>
-                  <th scope="col">Descripcion</th>
-                  <th scope="col">objetivo</th>
-                  <th scope="col">Progreso</th>
+                <tr className="table"style={{
+                backgroundColor:"#050531", color:"#ffffff"}}>
+                  <th style={{padding:"10px"}}scope="col">Titulo</th>
+                  <th style={{padding:"10px"}}scope="col">Descripcion</th>
+                  <th style={{padding:"10px"}} scope="col">objetivo</th>
+                  <th style={{padding:"10px"}}scope="col">Progreso</th>
                 </tr>
+                <br/>
               </thead>
               <tbody>
-                <tr>
+                <tr style={{fontSize:"5px", margin:"5px"}}>
                   <td>{title}</td>
                   <td>{description}</td>
                   <td>{objective}</td>
@@ -50,18 +52,22 @@ return (
                         />
                       </div>
                     </td>
+                   
                   
                 </tr>
+                <br/>
+                <br/>
               </tbody>
             </table>
             <table className="table">
               <thead>
-                <tr>
+                <tr style={{
+                backgroundColor:"#050531", color:"#ffffff"}}>
                   <th scope="col">Titulo</th>
                   <th scope="col">Descripcion KR</th>
-                  <th scope="col">Fecha de Inicio</th>
+                  <th scope="col">Fecha  Inicio</th>
                   <th scope="col">Fecha Final</th>
-                  <th scope="col">Porcentaje OKR</th>
+                  <th scope="col">PesoOKR</th>
                   <th scope="col">Progreso</th>
                 </tr>
               </thead>

@@ -90,3 +90,18 @@ export const getOkrProgressFailure = (error) => ({
     type: OKRConstanst.GET_OKR_PROGRESS_FAILURE,
     payload: error
 })
+
+export const getOkrId = (id) => ({
+    type: OKRConstanst.GET_OKR_ID,
+    payload: id
+});
+
+export const getOkrIdSuccess = (id) => ({
+    type: OKRConstanst.GET_OKR_ID_SUCCESS,
+    payload: id
+});
+
+export const getOkrIdFailure = (error) => ({
+    type: OKRConstanst.GET_OKR_ID_FAILURE,
+    payload: error
+});

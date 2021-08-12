@@ -6,6 +6,7 @@ const initialState ={
     OKRsAll:[],
     OKRs:[],
     OKR:null,
+    idOkr:null,
     error:null,
     loading:false
 };
@@ -48,6 +49,12 @@ const dashboardReducer = (state=initialState,action) =>{
             return{...state, loading:false, OKRProgress:action.payload};
         case OKRConstanst.GET_OKR_PROGRESS_FAILURE:
             return{...state, loading:false, error:action.payload};
+        case OKRConstanst.GET_OKR_ID:
+            return{...state, loading:true}
+        case OKRConstanst.GET_OKR_ID_SUCCESS:
+            return{...state, loading:false,idOkr:action.payload}
+        case OKRConstanst.GET_OKR_ID_FAILURE:
+            return{...state, loading:false, error:action.payload}
         default:
             return state;
     }

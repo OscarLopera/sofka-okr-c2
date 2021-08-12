@@ -3,7 +3,8 @@ import * as types from '../../types/administration/user';
 const initialState = {
     user: JSON.parse(localStorage.getItem('user')),
     error: null,
-    verticals:[]
+    verticals:[],
+    questions:[]
 };
 
 const reducer = (state = initialState, action) => {
@@ -15,7 +16,7 @@ const reducer = (state = initialState, action) => {
         case types.LOGOUT_SUCCESS: 
             return {...state, user: null, error: null };
         case types.LOGOUT_FAILURE:
-            return {...state, user: null, error: action.payload };
+            return {...state, error: action.payload };
         case types.CLOSE_WELCOME_SUCCESS: 
             return {...state, user: action.payload, error: null};
         case types.LOADING_VERTICALS_SUCCESS: 
@@ -26,6 +27,10 @@ const reducer = (state = initialState, action) => {
             return {...state, user: action.payload, error: null };
         case types.UPDATE_USER_FAILURE:
             return {...state, error: action.payload };
+        case types.LOADING_QUESTIONS_SUCCESS:
+            return {...state, questions: action.payload, error: null};
+        case types.LOADING_QUESTIONS_FAILURE:
+            return {...state, questions: [], error: action.payload };
         default:
             return state;
     }
