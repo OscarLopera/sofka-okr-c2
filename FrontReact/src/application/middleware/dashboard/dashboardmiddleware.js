@@ -37,7 +37,7 @@ const loadingOKRidFlow = ({api}) => ({dispatch}) => next => async(action) =>{
             const okr = await api.dashboard.loadingOKRid(action.payload)
             dispatch(loadingOKRidSuccess(okr))
         } catch (error) {
-            dispatch(loadingOKRidFailure(error))     
+            dispatch(loadingOKRidFailure(error.message))     
         }
     }
 }
@@ -49,8 +49,7 @@ const getidOKRLastFlow = ({api}) => ({dispatch}) => next => async (action) => {
             const okr = await api.dashboard.getidOKRLast(action.payload)
             dispatch(getidOkrLastSuccess(okr))
         } catch (error) {
-            dispatch(getidOkrLastFailure(error)) 
-            console.log("Error",error, "id", action.payload);    
+            dispatch(getidOkrLastFailure(error.message))   
         }
     }
 }
@@ -62,7 +61,7 @@ const getAllOkrsFlow = ({api}) => ({dispatch}) => next => async(action) => {
             const okrs = await api.dashboard.getAllOkrs(action.payload)
             dispatch(getAllOkrsSuccess(okrs))
         }catch(error) {
-            dispatch(getAllOkrsFailure(error))
+            dispatch(getAllOkrsFailure(error.message))
         }
     }
 }

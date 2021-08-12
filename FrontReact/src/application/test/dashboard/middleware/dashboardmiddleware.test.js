@@ -6,6 +6,9 @@ import {
   loadingOKRid,
   loadingOKRidSuccess,
   loadingOKRidFailure,
+  getidOKRLast,
+  getidOkrLastSuccess,
+  getidOkrLastFailure
 
 } from "../../../actions/dashboard/index.js";
 
@@ -39,13 +42,13 @@ describe("Middleware Test Dashboard", () => {
     },
   ];
 
-    const dummyListidOKRs = [
+    const dummyListidOKR = [
     {
       id:1,
       objetivo:"Un objetivo de un usuario",
       title:"Titulo del OKR",
       description:"Descripcion del OKR",
-      managerId:"1245",
+      managerId:"61106133609d16f1740ddf34",
       areainCharge:"Agile services",
       progress:80,
       krs:[
@@ -65,21 +68,26 @@ describe("Middleware Test Dashboard", () => {
     }
   ];
 
+ 
+
   const idUser = "61106133609d16f1740ddf34";
   const idOkr = "611061c6609d16f1740dd222";
 
   const api = {
     dashboard: {
-      loadingOKR: (idUser) => {
+      loadingOKR: () => {
         return dummyListOKRs;
       },
+      getidOKRLast : () => {
+        return dummyListOKR;
+      }, 
     },
   };
 
   const dispatch = jest.fn();
   const next = jest.fn();
 
-  const [loadingOKRFlow,loadingOKRidFlow] = dashboardmiddleware;
+  const [loadingOKRFlow,loadingOKRidFlow,getidOKRLastFlow] = dashboardmiddleware;
 
   const action = loadingOKR(idUser);
 
@@ -109,10 +117,44 @@ describe("Middleware Test Dashboard", () => {
 
   //Test por id OKR
   test("Test Functional idOKR", async () => {
-   await loadingOKRidFlow({ api })({ dispatch })(next)(action);
+   await loadingOKRidFlow({ api })({dispatch})(next)(action);
     expect(next).toHaveBeenCalledWith(action);
   });
 
+  // test("Test Happy idOKR", async () =>{
+  //   await loadingOKRidFlow({api})({dispatch})(next)(action);
+  //   expect(dispatch).toHaveBeenCalledWith(loadingOKRidSuccess(dummyListidOKR));
+  // });
+
+  test("Test failure idOKR", async() =>{
+    const api = {
+      dashboard: {
+        loadingOKRid: (idUser) => {
+          throw new Error ("Se ha generado un error");
+        },
+      },
+    };
+      const action = loadingOKRid(idUser);
+      await loadingOKRidFlow({ api })({ dispatch })(next)(action);
+      expect(dispatch).toHaveBeenCalledWith(loadingOKRidFailure("Se ha generado un error"));
+  });
+
+  //Test por id de usuario traer el ultimo OKR 
+
+  test("Test Functional OKRLast", async () => {
+    await getidOKRLastFlow({ api })({ dispatch })(next)(action);
+    expect(next).toHaveBeenCalledWith(action);
+  });
+
+  // test("Test Happy OKRLast", async() =>{
+  //   await getidOKRLastFlow({ api })({ dispatch })(next)(action);
+  //   expect(dispatch).toHaveBeenCalledWith(getidOkrLastSuccess(dummyListOKR));
+  // });
+
+  test("Test Failure OKRLast", async () => {
+      await getidOKRLastFlow({ api })({ dispatch })(next)(action);
+      expect(dispatch).toHaveBeenCalledWith(getidOkrLastFailure("Se ha generado un error"));
+    });
 
 })
  
