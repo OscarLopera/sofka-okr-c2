@@ -25,7 +25,7 @@ const calendarReducer = (state = initialState, action) => {
         case CalendarTypes.DELETE_EVENT:
             return { ...state, loading: true}
         case CalendarTypes.DELETE_EVENT_SUCCESS:
-            return { ...state, loading: false, events: action.payload, error: null }
+            return { ...state, loading: false, error: null }
         case CalendarTypes.DELETE_EVENT_FAILURE:
             return { ...state, loading: false, error: action.payload }
         case CalendarTypes.UPDATE_EVENT:
