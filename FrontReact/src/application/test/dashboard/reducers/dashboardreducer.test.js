@@ -9,6 +9,9 @@ import {
   getidOkrLast,
   getidOkrLastSuccess,
   getidOkrLastFailure,
+  getAllOkrs,
+  getAllOkrsSuccess,
+  getAllOkrsFailure,
 
 } from "../../../actions/dashboard/index.js";
 
@@ -205,3 +208,76 @@ describe("Test of Reducer |ultimo OKR por Usuario", () => {
     });
   });
 });
+
+describe("Test of Reducer get All Okrs", () => {
+  const dummyOKRs =[
+    {
+      "id":1,
+      "objetivo":"Un objetivo de un usuario",
+      "title":"Titulo del OKR",
+      "description":"Descripcion del OKR",
+      "managerId":"1245",
+      "areainCharge":"Agile services",
+      "progress":80,
+      "krs":[
+          {
+          "_id": {
+          "$oid": "61106343609d16f1740ddf45"
+          },
+        "idOkr": "611061c6609d16f1740ddf39",
+        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
+        "managerId": "Pepito perez",
+        "startDate": "2021/08/14",
+        "endDate": "2021/08/16",
+        "loadValue": 5,
+        "progress": 10
+        },
+        {
+          "_id": {
+          "$oid": "61106343609d16f1740dd233"
+          },
+        "idOkr": "611061c6609d16f1740dd222",
+        "description": "Socialización de la dificultades que no permitieron el alcance de objetivos",
+        "managerId": "Juanito Valenzuela",
+        "startDate": "2021/08/14",
+        "endDate": "2021/08/16",
+        "loadValue": 5,
+        "progress": 10
+        }
+      ]
+    }
+  
+  ]
+  const initialState = {
+    OKRsAll:[],
+    OKR:null,
+    error:null,
+    loading:false
+  };
+  test("Reducer GET_ALL_OKRS_SUCCESS case", () => {
+    const action = getAllOkrsSuccess(dummyOKRs);
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      OKRsAll: dummyOKRs,
+    });
+  });
+  test("Reducer LOADINGOKRIDFAILURE case", () => {
+    const action = getAllOkrsFailure("un error");
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,
+      loading: false,
+      error: "un error",
+    });
+  });
+
+    test("Reducer LOADINGOKR case", () => {
+    const action = getAllOkrs("61106343609d16f1740ddf45");
+    const state = reducer(initialState, action);
+    expect(state).toEqual({
+      ...initialState,loading:true
+    });
+  });
+})
