@@ -68,10 +68,10 @@ const getOkrCompletedFlow = ({api}) => ({dispatch}) => next => async(action) => 
     next(action);
     if(action.type === OKRConstanst.GET_OKR_COMPLETED){
         try{
-            const okrs = await api.dashboard.getOkrCompletedFlow(action.payload)
+            const okrs = await api.dashboard.getOkrCompleted(action.payload)
             dispatch(getOkrCompletedSuccess(okrs))
         }catch(error){
-            dispatch(getOkrCompletedFailure(error))
+            dispatch(getOkrCompletedFailure(error.message))
         }
     }
 }
@@ -80,10 +80,10 @@ const getOkrProgressFlow = ({api}) => ({dispatch}) => next => async(action) => {
     next(action);
     if(action.type === OKRConstanst.GET_OKR_PROGRESS){
         try{
-            const okrs = await api.dashboard.getOkrProgressFlow(action.payload)
+            const okrs = await api.dashboard.getOkrProgress(action.payload)
             dispatch(getOkrProgressSuccess(okrs))
         }catch(error){
-            dispatch(getOkrProgressFailure(error))
+            dispatch(getOkrProgressFailure(error.message))
         }
     }
 
@@ -95,6 +95,7 @@ const middlewareOKRs = [
   getidOKRLastFlow,
   getAllOkrsFlow,
   getOkrCompletedFlow,
+  getOkrProgressFlow,
 ]
 
 export default middlewareOKRs
