@@ -118,7 +118,7 @@ const OkrPage = ({ okr, loadingOKR }) => {
 
   return (
     <div className="container d-flex flex-column align-items-center py-5">
-      {okr.length === 0 ? (
+      {okrs.length === 0 ? (
         <>
           <EmptyMessage />
           <Link to="/okr/create-okr">
@@ -132,7 +132,7 @@ const OkrPage = ({ okr, loadingOKR }) => {
           </Link>
           <div className="container">
             <ul className="list-unstyled">
-              {okr.map((elem) => {
+              {okrs.map((elem) => {
                 return (
                   <li key={elem.id}>
                     <OkrCard title={elem.objective} progress={elem.title} />

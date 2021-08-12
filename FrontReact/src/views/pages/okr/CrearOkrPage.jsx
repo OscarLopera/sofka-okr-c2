@@ -135,7 +135,7 @@ const CrearOkrPage = ({
 
           {KrVisible ? (
             <>
-              <div
+              <div className="btn"
                 onClick={() => {
                   setKrVisible(false);
                 }}

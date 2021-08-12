@@ -34,6 +34,7 @@ const KrForm = ({ createKr }) => {
     <>
       <div className="container py-5">
         <div className="shadow form-floating p-5">
+        <h1 className="text-center">Agregar KR</h1>
           <Form>
             <FormGroup className="d-flex flex-column my-3">
               <Label className="my-2" for="title-kr">
