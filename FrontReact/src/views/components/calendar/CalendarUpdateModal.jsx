@@ -10,26 +10,38 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
     const currentDescription = item.description
     const currentStartTime = item.start.dateTime.substring(11, 16)
     const currentEndTime = item.end.dateTime.substring(11, 16)
-    const currentAtenders = item.attendees
-    console.log(currentAtenders)
+    let currentAtenders = item.attendees!==[] ? item.attendees : []
+    currentAtenders= currentAtenders.map(element => element.email)
+
     const [startDate, setStartDate] = useState(currentDate);
     const [description, setDescription] = useState(currentDescription);
-    const [attendees, setAttendees] = useState([]);
     const [startTime, setStartTime] = useState(currentStartTime)
     const [endTime, setEndTime] = useState(currentEndTime)
     
-    
+    const [errorEmail,setErrorEmail] =useState(false);
     const [guest,setGuest] =useState("");
-    const [guestsList, setGuestList] = useState([]);
+    const [guestsList, setGuestList] = useState(currentAtenders);
     
     const updateGuestList = () => {
+        const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        if(regexEmail.test(guest)){
         setGuestList(prevArrau=> [...prevArrau,guest]);
         setGuest('');
+        }
+        setErrorEmail(true);
+        setTimeout(function(){ 
+            setErrorEmail(false);
+        }, 3000);
     }
     const deletGuest = (item) => {
         setGuestList(guestsList.filter((element)=> item!==element));
     }
 
+    const clearData=() => {
+        setGuest("")
+        setGuestList([])
+    }
+   
 
     const updateEvent = () => {
         const eventObject = {
@@ -50,7 +62,7 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
                     conferenceSolutionKey: {type: "hangoutsMeet"}
                 },
             },
-            attendees: attendees,
+            attendees: guestsList,
             reminders: {
                 useDefault: "useDefault",
             },
@@ -112,17 +124,22 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
                             <hr className="my-4"/>
                             <label>Invitados</label>
 
-                            <input type="email" className="form-control" onChange={event =>setGuest(event.target.value)} value={guest} />
+                           {errorEmail?<label>Ingrese un correo valido</label>:<></>}
+                            <input type="email" className="form-control" placeholder="email" onChange={event =>setGuest(event.target.value)} value={guest} />
                             <a onClick={updateGuestList} className="btn btn-primary form-control"> Agregar invitado</a>
                             {
                                 guestsList.map((item, index) =>{
-                                    return <label className="border border-dark rounded bg-light" > {item} <a onClick={event=> deletGuest(item, index)} className="bi bi-x-circle">  </a> </label>
+                                    return <label 
+                                                className="border border-dark rounded bg-light" >
+                                                     {item} <a 
+                                                                onClick={event=> deletGuest(item, index)} 
+                                                                className="bi bi-x-circle"></a></label>
                                 })
                             }
-                           
                             <button type="button" 
                                     className="btn btn-secondary" 
                                     data-dismiss="modal"
+                                    onClick={event=>{clearData()}}
                             >Cancelar
                             </button>
                             <button type="submit" 
