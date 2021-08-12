@@ -8,22 +8,23 @@ import {
   getOkr,
 } from "./../../../application/selectors/dashboard/okrs";
 //Acciones
-import {
-  loadingOKR,
-  loadingOKRid,
-} from "./../../../application/actions/dashboard/index";
+import { loadingOKR,loadingOKRid,getidOkrLast } from './../../../application/actions/dashboard/index';
 //Componentes
-import Okruser from "./user/OkrsUser";
-import Barchart from "./user/BarChart";
+import Okruser from './user/OkrsUser';
+import Barchart from './user/BarChart';
 import PieChart from "./user/PieChart";
-
-const DashboardUserPage = ({ loadingOKR, okrs, loadingOKRid, okr }) => {
+const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) => {
   const [idokr, setidokr] = useState("");
-  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
+ //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
   const idUser = "6112ef6370e2131bb4730d1a";
+  const idlast = "6112ef6370e2131bb4730d1a";
+  //const idUser = "611461004b98615d2dc035f2";
+  //const idlast = "611461004b98615d2dc035f2";
   useEffect(() => {
     loadingOKR(idUser);
-  }, [loadingOKR]);
+    getidOkrLast(idlast); 
+  }, [loadingOKR])
+
 
   const handlerokrid = () => {
     loadingOKRid(idokr);
@@ -82,6 +83,7 @@ const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       loadingOKR,
+      getidOkrLast,
       loadingOKRid,
     },
     dispatch
