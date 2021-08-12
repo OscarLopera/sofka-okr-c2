@@ -44,6 +44,7 @@ class UpdateUserUseCaseTest {
                 new Rol("QA")
         );
 
+        Mockito.when(usuariosRepository.listUser(usuarios.getIdUser())).thenReturn(Mono.just(usuarios));
         Mockito.when(usuariosRepository.updateUser(any(Usuarios.class))).thenReturn(Mono.just(usuarios));
 
 
