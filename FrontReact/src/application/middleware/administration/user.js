@@ -30,13 +30,14 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                     rol: "rol"
                 }
                 await api.user.createUser(userFirebase);
-                await api.notifications.createNotificationsManager({userId:userId})
                 await api.notifications.createHistoryNotification({idUser:userId,emailUser:userEmail})
+                await api.notifications.createNotificationsManager({userId:userId})
 
             } else{
                 vertical = await api.user.getVertical(user.verticalId);
-                dispatch(gethistory(userId))
+                
             }
+            dispatch(gethistory(userId))
             
             const userDataBase = {
                 userId: userId,
