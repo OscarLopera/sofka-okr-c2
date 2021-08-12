@@ -150,7 +150,7 @@ const CrearOkrPage = ({
                 type={"text"}
                 required="required"
                 placeholder={"Ingresa el nombre"}
-                // className={"form-control text-center"}
+                className={"form-control"}
                 value={managerName}
                 onChange={(event) => handleChange(event.target.value)}
                 list="data"  />
