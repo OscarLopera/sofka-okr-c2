@@ -1,4 +1,4 @@
-import { getStatusNotifySuccess } from "../../actions/notifications";
+import { getStatusNotifySuccess,gethistorysuccess } from "../../actions/notifications";
 
 
 const GetStatusNotificationFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
@@ -20,30 +20,26 @@ const ChangeStatusNotificationFlow = ({ api }) => ({ dispatch }) => next => asyn
         try {
             const objeto = convertirarrayToObjeto(action.payload)
             await api.notifications.updateStatusNotify(objeto, action.id)
-            //dispatch(getStatusNotifySuccess(arraymail))
         } catch (error) {
             console.log(error)
         }
     }
 }
 
-const convertirarrayToObjeto2 = (array) => {
-    const arrayscreen = array
-    console.log(array)
-    const len = arrayscreen.length;
-    for (var i = 0; i < len; i++) {
-        arrayscreen[i].splice(1, 1);
+const GetHistoryNotify = ({ api }) => ({ dispatch }) => next => async (action) => {
+    next(action);
+    if (action.type === "OBTENER_HISTORIAL_NOTIFICACIONES") {
+        try {
+            const history = await api.notifications.getHistoryNotifications(action.payload)
+            dispatch(gethistorysuccess(history))
+        } catch (error) {
+            console.log(error)
+        }
     }
-    const objeto ={
-        mail:Object.fromEntries(array),
-        screen:Object.fromEntries(arrayscreen)
-    }
-
-    return objeto
-
 }
 
-const convertirarrayToObjeto = (array) => {
+
+export const convertirarrayToObjeto = (array) => {
     const objeto = {
         "mail": {
             "OkrCreated": array[0][1],
@@ -90,7 +86,8 @@ export const convertirobjetoToarray = (okr) => {
 
 const middlewareNotify = [
     GetStatusNotificationFlow,
-    ChangeStatusNotificationFlow
+    ChangeStatusNotificationFlow,
+    GetHistoryNotify
 ]
 
 export default middlewareNotify

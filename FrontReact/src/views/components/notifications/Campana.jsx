@@ -1,12 +1,11 @@
 import React from 'react';
 import Notificacion from './Notificacion';
 import '../../assets/styles/notifications/styleCampana.css';
-
-/* <button onClick={()=>{history.push("/notificaciones")}}>
-                    <i className="icon_cog1">⚙️</i>
-                  </button> */
+import { useHistory } from 'react-router';
 
 export default function Campana() {
+
+    const history = useHistory();
     return (
         <div className="notifications">
             <div className="icon_wrap"><i className="far fa-bell"/></div>
@@ -16,7 +15,7 @@ export default function Campana() {
                         <div className="TinkerbellLayout-tittle">
                             <span>Tus notificaciones</span>
                         </div>
-                        <a href="/notificaciones">
+                        <a onClick={()=>{history.push("/notificaciones")}}>
                             <i className="icon_cog1">⚙️</i>
                         </a>
                     </div>
@@ -24,8 +23,8 @@ export default function Campana() {
                     {Notificacion()}
 
                     <div className="NotificationsFooter text-center">
-                        <a href="/">
-                            <span>Ver todas ➡</span>
+                        <a  onClick={()=>{history.push("/historialnotificaciones")}}>
+                            <span className="vertodas">Ver todas ➡</span>
                         </a>
                     </div>
                 </div>
@@ -33,3 +32,5 @@ export default function Campana() {
         </div>
     )
 }
+
+
