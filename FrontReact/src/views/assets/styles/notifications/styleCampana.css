@@ -139,7 +139,7 @@
 
 .icon_cog1{
     font-style: normal !important;
-    
+    cursor: pointer;
 	width: 15px;
 	height: 15px;
 }
@@ -291,4 +291,9 @@ position: relative;
     margin: 0;
     line-height: 100%;
     font-style: normal !important;
+}
+
+.vertodas{
+  cursor: pointer;
+  color: rgb(17, 6, 68);
 }
