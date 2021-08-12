@@ -13,4 +13,6 @@ public class VerticalUseCase {
     public Flux<Vertical> execute() {
         return verticalRepository.listVertical();
     }
+
+
 }

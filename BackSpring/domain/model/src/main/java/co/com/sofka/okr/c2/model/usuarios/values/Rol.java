@@ -6,15 +6,21 @@ public class Rol {
     private final String value;
 
     public Rol(String value) {
-        this.value = Objects.requireNonNull(value,"The required user roles");
+      this.value = value;
+       /* this.value = Objects.requireNonNull(value,"The required user roles");
         if (this.value.isEmpty()){
             throw new IllegalArgumentException("the role field cannot be empty");
-        }
+        }*/
     }
 
     public String getValue() {
         return value;
     }
+
+    public static Rol of(String value){
+        return new Rol(value);
+    }
+
 
     @Override
     public boolean equals(Object o) {

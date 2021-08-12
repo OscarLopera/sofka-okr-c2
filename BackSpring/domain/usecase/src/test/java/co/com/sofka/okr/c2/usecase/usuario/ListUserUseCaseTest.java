@@ -23,9 +23,9 @@ class ListUserUseCaseTest {
     private ListUserUseCase listUserUseCase;
 
     @Test
-    @DisplayName("Happy test use case list user")
+    @DisplayName("Test use case list user")
     public void listUserHappyTest(){
-        Usuarios user = new Usuarios("xxxx",
+        Usuarios user = new Usuarios("zzzz","xxxx",
                 new Name("juan"),
                 new Email("juan0087@gmail.com"),
                 new UrlPhoto("http://imagen/data1"),
@@ -34,11 +34,11 @@ class ListUserUseCaseTest {
                 new VerticalId("zzzz"),
                 new Rol("QA"));
 
-        Mockito.when(usuariosRepository.listUser(user.getId())).thenReturn(Mono.just(user));
+        Mockito.when(usuariosRepository.listUser(user.getIdUser())).thenReturn(Mono.just(user));
 
         Mono<Usuarios> resp = listUserUseCase.execute("xxxx");
 
-        Assertions.assertEquals(resp.block().getId(),"xxxx");
+        Assertions.assertEquals(resp.block().getIdUser(),"xxxx");
         Assertions.assertEquals(resp.block().getName().getValue(),"juan");
         Assertions.assertEquals(resp.block().getRol().getValue(),"QA");
     }

@@ -10,7 +10,7 @@ public class ListUserUseCase {
 
     private final UsuariosRepository usuariosRepository;
 
-    public Mono<Usuarios> execute(String id){
-        return usuariosRepository.listUser(id);
+    public Mono<Usuarios> execute(String idUser){
+        return usuariosRepository.listUser(idUser);
     }
 }

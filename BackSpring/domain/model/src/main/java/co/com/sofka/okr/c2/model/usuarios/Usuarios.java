@@ -7,6 +7,7 @@ import lombok.Data;
 @Builder(toBuilder = true)
 public class Usuarios {
     private String id;
+    private String idUser;
     private Name name;
     private Email email;
     private UrlPhoto urlPhoto;
@@ -18,8 +19,20 @@ public class Usuarios {
     public Usuarios() {
     }
 
-    public Usuarios(String id, Name name, Email email, UrlPhoto urlPhoto, Phone phone, FirstTime firstTime, VerticalId verticalId, Rol rol) {
+    public Usuarios(String id, String idUser, Name name, Email email, UrlPhoto urlPhoto, Phone phone, FirstTime firstTime, VerticalId verticalId, Rol rol) {
         this.id = id;
+        this.idUser = idUser;
+        this.name = name;
+        this.email = email;
+        this.urlPhoto = urlPhoto;
+        this.phone = phone;
+        this.firstTime = firstTime;
+        this.verticalId = verticalId;
+        this.rol = rol;
+    }
+
+    public Usuarios(String idUser, Name name, Email email, UrlPhoto urlPhoto, Phone phone, FirstTime firstTime, VerticalId verticalId, Rol rol) {
+        this.idUser = idUser;
         this.name = name;
         this.email = email;
         this.urlPhoto = urlPhoto;
@@ -35,6 +48,14 @@ public class Usuarios {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(String idUser) {
+        this.idUser = idUser;
     }
 
     public Name getName() {

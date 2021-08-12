@@ -1,5 +1,7 @@
 package co.com.sofka.okr.c2.usecase.vertical;
 
+import co.com.sofka.okr.c2.model.preguntas.Preguntas;
+import co.com.sofka.okr.c2.model.preguntas.gateways.PreguntasRepository;
 import co.com.sofka.okr.c2.model.vertical.Vertical;
 import co.com.sofka.okr.c2.model.vertical.gateways.VerticalRepository;
 import lombok.RequiredArgsConstructor;
@@ -14,4 +16,6 @@ public class ListVerticalUseCase {
         return  verticalRepository.getVerticalById(id);
 
     }
+
+
 }
