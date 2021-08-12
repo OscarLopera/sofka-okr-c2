@@ -70,7 +70,8 @@ function StateOkrsp({getOkrProgress,okrs}) {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-    getOkrProgress
+    getOkrProgress,
+    getOkrId
     },
     dispatch
   );
