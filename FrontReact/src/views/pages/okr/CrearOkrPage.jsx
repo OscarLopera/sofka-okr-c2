@@ -5,21 +5,23 @@ import { getKrs } from "../../../application/selectors/okr/kr";
 import KrForm from "../../components/okr/KrForm";
 import { getVerticals } from "../../../application/selectors/administration/user";
 import { bindActionCreators } from "redux";
-import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
+import { loadOkrs,addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
 import { loadingVerticals } from "../../../application/actions/administration/user";
 import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
 
 const CrearOkrPage = ({
   addOkrs,
+  loadOkrs,
   history,
   loadingVerticals,
   vertical,
+  okr,
   krs,
 }) => {
   useEffect(() => {
     loadingVerticals();
-  }, [loadingVerticals]);
+  }, [loadingVerticals, loadOkrs]);
 
   const [objective, setObjective] = useState("");
   const [title, setTitle] = useState("");
@@ -122,10 +124,10 @@ const CrearOkrPage = ({
                   value={managerId}
                   onChange={(event) => setManagerId(event.target.value)}
                 >
-                  {vertical.length &&
-                    vertical.map((usuario) => (
-                      <option key={usuario.id} value={usuario.verticalname}>
-                        {usuario.verticalname}
+                  {okr.length &&
+                    okr.map((usuario) => (
+                      <option key={usuario.id} value={usuario.name}>
+                        {usuario.email}
                       </option>
                     ))}
                 </select>
@@ -188,6 +190,7 @@ const mapDispatchToProps = (dispatch) => {
       addOkrs,
       deleteOkrs,
       loadingVerticals,
+      loadOkrs
     },
     dispatch
   );
