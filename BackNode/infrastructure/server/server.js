@@ -1,6 +1,6 @@
 const config = require("../config/index");
 const app = require("../../index");
-
+const socket = require('socket.io')
 
 
 const server = app.listen(config.port, () => {
