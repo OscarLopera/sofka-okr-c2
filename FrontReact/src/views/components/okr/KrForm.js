@@ -35,7 +35,7 @@ const KrForm = ({ createKr, close }) => {
     <>
 
       <div className="form-floating p-5 pt-0 pb-1">
-        <Form>
+        <Form onSubmit={()=>handleSubmitCreateKr()} >
           <FormGroup className="formgroup">
             <h2 className="text-center text-uppercase fw-bold mb-4">
               Añadir KR
@@ -139,7 +139,8 @@ const KrForm = ({ createKr, close }) => {
           <FormGroup>
             <div className="d-flex py-3">
               <Button
-                onClick={handleSubmitCreateKr}
+              type="submit"
+                // onClick={handleSubmitCreateKr}
                 className="sofka-color-btn py-2 px-4 fs-6 m-auto"
               >
                 Agregar KR
