@@ -1,19 +1,16 @@
 package co.com.sofka.okr.c2.api;
 
 
+import co.com.sofka.okr.c2.model.usuarios.Usuarios;
 import co.com.sofka.okr.c2.model.vertical.Vertical;
 import co.com.sofka.okr.c2.usecase.preguntas.ListPreguntasUseCase;
-import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
+import co.com.sofka.okr.c2.usecase.usuario.*;
 
 import co.com.sofka.okr.c2.usecase.vertical.ListVerticalUseCase;
 import co.com.sofka.okr.c2.usecase.vertical.VerticalUseCase;
 
-import co.com.sofka.okr.c2.usecase.usuario.ListUserUseCase;
-
 
 import co.com.sofka.okr.c2.usecase.okr.*;
-import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
-import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
 import co.com.sofka.okr.c2.usecase.okr.GetAllKrsByIdOkrUseCase;
 import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
@@ -41,6 +38,7 @@ public class Handler {
     private final ListUserUseCase listUserUseCase;
     private final ListVerticalUseCase listVerticalUseCase;
     private final ListPreguntasUseCase listPreguntasUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
     private final MapperRespuestaLoginDTO respuesta;
     private final MapperUserDTO mapperUserDTO;
     private final MapperVerticalDTO mapperVerticalDTO;
@@ -140,8 +138,9 @@ public class Handler {
     }
 
     public Mono<UsuarioDTO> updateUser(UsuarioDTO usuarioDTO){
-        Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
-                .map(mapperUserDTO.toDTO());
+
+        Mono<UsuarioDTO> user = updateUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO)).map(mapperUserDTO.toDTO());
+
         return user;
     }
 

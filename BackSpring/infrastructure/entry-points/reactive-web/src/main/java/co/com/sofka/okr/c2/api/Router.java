@@ -67,10 +67,16 @@ public class Router {
                         .flatMap(usuarioDTO -> handler.updateUser(usuarioDTO)
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
-                                        .bodyValue(result))
-                        )
+                                        .bodyValue(result)))
+                        .onErrorResume(error -> {
+                            if(error instanceof IllegalAccessError){
+                                return ServerResponse.badRequest().bodyValue("Usuario no existe");
+                            }
+                            return ServerResponse.badRequest().build();
+                        })
         );
     }
+
 
     @Bean
     public RouterFunction<ServerResponse> routerGetPreguntas(Handler handler) {
@@ -81,6 +87,7 @@ public class Router {
                         .body(BodyInserters.fromPublisher(handler.listPreguntas(), PreguntasDTO.class))
         );
     }
+
     @Bean
     public RouterFunction<ServerResponse> getOKRById(Handler handler) {
         return route(GET("/api/getokrbyid/{id}").and(accept(MediaType.APPLICATION_JSON)),
