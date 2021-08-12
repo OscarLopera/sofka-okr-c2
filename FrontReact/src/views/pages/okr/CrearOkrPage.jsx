@@ -1,6 +1,8 @@
 import { useState, React, useEffect } from "react";
 import { Form, FormGroup, Row, Col } from "reactstrap";
 import { getOkrs } from '../../../application/selectors/okr/okr';
+import { getKrs } from "../../../application/selectors/okr/kr";
+import KrForm from "../../components/okr/KrForm";
 import { getVerticals, getUser } from "../../../application/selectors/administration/user";
 import { bindActionCreators } from "redux";
 import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
@@ -20,6 +22,7 @@ const CrearOkrPage = ({ addOkrs, history, loadingVerticals, user, vertical, logi
     const [managerId, setManagerId] = useState("");
     const [description, setDescription] = useState("");
     const [areaInCharge, setAreaInCharge] = useState("");
+    const [KrVisible, setKrVisible] = useState(false)
 
 
     const okrCreateSubmit = (event) => {
@@ -124,6 +127,30 @@ const CrearOkrPage = ({ addOkrs, history, loadingVerticals, user, vertical, logi
                         </Col>
                     </Row>
 
+                    {KrVisible ? (
+                        <>
+                          <div
+                            onClick={() => {
+                              setKrVisible(false);
+                            }}
+                          >
+                            ❌
+                          </div>
+                          <KrForm />
+                        </>
+                      ) : (
+                        <>
+                          <div
+                            className="border rounded p-2 btn btn-primary my-3"
+                            onClick={() => {
+                              setKrVisible(true);
+                            }}
+                          >
+                            Añadir KR
+                          </div>
+                        </>
+                      )}
+
                     <FormGroup className="d-flex flex-column my-3">
                         <div className="d-flex py-3">
                             <button type="submit"
@@ -141,14 +168,14 @@ const CrearOkrPage = ({ addOkrs, history, loadingVerticals, user, vertical, logi
             </div>
         </div>
     );
-};
 
-
+                        }
 const mapStateToProps = (state) => {
     return {
         okr: getOkrs(state),
         user: getUser(state),
         vertical: getVerticals(state),
+        krs: getKrs(state),
 
     }
 }
@@ -165,5 +192,7 @@ const mapDispatchToProps = (dispatch) => {
     }, dispatch);
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CrearOkrPage);
 
+  
+
+export default connect(mapStateToProps, mapDispatchToProps)(CrearOkrPage);

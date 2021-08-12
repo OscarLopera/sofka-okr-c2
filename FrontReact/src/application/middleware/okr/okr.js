@@ -1,76 +1,101 @@
-import {LOAD_OKRS, ADD_OKRS, UPDATE_OKRS, DELETE_OKRS} from '../../types/okr/okr';
 import {
-    loadOkrsFailure,
-    loadOkrsSuccess,
-    addOkrsSuccess,
-    addOkrsFailure,
-    updateOkrsSuccess,
-    updateOkrsFailure,
-    deleteOkrsSuccess,
-    deleteOkrsFailure, loadOkrs
-} from '../../actions/okr/okr';
+  LOAD_OKRS,
+  ADD_OKRS,
+  UPDATE_OKRS,
+  DELETE_OKRS,
+} from "../../types/okr/okr";
+import {
+  loadOkrsFailure,
+  loadOkrsSuccess,
+  addOkrsSuccess,
+  addOkrsFailure,
+  updateOkrsSuccess,
+  updateOkrsFailure,
+  deleteOkrsSuccess,
+  deleteOkrsFailure,
+  loadOkrs,
+} from "../../actions/okr/okr";
 
-const loadOkrFlow = ({api}) => ({dispatch}) => next => async (action) => {
+const loadOkrFlow =
+  ({ api }) =>
+  ({ dispatch }) =>
+  (next) =>
+  async (action) => {
     next(action);
     if (action.type === LOAD_OKRS) {
-        try {
-            const okrs = await api.okr.loadOkr()
-            dispatch(loadOkrsSuccess(okrs))
-        } catch (error) {
-            dispatch(loadOkrsFailure(error))
-        }
+      try {
+        const okrs = await api.okr.loadOkr();
+        dispatch(loadOkrsSuccess(okrs));
+      } catch (error) {
+        dispatch(loadOkrsFailure(error));
+      }
     }
+  };
 
-}
-
-const addOkrFlow = ({api}) => ({dispatch}) => next => async (action) => {
+const addOkrFlow =
+  ({ api }) =>
+  ({ dispatch }) =>
+  (next) =>
+  async (action) => {
     next(action);
 
     if (action.type === ADD_OKRS) {
-        try {
-            const okrs = await api.okr.createOkr(action.payload)
-            dispatch(addOkrsSuccess(okrs))
-            dispatch(loadOkrs())
-        } catch (error) {
-            dispatch(addOkrsFailure(error))
-        }
+      try {
+        const values = action.payload;
+        const { dataId } = await api.okr.createOkr(values.okrObject);
+        const krsReadys = values.krs.map((kr) => {
+          return { ...kr, idOkr: dataId, progress: 5, loadValue: 4 };
+        });
+        krsReadys.forEach(async (kr) => {
+          try {
+            const responseKr = await api.kr.createKr(kr);
+            console.log(responseKr);
+          } catch (e) {
+            console.log(e);
+          }
+        });
+        console.log("EN MIDDLEWARE");
+        console.log(krsReadys);
+        dispatch(addOkrsSuccess(values.okrObject));
+        dispatch(loadOkrs());
+      } catch (error) {
+        dispatch(addOkrsFailure(error));
+      }
     }
+  };
 
-}
-
-const updateOkrFlow = ({api}) => ({dispatch}) => next => async (action) => {
+const updateOkrFlow =
+  ({ api }) =>
+  ({ dispatch }) =>
+  (next) =>
+  async (action) => {
     next(action);
     if (action.type === UPDATE_OKRS) {
-        try {
-            const okrs = await api.okr.updateOkr(action.payload)
-            dispatch(updateOkrsSuccess(okrs))
-        } catch (error) {
-            dispatch(updateOkrsFailure(error))
-        }
+      try {
+        const okrs = await api.okr.updateOkr(action.payload);
+        dispatch(updateOkrsSuccess(okrs));
+      } catch (error) {
+        dispatch(updateOkrsFailure(error));
+      }
     }
+  };
 
-}
-
-const deleteOkrFlow = ({api}) => ({dispatch}) => next => async (action) => {
+const deleteOkrFlow =
+  ({ api }) =>
+  ({ dispatch }) =>
+  (next) =>
+  async (action) => {
     next(action);
     if (action.type === DELETE_OKRS) {
-        try {
-            const okrs = await api.okr.deleteOkr(action.payload)
-            dispatch(deleteOkrsSuccess(okrs))
-            dispatch(loadOkrs())
-        } catch (error) {
-            dispatch(deleteOkrsFailure(error))
-        }
+      try {
+        const okrs = await api.okr.deleteOkr(action.payload);
+        dispatch(deleteOkrsSuccess(okrs));
+        dispatch(loadOkrs());
+      } catch (error) {
+        dispatch(deleteOkrsFailure(error));
+      }
     }
+  };
+const middlewareOkr = [loadOkrFlow, addOkrFlow, updateOkrFlow, deleteOkrFlow];
 
-}
-const middlewareOkr = [
-    loadOkrFlow,
-    addOkrFlow,
-    updateOkrFlow,
-    deleteOkrFlow
-]
-
-export default middlewareOkr
-
-
+export default middlewareOkr;
