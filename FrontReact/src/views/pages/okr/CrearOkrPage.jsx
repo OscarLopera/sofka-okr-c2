@@ -1,13 +1,13 @@
 import { useState, React } from "react";
 import { Form, FormGroup } from "reactstrap";
-import { getOkrs } from "../../../application/selectors/okr/okr";
+import { getKrs } from "../../../application/selectors/okr/kr";
 import { bindActionCreators } from "redux";
 import { addOkrs, deleteOkrs } from "../../../application/actions/okr/okr";
 import KrForm from "../../components/okr/KrForm";
 import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
 
-const CrearOkrPage = ({ addOkrs, history }) => {
+const CrearOkrPage = ({ addOkrs, history , krs}) => {
   const [objective, setObjective] = useState("");
   const [title, setTitle] = useState("");
   const [managerId, setManagerId] = useState("");
@@ -24,7 +24,7 @@ const CrearOkrPage = ({ addOkrs, history }) => {
       description: description,
       verticalId: areaInCharge,
     };
-    const values = {okrObject}
+    const values = {okrObject, krs}
     addOkrs(values);
     alert("add publication success");
   };
@@ -183,7 +183,7 @@ const CrearOkrPage = ({ addOkrs, history }) => {
 
 const mapStateToProps = (state) => {
   return {
-    okr: getOkrs(state),
+    krs: getKrs(state),
   };
 };
 
