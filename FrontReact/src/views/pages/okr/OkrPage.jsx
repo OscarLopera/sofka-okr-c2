@@ -6,17 +6,14 @@ import { getOkrs } from "../../../application/selectors/dashboard/okrs";
 import { loadingOKR } from "../../../application/actions/dashboard";
 import { useEffect } from "react";
 import { connect } from "react-redux";
-import {bindActionCreators} from "redux";
+import { bindActionCreators } from "redux";
 
-const OkrPage = ({okr, loadingOKR}) => {
-
+const OkrPage = ({ okr, loadingOKR }) => {
   const id = "61106133609d16f1740ddf34";
 
-  useEffect (() => {
-    loadingOKR(id)
-    
-}, [loadingOKR])
-
+  useEffect(() => {
+    loadingOKR(id);
+  }, [loadingOKR]);
 
   const okrs = [
     {
@@ -138,10 +135,7 @@ const OkrPage = ({okr, loadingOKR}) => {
               {okr.map((elem) => {
                 return (
                   <li key={elem.id}>
-                    <OkrCard
-                      title={elem.objective}
-                      progress={elem.title}
-                    />
+                    <OkrCard title={elem.objective} progress={elem.title} />
                   </li>
                 );
               })}
@@ -155,14 +149,17 @@ const OkrPage = ({okr, loadingOKR}) => {
 
 const mapStateToProps = (state) => {
   return {
-      okr: getOkrs(state),      
-  }
-}
+    okr: getOkrs(state),
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-      loadingOKR
-  }, dispatch);
-}
+  return bindActionCreators(
+    {
+      loadingOKR,
+    },
+    dispatch
+  );
+};
 
-export default connect(mapStateToProps, mapDispatchToProps) (OkrPage);
+export default connect(mapStateToProps, mapDispatchToProps)(OkrPage);
