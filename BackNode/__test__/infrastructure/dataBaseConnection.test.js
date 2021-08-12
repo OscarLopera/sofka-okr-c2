@@ -1,12 +1,3 @@
-<<<<<<< HEAD
-const connectionDataBase = require("../../infrastructure/database/connection")
-
-describe("test conexion data base", () => {
-    it("Should return MongoDB conected", async () =>{
-
-    })
-})
-=======
 let mongoose = require('mongoose');
 const config = require("../../infrastructure/config/index");
 const USER = encodeURIComponent(config.dbUser);
@@ -58,4 +49,3 @@ describe('connectDatabase', () => {
     });
 
 });
->>>>>>> 8ca3c65bb3d4e73a87ca3d62df9321b06f590dba
