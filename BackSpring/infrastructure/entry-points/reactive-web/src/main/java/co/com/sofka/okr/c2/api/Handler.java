@@ -82,7 +82,7 @@ public class Handler {
     }
 
     public Mono<UsuarioDTO> updateUser(UsuarioDTO usuarioDTO){
-        Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
+      Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
                 .map(mapperUserDTO.toDTO());
         return user;
     }

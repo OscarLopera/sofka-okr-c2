@@ -34,7 +34,8 @@ implements UsuariosRepository {
 
     @Override
     public Mono<Usuarios> updateUser(Usuarios user) {
-        return this.repository.save(userMapper.fromUsuarios().apply(user)).map(userMapper.fromUsuariosEntity());
+        Mono<Usuarios> usuario = this.repository.save(userMapper.fromUsuarios().apply(user)).map(userMapper.fromUsuariosEntity());
+        return usuario;
 
     }
 }
