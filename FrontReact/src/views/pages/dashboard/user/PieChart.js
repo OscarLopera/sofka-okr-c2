@@ -44,7 +44,7 @@ function PieChart({okr}){
     responsive: true
   }
   return (
-    <div className="PieChart"style={{width:"50%"}}>
+    <div className="PieChart"style={{width:"50%", margin:"50px"}}>
       <Pie data={data} options={opciones}/>
     </div>
   );
