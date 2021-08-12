@@ -21,7 +21,7 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
             
             if(user.firstTime){
                 const userFirebase = {
-                    userId: userId,
+                    idUser: userId,
                     name: userName,
                     email: userEmail,
                     urlPhoto: userImage,
@@ -100,7 +100,7 @@ const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
             const user = action.payload;
 
             const userInfo = {
-                userId: user.userId,
+                idUser: user.userId,
                 name: user.userName,
                 email: user.userEmail,
                 urlPhoto: user.userImage,

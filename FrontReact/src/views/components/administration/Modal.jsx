@@ -3,13 +3,13 @@ import Portal from "./Portal";
 
 export default class Modal extends Component {
   render() {
-    const { children, toggle, active } = this.props;
+    const { children, closeWelcome, active } = this.props;
     return (
       <Portal>
         {active && (
           <div style={styles.wrapper}>
             <div style={styles.window}>
-              <button style={styles.closeBtn} onClick={toggle}>
+              <button style={styles.closeBtn} onClick={closeWelcome}>
                 X
               </button>
               <div>{children}</div>

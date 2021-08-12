@@ -21,7 +21,9 @@ const Campana = ({ initialstate }) => {
                         </a>
                     </div>
                     
-                    {initialstate.historynotify !== "este usuario no existe" && initialstate.historynotify.length !== 0  &&
+                    {initialstate.historynotify !== null &&
+                    <>{ initialstate.historynotify !== "este usuario no existe" && initialstate.
+                    historynotify.length !== 0  &&
                     <>{ initialstate.historynotify.length >= 2 &&
                         <><Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 1]} />
                             <Notificacion props={initialstate.historynotify[initialstate.historynotify.length - 2]} />
@@ -33,6 +35,7 @@ const Campana = ({ initialstate }) => {
                     {
                         initialstate.historynotify.length === 0 &&
                         <p>Usted no tiene notificaciones</p>
+                    }</>
                     }
                 
 

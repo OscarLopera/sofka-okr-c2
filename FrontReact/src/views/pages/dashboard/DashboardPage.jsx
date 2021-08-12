@@ -9,6 +9,7 @@ import { getAllOkr } from "./../../../application/selectors/dashboard/okrs";
 import { getUser } from "../../../application/selectors/administration/user";
 //Acciones
 import { getAllOkrs } from "../../../application/actions/dashboard/index";
+import { closeWelcome } from "../../../application/actions/administration/user";
 
 import UserOkr from "./general/UserOkr";
 //Componentes
@@ -17,16 +18,19 @@ import UserOkr from "./general/UserOkr";
 import Modal from "../../components/administration/Modal";
 import LogoSofka from "../../assets/static/administration/sofka-icono2.png";
 
-const DashboardPage = ({ getAllOkr, getAllOkrs, okrs, user }) => {
+
+
+
+const DashboardPage = ({ getAllOkr, getAllOkrs, closeWelcome, okrs, user }) => {
   useEffect(() => {
     getAllOkrs();
   }, [getAllOkr]);
 
   // Acciones Modal de bienvenida.
   const [active, setActive] = useState(true);
-  const toggle = () => {
-    setActive(!active);
-  };
+  // const toggle = () => {
+  //   setActive(!active);
+  // };
 
   return (
     <div
@@ -37,7 +41,7 @@ const DashboardPage = ({ getAllOkr, getAllOkrs, okrs, user }) => {
         user.firstTime ? (
           <div>
             {/* Modal de Bienvenida al usuario */}
-            <Modal active={active} toggle={toggle}>
+            <Modal active={active} closeWelcome={closeWelcome}>
               <div>
                 <img src={LogoSofka} alt="logo" />
                 <span>
@@ -65,7 +69,7 @@ const DashboardPage = ({ getAllOkr, getAllOkrs, okrs, user }) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      getAllOkrs,
+      getAllOkrs, closeWelcome
     },
     dispatch
   );
