@@ -108,7 +108,7 @@ const OkrPage = () => {
 
   return (
     <div className="container d-flex flex-column align-items-center py-5">
-      {okrs.length !== 0 ? (
+      {okrs.length === 0 ? (
         <>
           <EmptyMessage />
           <Link to="/okr/create-okr">

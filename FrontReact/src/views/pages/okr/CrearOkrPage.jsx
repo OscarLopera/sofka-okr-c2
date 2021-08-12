@@ -24,7 +24,8 @@ const CrearOkrPage = ({ addOkrs, history }) => {
       description: description,
       verticalId: areaInCharge
     };
-    addOkrs(okrObject);
+    const values = {okrObject}
+    addOkrs(values);
     alert("add publication success");
     
   };

@@ -28,7 +28,9 @@ const addOkrFlow = ({api}) => ({dispatch}) => next => async (action) => {
 
     if (action.type === ADD_OKRS) {
         try {
-            const okrs = await api.okr.createOkr(action.payload)
+            const values = action.payload
+            const okrs = await api.okr.createOkr(values.okrObject)
+            console.log(okrs)
             dispatch(addOkrsSuccess(okrs))
             dispatch(loadOkrs())
         } catch (error) {

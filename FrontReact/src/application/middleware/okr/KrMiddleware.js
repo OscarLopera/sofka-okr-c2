@@ -6,6 +6,7 @@ const createKrFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
     if (action.type === CREATE_KR) {
         try {
             const kr = await api.kr.createKr(action.payload)
+            console.log(kr);
             dispatch(createKrSuccess(kr))
         } catch (error) {
             dispatch(createKrError(error))
