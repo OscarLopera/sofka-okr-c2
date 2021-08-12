@@ -24,7 +24,7 @@ export default function Campana() {
                     {Notificacion()}
 
                     <div className="NotificationsFooter text-center">
-                        <a href="/">
+                        <a href="/historialnotificaciones">
                             <span>Ver todas ➡</span>
                         </a>
                     </div>

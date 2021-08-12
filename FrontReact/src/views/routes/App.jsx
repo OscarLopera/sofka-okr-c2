@@ -25,6 +25,7 @@ import UserPage from "../pages/administration/UserPage";
 
 import "../assets/styles/administration/App.scss";
 import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
+import HistorialNotificaciones from "../pages/notifications/HistorialNotificaciones";
 
 const App = ({user}) => {
   return (
@@ -38,6 +39,7 @@ const App = ({user}) => {
         <PrivateRoute exact path={"/userdash"} component={DashboardUserPage} user={user}/>
         <PrivateRoute exact path={"/calendar"} component={CalendarPage} user={user}/>
         <PrivateRoute exact path={"/administration"} component={AdministrationPage} user={user}/>
+        <PrivateRoute exact path={"/historialnotificaciones"} component={HistorialNotificaciones} user={user}/>
         <Route exact path={"/login"} component={LoginPage} />
         <PrivateRoute exact path={"/notificaciones"} component={GestionNotificaciones} user={user} />
         <PrivateRoute exact path={"/userPage"} component={UserPage} user={user} />

@@ -15,7 +15,12 @@ const notifications = {
     createNotificationsManager: async (id) => {
         const response = await axios.post('https://pruebabacknoti.herokuapp.com/api/notifications',id)
         return response.data
-    }
+    },
+
+    getHistoryNotifications:async (id) => {
+        const response = await axios.get('https://pruebabacknoti.herokuapp.com/api/notifications/usernotifications/'+id)
+        return response.data
+    },
     
 }
 
