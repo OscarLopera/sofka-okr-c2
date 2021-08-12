@@ -1,7 +1,7 @@
 import { fireEvent, render } from "@testing-library/react";
-import Calendar from "../../components/calendar/Calendar";
+import CalendarComponent from "../../components/calendar/CalendarComponent";
 
-const eventsDummy = [
+export const eventsDummy = [
     {
         kind: 'calendar#event',
         etag: '"3257494568730000"',
@@ -124,14 +124,16 @@ const eventsDummy = [
     }
 ]
 
-describe('Calendar component test', () => {
+describe('CalendarComponent component test', () => {
     test('calendar list component', () => {
-        const events = eventsDummy;
-        const listEventsCalendar = jest.fn();
-        const { getByTestId } = render(
-            <Calendar events={events} />
-        )
 
-        expect(listEventsCalendar).toBeCalledWith(events);
+        const { container } = render(
+            <CalendarComponent events={eventsDummy} />
+        )
+        function getHeaderToolbarEl(container) {
+            return container.querySelector('.fc-header-toolbar')
+        }
+
+        expect(getHeaderToolbarEl(container)).toBeTruthy()
     })
 })

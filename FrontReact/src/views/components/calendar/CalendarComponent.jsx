@@ -5,7 +5,7 @@ import timeGridPlugin from '@fullcalendar/timegrid'
 import interactionPlugin from '@fullcalendar/interaction'
 import listPlugin from '@fullcalendar/list';
 
-const Calendar = ({events}) => {
+const CalendarComponent = ({events}) => {
 
     const listEventsCalendar = () => {
         if (events) {
@@ -41,4 +41,4 @@ const Calendar = ({events}) => {
     )
 }
 
-export default Calendar; 
+export default CalendarComponent;
