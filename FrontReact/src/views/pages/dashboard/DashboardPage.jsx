@@ -19,7 +19,7 @@ const DashboardPage = () => {
 
     <div className="grey-bg container-fluid mt-4"style={{ backgroundColor:"#050531", borderRadius:"10px" }} >
         <section id="minimal-statistics">
-            <div class="row">
+            <div>
               <UserOkr/>
               <UserOkr/>
              </div>

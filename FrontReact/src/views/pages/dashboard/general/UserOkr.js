@@ -11,7 +11,7 @@ function UserOkr() {
                                 <h6 className="text-uppercase">Nombre Usuario:</h6>
                             </div>
                         </div>
-                        <div><UserOkrItems/>
+                        <div className="row"><UserOkrItems/>
                         <UserOkrItems/>
                         <UserOkrItems/></div>
                     </section>
