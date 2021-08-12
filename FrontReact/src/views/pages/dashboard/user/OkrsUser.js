@@ -9,14 +9,14 @@ function Okruser({ okr }) {
   let title = "";
   let objective = "";
   let description = "";
-  let areaInCharge = "";
+  // let areaInCharge = "";
   //let progress = 0;
   let krs = "";
   if (okr !== null) {
     //progress = okr.progress;
     title = okr.title;
     description = okr.description;
-    areaInCharge = okr.areaInCharge;
+    // areaInCharge = okr.areaInCharge;
     objective = okr.objective;
     krs = okr.krs;
   }
@@ -26,13 +26,9 @@ return (
 <Fragment>
   {okr ? (
     <div>
-      {/*
-      <div style={{ width: "16%" }}>
-        <CircularProgressbar value={progress} text={`${progress}%`} />
-      </div>
-        */}
+    
       <div>
-            <table className="table">
+            <table className="table"style={{padding:"5px"}}>
               <thead>
                 <tr>
                   <th scope="col">Titulo</th>
@@ -72,8 +68,8 @@ return (
               <tbody>
                 {krs.map((kr) => (
                   <tr>
-                    <td>{kr.titleKr}</td>
-                    <td>{kr.description.value}</td>
+                    <td>{kr.title}</td>
+                    <td>{kr.description}</td>
                     <td>{kr.startDate}</td>
                     <td>{kr.endDate}</td>
                     <td>

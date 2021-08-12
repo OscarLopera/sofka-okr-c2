@@ -1,27 +1,34 @@
-import React, {useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 //Redux
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
 //Selectors
-import { getOkrs, getOkr } from './../../../application/selectors/dashboard/okrs';
+import {
+  getOkrs,
+  getOkr,
+} from "./../../../application/selectors/dashboard/okrs";
 //Acciones
-import { loadingOKR,loadingOKRid } from './../../../application/actions/dashboard/index';
+import { loadingOKR,loadingOKRid,getidOkrLast } from './../../../application/actions/dashboard/index';
 //Componentes
 import Okruser from './user/OkrsUser';
 import Barchart from './user/BarChart';
-
-
-const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
+import PieChart from "./user/PieChart";
+const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) => {
   const [idokr, setidokr] = useState("");
  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
- const idUser = "6112ef6370e2131bb4730d1a";
+  const idUser = "6112ef6370e2131bb4730d1a";
+  const idlast = "6112ef6370e2131bb4730d1a";
+  //const idUser = "611461004b98615d2dc035f2";
+  //const idlast = "611461004b98615d2dc035f2";
   useEffect(() => {
     loadingOKR(idUser);
-  }, [loadingOKR]);
+    getidOkrLast(idlast); 
+  }, [loadingOKR])
 
-  const handlerokrid = () =>{
-    loadingOKRid(idokr)
-  }
+
+  const handlerokrid = () => {
+    loadingOKRid(idokr);
+  };
 
   return (
     <div>
@@ -29,12 +36,17 @@ const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
         <center>
           <div className="col-2"></div>
           <div className="col-8">
-            <h1>Mis OKRs</h1>
+            {/* <h1>Mis OKRs</h1> */}
             <select
-              style={{ width: "320px", height: "35px" }}
+              style={{
+                width: "70%",
+                height: "34px",
+                marginTop: "11px",
+                borderRadius: "5px",
+              }}
               name="idokr"
               value={idokr}
-              onChange={(e) => setidokr(e.target.value) }
+              onChange={(e) => setidokr(e.target.value)}
             >
               {okrs.map((okr) => (
                 <option value={okr.id} key={okr.id}>
@@ -42,21 +54,36 @@ const DashboardUserPage = ({ loadingOKR,okrs,loadingOKRid, okr }) => {
                 </option>
               ))}
             </select>
-            <button className="btn btn-outline-warning" onClick={() => handlerokrid()}>Ver info</button>
-            <Okruser okr={okr}/>
-            <Barchart okr={okr}/>
+            <button
+              className="btn btn-outline-warning"
+              style={{ margin: "10px 3px", padding: "4px" }}
+              onClick={() => handlerokrid()}
+            >
+              Ver info
+            </button>
+            <div>
+              <Okruser okr={okr} />
+              <div className="row">
+                <div className="col-xl-12 col-sm-6">
+                  <div className="media d-flex">
+                      <Barchart okr={okr} />
+                      <PieChart okr={okr} />
+                    </div>
+                </div>
+              </div>
+            </div>
           </div>
-          <div className="col-2"></div>
+          <div className="col-2 "></div>
         </center>
       </div>
     </div>
   );
-  
 };
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       loadingOKR,
+      getidOkrLast,
       loadingOKRid,
     },
     dispatch
