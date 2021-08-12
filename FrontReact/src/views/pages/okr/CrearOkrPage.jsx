@@ -121,7 +121,7 @@ const CrearOkrPage = ({
                   className="custom-select form-control"
                   value={areaInCharge}
                   onChange={(event) => setAreaInCharge(event.target.value)}
-                >
+                > selecciona
                   {vertical.length &&
                     vertical.map((usuario) => (
                       <option key={usuario.id} value={usuario.verticalname}>

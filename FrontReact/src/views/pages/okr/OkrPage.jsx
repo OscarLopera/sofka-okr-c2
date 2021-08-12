@@ -9,10 +9,10 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 
 const OkrPage = ({ okr, loadingOKR }) => {
-  const id = "61106133609d16f1740ddf34";
+  
 
   useEffect(() => {
-    loadingOKR(id);
+    loadingOKR(okr.id);
   }, [loadingOKR]);
 
   const okrs = [
