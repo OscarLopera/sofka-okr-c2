@@ -27,7 +27,8 @@ const CrearOkrPage = ({
   const [objective, setObjective] = useState("");
   const [title, setTitle] = useState("");
   const [managerId, setManagerId] = useState("");
-  const [nameUser, setNameUser] = useState("");
+  const [managerName, setManagerName] = useState("");
+  const [selectedUser, setSelectedUser] = useState("");
   const [description, setDescription] = useState("");
   const [areaInCharge, setAreaInCharge] = useState("");
   const [KrVisible, setKrVisible] = useState(false);
@@ -43,16 +44,26 @@ const CrearOkrPage = ({
       verticalId: areaInCharge,
     };
     const values = { okrObject, krs };
-    addOkrs(values);
-    alert("Se agrego el OKR Correctamente");
+    if(selectedUser){
+      addOkrs(values);
+      alert("Se agrego el OKR Correctamente");
+    }
+    else{
+    alert("selecciona un encargado");
+    }
   };
-  const handleChange = (value) => {
-    console.log(value);
-    loadOkrs(value.target.value)
-    setManagerId(value.target.value);
-  }
-  const onClickName = (event)=>{
-    console.log("click ",event);
+  const handleChange = (valueName) => {
+    console.log(valueName);
+    const manager = users.find((user) => user.name === valueName);
+    if(manager){
+      setManagerId(manager.id)
+      setSelectedUser(true)
+    } else{
+      setManagerId("")
+      setSelectedUser(false)
+    }
+    loadOkrs(valueName)
+    setManagerName(valueName);
   }
 
   return (
@@ -133,10 +144,10 @@ const CrearOkrPage = ({
                 required="required"
                 placeholder={"Ingresa el nombre"}
                 // className={"form-control text-center"}
-                value={managerId}
-                onChange={(event) => handleChange(event)}
+                value={managerName}
+                onChange={(event) => handleChange(event.target.value)}
                 list="data"  />
-                <datalist id="data"   >
+                <datalist id="data"  >
                   {users.map((item, key) =>
                     (<option key={key}  data-id={item.id} value={item.name}> {item.email} </option>)
                   )}
