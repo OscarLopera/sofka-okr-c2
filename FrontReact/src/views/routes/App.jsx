@@ -27,8 +27,11 @@ import "../assets/styles/administration/App.scss";
 import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
 import HistorialNotificaciones from "../pages/notifications/HistorialNotificaciones";
 
+//import moment from "moment";
+
 const App = ({user}) => {
   return (
+    
     <Router>
       <Navbar />
       <Switch>
