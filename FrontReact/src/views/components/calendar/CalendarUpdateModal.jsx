@@ -1,21 +1,20 @@
-import React,{useState} from 'react'
+import React, {Fragment, useState} from 'react'
 import Select from "react-select";
 
-const CalendarUpdateModal = ({UpdateEvent,token,item})=> {
+const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
     let date = new Date().toLocaleDateString().split('/');
-    date[1]= date[1] < 10 ? '0'+date[1] : date[1];
-    date = date[2]+'-'+date[1]+'-'+date[0];
-    const currentDate = item.start.dateTime.substring(0,10)
-    const currentDescription=  item.description
-    const currentStartTime= item.start.dateTime.substring(11,16)
-    const currentEndTime= item.end.dateTime.substring(11,16)
+    date[1] = date[1] < 10 ? '0' + date[1] : date[1];
+    date = date[2] + '-' + date[1] + '-' + date[0];
+    const currentDate = item.start.dateTime.substring(0, 10)
+    const currentDescription = item.description
+    const currentStartTime = item.start.dateTime.substring(11, 16)
+    const currentEndTime = item.end.dateTime.substring(11, 16)
     const currentAtenders = item.attendees
     const [startDate, setStartDate] = useState(currentDate);
     const [description, setDescription] = useState(currentDescription);
     const [attendees, setAttendees] = useState(currentAtenders);
-    const [startTime,setStartTime]= useState(currentStartTime)
-    const [endTime,setEndTime]= useState(currentEndTime)
-
+    const [startTime, setStartTime] = useState(currentStartTime)
+    const [endTime, setEndTime] = useState(currentEndTime)
 
 
     const updateEvent = () => {
@@ -24,11 +23,11 @@ const CalendarUpdateModal = ({UpdateEvent,token,item})=> {
             summary: "OKR",
             description: description,
             start: {
-                dateTime: startDate+"T"+startTime+":00-05:00",
+                dateTime: startDate + "T" + startTime + ":00-05:00",
                 timeZone: "America/Bogota"
             },
             end: {
-                dateTime: startDate + "T"+endTime+":00-05:00",
+                dateTime: startDate + "T" + endTime + ":00-05:00",
                 timeZone: "America/Bogota"
             },
             conferenceData: {
@@ -48,13 +47,13 @@ const CalendarUpdateModal = ({UpdateEvent,token,item})=> {
     }
 
     return (
-        <>
-        <button className="btn btn-primary mx-2" data-testid={"btn-test"} data-toggle={"modal"}
-        data-target={"#modalUpdateEvent"}
-        ><i className="bi bi-pencil-square"/>
-         </button>
-         
-        <div id={"modalUpdateEvent"} className={"modal fade container"}>
+        <Fragment>
+            <button className="btn btn-primary mx-2" data-testid={"btn-test"} data-toggle={"modal"}
+                    data-target={"#modalUpdateEvent"}
+            ><i className="bi bi-pencil-square"/>
+            </button>
+
+            <div id={"modalUpdateEvent"} className={"modal fade container"}>
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -70,11 +69,13 @@ const CalendarUpdateModal = ({UpdateEvent,token,item})=> {
                             <label className="col">Hora Inicial</label>
                             <label className="col">Hora Final</label>
                             <div className="w-100"/>
-                            <input placeholder="Selected time" type={"time"} id={"input_starttime"} className={"form-control col"} value={startTime}
-                             onChange={event => setStartTime(event.target.value)}/>
-                            <input placeholder="Selected time" type={"time"} id={"input_endttime"} className={"form-control timepicker col"} value={endTime}
+                            <input placeholder="Selected time" type={"time"} id={"input_starttime"}
+                                   className={"form-control col"} value={startTime}
+                                   onChange={event => setStartTime(event.target.value)}/>
+                            <input placeholder="Selected time" type={"time"} id={"input_endttime"}
+                                   className={"form-control timepicker col"} value={endTime}
                                    min={startTime}
-                                    onChange={event => setEndTime(event.target.value)}/>
+                                   onChange={event => setEndTime(event.target.value)}/>
                             <hr className="my-4"/>
                             <label>Descripcion</label>
                             <input type={"text"} value={description} className={"form-control"}
@@ -82,19 +83,21 @@ const CalendarUpdateModal = ({UpdateEvent,token,item})=> {
 
                             <hr className="my-4"/>
                             <label>Invitados</label>
-                            <Select isMulti options={attendees}  placeholder={"Selecciona los correos"}/>
+                            <Select isMulti options={attendees} placeholder={"Selecciona los correos"}/>
                         </div>
                         <div className="modal-footer">
                             <button type="button" className="btn btn-secondary" data-dismiss="modal"
-                            >Cancelar</button>
+                            >Cancelar
+                            </button>
                             <button type="button" className="btn btn-primary" data-dismiss="modal"
-                           onClick={() => updateEvent()}
-                            >Actualizar Evento</button>
+                                    onClick={() => updateEvent()}
+                            >Actualizar Evento
+                            </button>
                         </div>
                     </div>
                 </div>
             </div>
-            </>
+        </Fragment>
     )
 }
 

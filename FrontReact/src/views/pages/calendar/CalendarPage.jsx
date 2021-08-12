@@ -24,9 +24,9 @@ const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, us
                 </div>
             </div>
             <div className={"row"}>
-                <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}/>
                 <TableEvent events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail}/>
             </div>
+            <br/><br/>
             <Calendar events={events}/>
         </div>
     )

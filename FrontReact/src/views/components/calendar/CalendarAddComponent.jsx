@@ -53,11 +53,10 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
         setExternalAttendees("")
     }
 
-    const addEvent = (e) => {
-        e.preventDefault()
-        let inv = attendees;
-        inv.push({email: externalAttendees});
-        if (externalAttendees !== "") {
+    const addEvent = () => {
+        if(externalAttendees!==""){
+            let inv = attendees;
+            inv.push({email: externalAttendees});
             setAttendees(inv)
         }
         const eventObject = {
@@ -110,7 +109,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
                             </button>
                         </div>
                         <div className="modal-body container row">
-                            <form onSubmit={addEvent}>
+                            <form onSubmit={addEvent} >
                                 <label>Dia del Evento</label>
                                 <input data-testid={"input-test-date"}
                                        required={true}
@@ -155,7 +154,8 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
                                         placeholder={"Selecciona los correos"}/>
                                 <hr className="my-4"/>
                                 <label>Invitados Externos</label>
-                                <input className={"form-control"}
+                                <input data-testid={"input-test-external"}
+                                       className={"form-control"}
                                        minLength={5}
                                        maxLength={35}
                                        type={"email"}
