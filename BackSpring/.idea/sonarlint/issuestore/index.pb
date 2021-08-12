@@ -1,6 +1,4 @@
 
-9
-	README.md,8\e\8ec9a00bfd09b3190ac6b22251dbb1aa95a0579d
 ‰
 Yinfrastructure/entry-points/reactive-web/src/main/java/co/com/sofka/okr/c2/api/KRDTO.java,8\7\8769b0353e6ba50c00722edf5be752ae26200fd4
 ˆ
