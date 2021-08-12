@@ -3,7 +3,7 @@ import axios from "axios";
 const functions = {
 
     loadOkr: async () => {
-        const response = await axios.get('')
+        const response = await axios.get('https://okr-final-app.herokuapp.com/api/calendar/usersbyname/')
         return response.data
     },
     createOkr: async (okr) => {
