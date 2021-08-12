@@ -20,6 +20,7 @@ const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEvent, us
             <div className="row">
                 <div className="col-md-12">
                     <h1>Eventos</h1>
+                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}  />
                 </div>
             </div>
             <div className={"row"}>

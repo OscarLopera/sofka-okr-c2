@@ -18,7 +18,8 @@ const dummyEvent = {
             conferenceSolutionKey: {type: "hangoutsMeet"}
         },
     },
-    attendees: [],
+    attendees:[{email: "",},
+   ],
     reminders: {
         useDefault: "useDefault",
     },
