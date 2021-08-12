@@ -1,8 +1,9 @@
 import React from "react";
+import "../../assets/styles/administration/App.scss";
 
 const DashboardPage = () => {
   return (
-    <div>
+    <div className="dashboard">
       <h1>DashboardPage</h1>
     </div>
   );

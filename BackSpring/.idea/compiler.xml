@@ -7,18 +7,18 @@
         <processorPath useClasspath="false">
           <entry name="$USER_HOME$/.gradle/caches/modules-2/files-2.1/org.projectlombok/lombok/1.18.16/6dc192c7f93ec1853f70d59d8a6dcf94eb42866/lombok-1.18.16.jar" />
         </processorPath>
-        <module name="OkrAdministration.model.test" />
-        <module name="OkrAdministration.mongo-repository.main" />
-        <module name="OkrAdministration.test.test" />
-        <module name="OkrAdministration.app-service.test" />
-        <module name="OkrAdministration.usecase.test" />
-        <module name="OkrAdministration.model.main" />
-        <module name="OkrAdministration.reactive-web.main" />
-        <module name="OkrAdministration.app-service.main" />
-        <module name="OkrAdministration.reactive-web.test" />
-        <module name="OkrAdministration.test.main" />
-        <module name="OkrAdministration.mongo-repository.test" />
-        <module name="OkrAdministration.usecase.main" />
+        <module name="mongo-repository_main" />
+        <module name="app-service_main" />
+        <module name="usecase_test" />
+        <module name="model_test" />
+        <module name="test_test" />
+        <module name="reactive-web_main" />
+        <module name="mongo-repository_test" />
+        <module name="app-service_test" />
+        <module name="model_main" />
+        <module name="usecase_main" />
+        <module name="reactive-web_test" />
+        <module name="test_main" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8" />
