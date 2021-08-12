@@ -46,7 +46,7 @@ const HomePage = ({ loginUser, logoutUser, closeWelcome, user }) => {
           />
           <h1>Sofka Okrs</h1>
           <p className="text-center">
-            Nuestra Filosofía se basa en mejora continua, compromiso y
+            Nuestra Filosofía se basa en la mejora continua, compromiso y
             disciplina. Somos una compañía que desde sus inicios viene
             desarrollando el talento tanto técnico como humano, para estar a la
             vanguardia de la industria tecnológica generando soluciones de alto
