@@ -2,6 +2,7 @@ package co.com.sofka.okr.c2.mongo;
 
 import co.com.sofka.okr.c2.model.usuarios.Usuarios;
 import co.com.sofka.okr.c2.model.usuarios.gateways.UsuariosRepository;
+import co.com.sofka.okr.c2.model.vertical.Vertical;
 import co.com.sofka.okr.c2.mongo.entities.UsuariosEntity;
 import co.com.sofka.okr.c2.mongo.helper.AdapterOperations;
 import co.com.sofka.okr.c2.mongo.helper.UserMapper;
@@ -36,6 +37,8 @@ implements UsuariosRepository {
         Mono<Usuarios> user =  this.repository.findByidUser(idUser).map(userMapper.fromUsuariosEntity());
         return user;
     }
+
+
 
     @Override
     public Mono<Usuarios> updateUser(Usuarios user) {

@@ -110,14 +110,10 @@ public class Handler {
     }
 
     public Mono<VerticalDTO> findVerticalById(String id) {
-        return listVerticalUseCase.listVertical(id).map(mapperVerticalDTO.toVerticalDTO())
-                .switchIfEmpty(Mono.just(new VerticalDTO())).map(respuestaVertical->{
-                    if(respuestaVertical.getId()==null){
-                        respuestaVertical.setId("-1");
-                        respuestaVertical.setVerticalname("Vertical no valida");
-                    }
-                    return respuestaVertical;
-                });
+
+        return listVerticalUseCase.listVertical(id)
+                .map(mapperVerticalDTO.toVerticalDTO())
+                .switchIfEmpty(Mono.error(new IllegalAccessError()));
     }
 
     public Flux<VerticalDTO> getVertical() {

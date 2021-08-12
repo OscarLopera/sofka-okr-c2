@@ -14,6 +14,7 @@ public class ListVerticalUseCase {
 
     public Mono<Vertical> listVertical(String id){
         return  verticalRepository.getVerticalById(id);
+
     }
 
 
