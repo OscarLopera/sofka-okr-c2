@@ -1,7 +1,7 @@
 const express = require("express");
 const validationHandler = require("../../../utils/middleware/validationHandler");
 const {updateNotificationManager, createNotificationManager, getNotificationManager} = require("../../controllers/notifications/NotificationManagerController")
-const {createNotification, newMessageController} = require('../../controllers/notifications/notificationController');
+const {createNotification, newMessageController, getAllNotificationsByUserId} = require('../../controllers/notifications/notificationController');
 
 let createNotiManager = createNotificationManager()
 let configureNotifications = updateNotificationManager()
@@ -17,6 +17,7 @@ function routesApiNotifications(app) {
 
   router.post('/notification', createNotification)
   router.put('/notification/:id', newMessageController)
+  router.get('/usernotifications/:id', getAllNotificationsByUserId)
 }
 
 module.exports = routesApiNotifications;

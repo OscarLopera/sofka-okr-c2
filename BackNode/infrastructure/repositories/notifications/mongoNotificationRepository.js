@@ -29,5 +29,13 @@ module.exports = class extends notificationRepository{
         })
         return newMessage
     }
+
+    async getAllNotificationsById(idUser){
+        const notifications = await notificationSchema.findOne({idUser:idUser})
+        if(!notifications){
+            return('este usuario no existe')
+        }
+        return notifications.notifications
+    }
      
 }

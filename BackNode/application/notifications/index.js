@@ -3,11 +3,13 @@ const updateNotifications = require("./useCases/updateNotificationManager")
 const getNotificationsManager = require('./useCases/getNotificationManager')
 const addNotification = require('./useCases/addNotification')
 const addMessage = require('./useCases/createNotification')
+const getNotificationsById = require('./useCases/getNotificationsById')
 
 module.exports = {
   createNotiManager,
   updateNotifications,
   getNotificationsManager,
   addNotification,
-  addMessage
+  addMessage,
+  getNotificationsById
 };

@@ -14,10 +14,10 @@ const createTransport = () => {
   return transport
 }
 
-const sendMail = async ( message) => {
- 
+const sendMail = async ( userEmail, message) => {
+ console.log(message)
   contentHTML = `
-        <h3> Hola</h3>
+        <h3> ¡Hola! </h3>
         <br>
         <h3>${message}</h3>
         <br>
@@ -30,11 +30,11 @@ const sendMail = async ( message) => {
   const transporter =  createTransport()
   const info = await transporter.sendMail({
     from: '"Notification" <sofkanotificaciones@gmail.com>', 
-    to: 'luisamariagilgarcia24@gmail.com',
-    subject: 'Notifications',
+    to: userEmail,
+    subject: 'Notificacion OKR Sofka',
     html: contentHTML
   })
   console.log("Message sent: mensaje enviado ", info.messageId);
 } 
 
-exports.sendMail = (message) => sendMail(message)
+exports.sendMail = (userEmail, message) => sendMail(userEmail,message)
