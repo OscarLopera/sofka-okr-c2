@@ -50,7 +50,10 @@ const CrearOkrPage = ({
     console.log(value);
     loadOkrs(value.target.value)
     setManagerId(value.target.value);
-}
+  }
+  const onClickName = (event)=>{
+    console.log("click ",event);
+  }
 
   return (
     <div className="container py-5">
@@ -133,9 +136,9 @@ const CrearOkrPage = ({
                 value={managerId}
                 onChange={(event) => handleChange(event)}
                 list="data"  />
-                <datalist id="data" >
+                <datalist id="data"   >
                   {users.map((item, key) =>
-                    (<option key={key} dataid={item.id} value={item.name}> {item.email} </option>)
+                    (<option key={key}  data-id={item.id} value={item.name}> {item.email} </option>)
                   )}
                 </datalist>        
               </FormGroup>

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../assets/styles/notifications/styleCampana.css';
 
-export default function Notificacion() {
+export default function Notificacion({props}) {
     return (
         <div className="NotificationHeader">
             <div className="NotificationHeader-type">
@@ -10,10 +10,10 @@ export default function Notificacion() {
             <div className="NotificationHeader-info">
                 <div className="NotificationHeader-avatares"/>
                 <div className="NotificationHeader-title">
-                    Se te asigno un nuevo KR
+                    {props.message}
                 </div>
 
-                <div className="NotificationHeader-time">2 d</div>
+                <div className="NotificationHeader-time">{props.date}</div>
             </div>
 
             {/* eslint-disable-next-line jsx-a11y/anchor-has-content */}
