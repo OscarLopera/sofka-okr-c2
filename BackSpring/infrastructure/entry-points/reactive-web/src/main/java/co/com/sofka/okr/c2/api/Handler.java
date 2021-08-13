@@ -138,14 +138,7 @@ public class Handler {
     }
 
     public Mono<UsuarioDTO> updateUser(UsuarioDTO usuarioDTO){
-<<<<<<< HEAD
-      Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
-                .map(mapperUserDTO.toDTO());
-=======
-
         Mono<UsuarioDTO> user = updateUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO)).map(mapperUserDTO.toDTO());
-
->>>>>>> BackSpring
         return user;
     }
 
