@@ -1,8 +1,15 @@
-import { ListEvents, ListEventsFailure, ListEventsSuccess } from "../../actions/calendar/calendarActions";
-import calendarMiddleware from "../../middleware/calendar/calendarMiddleware"
+import { ListEvents, ListEventsFailure, ListEventsSuccess } from '../../../actions/calendar/calendarActions'
+import calendarReducer from '../../../reducers/calendar/calendarReducer'
 
-const token = 'AIzaSyC-_eI17Kv6_hl2dtAGTpFvgrb7e21567';
-const listEventsDummy = [
+const initialState = {
+    events: [],
+    error: null,
+    loading: false
+}
+const token = 'AIzaSyC-_eI17Kv6_hl2dtAGTpFvgrb7e21567'
+const error = 'Ha ocurrido un error a cargar la lista de eventos'
+
+const listEvents = [
     {
         kind: "calendar#rko",
         summary: "OKR",
@@ -83,37 +90,20 @@ const listEventsDummy = [
     }
 ]
 
-const [addEventFlow,listEventFlow] = calendarMiddleware;
-
-const dispatch = jest.fn();
-const next = jest.fn();
-
-describe('middleware calendar list event test', () => {
-
-    test('list event flow test happy path', async () => {
-        const api = {
-            calendar: {
-                listEvents: () => {
-                    return listEventsDummy;
-                }
-            }
-        }
+describe('reducer calendar test', () => {
+    test('reducer list_events', () => {
         const action = ListEvents(token)
-        await listEventFlow({ api })({ dispatch })(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(ListEventsSuccess(listEventsDummy))
-        expect(next).toHaveBeenCalledWith(action);
+        const state = calendarReducer(initialState, action);
+        expect(state).toEqual({ ...initialState, loading: true });
     })
-    test('list event flow test sad path', async () => {
-        const api = {
-            calendar: {
-                listEvents: () => {
-                    throw new Error("No se pudo listar los eventos");
-                }
-            }
-        }
-        const action = ListEvents(token);
-        await listEventFlow({ api })({ dispatch })(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(ListEventsFailure("No se pudo listar los eventos"))
-        expect(next).toHaveBeenCalledWith(action);
+    test('reducer list_events_success', () => {
+        const action = ListEventsSuccess(listEvents)
+        const state = calendarReducer(initialState, action);
+        expect(state).toEqual({ ...initialState, loading: false, events: listEvents });
+    })
+    test('reducer list_events_fairule', () => {
+        const action = ListEventsFailure(error)
+        const state = calendarReducer(initialState, action);
+        expect(state).toEqual({ ...initialState, loading: false, error: error });
     })
 })

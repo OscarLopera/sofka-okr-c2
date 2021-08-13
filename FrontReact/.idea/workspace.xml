@@ -6,8 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="5deb2cff-e23b-48e5-a6c6-e0964362a645" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/application/middleware/administration/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/middleware/administration/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/infrastructure/services/firebase/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/services/firebase/auth.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarUpdateModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarUpdateModal.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/pages/calendar/CalendarPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/calendar/CalendarPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarUpdateComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarUpdateComponent.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,75 +48,88 @@
     <property name="settings.editor.selected.configurable" value="editor.preferences.fonts.default" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
-  <component name="RunManager" selected="Jest.calendar add component test">
-    <configuration name="calendar add component test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\admin\Desktop\Reto final\sofka-okr-c2\FrontReact\src\application\test\administration" />
+      <recent name="C:\Users\admin\Desktop\Reto final\sofka-okr-c2\FrontReact\src\application\test\calendar\reducerCalendar" />
+      <recent name="C:\Users\admin\Desktop\Reto final\sofka-okr-c2\FrontReact\src\application\test\calendar\middlewareCalendar" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Jest.test calendar page">
+    <configuration name="calendar update component test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="SUITE" />
-      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" />
+      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarUpdateComponent.test.js" />
       <test-names>
-        <test-name value="calendar add component test" />
+        <test-name value="calendar update component test" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="calendar add component test.testing add button component" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="calendar update component test.testing cancel button component" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" />
+      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarUpdateComponent.test.js" />
       <test-names>
-        <test-name value="calendar add component test" />
-        <test-name value="testing add button component" />
+        <test-name value="calendar update component test" />
+        <test-name value="testing cancel button component" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="calendar add component test.testing cancel button in add event" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="close welcome test" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/application/test/administration/prueba.test.js" />
+      <test-names>
+        <test-name value="close welcome test" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="close welcome test.close welcome test happy path" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <node-options value="" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
       <envs />
       <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" />
+      <test-file value="$PROJECT_DIR$/src/application/test/administration/prueba.test.js" />
       <test-names>
-        <test-name value="calendar add component test" />
-        <test-name value="testing cancel button in add event" />
+        <test-name value="close welcome test" />
+        <test-name value="close welcome test happy path" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="coverage" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="coverage" />
-      </scripts>
+    <configuration name="test calendar page" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
+      <node-options value="" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
       <envs />
-      <method v="2" />
-    </configuration>
-    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
-      <package-json value="$PROJECT_DIR$/package.json" />
-      <command value="run" />
-      <scripts>
-        <script value="start" />
-      </scripts>
-      <node-interpreter value="project" />
-      <envs />
+      <scope-kind value="SUITE" />
+      <test-file value="$PROJECT_DIR$/src/views/test/calendar/CalendarPage.test.js" />
+      <test-names>
+        <test-name value="test calendar page" />
+      </test-names>
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Jest.calendar add component test" />
-        <item itemvalue="Jest.calendar add component test.testing add button component" />
-        <item itemvalue="Jest.calendar add component test.testing cancel button in add event" />
-        <item itemvalue="npm.coverage" />
-        <item itemvalue="npm.start" />
+        <item itemvalue="Jest.test calendar page" />
+        <item itemvalue="Jest.calendar update component test" />
+        <item itemvalue="Jest.calendar update component test.testing cancel button component" />
+        <item itemvalue="Jest.close welcome test" />
+        <item itemvalue="Jest.close welcome test.close welcome test happy path" />
       </list>
     </recent_temporary>
   </component>
