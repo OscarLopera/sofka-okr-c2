@@ -2,7 +2,7 @@
 const initialState = {
     notificationstatus: JSON.parse(localStorage.getItem('notifymanager')),
     historynotify: JSON.parse(localStorage.getItem('historynotify')),
-    validarscreen: JSON.parse(localStorage.getItem('validar'))
+    validarscreen: {screen:true}
 };
 
 const notificationReducer = (state = initialState, action) => {
