@@ -13,7 +13,6 @@ const KrForm = ({ createKr, close }) => {
   const [loadValue, setLoadValue] = useState("");
   const [managerName, setManagerName] = useState("");
   const [managerEmail, setManagerEmail] = useState("");
-  const [validated, setValidated] = useState(false);
 
   const handleSubmitCreateKr = (event) => {
     event.preventDefault();
@@ -25,20 +24,8 @@ const KrForm = ({ createKr, close }) => {
       loadValue: loadValue,
       managerName: managerName,
       managerEmail: managerEmail,
-      progress: 5,
+      progress: 1,
     };
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-     
-      event.stopPropagation();
-  }
-
-  setValidated(true);
-        
-     
-
-
     createKr(KrObject);
     close();
     alert("KR creado correctamente");
@@ -47,7 +34,7 @@ const KrForm = ({ createKr, close }) => {
   return (
     <>
       <div className="form-floating p-5 pt-0 pb-1">
-        <Form >
+        <Form>
           <FormGroup className="formgroup">
             <h2 className="text-center text-uppercase fw-bold mb-4">
               Añadir KR
@@ -105,7 +92,7 @@ const KrForm = ({ createKr, close }) => {
                   Fecha final
                 </Label>
                 <Input
-                required="required"
+                  required="required"
                   type="date"
                   name="endDate"
                   value={endDate}

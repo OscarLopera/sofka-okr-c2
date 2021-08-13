@@ -2,7 +2,7 @@ import {
   LOAD_OKRS,
   ADD_OKRS,
   UPDATE_OKRS,
-  DELETE_OKRS,
+  DELETE_OKRS,GET_OKRS_USER
 } from "../../types/okr/okr";
 import {
   loadOkrsFailure,
@@ -13,92 +13,110 @@ import {
   updateOkrsFailure,
   deleteOkrsSuccess,
   deleteOkrsFailure,
-  loadOkrs,
+  loadOkrs, getAllOkrUserSuccess, getAllOkrUserFailure
 } from "../../actions/okr/okr";
 
 const loadOkrFlow =
   ({ api }) =>
-  ({ dispatch }) =>
-  (next) =>
-  async (action) => {
-    next(action);
-    if (action.type === LOAD_OKRS) {
-      try {
-        console.log("En middleware");
+    ({ dispatch }) =>
+      (next) =>
+        async (action) => {
+          next(action);
+          if (action.type === LOAD_OKRS) {
+            try {
+              console.log("En middleware");
 
-        const okrs = await api.okr.loadOkr(action.payload);
-        console.log(okrs);
-        dispatch(loadOkrsSuccess(okrs));
-      } catch (error) {
-        dispatch(loadOkrsFailure(error));
-      }
-    }
-  };
+              const okrs = await api.okr.loadOkr(action.payload);
+              console.log(okrs);
+              dispatch(loadOkrsSuccess(okrs));
+            } catch (error) {
+              dispatch(loadOkrsFailure(error));
+            }
+          }
+        };
 
 const addOkrFlow =
   ({ api }) =>
-  ({ dispatch }) =>
-  (next) =>
-  async (action) => {
-    next(action);
+    ({ dispatch }) =>
+      (next) =>
+        async (action) => {
+          next(action);
 
-    if (action.type === ADD_OKRS) {
-      try {
-        const values = action.payload;
-        const { dataId } = await api.okr.createOkr(values.okrObject);
-        const krsByIdOkr = values.krs.map((kr) => {
-          return { ...kr, idOkr: dataId };
-        });
-        krsByIdOkr.forEach(async (kr) => {
-          try {
-            const responseKr = await api.kr.createKr(kr);
-            
-            console.log(responseKr);
-          } catch (e) {
-            console.log(e);
+          if (action.type === ADD_OKRS) {
+            try {
+              const values = action.payload;
+              const { dataId } = await api.okr.createOkr(values.okrObject);
+              const krsByIdOkr = values.krs.map((kr) => {
+                return { ...kr, idOkr: dataId };
+              });
+              krsByIdOkr.forEach(async (kr) => {
+                try {
+                  const responseKr = await api.kr.createKr(kr);
+
+                  console.log(responseKr);
+                } catch (e) {
+                  console.log(e);
+                }
+              });
+              console.log(krsByIdOkr);
+              dispatch(addOkrsSuccess(values.okrObject));
+              dispatch(loadOkrs());
+            } catch (error) {
+              dispatch(addOkrsFailure(error));
+            }
           }
-        });
-        console.log(krsByIdOkr);
-        dispatch(addOkrsSuccess(values.okrObject));
-        dispatch(loadOkrs());
-      } catch (error) {
-        dispatch(addOkrsFailure(error));
-      }
-    }
-  };
+        };
 
 const updateOkrFlow =
   ({ api }) =>
-  ({ dispatch }) =>
-  (next) =>
-  async (action) => {
-    next(action);
-    if (action.type === UPDATE_OKRS) {
-      try {
-        const okrs = await api.okr.updateOkr(action.payload);
-        dispatch(updateOkrsSuccess(okrs));
-      } catch (error) {
-        dispatch(updateOkrsFailure(error));
-      }
-    }
-  };
+    ({ dispatch }) =>
+      (next) =>
+        async (action) => {
+          next(action);
+          if (action.type === UPDATE_OKRS) {
+            try {
+              const okrs = await api.okr.updateOkr(action.payload);
+              dispatch(updateOkrsSuccess(okrs));
+            } catch (error) {
+              dispatch(updateOkrsFailure(error));
+            }
+          }
+        };
 
 const deleteOkrFlow =
   ({ api }) =>
-  ({ dispatch }) =>
-  (next) =>
-  async (action) => {
-    next(action);
-    if (action.type === DELETE_OKRS) {
-      try {
-        const okrs = await api.okr.deleteOkr(action.payload);
-        dispatch(deleteOkrsSuccess(okrs));
-        dispatch(loadOkrs());
-      } catch (error) {
-        dispatch(deleteOkrsFailure(error));
-      }
-    }
-  };
-const middlewareOkr = [loadOkrFlow, addOkrFlow, updateOkrFlow, deleteOkrFlow];
+    ({ dispatch }) =>
+      (next) =>
+        async (action) => {
+          next(action);
+          if (action.type === DELETE_OKRS) {
+            try {
+              const okrs = await api.okr.deleteOkr(action.payload);
+              dispatch(deleteOkrsSuccess(okrs));
+              dispatch(loadOkrs());
+            } catch (error) {
+              dispatch(deleteOkrsFailure(error));
+            }
+          }
+        };
+
+const getAllOkrUserFlow =
+  ({ api }) =>
+    ({ dispatch }) =>
+      (next) =>
+        async (action) => {
+          next(action);
+          if (action.type === GET_OKRS_USER) {
+            try {
+              const okrs = await api.okr.getAllOkrByUser(action.payload);
+              console.log(okrs);
+              dispatch(getAllOkrUserSuccess(okrs));
+            } catch (error) {
+              dispatch(getAllOkrUserFailure(error));
+            }
+          }
+        };
+
+const middlewareOkr = [loadOkrFlow, addOkrFlow, updateOkrFlow, deleteOkrFlow, getAllOkrUserFlow];
 
 export default middlewareOkr;

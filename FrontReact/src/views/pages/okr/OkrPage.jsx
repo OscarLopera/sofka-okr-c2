@@ -3,17 +3,17 @@ import OkrCard from "../../components/okr/OkrCard";
 import { Link } from "react-router-dom";
 import OkrBtn from "../../components/okr/OkrBtn";
 import { getOkrs } from "../../../application/selectors/dashboard/okrs";
-import { loadingOKR } from "../../../application/actions/dashboard";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import {getAllOkrUser} from '../../../application/actions/okr/okr'
 
-const OkrPage = ({ okr, loadingOKR }) => {
+const OkrPage = ({ okr, getAllOkrUser }) => {
   
 
   useEffect(() => {
-    loadingOKR(okr.managerId);
-  }, [loadingOKR]);
+    getAllOkrUser("611573c2a2605b535bfab39a");
+  }, [getAllOkrUser]);
 
   
   return (
@@ -56,7 +56,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      loadingOKR,
+      getAllOkrUser,
     },
     dispatch
   );

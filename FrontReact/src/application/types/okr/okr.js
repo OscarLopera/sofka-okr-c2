@@ -10,3 +10,6 @@ export const UPDATE_OKRS_FAILURE = '[okrs] update okrs failure'
 export const DELETE_OKRS = '[okrs] delete okrs'
 export const DELETE_OKRS_SUCCESS = '[okrs] delete okrs success'
 export const DELETE_OKRS_FAILURE = '[okrs] delete okrs failure'
+export const GET_OKRS_USER = "GET_OKRS_USER"
+export const GET_OKRS_USER_SUCESS = "GET_OKRS_USER_SUCESS"
+export const GET_OKRS_USER_FAILURE = "GET_OKRS_USER_FAILURE"
