@@ -47,7 +47,7 @@ import middlewareOKRs from "../../../middleware/dashboard/dashboardmiddleware";i
   const next = jest.fn();
 
  describe("Middleware Test Dashboard", () => {
-    test('get user with okr last', async () => {
+    test('loading okr', async () => {
         const api = {
             dashboard: {
                 loadingOKR: () => {
@@ -61,7 +61,7 @@ import middlewareOKRs from "../../../middleware/dashboard/dashboardmiddleware";i
         expect(next).toHaveBeenCalledWith(action);
     })
 
-    test('get user whith okr last failure', async () => {
+    test('loading okr failure', async () => {
       const api = {
           dashboard: {
             loadingOKR: () => {

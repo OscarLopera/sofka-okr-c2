@@ -96,7 +96,7 @@ const getOkrIdFlow = () => ({dispatch}) => next => async(action) => {
         try{
             dispatch(getOkrIdSuccess(action.payload))
         }catch(error){
-            dispatch(getOkrIdFailure(error.message))
+            console.log(error)
         }
     }
 }

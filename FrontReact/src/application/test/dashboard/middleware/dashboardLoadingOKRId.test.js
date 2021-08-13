@@ -48,7 +48,7 @@ const managerId = "611573b4a2605b535bfab399";
   const next = jest.fn();
 
   describe("Middleware Test Dashboard", () => { 
-    test('loading okr', async () => {
+    test('loading okrid', async () => {
         const api = {
             dashboard: {
                 loadingOKRid: () => {
@@ -62,7 +62,7 @@ const managerId = "611573b4a2605b535bfab399";
         expect(next).toHaveBeenCalledWith(action);
     })
 
-    test('loading okr failure', async () => {
+    test('loading okrid failure', async () => {
       const api = {
           dashboard: {
             loadingOKRid: () => {

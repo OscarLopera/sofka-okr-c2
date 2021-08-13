@@ -2,7 +2,6 @@ import middlewareOKRs from "../../../middleware/dashboard/dashboardmiddleware";
 import {
     getOkrId,
     getOkrIdSuccess,
-    getOkrIdFailure,
 
 } from "../../../actions/dashboard/";
 
@@ -36,29 +35,11 @@ const next = jest.fn();
 describe("Middleware Test Dashboard", () => {
 
     test('get Okr id', async () => {
-        const api = {
-            dashboard: {
-                getOkrId: () => {
-                    return dummyOkr;
-                }
-            }
-        }
+        
         const action = getOkrId(managerId)
-        await getOkrIdFlow({api})({dispatch})(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(getOkrIdSuccess(dummyOkr))
+        await getOkrIdFlow()({dispatch})(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(getOkrIdSuccess(managerId))
         expect(next).toHaveBeenCalledWith(action);
     })
-    test('get okr id failure', async () => {
-        const api = {
-            dashboard: {
-                getOkrId: () => {
-                    throw new Error("No se pudo listar los eventos");
-                }
-            }
-        }
-        const action = getOkrId(managerId);
-        await getOkrIdFlow({ api })({ dispatch })(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(getOkrIdFailure("No se pudo listar los eventos"))
-        expect(next).toHaveBeenCalledWith(action);
-    })
+ 
 })
