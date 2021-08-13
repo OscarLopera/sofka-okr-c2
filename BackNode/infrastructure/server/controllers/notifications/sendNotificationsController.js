@@ -25,14 +25,16 @@ function sendNewOkr(){
         emailer.sendMail(message);
       }
 
-      const screenNoti = false
+      let screenNoti = false
 
       if(notificationManager.screen.OkrCreated === true){
         screenNoti = true
       }
 
-      //emailer.sendMail(message)
-      res.send(notificationManager)
+      res.send({
+        OkrCreated : screenNoti,
+        message: "se ha creado un nuevo OKR"
+      })
     }catch(error){
       res.status(400).send(error)
     }
