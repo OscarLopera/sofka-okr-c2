@@ -9,11 +9,11 @@ module.exports = async (req, res, next) => {
     try {
         const deletedOkr = await OkrService.deleteOkrUseCase(idOkr, okrRepository, krRepository);
         const response = (deletedOkr === null) ? {
-            dataId: "No existe Dicho Kr",
-            message: "kr not Exist"
+            dataId: "No existe Dicho Okr",
+            message: "Okr not Exist"
         } : {
             dataId: deletedOkr._id,
-            message: "kr delete"
+            message: "Okr Eliminado"
         }
         res.status(201).json(response)
     } catch (err) {
