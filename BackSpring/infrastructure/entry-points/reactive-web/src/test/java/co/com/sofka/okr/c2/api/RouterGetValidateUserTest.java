@@ -27,9 +27,9 @@ public class RouterGetValidateUserTest {
     @DisplayName("Test validar usuario")
     public void getValidateUser(){
 
-        UsuarioDTO usuarioDTO = new UsuarioDTO("1","daniel","daniel@gmail.com",
+        UsuarioDTO usuarioDTO = new UsuarioDTO("2","1","daniel","daniel@gmail.com",
                 "http//foto","23423",true,"1","Super usuario");
-        RespuestaLoginDTO respuestaLoginDTO = new RespuestaLoginDTO(true,null);
+        RespuestaLoginDTO respuestaLoginDTO = new RespuestaLoginDTO(true,null,"2");
 
         Mockito.when(handler.validarUsuario(usuarioDTO.getIdUser())).thenReturn(Mono.just(respuestaLoginDTO));
 

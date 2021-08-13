@@ -130,6 +130,7 @@ public class Handler {
                     if (respuestaLoginDTO.getVerticalId()==null){
                         respuestaLoginDTO.setFirstTime(true);
                         respuestaLoginDTO.setVerticalId(null);
+                        respuestaLoginDTO.setIdMongo("null");
                     }
                         return respuestaLoginDTO;
                 });
