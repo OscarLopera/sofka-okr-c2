@@ -18,7 +18,7 @@ const reducer = (state = initialState, action) => {
     case CREATE_KR:
       return { ...state, loading: true };
     case CREATE_KR_SUCCESS:
-      return { ...state, loading: false, kr: [...state.kr, action.payload] };
+      return { ...state, loading: false, kr: [...state.kr,action.payload] };
     case CREATE_KR_ERROR:
       return { ...state, loading: false, error: action.payload };
     case DELETE_KR:

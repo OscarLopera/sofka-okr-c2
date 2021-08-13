@@ -3,7 +3,7 @@ import { Form, FormGroup, Row, Col } from "reactstrap";
 import { getOkrs } from "../../../application/selectors/okr/okr";
 import { getKrs } from "../../../application/selectors/okr/kr";
 import KrForm from "../../components/okr/KrForm";
-import { getVerticals } from "../../../application/selectors/administration/user";
+import { getUser, getVerticals } from "../../../application/selectors/administration/user";
 import { bindActionCreators } from "redux";
 import {
   loadOkrs,
@@ -13,6 +13,7 @@ import {
 import { loadingVerticals } from "../../../application/actions/administration/user";
 import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
+import socket from "../../../infrastructure/services/api/notifications/socket";
 
 const CrearOkrPage = ({
   addOkrs,
@@ -22,6 +23,8 @@ const CrearOkrPage = ({
   vertical,
   users,
   krs,
+  userId,
+
 }) => {
   useEffect(() => {
     loadingVerticals();
@@ -50,7 +53,9 @@ const CrearOkrPage = ({
     const values = { okrObject, krs };
     if(selectedUser){
       addOkrs(values);
+      socket.emit("crear-okr",{id:userId.userId, manager: userId.userName});
       alert("Se agrego el OKR Correctamente");
+      history.push('/okr')
     }
     else{
     alert("selecciona un encargado");
@@ -78,7 +83,7 @@ const CrearOkrPage = ({
     <div className="container py-5">
       <div className="shadow-lg rounded form-floating p-5 pb-2">
         <h1 className="text-center fw-bold">Agregar OKR</h1>
-        <Form onSubmit={okrCreateSubmit}>
+        <Form onSubmit={(event)=>{okrCreateSubmit(event)}}>
           <FormGroup className="formgroup">
             <label for="floatingInput" className={"my-3 "}>
               Objetivo
@@ -132,7 +137,7 @@ const CrearOkrPage = ({
                   className="custom-select form-control"
                   value={areaInCharge}
                   onChange={(event) => setAreaInCharge(event.target.value)}
-                >
+                > selecciona
                   {vertical.length &&
                     vertical.map((usuario) => (
                       <option key={usuario.id} value={usuario.verticalname}>
@@ -165,7 +170,8 @@ const CrearOkrPage = ({
           <FormGroup>
             <div className="shadow rounded p-5 mt-5">
               <h2 className="text-center fw-bold mb-3">KRs</h2>
-              {krs.length !== 0 ? (
+              {krs !== null && 
+             <> {krs.length !== 0 ? (
                 <ul className=" rounded shadow-sm p-4 px-5 b-1 mb-4">
                   {krs.map((ele) => {
                     return (
@@ -183,7 +189,7 @@ const CrearOkrPage = ({
                 </ul>
               ) : (
                 <></>
-              )}
+              )}</>}
               {KrVisible ? (
                 <div className="shadow rounded">
                   <div
@@ -234,6 +240,8 @@ const mapStateToProps = (state) => {
     users: getOkrs(state),
     vertical: getVerticals(state),
     krs: getKrs(state),
+    userId: getUser(state),
+    
   };
 };
 
