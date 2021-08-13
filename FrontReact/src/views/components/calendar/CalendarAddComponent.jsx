@@ -53,6 +53,7 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
     const deleteExternalAttendees = (item) => {
         setExternalAttendeesList(externalAttendeesList.filter(element => item !== element))
     }
+
     const addAttendees = (e) => {
         // eslint-disable-next-line array-callback-return
         e.map(eElement => {
@@ -69,11 +70,9 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
         setExternalAttendees("")
     }
 
-    const addEvent = (e) => {
-        e.preventDefault()
+    const addEvent = () => {
         if (externalAttendeesList.length > 0) {
             externalAttendeesList.forEach(element => {
-                console.log(element)
                 let aux = attendees;
                 aux.push({email:element})
                 setAttendees(aux)
@@ -102,9 +101,8 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
             },
             sendUpdates: "all"
         }
-        console.log(eventObject)
-        //AddEvent(eventObject, token)
-        //clearData()
+        AddEvent(eventObject, token)
+        clearData()
 
     }
 
