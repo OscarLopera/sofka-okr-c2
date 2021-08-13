@@ -4,6 +4,8 @@ const getNotificationsManager = require('./useCases/getNotificationManager')
 const addNotification = require('./useCases/addNotification')
 const addMessage = require('./useCases/createNotification')
 const getNotificationsById = require('./useCases/getNotificationsById')
+const getNotificationUser = require("../notifications/useCases/getNotificationUser")
+const sendNotiOkrCreated = require("./useCases/sendNotificationOkrCreated")
 
 module.exports = {
   createNotiManager,
@@ -11,5 +13,7 @@ module.exports = {
   getNotificationsManager,
   addNotification,
   addMessage,
-  getNotificationsById
+  getNotificationsById,
+  getNotificationUser,
+  sendNotiOkrCreated
 };

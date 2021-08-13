@@ -37,5 +37,13 @@ module.exports = class extends notificationRepository{
         }
         return notifications.notifications
     }
+    async findNotiUserByUserId(id){
+        const exists = await notificationSchema.findOne({idUser:id})
+        if(!exists){
+            throw new error("El usuario con el id ingresado no existe")
+        }
+        return exists
+    }
+
      
 }

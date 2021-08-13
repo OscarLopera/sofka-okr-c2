@@ -1,4 +1,6 @@
-const { addMessage, addNotification, getNotificationsById} = require('../../../../application/notifications/index')
+
+const { addMessage, addNotification, getNotificationsById,getNotificationUser} = require('../../../../application/notifications/index')
+
 const emailer = require('../../../utils/nodemailerConfig/mailTransport');
 const mongoNotificationRepository = require ('../../../repositories/notifications/mongoNotificationRepository')
 

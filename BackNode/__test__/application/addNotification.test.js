@@ -1,9 +1,9 @@
 
-const notificationRepository = require('../src/domain/notifications/notificationRepository');
+const notificationRepository = require('../../domain/notifications/notificationRepository');
 const mockNotificationRepository = new notificationRepository();
-const addNotification = require('../src/application/usecase/notification/addNotification');
-const updateOneNotification = require('../src/application/usecase/notification/createNotification');
-const Notification = require('../src/domain/notifications/notification');
+const addNotification = require('../../application/notifications/useCases/addNotification');
+const updateOneNotification = require('../../application/notifications/useCases/createNotification');
+const Notification = require('../../domain/notifications/notification');
 
 test('HappyPath test add notification', async () => {
   // given
@@ -24,9 +24,9 @@ test('sadPath test add notification', async () => {
   mockNotificationRepository.save = jest.fn(() => persistedNotification);
 
   // when
-  await updateOneNotification(123, 'se ha creado un KR', mockNotificationRepository )
-  .then(() => expect(new Error("Error metodo no implementado")))
-  .catch((e)=>{
-    expect(e).toEqual(new Error("Error metodo no implementado"))
+  await updateOneNotification('123','se ha creado un KR', mockNotificationRepository )
+    .then(() => expect(new Error("Error metodo no implementado")))
+    .catch((e)=>{
+      expect(e).toEqual(new Error("Error metodo no implementado"))
   })
 });

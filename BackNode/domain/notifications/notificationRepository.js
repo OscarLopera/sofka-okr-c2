@@ -6,6 +6,9 @@ class NotificationRepository{
     }  
     async updateNotification(idUser, message){
         throw new Error('Error metodo no implementado');
+    }
+    async findNotiUserByUserId(id){
+        throw new Error('Error metodo no implementado');
     } 
 }
 module.exports = NotificationRepository;
