@@ -1,0 +1,188 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div>
+    <table>
+      <thead>
+        <tr
+          className="table"
+          style={
+            Object {
+              "backgroundColor": "#050531",
+              "color": "#ffffff",
+            }
+          }
+        >
+          <th
+            scope="col"
+            style={
+              Object {
+                "padding": "10px",
+              }
+            }
+          >
+            Titulo
+          </th>
+          <th
+            scope="col"
+            style={
+              Object {
+                "padding": "10px",
+              }
+            }
+          >
+            Descripcion
+          </th>
+          <th
+            scope="col"
+            style={
+              Object {
+                "padding": "10px",
+              }
+            }
+          >
+            objetivo
+          </th>
+          <th
+            scope="col"
+            style={
+              Object {
+                "padding": "10px",
+              }
+            }
+          >
+            Progreso
+          </th>
+        </tr>
+        <br />
+      </thead>
+      <tbody>
+        <tr
+          style={
+            Object {
+              "fontSize": "5px",
+              "margin": "5px",
+            }
+          }
+        >
+          <td>
+            title of okr
+          </td>
+          <td>
+            desds
+          </td>
+          <td />
+          <td>
+            <div
+              style={
+                Object {
+                  "width": "50%",
+                }
+              }
+            >
+              <svg
+                className="CircularProgressbar "
+                data-test-id="CircularProgressbar"
+                style={Object {}}
+                viewBox="0 0 100 100"
+              >
+                <path
+                  className="CircularProgressbar-trail"
+                  d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                  fillOpacity={0}
+                  strokeWidth={8}
+                  style={
+                    Object {
+                      "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                      "strokeDashoffset": "0px",
+                    }
+                  }
+                />
+                <path
+                  className="CircularProgressbar-path"
+                  d="
+      M 50,50
+      m 0,-46
+      a 46,46 0 1 1 0,92
+      a 46,46 0 1 1 0,-92
+    "
+                  fillOpacity={0}
+                  strokeWidth={8}
+                  style={
+                    Object {
+                      "strokeDasharray": "289.02652413026095px 289.02652413026095px",
+                      "strokeDashoffset": "289.02652413026095px",
+                    }
+                  }
+                />
+                <text
+                  className="CircularProgressbar-text"
+                  style={Object {}}
+                  x={50}
+                  y={50}
+                >
+                  undefined%
+                </text>
+              </svg>
+            </div>
+          </td>
+        </tr>
+        <br />
+        <br />
+      </tbody>
+    </table>
+    <table
+      className="table"
+    >
+      <thead>
+        <tr
+          style={
+            Object {
+              "backgroundColor": "#050531",
+              "color": "#ffffff",
+            }
+          }
+        >
+          <th
+            scope="col"
+          >
+            Titulo
+          </th>
+          <th
+            scope="col"
+          >
+            Descripcion KR
+          </th>
+          <th
+            scope="col"
+          >
+            Fecha  Inicio
+          </th>
+          <th
+            scope="col"
+          >
+            Fecha Final
+          </th>
+          <th
+            scope="col"
+          >
+            PesoOKR
+          </th>
+          <th
+            scope="col"
+          >
+            Progreso
+          </th>
+        </tr>
+      </thead>
+      <tbody />
+    </table>
+  </div>
+</div>
+`;
