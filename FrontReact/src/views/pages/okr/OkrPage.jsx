@@ -3,22 +3,23 @@ import OkrCard from "../../components/okr/OkrCard";
 import { Link } from "react-router-dom";
 import OkrBtn from "../../components/okr/OkrBtn";
 import { getOkrs } from "../../../application/selectors/dashboard/okrs";
-import { loadingOKR } from "../../../application/actions/dashboard";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
+import { getAllOkrUser } from "../../../application/actions/okr/okr";
+import { getUser } from "../../../application/selectors/administration/user";
+import { getAllOkrsUser } from "../../../application/selectors/okr/okr";
 
-const OkrPage = ({ okr, loadingOKR }) => {
-  
-
+const OkrPage = ({ okr, getAllOkrUser, user,okrs }) => {
   useEffect(() => {
-    loadingOKR(okr.managerId);
-  }, [loadingOKR]);
+    getAllOkrUser(user.idMongo);
+  }, [getAllOkrUser, user.idMongo]);
 
-  
+
+
   return (
     <div className="container d-flex flex-column align-items-center py-5">
-      {okr.length === 0 ? (
+      {okrs.length === 0 ? (
         <>
           <EmptyMessage />
           <Link to="/okr/create-okr">
@@ -32,10 +33,12 @@ const OkrPage = ({ okr, loadingOKR }) => {
           </Link>
           <div className="container">
             <ul className="list-unstyled">
-              {okr.map((elem) => {
+              {okrs.map((elem) => {
                 return (
                   <li key={elem.id}>
-                    <OkrCard okr={okr} title={elem.objective} progress={elem.title} />
+                    <OkrCard
+                      okr={elem}    
+                    />
                   </li>
                 );
               })}
@@ -50,13 +53,15 @@ const OkrPage = ({ okr, loadingOKR }) => {
 const mapStateToProps = (state) => {
   return {
     okr: getOkrs(state),
+    user: getUser(state),
+    okrs: getAllOkrsUser(state),
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
-      loadingOKR,
+      getAllOkrUser,
     },
     dispatch
   );

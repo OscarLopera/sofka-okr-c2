@@ -1,18 +1,14 @@
 import middlewareOkr from "../../middleware/okr/okr";
-import { addOkrs, addOkrsSuccess, addOkrsFailure} from "../../actions/okr/okr";
-
-
-
-
+import { addOkrs, addOkrsSuccess, addOkrsFailure, deleteOkrs, deleteOkrsSuccess, deleteOkrsFailure } from "../../actions/okr/okr";
 
 const dummyOkrs = {
-    
+
     objective: "objective",
     title: "title",
     managerId: "managerId",
     description: "description",
     areaInCharge: "areaInCharge",
-    
+
 }
 
 const dispatch = jest.fn();
@@ -32,11 +28,11 @@ describe('middleware OKR test functions', () => {
         }
         const action = addOkrs(dummyOkrs);
         await addOkrFlow({ api })({ dispatch })(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(addOkrsSuccess(dummyKr));
+        expect(dispatch).toHaveBeenCalledWith(addOkrsSuccess(dummyOkrs));
         expect(next).toHaveBeenCalledWith(action);
     })
 
-    test('create KR flow test error', async () => {
+    test('create OKR flow test error', async () => {
         const api = {
             okr: {
                 addOkrs: () => {
@@ -44,37 +40,37 @@ describe('middleware OKR test functions', () => {
                 }
             }
         }
-        const action = createKr(dummyKr);
+        const action = addOkrs(dummyOkrs);
         await addOkrFlow({ api })({ dispatch })(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(addOkrsFailure("Error al crear KR"));
+        expect(dispatch).toHaveBeenCalledWith(addOkrsFailure("Error al crear OKR"));
         expect(next).toHaveBeenCalledWith(action);
     })
 
-    test('delete KR flow test', async () => {
+    test('delete OKR flow test', async () => {
         const api = {
             kr: {
-                deleteKr: () => {
-                    return dummyKr
+                deleteOkrs: () => {
+                    return dummyOkrs
                 }
             }
         }
-        const action = deleteKr();
-        await deleteKrFlow({ api })({ dispatch })(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(deleteKrSuccess());
+        const action = deleteOkrs();
+        await deleteOkrFlow({ api })({ dispatch })(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(deleteOkrsSuccess());
         expect(next).toHaveBeenCalledWith(action);
     })
 
-    test('delete KR flow test error', async () => {
+    test('delete OKR flow test error', async () => {
         const api = {
             kr: {
-                deleteKr: () => {
-                    throw new Error("Error al eliminar KR");
+                deleteOkrs: () => {
+                    throw new Error("Error al eliminar OKR");
                 }
             }
         }
-        const action = deleteKr();
-        await deleteKrFlow({ api })({ dispatch })(next)(action);
-        expect(dispatch).toHaveBeenCalledWith(deleteKrError("Error al eliminar KR"));
+        const action = deleteOkrs();
+        await deleteOkrFlow({ api })({ dispatch })(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(deleteOkrsFailure("Error al eliminar KR"));
         expect(next).toHaveBeenCalledWith(action);
     })
 })

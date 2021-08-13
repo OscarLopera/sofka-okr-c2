@@ -39,7 +39,6 @@ const CrearOkrPage = ({
   const [description, setDescription] = useState("");
   const [areaInCharge, setAreaInCharge] = useState("");
   const [KrVisible, setKrVisible] = useState(false);
-  const [formState, setFormState] = useState("");
 
   const okrCreateSubmit = (event) => {
     event.preventDefault();
@@ -230,8 +229,6 @@ const CrearOkrPage = ({
           </FormGroup>
         </Form>
       </div>
-
-      <div></div>
     </div>
   );
 };

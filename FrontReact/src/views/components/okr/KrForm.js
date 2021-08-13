@@ -13,7 +13,6 @@ const KrForm = ({ createKr, close }) => {
   const [loadValue, setLoadValue] = useState("");
   const [managerName, setManagerName] = useState("");
   const [managerEmail, setManagerEmail] = useState("");
-  const [validated, setValidated] = useState(false);
 
   const handleSubmitCreateKr = (event) => {
     event.preventDefault();
@@ -25,16 +24,8 @@ const KrForm = ({ createKr, close }) => {
       loadValue: loadValue,
       managerName: managerName,
       managerEmail: managerEmail,
-      progress: 5,
+      progress: 1,
     };
-
-    const form = event.currentTarget;
-    if (form.checkValidity() === false) {
-      event.stopPropagation();
-    }
-
-    setValidated(true);
-
     createKr(KrObject);
     close();
     alert("KR creado correctamente");
