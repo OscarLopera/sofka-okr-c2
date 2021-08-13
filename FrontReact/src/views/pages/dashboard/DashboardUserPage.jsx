@@ -33,11 +33,7 @@ const DashboardUserPage = ({
   user,
 }) => {
   const [idokr, setidokr] = useState("");
-  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  // const idUser = "61164bfad5c39f3f2cade723";
-  // const idlast = "61164bfad5c39f3f2cade723";
-  //const idUser = "611461004b98615d2dc035f2";
-  //const idlast = "611461004b98615d2dc035f2";
+
   useEffect(() => {
     loadingOKR(user.idMongo);
     getidOkrLast(user.idMongo);
@@ -50,7 +46,6 @@ const DashboardUserPage = ({
   return (
     <div>
       <div className="row">
-        <h1>{okrs.title}hola</h1>
         <center>
           <div className="col-2"></div>
           <div className="col-8">
