@@ -34,10 +34,15 @@ export const gethistorysuccess = (history) =>({
     payload: history
 });
 
+export const sendNotificationSucess = (message) =>({
+    type: "ENVIAR_NOTIFICACION_SUCESS",
+    payload: message,
+    
+});
+
 export const sendNotification = (id,message) =>({
     type: "ENVIAR_NOTIFICACION",
     payload: message,
     id:id
 });
-
 
