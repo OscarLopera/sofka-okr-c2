@@ -56,7 +56,7 @@ describe('calendar update component test', () => {
         const inputGuestEmail = getByTestId('input-test-guest-email')
 
         const buttonUpdateEvent = getByTestId('button-test-update-event')
-        const buttonUpdateGuest = getByTestId('btn-test-update-guest')
+        const buttonUpdateGuest = getByTestId('btn-test-external-update')
 
         fireEvent.change(inputStartDate, {target: {value: '01-01-2019'}})
         fireEvent.change(inputStartTime, {target: {value: '20:43'}})

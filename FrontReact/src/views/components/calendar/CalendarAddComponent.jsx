@@ -145,8 +145,8 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) =>
 
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-earmark-text"></i></span>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text" id="basic-addon1"><i className="bi bi-file-earmark-text"/></span>
                                     <input data-testid={"input-test-descriptionAddEvent"}
                                         required={true}
                                         minLength={10}
@@ -158,15 +158,15 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) =>
                                         onChange={event => setDescription(event.target.value)} />
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Hora inicio </span>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text">Hora inicio </span>
                                     <input data-testid={"input-test-timeStart"}
                                         required={true}
                                         placeholder="Selected time" type={"time"}
                                         id={"input_starttime"}
                                         className={"form-control col"}
                                         onChange={event => setStartTime(event.target.value)} />
-                                    <span class="input-group-text">Hora final</span>
+                                    <span className="input-group-text">Hora final</span>
                                     <input data-testid={"input-test-timeEnd"}
                                         required={true}
                                         placeholder="Selected time"
@@ -191,12 +191,12 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) =>
                                         {item}<a
                                             data-testid={"btn-delete-external-" + item}
                                             onClick={event => deleteExternalAttendees(item)}
-                                            className="mx-1" ><i class="bi bi-x-circle-fill"></i></a>
+                                            className="mx-1" ><i className="bi bi-x-circle-fill"/></a>
                                     </label>
                                 })}
                                 <br />
-                                <div class="input-group mb-2">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-people"></i></span>
+                                <div className="input-group mb-2">
+                                    <span className="input-group-text" id="basic-addon1"><i className="bi bi-people"/></span>
                                     <input data-testid={"input-test-external"}
                                         className={"form-control"}
                                         minLength={10}

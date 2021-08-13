@@ -74,7 +74,7 @@ describe('Event Items component test', () => {
         const email = 'danielaristy22@gmail.com';
 
         const { getByTestId } = render(
-            <EventItemComponent events={events} DeleteEvent={DeleteEvent} UpdateEvent={UpdateEvent} token={dummyToken} email={email} userEmails={dummyList}/>
+            <EventItemComponent events={events} DeleteEvent={DeleteEvent} UpdateEvent={UpdateEvent} token={dummyToken} email={email} userEmails={dummyList} userId={"userid"}/>
         )
 
         const buttonDeleteEvent = getByTestId("btn-test-deleteEvent-ululbsrf6lshff5iaeq90vltad");

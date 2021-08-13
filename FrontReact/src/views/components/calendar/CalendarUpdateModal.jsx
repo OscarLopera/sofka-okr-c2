@@ -1,9 +1,9 @@
-import React, { Fragment, useState, useEffect } from 'react'
+import React, {Fragment, useState, useEffect} from 'react'
 import Select from "react-select";
 import socket from '../../../infrastructure/services/api/notifications/socket';
 import validator from 'validator'
 
-export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, userEmails }) => {
+export const CalendarUpdateModal = ({UpdateEvent, token, item, eventChange, userEmails}) => {
     let date = new Date().toLocaleDateString().split('/')
     date[1] = date[1] < 10 ? '0' + date[1] : date[1]
     date = date[2] + '-' + date[1] + '-' + date[0]
@@ -35,7 +35,7 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
         if (list) {
             return list.map(item => {
                 return {
-                    value: { email: item.email },
+                    value: {email: item.email},
                     label: item.name + " - " + item.email
                 }
             })
@@ -81,7 +81,7 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
 
     const updateEvent = () => {
         let finalAtendees = [...attendees, ...guestsList.map(user => {
-            return { email: user }
+            return {email: user}
         })]
         const eventObject = {
             id: item.id,
@@ -98,7 +98,7 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
             conferenceData: {
                 createRequest: {
                     requestId: 'sample13',
-                    conferenceSolutionKey: { type: 'hangoutsMeet' },
+                    conferenceSolutionKey: {type: 'hangoutsMeet'},
                 },
             },
             attendees: finalAtendees,
@@ -114,12 +114,10 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
 
     return (
         <Fragment>
-
             <div id={'modalUpdateEvent'}
-                className={'modal fade'}
-                data-backdrop="static"
-                data-keyboard="false"
-            >
+                 className={'modal fade'}
+                 data-backdrop="static"
+                 data-keyboard="false">
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
@@ -129,8 +127,8 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
                         </div>
                         <div className="modal-body container row">
                             <form onSubmit={updateEvent}>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1">Día del evento </span>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text" id="basic-addon1">Día del evento </span>
                                     <input
                                         data-testid={"input-test-start-date"}
                                         type={'date'}
@@ -142,8 +140,9 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
                                     />
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-file-earmark-text"></i></span>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text" id="basic-addon1"><i
+                                        className="bi bi-file-earmark-text"/></span>
                                     <input
                                         data-testid={"input-test-description"}
                                         type={'text'}
@@ -156,8 +155,8 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
                                     />
                                 </div>
 
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">Hora inicio </span>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text">Hora inicio </span>
                                     <input
                                         data-testid={"input-test-start-time"}
                                         placeholder="Selected time"
@@ -166,8 +165,8 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
                                         className={'form-control col'}
                                         value={startTime}
                                         onChange={(event) => setStartTime(event.target.value)}
-                                        required={true} />
-                                    <span class="input-group-text">Hora final</span>
+                                        required={true}/>
+                                    <span className="input-group-text">Hora final</span>
                                     <input
                                         data-testid={"input-test-end-time"}
                                         placeholder="Selected time"
@@ -177,32 +176,33 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
                                         value={endTime}
                                         min={startTime}
                                         required={true}
-                                        onChange={(event) => setEndTime(event.target.value)} />
+                                        onChange={(event) => setEndTime(event.target.value)}/>
                                 </div>
 
                                 <label>Invitados Internos</label>
-                                <br />
+                                <br/>
                                 <Select isMulti
-                                    options={attendeesList}
-                                    onChange={addAttendees}
-                                    placeholder={"Selecciona los correos"} />
-                                <br />
+                                        options={attendeesList}
+                                        onChange={addAttendees}
+                                        placeholder={"Selecciona los correos"}/>
+                                <br/>
                                 <label>Invitados Externos</label>
-                                <br />
+                                <br/>
                                 {guestsList.map((item, index) => {
                                     return (
                                         <label key={index} className="border border-dark rounded bg-light my-3 ms-1">
                                             {item}{' '}
                                             <a data-testid={"btn-test-delete-guest"}
-                                                onClick={(event) => deletGuest(item)}
-                                                className="mx-1" ><i class="bi bi-x-circle-fill"></i></a>
+                                               onClick={(event) => deletGuest(item)}
+                                               className="mx-1"><i className="bi bi-x-circle-fill"/></a>
                                         </label>
                                     )
                                 })}
 
-                                <br />
-                                <div class="input-group mb-2">
-                                    <span class="input-group-text" id="basic-addon1"><i class="bi bi-people"></i></span>
+                                <br/>
+                                <div className="input-group mb-2">
+                                    <span className="input-group-text" id="basic-addon1"><i
+                                        className="bi bi-people"/></span>
                                     <input
                                         data-testid={"input-test-guest-email"}
                                         type="email"
@@ -212,30 +212,30 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
                                         value={guest}
                                     />
                                     <button data-testid={"btn-test-external-update"} className={"btn btn-primary"}
-                                        type={"button"}
-                                        onClick={updateGuestList}>Agregar Correo
+                                            type={"button"}
+                                            onClick={updateGuestList}>Agregar Correo
                                     </button>
                                 </div>
-                                <span style={{ fontWeight: 'bold', color: 'red', }}>{emailError}</span>
-                                <hr className="my-4" />
+                                <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
+                                <hr className="my-4"/>
 
                                 <div className="text-center">
 
 
                                     <button
                                         data-testid={"button-test-update-event"}
-                                        type="submit" 
+                                        type="submit"
                                         className="btn btn-success mx-2 px-2">
                                         Actualizar Evento
                                     </button>
 
                                     <button data-testid={"button-test-cancel-event"}
-                                        type="button"
-                                        className="btn btn-danger px-5"
-                                        data-dismiss="modal"
-                                        onClick={(event) => {
-                                            clearData()
-                                        }}
+                                            type="button"
+                                            className="btn btn-danger px-5"
+                                            data-dismiss="modal"
+                                            onClick={(event) => {
+                                                clearData()
+                                            }}
                                     >
                                         Cancelar
                                     </button>

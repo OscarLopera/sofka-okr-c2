@@ -36,7 +36,7 @@ describe('calendar add component test', () => {
         const dummyToken = "token";
 
         const { getByTestId } = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} userEmails={dummyList}/>
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} userEmails={dummyList} userId={"id"}/>
         )
 
         const inputDescription = getByTestId("input-test-descriptionAddEvent")
