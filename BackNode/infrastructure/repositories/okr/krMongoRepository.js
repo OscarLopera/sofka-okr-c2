@@ -28,6 +28,7 @@ class KrRepositoryMongo extends KrRepository {
 
   async getAllKrs(idOkr) {
     const krs = await KrSchema.find({ idOkr: idOkr });
+    console.log("idOkr",krs)
     return krs;
   }
 
