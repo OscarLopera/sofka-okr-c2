@@ -67,7 +67,7 @@ export const UserPage = ({
           </form>
           <h4 className="user-text">Tipo de Usuario: {user.userRol} </h4>
           <NavLink to="/dashboard" className="btn btn-danger">
-            Volver al Dasboard
+            Volver al Dashboard
           </NavLink>
         </center>
       </section>
