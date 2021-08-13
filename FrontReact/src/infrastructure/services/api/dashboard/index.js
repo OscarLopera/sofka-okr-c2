@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const functions = {
-    loadingOKR: async () => {
-        const id = "61157b07a2605b535bfab3ad"
+    loadingOKR: async (id) => {
+    
         console.log("Estoy llegando al api",id);
         const response = await axios.get('https://back-spring-grupo-5.herokuapp.com/api/getokrbyuserid/'+id);
         return response.data
