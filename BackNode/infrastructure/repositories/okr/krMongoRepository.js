@@ -15,38 +15,40 @@ class KrRepositoryMongo extends KrRepository {
       loadValue: Kr.loadValue,
       progress: Kr.progress,
     });
-    const response = await newKr.save()
+    const response = await newKr.save();
     return response._id;
   }
 
   async deleteKr(KrId) {
-    const Kr = new KrSchema()
-    const response = await KrSchema.findByIdAndDelete({ _id: KrId })
+    const Kr = new KrSchema();
+    const response = await KrSchema.findByIdAndDelete({ _id: KrId });
 
-    return response
+    return response;
   }
 
-  async getAllKrs() {
-    return CrudMongoRepository.getAll(collection);
+  async getAllKrs(idOkr) {
+    const krs = await KrSchema.find({ idOkr: idOkr });
+    return krs;
   }
 
   async deleteKrsByIdOkr(idOkr) {
-    return await KrSchema.deleteMany({ idOkr: idOkr })
+    return await KrSchema.deleteMany({ idOkr: idOkr });
   }
 
   async updateKr(idKr, krVal) {
-    const kr = await KrSchema.findOne({ _id: idKr })
+    const kr = await KrSchema.findOne({ _id: idKr });
     if (!kr) {
       throw new Error("Id de Kr a actualizar no existe");
     }
-    const updatedKr = await KrSchema.findByIdAndUpdate({ _id: idKr }, krVal, { new: true })
+    const updatedKr = await KrSchema.findByIdAndUpdate({ _id: idKr }, krVal, {
+      new: true,
+    });
     return updatedKr;
   }
 
   async getMany(value) {
-    return await KrSchema.find(value)
+    return await KrSchema.find(value);
   }
-
 }
 
 module.exports = KrRepositoryMongo;

@@ -3,8 +3,8 @@ const createKrController = require("./CreateKrController");
 const deleteKrController = require("./deleteKrController");
 const deleteOkrController = require("./deleteOkrController");
 const updateKrProgressController = require("./updateKrProgressController");
+const getOkrsByuserController = require("./getOkrsByuserController");
 
-console.log("llego al index")
 
 module.exports = {
   createOkrController,
@@ -12,4 +12,5 @@ module.exports = {
   deleteKrController,
   deleteOkrController,
   updateKrProgressController,
+  getOkrsByuserController
 };

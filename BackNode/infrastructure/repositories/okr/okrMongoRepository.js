@@ -22,5 +22,9 @@ class OkrRepositoryMongo extends OkrRepository {
   async deleteOkr(OkrId) {
     return await OkrSchema.findByIdAndDelete({ _id: OkrId })
   }
+  async getAllOkr(userId) {
+    return await OkrSchema.find({ managerId : userId })
+  }
+  
 }
 module.exports = OkrRepositoryMongo;
