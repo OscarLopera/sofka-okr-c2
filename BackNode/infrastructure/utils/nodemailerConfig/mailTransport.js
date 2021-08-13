@@ -19,7 +19,7 @@ const sendMail = async ( userEmail, message) => {
   contentHTML = `
         <h3> ¡Hola! </h3>
         <br>
-        <h3>${message.message}</h3>
+        <h3>${message}</h3>
         <br>
           <h3>#ElDesafioEsContigo</h3>
           <h3>#Team Sofka</h3>
@@ -30,7 +30,7 @@ const sendMail = async ( userEmail, message) => {
   const transporter =  createTransport()
   const info = await transporter.sendMail({
     from: '"Notification" <sofkanotificaciones@gmail.com>', 
-    to: message.emailUser,
+    to: userEmail,
     subject: 'Notifications',
     html: contentHTML
   })

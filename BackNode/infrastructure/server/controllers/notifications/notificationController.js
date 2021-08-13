@@ -2,7 +2,9 @@
 const { addMessage, addNotification, getNotificationsById,getNotificationUser} = require('../../../../application/notifications/index')
 
 const emailer = require('../../../utils/nodemailerConfig/mailTransport');
-const mongoNotificationRepository = require ('../../../repositories/notifications/mongoNotificationRepository')
+const mongoNotificationRepository = require ('../../../repositories/notifications/mongoNotificationRepository');
+const notiRepo = require('../../../repositories/notifications/repositoryNotiManagerDb')
+const getNotificationManager = require('../../../../application/notifications/useCases/getNotificationManager');
 
 
 async function createNotification (req,res){
@@ -20,10 +22,17 @@ async function newMessageController(req,res){
     try{
         const id =req.params.id
         const message = req.body.message
-        console.log(message)
+        const notiType = req.body.notisType
         const newNotification = await addMessage (id, message, mongoNotificationRepository.prototype)
-        res.send("Notificación añadida")
-        emailer.sendMail((req.body.userEmail),message)
+        const getNotimanager = await getNotificationManager(notiRepo.prototype, id)
+        console.log(getNotimanager.mail[notiType])
+        if(getNotimanager.mail[notiType]){
+            emailer.sendMail((req.body.userEmail),message)
+        }
+        res.send({
+            screen:getNotimanager.screen[notiType]
+        })
+        
     }catch(error){
         res.status(500).send(error);
     }
