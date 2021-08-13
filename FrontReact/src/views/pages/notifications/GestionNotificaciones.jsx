@@ -44,11 +44,13 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
                     <p className="me-2 text-center">Pantalla🖥️</p>
 
                 </div>
-                {initialstate.notificationstatus.length &&
+                {initialstate.notificationstatus !== null &&
+                <>{initialstate.notificationstatus.length &&
                     initialstate.notificationstatus.map(noti => {
                         return <OpcionPantallaEmail props={noti} key={noti[0]} />
                     })
-                }
+                }</>
+            }
 
             </div>
             <div className="text-center">
