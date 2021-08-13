@@ -2,7 +2,7 @@ import React, { Fragment, useState, useEffect } from 'react'
 import Select from "react-select";
 import validator from 'validator'
 
-const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }) => {
+export const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }) => {
   let date = new Date().toLocaleDateString().split('/')
   date[1] = date[1] < 10 ? '0' + date[1] : date[1]
   date = date[2] + '-' + date[1] + '-' + date[0]
@@ -47,7 +47,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
     }
     if (!validator.isEmail(guest)) {
       setEmailError('Enter valid Email!')
-      setTimeout(function () {
+      setTimeout(() => {
           setEmailError("")
       }, 3000)
     }else{
@@ -125,7 +125,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
               <form onSubmit={updateEvent}>
                 <label>Dia del Evento</label>
                 <input
-                  data-testId={"input-test-start-date"}
+                  data-testid={"input-test-start-date"}
                   type={'date'}
                   min={date}
                   required={true}
@@ -136,7 +136,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <hr className="my-4"/>
                 <label className="col">Hora Inicial</label>
                 <input
-                  data-testId={"input-test-start-time"}
+                  data-testid={"input-test-start-time"}
                   placeholder="Selected time"
                   type={'time'}
                   id={'input_starttime'}
@@ -148,7 +148,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <label className="col">Hora Final</label>
                 <div className="w-100" />
                 <input
-                  data-testId={"input-test-end-time"}
+                  data-testid={"input-test-end-time"}
                   placeholder="Selected time"
                   type={'time'}
                   id={'input_endttime'}
@@ -160,7 +160,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <hr className="my-4" />
                 <label>Descripcion</label>
                 <input
-                  data-testId={"input-test-description"}
+                  data-testid={"input-test-description"}
                   type={'text'}
                   value={description}
                   minLength={10}
@@ -178,7 +178,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <hr className="my-4" />
                 <label>Invitados Externos</label>
                 <input
-                  data-testId={"input-test-guest-email"}
+                  data-testid={"input-test-guest-email"}
                   type="email"
                   className="form-control"
                   placeholder="email"
@@ -187,7 +187,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 />
                 <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
 
-                <a
+                <a data-testid={"btn-test-update-guest"}
                   onClick={updateGuestList}
                   className="btn btn-primary form-control"
                 >
@@ -201,15 +201,14 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                       className="border border-dark rounded bg-light"
                     >
                       {item}{' '}
-                      <a
+                      <a data-testid={"btn-test-delete-guest"}
                         onClick={(event) => deletGuest(item)}
                         className="bi bi-x-circle"
                         />
                     </label>
                   )
                 })}
-                <button
-                  data-testId={"button-test-update-event"}
+                <button data-testid={"button-test-cancel-event"}
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
@@ -219,7 +218,9 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 >
                   Cancelar
                 </button>
-                <button type="submit" className="btn btn-primary">
+                <button
+                    data-testid={"button-test-update-event"}
+                    type="submit" className="btn btn-primary">
                   Actualizar Evento
                 </button>
               </form>

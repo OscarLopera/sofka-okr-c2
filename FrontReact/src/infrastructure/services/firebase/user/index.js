@@ -16,7 +16,7 @@ const functions ={
     },
     logout: () => {
         return logout();
-    }
+    },
 }
 
 export default functions;
