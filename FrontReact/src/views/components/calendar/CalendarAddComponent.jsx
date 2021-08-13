@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import Select from "react-select";
 import socket from '../../../infrastructure/services/api/notifications/socket';
 import validator from 'validator'
 
-export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
+export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) => {
 
     let currentDate = new Date()
     const date = (currentDate.toISOString().split('T', 8))
@@ -26,7 +26,7 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
     const listTransform = (list) => {
         return list.map(item => {
             return {
-                value: {email: item.email},
+                value: { email: item.email },
                 label: item.name + " - " + item.email
             }
         })
@@ -35,7 +35,7 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
     const validateEmail = (e) => {
         if (!validator.isEmail(e)) {
             setExternalAttendees(e)
-            setEmailError('Enter valid Email!')
+            setEmailError('¡Ingresa un gmail valido para continuar!')
         } else {
             setEmailError("")
             setExternalAttendees(e)
@@ -77,7 +77,7 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
         if (externalAttendeesList.length > 0) {
             externalAttendeesList.forEach(element => {
                 let aux = attendees;
-                aux.push({email: element})
+                aux.push({ email: element })
                 setAttendees(aux)
             })
         }
@@ -95,7 +95,7 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
             conferenceData: {
                 createRequest: {
                     requestId: "sample13",
-                    conferenceSolutionKey: {type: "hangoutsMeet"}
+                    conferenceSolutionKey: { type: "hangoutsMeet" }
                 },
             },
             attendees: attendees,
@@ -105,112 +105,130 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
             sendUpdates: "all"
         }
        
-        
         AddEvent(eventObject, token)
+        socket.emit("crear-evento", { id: userId.userId, manager: userId.userName })
         clearData()
-
     }
 
     return (
         <div>
-            <button className=" mr-3 btn btn-primary px-4"
+            <div className="my-4">
+                <button className=" mr-3 btn btn-primary px-4"
                     data-testid={"btn-test-openModalAddEvent"}
                     data-toggle={"modal"}
                     data-target={"#modalAddEvent"}>
-                Agregar Evento <i className="bi bi-plus-square"/>
-            </button>
-            <div id={"modalAddEvent"} className={"modal fade container"}>
+                    Agregar Evento <i className="bi bi-plus-square" />
+                </button>
+            </div>
+            <div id={"modalAddEvent"} className={"modal fade"}>
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">Agregar Evento</h5>
+                            <h4 className="modal-title font-weight-bold" id="exampleModalLabel">Agregar Evento</h4>
                             <button type="button"
-                                    className={"btn close"}
-                                    data-dismiss="modal">
-                                <i className="bi bi-x-lg"/>
+                                className={"btn close"}
+                                data-dismiss="modal">
+                                <i className="bi bi-x-lg" />
                             </button>
                         </div>
                         <div className="modal-body container row">
+
                             <form onSubmit={addEvent}>
-                                <label>Dia del Evento</label>
-                                <input data-testid={"input-test-date"}
-                                       required={true}
-                                       type={"date"}
-                                       min={date[0]}
-                                       value={startDate}
-                                       className={"form-control"}
-                                       onChange={event => setStartDate(event.target.value)}/>
-                                <hr className="my-4"/>
-                                <label className="col">Hora Inicial</label>
-                                <input data-testid={"input-test-timeStart"}
-                                       required={true}
-                                       placeholder="Selected time" type={"time"}
-                                       id={"input_starttime"}
-                                       className={"form-control col"}
-                                       onChange={event => setStartTime(event.target.value)}/>
-                                <hr className="my-4"/>
-                                <label className="col">Hora Final</label>
-                                <input data-testid={"input-test-timeEnd"}
-                                       required={true}
-                                       placeholder="Selected time"
-                                       type={"time"}
-                                       id={"input_endttime"}
-                                       className={"form-control timepicker col"}
-                                       min={startTime}
-                                       onChange={event => setEndTime(event.target.value)}/>
-                                <hr className="my-4"/>
-                                <label>Descripcion</label>
-                                <input data-testid={"input-test-descriptionAddEvent"}
-                                       required={true}
-                                       minLength={10}
-                                       maxLength={50}
-                                       type={"text"}
-                                       value={description}
-                                       className={"form-control"}
-                                       onChange={event => setDescription(event.target.value)}/>
-                                <hr className="my-4"/>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text" id="basic-addon1">Día del evento </span>
+                                    <input data-testid={"input-test-date"}
+                                        required={true}
+                                        type={"date"}
+                                        min={date[0]}
+                                        value={startDate}
+                                        className={"form-control"}
+                                        onChange={event => setStartDate(event.target.value)} />
+
+                                </div>
+
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text" id="basic-addon1"><i className="bi bi-file-earmark-text"/></span>
+                                    <input data-testid={"input-test-descriptionAddEvent"}
+                                        required={true}
+                                        minLength={10}
+                                        maxLength={50}
+                                        type={"text"}
+                                        value={description}
+                                        className={"form-control"}
+                                        placeholder="Descripción"
+                                        onChange={event => setDescription(event.target.value)} />
+                                </div>
+
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text">Hora inicio </span>
+                                    <input data-testid={"input-test-timeStart"}
+                                        required={true}
+                                        placeholder="Selected time" type={"time"}
+                                        id={"input_starttime"}
+                                        className={"form-control col"}
+                                        onChange={event => setStartTime(event.target.value)} />
+                                    <span className="input-group-text">Hora final</span>
+                                    <input data-testid={"input-test-timeEnd"}
+                                        required={true}
+                                        placeholder="Selected time"
+                                        type={"time"}
+                                        id={"input_endttime"}
+                                        className={"form-control timepicker col"}
+                                        min={startTime}
+                                        onChange={event => setEndTime(event.target.value)} />
+                                </div>
+
                                 <label>Invitados Internos</label>
+                                <br />
                                 <Select isMulti
-                                        options={attendeesList}
-                                        onChange={addAttendees}
-                                        placeholder={"Selecciona los correos"}/>
-                                <hr className="my-4"/>
+                                    options={attendeesList}
+                                    onChange={addAttendees}
+                                    placeholder={"Selecciona los correos"} />
+                                <br />
                                 <label>Invitados Externos</label>
-                                <br/>
+                                <br />
                                 {externalAttendeesList.map((item, index) => {
-                                    return <label key={index} className="border border-dark rounded bg-light">
-                                        {item} <a data-testid={"btn-delete-external-" + item}
-                                                  onClick={event => deleteExternalAttendees(item)}
-                                                  className="bi bi-x-circle"/>
+                                    return <label key={index} className="border border-dark rounded bg-light my-3 ms-1">
+                                        {item}<a
+                                            data-testid={"btn-delete-external-" + item}
+                                            onClick={event => deleteExternalAttendees(item)}
+                                            className="mx-1" ><i className="bi bi-x-circle-fill"/></a>
                                     </label>
                                 })}
-                                <br/>
-                                <input data-testid={"input-test-external"}
-                                       className={"form-control"}
-                                       minLength={10}
-                                       maxLength={50}
-                                       type={"email"}
-                                       value={externalAttendees}
-                                       onChange={event => validateEmail(event.target.value)}/>
-                                <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
-                                <br/>
-                                <button data-testid={"btn-test-external-update"}
-                                        className={"btn btn-primary"}
+                                <br />
+                                <div className="input-group mb-2">
+                                    <span className="input-group-text" id="basic-addon1"><i className="bi bi-people"/></span>
+                                    <input data-testid={"input-test-external"}
+                                        className={"form-control"}
+                                        minLength={10}
+                                        maxLength={50}
+                                        type={"email"}
+                                        placeholder="Agregar correos externos"
+                                        value={externalAttendees}
+                                        onChange={event => validateEmail(event.target.value)} />
+                                    <button data-testid={"btn-test-external-update"} className={"btn btn-primary"}
                                         type={"button"}
                                         onClick={updateAttendeesList}>Agregar Correo
-                                </button>
-                                <hr className="my-4"/>
-                                <button data-testid={"btn-test-cancelEvent"}
+                                    </button>
+                                </div>
+                                <span style={{ fontWeight: 'bold', color: 'red', }}>{emailError}</span>
+                                <hr className="my-4" />
+
+                                <div className="text-center">
+                                    <button data-testid={"btn-test-addEvent"}
+                                        type="submit"
+                                        className="btn btn-success mx-4 px-2">Agregar Evento
+                                    </button>
+
+                                    <button data-testid={"btn-test-cancelEvent"}
                                         type="button"
-                                        className={"btn btn-secondary px-5 mr-4"}
+                                        className={"btn btn-danger px-4"}
                                         data-dismiss="modal"
                                         onClick={() => clearData()}>
-                                    Cancelar
-                                </button>
-                                <button data-testid={"btn-test-addEvent"}
-                                        type="submit"
-                                        className="btn btn-primary px-5 ">Agregar Evento
-                                </button>
+                                        Cancelar
+                                    </button>
+                                </div>
+
                             </form>
                         </div>
                     </div>

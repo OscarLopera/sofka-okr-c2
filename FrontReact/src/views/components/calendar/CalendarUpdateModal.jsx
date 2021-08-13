@@ -31,9 +31,8 @@ export const CalendarUpdateModal = ({UpdateEvent, token, item, eventChange, user
         setEndTime(currentEndTime)
     }, [currentDate, currentDescription, currentEndTime, currentStartTime, userEmails])
 
-
     const listTransform = (list) => {
-        if(list){
+        if (list) {
             return list.map(item => {
                 return {
                     value: {email: item.email},
@@ -49,7 +48,7 @@ export const CalendarUpdateModal = ({UpdateEvent, token, item, eventChange, user
             return guestsList
         }
         if (!validator.isEmail(guest)) {
-            setEmailError('Enter valid Email!')
+            setEmailError('¡Ingresa un gmail valido para continuar!')
             setTimeout(() => {
                 setEmailError("")
             }, 3000)
@@ -109,127 +108,139 @@ export const CalendarUpdateModal = ({UpdateEvent, token, item, eventChange, user
             sendUpdates: 'all',
         }
         UpdateEvent(eventObject, token)
-       socket.emit("")
+        socket.emit("")
     }
 
 
     return (
         <Fragment>
-
             <div id={'modalUpdateEvent'}
-                 className={'modal fade container'}
+                 className={'modal fade'}
                  data-backdrop="static"
-                 data-keyboard="false"
-            >
+                 data-keyboard="false">
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
                         <div className="modal-header">
-                            <h5 className="modal-title" id="exampleModalLabel">
+                            <h4 className="modal-title" id="exampleModalLabel">
                                 Actualizar Evento
-                            </h5>
+                            </h4>
                         </div>
                         <div className="modal-body container row">
                             <form onSubmit={updateEvent}>
-                                <label>Dia del Evento</label>
-                                <input
-                                    data-testid={"input-test-start-date"}
-                                    type={'date'}
-                                    min={date}
-                                    required={true}
-                                    value={startDate}
-                                    className={'form-control'}
-                                    onChange={(event) => setStartDate(event.target.value)}
-                                />
-                                <hr className="my-4"/>
-                                <label className="col">Hora Inicial</label>
-                                <input
-                                    data-testid={"input-test-start-time"}
-                                    placeholder="Selected time"
-                                    type={'time'}
-                                    id={'input_starttime'}
-                                    className={'form-control col'}
-                                    value={startTime}
-                                    onChange={(event) => setStartTime(event.target.value)}
-                                    required={true}/>
-                                <hr className="my-4"/>
-                                <label className="col">Hora Final</label>
-                                <div className="w-100"/>
-                                <input
-                                    data-testid={"input-test-end-time"}
-                                    placeholder="Selected time"
-                                    type={'time'}
-                                    id={'input_endttime'}
-                                    className={'form-control timepicker col'}
-                                    value={endTime}
-                                    min={startTime}
-                                    required={true}
-                                    onChange={(event) => setEndTime(event.target.value)}/>
-                                <hr className="my-4"/>
-                                <label>Descripcion</label>
-                                <input
-                                    data-testid={"input-test-description"}
-                                    type={'text'}
-                                    value={description}
-                                    minLength={10}
-                                    maxLength={50}
-                                    className={'form-control'}
-                                    required={true}
-                                    onChange={(event) => setDescription(event.target.value)}
-                                />
-                                <hr className="my-4"/>
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text" id="basic-addon1">Día del evento </span>
+                                    <input
+                                        data-testid={"input-test-start-date"}
+                                        type={'date'}
+                                        min={date}
+                                        required={true}
+                                        value={startDate}
+                                        className={'form-control'}
+                                        onChange={(event) => setStartDate(event.target.value)}
+                                    />
+                                </div>
+
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text" id="basic-addon1"><i
+                                        className="bi bi-file-earmark-text"/></span>
+                                    <input
+                                        data-testid={"input-test-description"}
+                                        type={'text'}
+                                        value={description}
+                                        minLength={10}
+                                        maxLength={50}
+                                        className={'form-control'}
+                                        required={true}
+                                        onChange={(event) => setDescription(event.target.value)}
+                                    />
+                                </div>
+
+                                <div className="input-group mb-3">
+                                    <span className="input-group-text">Hora inicio </span>
+                                    <input
+                                        data-testid={"input-test-start-time"}
+                                        placeholder="Selected time"
+                                        type={'time'}
+                                        id={'input_starttime'}
+                                        className={'form-control col'}
+                                        value={startTime}
+                                        onChange={(event) => setStartTime(event.target.value)}
+                                        required={true}/>
+                                    <span className="input-group-text">Hora final</span>
+                                    <input
+                                        data-testid={"input-test-end-time"}
+                                        placeholder="Selected time"
+                                        type={'time'}
+                                        id={'input_endttime'}
+                                        className={'form-control timepicker col'}
+                                        value={endTime}
+                                        min={startTime}
+                                        required={true}
+                                        onChange={(event) => setEndTime(event.target.value)}/>
+                                </div>
+
                                 <label>Invitados Internos</label>
+                                <br/>
                                 <Select isMulti
                                         options={attendeesList}
                                         onChange={addAttendees}
                                         placeholder={"Selecciona los correos"}/>
-                                <hr className="my-4"/>
+                                <br/>
                                 <label>Invitados Externos</label>
-                                <input
-                                    data-testid={"input-test-guest-email"}
-                                    type="email"
-                                    className="form-control"
-                                    placeholder="email"
-                                    onChange={(event) => setGuest(event.target.value)}
-                                    value={guest}
-                                />
-                                <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
-
-                                <a data-testid={"btn-test-update-guest"}
-                                   onClick={updateGuestList}
-                                   className="btn btn-primary form-control"
-                                >
-                                    {' '}
-                                    Agregar invitado
-                                </a>
+                                <br/>
                                 {guestsList.map((item, index) => {
                                     return (
-                                        <label
-                                            key={index}
-                                            className="border border-dark rounded bg-light"
-                                        >
+                                        <label key={index} className="border border-dark rounded bg-light my-3 ms-1">
                                             {item}{' '}
                                             <a data-testid={"btn-test-delete-guest"}
                                                onClick={(event) => deletGuest(item)}
-                                               className="bi bi-x-circle"
-                                            />
+                                               className="mx-1"><i className="bi bi-x-circle-fill"/></a>
                                         </label>
                                     )
                                 })}
-                                <button data-testid={"button-test-cancel-event"}
-                                        type="button"
-                                        className="btn btn-secondary"
-                                        data-dismiss="modal"
-                                        onClick={(event) => {
-                                            clearData()
-                                        }}
-                                >
-                                    Cancelar
-                                </button>
-                                <button
-                                    data-testid={"button-test-update-event"}
-                                    type="submit" className="btn btn-primary">
-                                    Actualizar Evento
-                                </button>
+
+                                <br/>
+                                <div className="input-group mb-2">
+                                    <span className="input-group-text" id="basic-addon1"><i
+                                        className="bi bi-people"/></span>
+                                    <input
+                                        data-testid={"input-test-guest-email"}
+                                        type="email"
+                                        className="form-control"
+                                        placeholder="email"
+                                        onChange={(event) => setGuest(event.target.value)}
+                                        value={guest}
+                                    />
+                                    <button data-testid={"btn-test-external-update"} className={"btn btn-primary"}
+                                            type={"button"}
+                                            onClick={updateGuestList}>Agregar Correo
+                                    </button>
+                                </div>
+                                <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
+                                <hr className="my-4"/>
+
+                                <div className="text-center">
+
+
+                                    <button
+                                        data-testid={"button-test-update-event"}
+                                        type="submit"
+                                        className="btn btn-success mx-2 px-2">
+                                        Actualizar Evento
+                                    </button>
+
+                                    <button data-testid={"button-test-cancel-event"}
+                                            type="button"
+                                            className="btn btn-danger px-5"
+                                            data-dismiss="modal"
+                                            onClick={(event) => {
+                                                clearData()
+                                            }}
+                                    >
+                                        Cancelar
+                                    </button>
+                                </div>
+
                             </form>
                         </div>
                     </div>
