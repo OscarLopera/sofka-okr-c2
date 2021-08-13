@@ -53,6 +53,7 @@ const CrearOkrPage = ({
     if(selectedUser){
       addOkrs(values);
       socket.emit("crear-okr",{id:userId.userId, manager: userId.userName});
+      socket.emit("asignar-okr",{id:managerId, manager: managerName});
       alert("Se agrego el OKR Correctamente");
       history.push('/okr')
     }

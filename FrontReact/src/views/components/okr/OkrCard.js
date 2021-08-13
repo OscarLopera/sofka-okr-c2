@@ -6,12 +6,14 @@ import { deleteOkrs } from '../../../application/actions/okr/okr';
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 import { getUser } from "../../../application/selectors/administration/user";
+import socket from '../../../infrastructure/services/api/notifications/socket';
 
 const OkrCard = ({ user, okr, deleteOkrs }) => {
 
   const handleDeleteOkr = (event) => {
     event.preventDefault();
     deleteOkrs(user.idMongo, okr.okr._id)
+    socket.emit("eliminar-okr",{id:user.userId,manager:user.userName})
   }
 
   return (

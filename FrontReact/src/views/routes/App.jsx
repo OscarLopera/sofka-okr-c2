@@ -46,8 +46,10 @@ import Push from 'push.js';
 //import moment from "moment";
 
 const App = ({ user, gethistory, sendNotification, initialstate }) => {
-  localStorage.setItem("notifymanager", JSON.stringify(initialstate.notificationstatus));
+  
   useEffect(() => {
+    //localStorage.setItem("notifymanager", JSON.stringify(initialstate.notificationstatus));
+    
     if (user !== null) {
       socket.on(user.userId, (data) => {
         sendNotification(user.userId, {
@@ -56,6 +58,7 @@ const App = ({ user, gethistory, sendNotification, initialstate }) => {
           "notisType": data.notiType
         })
         setTimeout(() => {
+        console.log(initialstate.validarscreen)
         if (initialstate.validarscreen.screen) {
           console.log("envia pantalla")
           Push.create("Nueva notificacion Sofka Okr", {
@@ -65,7 +68,7 @@ const App = ({ user, gethistory, sendNotification, initialstate }) => {
         }
         
           gethistory(user.userId)
-        }, 500);
+        }, 1000);
 
       })
     }
