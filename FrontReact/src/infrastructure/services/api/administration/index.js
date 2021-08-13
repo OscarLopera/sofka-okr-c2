@@ -10,7 +10,7 @@ const functions = {
         return response.data;
     },
     getVertical: async (verticalId) => {
-        const response = await axios.get('https://admin-reto-final.herokuapp.com/api/vertical/' + verticalId);
+        const response = await axios.get('https://admin-reto-final.herokuapp.com/api/vertical/' + verticalId, {});
         return response.data;
     }, // si llega [] mensaje
     getVerticals: async () => {
