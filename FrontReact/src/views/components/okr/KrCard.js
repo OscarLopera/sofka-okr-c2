@@ -52,7 +52,7 @@ const KrCard = ({ user, id, title, progress, updateProgressKr, deleteKr }) => {
             className="fs-2 text-decoration-none"
             color="link"
             data-tip
-            onClick={updateKrProgress}
+            onSubmit={updateKrProgress}
             data-for="update-progress-tip"
           >
             🎯
