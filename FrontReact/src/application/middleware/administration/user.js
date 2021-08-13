@@ -1,6 +1,7 @@
 import * as actions from '../../actions/administration/user';
-import * as types from '../../types/administration/user';
 
+import { gethistory } from '../../actions/notifications';
+import * as types from '../../types/administration/user';
 
 const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action) => {
     next(action);
@@ -20,7 +21,7 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
             
             if(user.firstTime){
                 const userFirebase = {
-                    id: userId,
+                    idUser: userId,
                     name: userName,
                     email: userEmail,
                     urlPhoto: userImage,
@@ -30,10 +31,13 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                     rol: "rol"
                 }
                 await api.user.createUser(userFirebase);
-                await api.notifications.createNotificationsManager({userId:userId}) 
+                await api.notifications.createHistoryNotification({idUser:userId,emailUser:userEmail})
+                await api.notifications.createNotificationsManager({userId:userId})
+
             } else{
                 vertical = await api.user.getVertical(user.verticalId);
             }
+            dispatch(gethistory(userId))
             
             const userDataBase = {
                 userId: userId,
@@ -77,9 +81,76 @@ const closeWelcomeFlow = () => ({dispatch, getState}) => next => async (action) 
     }
 }
 
+const loadingVerticalsFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === types.LOADING_VERTICALS){
+        try{   
+            const verticals = await api.user.getVerticals();  
+            dispatch(actions.loadingVerticalsSuccess(verticals));
+        }catch (error){
+            dispatch(actions.loadingVerticalsFailure(error.message));
+        }
+    }
+}
 
-export default [
+const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === types.UPDATE_USER){
+        try{   
+            const user = action.payload;
+
+            const userInfo = {
+                idUser: user.userId,
+                name: user.userName,
+                email: user.userEmail,
+                urlPhoto: user.userImage,
+                phone: user.userPhone,
+                firstTime: false,
+                verticalId: user.userVerticalId,
+                rol: "super usuario"
+            }
+            await api.user.updateUser(userInfo); 
+
+            const vertical = await api.user.getVertical(user.userVerticalId);
+
+            const userToState = {
+                userId: user.userId,
+                userName: user.userName,
+                userEmail: user.userEmail,
+                userImage: user.userImage,
+                userPhone: user.userPhone,
+                firstTime: false, 
+                userVertical: vertical.verticalname, 
+                userToken: user.userToken,
+                userRol: "super usuario"
+            }
+            localStorage.setItem("user", JSON.stringify(userToState))
+            dispatch(actions.updateUserSuccess(userToState));
+        }catch (error){
+            dispatch(actions.updateUserFailure(error.message));
+        }
+    }
+}
+
+const loadingQuestionsFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action);
+    if(action.type === types.LOADING_QUESTIONS){
+        try{   
+            const questions = await api.user.getQuestions(); 
+            dispatch(actions.loadingQuestionsSuccess(questions));
+        }catch (error){
+            dispatch(actions.loadingQuestionsFailure(error.message));
+        }
+    }
+}
+
+const userMiddleware = [
     loginUserFlow,
     logoutUserFlow,
-    closeWelcomeFlow
+    closeWelcomeFlow,
+    loadingVerticalsFlow,
+    updateUserFlow,
+    loadingQuestionsFlow
 ]
+
+export default userMiddleware;

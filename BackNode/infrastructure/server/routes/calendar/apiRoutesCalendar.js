@@ -2,7 +2,7 @@ const express = require("express");
 const { rawListeners } = require("../../../..");
 const validationHandler = require("../../../utils/middleware/validationHandler");
 
-const {filterUsersOkr,getUsersByNameRegex} = require("../../controllers/calendar/calendarController")
+const {filterUsersOkr,getUsersByNameRegex, getallusers} = require("../../controllers/calendar/calendarController")
 
 function routesApiCalendar(app) {
   const router = express.Router();
@@ -14,7 +14,10 @@ function routesApiCalendar(app) {
   });
 
   router.get("/filterusersokr/:id", filterUsersOkr);
+
   router.get("/usersbyname/:name", getUsersByNameRegex)
+
+  router.get("/getallusers", getallusers);
 
 }
 

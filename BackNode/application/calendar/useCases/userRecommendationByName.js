@@ -5,8 +5,9 @@ const User = require("../../../domain/user/User")
         const users= await UserRepository.getUsersByName(name,limit)
 
         return users.map(user => new User(user._id,user.name,user.email,user.urlPhoto,user.phone,
-            user.isFirstTime,user.verticalId,user.role))
+            user.firstTime,user.verticalId,user.rol))
      
 }
 
 module.exports = userRecommendationByName
+

@@ -13,6 +13,17 @@ function routesApiOkr(app) {
     async (req, res, next) =>
       await okrControllers.createOkrController(req, res, next)
   );
+
+  router.delete(
+    "/delete/:id",
+    async (req, res, next) => {
+      await okrControllers.deleteOkrController(req, res, next);
+    })
+    router.get(
+      "/allokrsbyuser/:id",
+      async (req, res, next) => {
+        await okrControllers.getOkrsByuserController(req, res, next);
+      })
 }
 
 module.exports = routesApiOkr;

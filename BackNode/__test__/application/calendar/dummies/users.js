@@ -5,9 +5,9 @@ const usersDummies = [
         email: "juan@gmail.com",
         urlPhoto: "https://lh3.googleusercontent.com/ogw/ADea4I5m38rsb3mMMr0Lnosn5W_3JFp5Rx2ErzzkRTOD=s32-c-mo",
         phone: "12345678",
-        role: "estudiante",
+        rol: "estudiante",
         verticalId: "prfsd165f1s56dueba",
-        isFirstTime: true
+        firstTime: true
       },
       
       {
@@ -16,12 +16,11 @@ const usersDummies = [
         email: "julio@gmail.com",
         phone: "55555555",
         urlPhoto: "https://lh3.googleusercontent.com/ogw/ADea4I5m38rsb3mMMr0Lnosn5W_3JFpdfg5Rx2ErzzkRTOD=s32-c-mo",
-        role: "calidad",
+        rol: "calidad",
         verticalId: "sd1f65s151620",
-        isFirstTime: true
+        firstTime: true
       },
 ]
-
 
 const userError = [{
        _id: "610de277a6663b52ac859fdb",
@@ -29,9 +28,9 @@ const userError = [{
         email: "",
         phone: "",
         urlPhoto: "",
-        role: "",
+        rol: "",
         verticalId: "",
-        isFirstTime: null
+        firstTime: null
 }]
 
 module.exports = {usersDummies, userError};
