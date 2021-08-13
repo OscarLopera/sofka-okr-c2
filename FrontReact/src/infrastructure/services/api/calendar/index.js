@@ -37,7 +37,7 @@ const functions = {
     },
 
     updateEvent: async (event, token) => {
-        let melo = await axios.put(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${event.id}?conferenceDataVersion=1&sendNotifications=true&sendUpdates=all&key=${API_KEY}`,
+        return await axios.put(`https://www.googleapis.com/calendar/v3/calendars/primary/events/${event.id}?conferenceDataVersion=1&sendNotifications=true&sendUpdates=all&key=${API_KEY}`,
             event, {
             headers: {
                 Authorization: 'Bearer ' + token,
@@ -45,8 +45,6 @@ const functions = {
                 'Content-Type': 'application/json',
             }
         })
-        console.log(melo)
-        return melo.data
     },
     getEmailUser: async () => {
          const data = await axios.get('https://okr-final-app.herokuapp.com/api/calendar/getallusers');

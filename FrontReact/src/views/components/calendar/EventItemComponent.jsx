@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import CalendarUpdateModal from './CalendarUpdateModal'
 
-export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,}) => {
+export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,userEmails}) => {
   const [event, setEvent] = useState("")
 
   const deleteEvent = (id) => {
@@ -18,6 +18,7 @@ export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,}
         token={token}
         UpdateEvent={UpdateEvent}
         eventChange={setEvent}
+        userEmails={userEmails}
       />) : null}
 
       {events.map((item, i) => {

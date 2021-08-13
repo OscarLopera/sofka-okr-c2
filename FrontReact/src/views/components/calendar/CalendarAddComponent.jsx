@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Select from "react-select";
+import validator from 'validator'
 
 export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
 
@@ -13,11 +14,13 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
     const [startTime, setStartTime] = useState(time)
     const [endTime, setEndTime] = useState(time)
     const [externalAttendees, setExternalAttendees] = useState("");
+    const [externalAttendeesList, setExternalAttendeesList] = useState([])
     const [attendeesList, setAttendeesList] = useState([])
+    const [emailError, setEmailError] = useState('')
 
     useEffect(() => {
         setAttendeesList(listTransform(userEmails))
-    },[userEmails])
+    }, [userEmails])
 
     const listTransform = (list) => {
         return list.map(item => {
@@ -26,6 +29,29 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
                 label: item.name + " - " + item.email
             }
         })
+    }
+
+    const validateEmail = (e) => {
+        if (!validator.isEmail(e)) {
+            setExternalAttendees(e)
+            setEmailError('Enter valid Email!')
+        } else {
+            setEmailError("")
+            setExternalAttendees(e)
+        }
+    }
+
+    const updateAttendeesList = () => {
+        if (emailError === "") {
+            setExternalAttendeesList(list => [...list, externalAttendees])
+            setExternalAttendees("")
+        } else {
+            return null;
+        }
+    }
+
+    const deleteExternalAttendees = (item) => {
+        setExternalAttendeesList(externalAttendeesList.filter(element => item !== element))
     }
     const addAttendees = (e) => {
         // eslint-disable-next-line array-callback-return
@@ -43,11 +69,15 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
         setExternalAttendees("")
     }
 
-    const addEvent = () => {
-        if (externalAttendees !== "") {
-            let inv = attendees;
-            inv.push({email: externalAttendees});
-            setAttendees(inv)
+    const addEvent = (e) => {
+        e.preventDefault()
+        if (externalAttendeesList.length > 0) {
+            externalAttendeesList.forEach(element => {
+                console.log(element)
+                let aux = attendees;
+                aux.push({email:element})
+                setAttendees(aux)
+            })
         }
         const eventObject = {
             summary: "OKR",
@@ -72,12 +102,10 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
             },
             sendUpdates: "all"
         }
-        setDescription("")
-        setAttendees([])
-        setStartTime(time)
-        setEndTime("")
-        AddEvent(eventObject, token)
-        clearData()
+        console.log(eventObject)
+        //AddEvent(eventObject, token)
+        //clearData()
+
     }
 
     return (
@@ -131,8 +159,8 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
                                 <label>Descripcion</label>
                                 <input data-testid={"input-test-descriptionAddEvent"}
                                        required={true}
-                                       minLength={5}
-                                       maxLength={20}
+                                       minLength={10}
+                                       maxLength={50}
                                        type={"text"}
                                        value={description}
                                        className={"form-control"}
@@ -145,13 +173,28 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
                                         placeholder={"Selecciona los correos"}/>
                                 <hr className="my-4"/>
                                 <label>Invitados Externos</label>
+                                <br/>
+                                {externalAttendeesList.map((item, index) => {
+                                    return <label key={index} className="border border-dark rounded bg-light">
+                                        {item} <a
+                                        onClick={event => deleteExternalAttendees(item)}
+                                        className="bi bi-x-circle"/>
+                                    </label>
+                                })}
+                                <br/>
                                 <input data-testid={"input-test-external"}
                                        className={"form-control"}
-                                       minLength={5}
-                                       maxLength={35}
+                                       minLength={10}
+                                       maxLength={50}
                                        type={"email"}
                                        value={externalAttendees}
-                                       onChange={event => setExternalAttendees(event.target.value)}/>
+                                       onChange={event => validateEmail(event.target.value)}/>
+                                <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
+                                <br/>
+                                <button className={"btn btn-primary"}
+                                        type={"button"}
+                                        onClick={updateAttendeesList}>Agregar Correo
+                                </button>
                                 <hr className="my-4"/>
                                 <button data-testid={"btn-test-cancelEvent"}
                                         type="button"

@@ -1,10 +1,11 @@
 import React, { Fragment, useState, useEffect } from 'react'
+import Select from "react-select";
+import validator from 'validator'
 
-const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
+const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }) => {
   let date = new Date().toLocaleDateString().split('/')
   date[1] = date[1] < 10 ? '0' + date[1] : date[1]
   date = date[2] + '-' + date[1] + '-' + date[0]
-
   const currentDate = item.start.dateTime.substring(0, 10)
   const currentDescription = item.description;
   const currentStartTime = item.start.dateTime.substring(11, 16)
@@ -15,32 +16,56 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
   const [description, setDescription] = useState("")
   const [startTime, setStartTime] = useState("")
   const [endTime, setEndTime] = useState("")
-  const [errorEmail, setErrorEmail] = useState(false)
+  const [emailError, setEmailError] = useState(false)
   const [guest, setGuest] = useState('')
   const [guestsList, setGuestList] = useState(currentAtendees)
+  const [attendeesList, setAttendeesList] = useState([])
+  const [attendees, setAttendees] = useState([])
 
   useEffect(() => {
+    setAttendeesList(listTransform(userEmails))
     setStartDate(currentDate)
     setDescription(currentDescription)
     setStartTime(currentStartTime)
     setEndTime(currentEndTime) 
-  },[]) 
+  },[userEmails]) 
+
+
+  const listTransform = (list) => {
+    return list.map(item => {
+        return {
+            value: {email: item.email},
+            label: item.name + " - " + item.email
+        }
+    })
+}
 
   const updateGuestList = () => {
     if (guestsList.includes(guest)) {
       setGuest('')
       return guestsList
     }
-    const regexEmail = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    if (regexEmail.test(guest)) {
-      setGuestList((prevArrau) => [...prevArrau, guest])
-      setGuest('')
+    if (!validator.isEmail(guest)) {
+      setEmailError('Enter valid Email!')
+      setTimeout(function () {
+          setEmailError("")
+      }, 3000)
+    }else{
+    setGuestList((prevArrau) => [...prevArrau, guest])
+    setGuest('')
     }
-    setErrorEmail(true)
-    setTimeout(function () {
-      setErrorEmail(false)
-    }, 3000)
   }
+
+
+  const addAttendees = (e) => {
+    // eslint-disable-next-line array-callback-return
+    e.map(eElement => {
+        setAttendeesList(attendeesList.filter(listElement => eElement !== listElement))
+    })
+    setAttendees(Array.isArray(e) ? e.map(x => x.value) : [])
+}
+
+
   const deletGuest = (item) => {
     setGuestList(guestsList.filter((element) => item !== element))
   }
@@ -52,6 +77,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
   }
 
   const updateEvent = () => {
+      let finalAtendees = [...attendees,...guestsList.map(user=>{return {email:user}})]
     const eventObject = {
       id: item.id,
       summary: 'OKR',
@@ -70,15 +96,12 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
           conferenceSolutionKey: { type: 'hangoutsMeet' },
         },
       },
-      attendees: guestsList.map((item) => {
-        return { email: item }
-      }),
+      attendees: finalAtendees,
       reminders: {
         useDefault: 'useDefault',
       },
       sendUpdates: 'all',
     }
-
     UpdateEvent(eventObject, token)
   }
 
@@ -86,7 +109,11 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
   return (
     <Fragment>
 
-      <div id={'modalUpdateEvent'} className={'modal fade container'} data-backdrop="static" data-keyboard="false" >
+      <div id={'modalUpdateEvent'} 
+      className={'modal fade container'} 
+      data-backdrop="static" 
+      data-keyboard="false" 
+      >
         <div className="modal-dialog modal-lg" role="document" >
           <div className="modal-content" >
             <div className="modal-header" >
@@ -105,6 +132,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
                   className={'form-control'}
                   onChange={(event) => setStartDate(event.target.value)}
                 />
+                <hr className="my-4"/>
                 <label className="col">Hora Inicial</label>
                 <input
                   placeholder="Selected time"
@@ -113,8 +141,8 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
                   className={'form-control col'}
                   value={startTime}
                   onChange={(event) => setStartTime(event.target.value)}
-                  required={true}
-                />
+                  required={true}/>
+                <hr className="my-4"/>
                 <label className="col">Hora Final</label>
                 <div className="w-100" />
                 <input
@@ -125,21 +153,26 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
                   value={endTime}
                   min={startTime}
                   required={true}
-                  onChange={(event) => setEndTime(event.target.value)}
-                />
+                  onChange={(event) => setEndTime(event.target.value)}/>
                 <hr className="my-4" />
                 <label>Descripcion</label>
                 <input
                   type={'text'}
                   value={description}
+                  minLength={10}
+                  maxLength={50}
                   className={'form-control'}
                   required={true}
                   onChange={(event) => setDescription(event.target.value)}
                 />
                 <hr className="my-4" />
-                <label>Invitados</label>
-
-                {errorEmail ? <label>Ingrese un correo valido</label> : <></>}
+                <label>Invitados Internos</label>
+                <Select isMulti
+                    options={attendeesList}
+                    onChange={addAttendees}
+                    placeholder={"Selecciona los correos"}/>
+                <hr className="my-4" />
+                <label>Invitados Externos</label>
                 <input
                   type="email"
                   className="form-control"
@@ -147,6 +180,8 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
                   onChange={(event) => setGuest(event.target.value)}
                   value={guest}
                 />
+                <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
+
                 <a
                   onClick={updateGuestList}
                   className="btn btn-primary form-control"
@@ -164,7 +199,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
                       <a
                         onClick={(event) => deletGuest(item)}
                         className="bi bi-x-circle"
-                      ></a>
+                        />
                     </label>
                   )
                 })}
