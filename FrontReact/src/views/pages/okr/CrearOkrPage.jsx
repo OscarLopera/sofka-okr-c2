@@ -3,7 +3,7 @@ import { Form, FormGroup, Row, Col } from "reactstrap";
 import { getOkrs } from "../../../application/selectors/okr/okr";
 import { getKrs } from "../../../application/selectors/okr/kr";
 import KrForm from "../../components/okr/KrForm";
-import { getVerticals } from "../../../application/selectors/administration/user";
+import { getUser, getVerticals } from "../../../application/selectors/administration/user";
 import { bindActionCreators } from "redux";
 import {
   loadOkrs,
@@ -13,6 +13,7 @@ import {
 import { loadingVerticals } from "../../../application/actions/administration/user";
 import { connect } from "react-redux";
 import "../../assets/styles/okr/okr.css";
+import socket from "../../../infrastructure/services/api/notifications/socket";
 
 const CrearOkrPage = ({
   addOkrs,
@@ -22,6 +23,8 @@ const CrearOkrPage = ({
   vertical,
   users,
   krs,
+  userId,
+
 }) => {
   useEffect(() => {
     loadingVerticals();
@@ -50,6 +53,7 @@ const CrearOkrPage = ({
     const values = { okrObject, krs };
     if(selectedUser){
       addOkrs(values);
+      socket.emit("crear-okr",{id:userId.userId, manager: userId.userName});
       alert("Se agrego el OKR Correctamente");
       history.push('/okr')
     }
@@ -236,6 +240,8 @@ const mapStateToProps = (state) => {
     users: getOkrs(state),
     vertical: getVerticals(state),
     krs: getKrs(state),
+    userId: getUser(state),
+    
   };
 };
 

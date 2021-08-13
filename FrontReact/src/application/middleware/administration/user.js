@@ -15,8 +15,9 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
             const userName = await firebase.user.getUser().userName;
             const userPhone = await firebase.user.getUser().userPhone || "0000000";
             const userImage = await firebase.user.getUser().userImage;
-
+            
             const user = await api.user.validateUser(userId);
+      
             let vertical = {verticalname: user.verticalId};
             let idMongo = user.idMongo;
             
