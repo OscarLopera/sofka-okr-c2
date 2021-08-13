@@ -1,5 +1,5 @@
 import io from 'socket.io-client';
 
-let socket = io("https://pruebabacknoti.herokuapp.com/")
+let socket = io("https://serversocketokr.herokuapp.com/")
 
 export default socket

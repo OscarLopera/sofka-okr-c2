@@ -3,33 +3,44 @@ import '../../assets/styles/notifications/styleGestion.css';
 import OpcionPantallaEmail from '../../components/notifications/OpcionPantallaEmail';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { changeStatusNotification, getStatusNotification,sendNotification} from '../../../application/actions/notifications';
+import { changeStatusNotification, getStatusNotification, sendNotification } from '../../../application/actions/notifications';
 import { getUser } from '../../../application/selectors/administration/user';
 import Push from 'push.js';
+import socket from '../../../infrastructure/services/api/notifications/socket';
 
-const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate,sendNotification }) => {
+const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate, sendNotification }) => {
 
 
 
     useEffect(() => {
 
         getStatusNotification(stateIdUser.userId)
-    }, [getStatusNotification,stateIdUser.userId])
+        socket.on(stateIdUser.userId, (data) => {
+            console.log(data)
+           
+         })
+    }, [getStatusNotification, stateIdUser.userId])
 
 
+  
+         
+    
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus, stateIdUser.userId)
-        sendNotification("CqzZjI0KtrdmiZMT8rGiamI8UUj2",{
-            "userEmail": "sergio.pinedas94@gmail.com",
-            "message":"Hola Sergio como vamos ! "
-        })
+         sendNotification(stateIdUser.userId,{
+             "userEmail": "azeron93@gmail.com",
+             "message":`Hola ${stateIdUser.userName}, has actualizado exitosamente tus preferencias de  `
+         })
         Push.create("nueva notificacion",{
             body:"se ha guardado exitosamente la configuracion de notificaciones",
             icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
           })
-       
+    
+        socket.emit("actualizar-kr",{id:stateIdUser.userId, manager: stateIdUser.userName});
+        
     }
 
+    
 
     return (
         <div className="EditProfilePrivacy ">
@@ -40,9 +51,9 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
                     <div className="EditProfilePrivacy-text">
                         <h3 className="pb-1">Notificacion</h3>
                     </div>
-                       <p className="me-2 text-center">Email💌</p> 
-                       <p className="me-2 text-center">Pantalla🖥️</p> 
-    
+                    <p className="me-2 text-center">Email💌</p>
+                    <p className="me-2 text-center">Pantalla🖥️</p>
+
                 </div>
                 {initialstate.notificationstatus.length &&
                     initialstate.notificationstatus.map(noti => {
@@ -52,9 +63,9 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
 
             </div>
             <div className="text-center">
-            <button  className="btn btn-noti px-4 mt-3 mb-5 mx-auto " onClick={comprobar} >Guardar cambios</button>
+                <button className="btn btn-noti px-4 mt-3 mb-5 mx-auto " onClick={comprobar} >Guardar cambios</button>
             </div>
-            
+
         </div>
 
 
@@ -64,7 +75,7 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
-        { getStatusNotification, changeStatusNotification,sendNotification }, dispatch
+        { getStatusNotification, changeStatusNotification, sendNotification }, dispatch
 
     );
 };

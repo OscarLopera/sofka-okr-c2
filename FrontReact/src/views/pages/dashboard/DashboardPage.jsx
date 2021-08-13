@@ -1,6 +1,5 @@
 import "../../assets/styles/administration/App.scss";
-import { CircularProgressbar } from "react-circular-progressbar";
-import React, { useEffect, useState } from "react";
+import React, {useState,useEffect} from "react";
 //Redux
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";

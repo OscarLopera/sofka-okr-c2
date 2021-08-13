@@ -52,6 +52,7 @@ const addOkrFlow =
         krsByIdOkr.forEach(async (kr) => {
           try {
             const responseKr = await api.kr.createKr(kr);
+            
             console.log(responseKr);
           } catch (e) {
             console.log(e);
