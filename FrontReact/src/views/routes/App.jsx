@@ -1,14 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { getUser } from "../../application/selectors/administration/user";
 import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+//importacion socket
+import socket from "../../infrastructure/services/api/notifications/socket";
 // import "../assets/styles/administration/index.css";
 // Importación componentes
 
 import Navbar from "../components/administration/Navbar";
 
 // Importación Páginas
-import {PrivateRoute, PublicRoute} from "./Routes"
+import { PrivateRoute, PublicRoute } from "./Routes"
 import HomePage from "../pages/administration/HomePage";
 import LoginPage from "../pages/administration/LoginPage";
 
@@ -36,31 +40,53 @@ import "../assets/styles/administration/App.scss";
 import GestionNotificaciones from "../pages/notifications/GestionNotificaciones";
 import HistorialNotificaciones from "../pages/notifications/HistorialNotificaciones";
 
+//importacion historial de notificaciones
+import { gethistory } from "../../application/actions/notifications";
+
 //import moment from "moment";
 
-const App = ({user}) => {
+const App = ({ user, gethistory }) => {
+
+  useEffect(() => {
+    if (user !== null) {
+      socket.on(user.userId, () => {
+        setTimeout(() => {
+          gethistory(user.userId)
+        }, 500);
+
+      })
+    }
+  }, [gethistory])
+
+
   return (
-    
     <Router>
       <Navbar />
       <Switch>
-        <PrivateRoute exact path={"/okr"} component={OkrPage} user={user}/>
-        <PrivateRoute exact path={"/okr/create-okr"} component={CrearOkrPage} user={user}/>
-        <PrivateRoute exact path={"/okr/create-kr"} component={CrearkrPage} user={user}/>
-        <PrivateRoute exact path={"/dashboard"} component={DashboardPage} user={user}/>
-        <PrivateRoute exact path={"/userdash"} component={DashboardUserPage} user={user}/>
+        <PrivateRoute exact path={"/okr"} component={OkrPage} user={user} />
+        <PrivateRoute exact path={"/okr/create-okr"} component={CrearOkrPage} user={user} />
+        <PrivateRoute exact path={"/okr/create-kr"} component={CrearkrPage} user={user} />
+        <PrivateRoute exact path={"/dashboard"} component={DashboardPage} user={user} />
+        <PrivateRoute exact path={"/userdash"} component={DashboardUserPage} user={user} />
         <PrivateRoute exact path={"/statedashokrs"} component={StateOkrs} user={user} />
-        <PrivateRoute exact path={"/statedashokrsp"} component={StateOkrsp} user={user}/>
+        <PrivateRoute exact path={"/statedashokrsp"} component={StateOkrsp} user={user} />
         <PrivateRoute exact path={"/viewdashokr"} component={ViewOKR} user={user} />
-        <PrivateRoute exact path={"/calendar"} component={CalendarPage} user={user}/>
-        <PrivateRoute exact path={"/administration"} component={AdministrationPage} user={user}/>
-        <PrivateRoute exact path={"/historialnotificaciones"} component={HistorialNotificaciones} user={user}/>
+        <PrivateRoute exact path={"/calendar"} component={CalendarPage} user={user} />
+        <PrivateRoute exact path={"/administration"} component={AdministrationPage} user={user} />
+        <PrivateRoute exact path={"/historialnotificaciones"} component={HistorialNotificaciones} user={user} />
         <Route exact path={"/login"} component={LoginPage} />
         <PrivateRoute exact path={"/notificaciones"} component={GestionNotificaciones} user={user} />
         <PrivateRoute exact path={"/userPage"} component={UserPage} user={user} />
-        <PublicRoute exact path="/" component={HomePage} user={user}/>
+        <PublicRoute exact path="/" component={HomePage} user={user} />
       </Switch>
     </Router>
+  );
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators(
+    { gethistory }, dispatch
+
   );
 };
 
@@ -70,5 +96,5 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
