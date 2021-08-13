@@ -7,10 +7,10 @@ const functions = {
         return response.data
     },
 
-    deleteKr: async (idKr) =>{
-        await axios.delete('https://back-node-okr-qa.herokuapp.com/api/kr/delete').then(()=>{
+    deleteKr: async (idKr) => {
+        await axios.delete('https://back-node-okr-qa.herokuapp.com/api/kr/delete').then(() => {
             return idKr
-        }).catch(error =>{
+        }).catch(error => {
             return error
         })
     }

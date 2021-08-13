@@ -39,17 +39,17 @@ function StateOkrs({getOkrCompleted,getOkrId,okrs}) {
           </li>
           <li class="nav-item">
             <Link class="nav-link" to="/statedashokrs">
-              Completados
+              OKRs completados
             </Link>
           </li>
           <li class="nav-item">
             <Link class="nav-link" to="/statedashokrsp">
-              En progreso
+              OKRs en progreso
             </Link>
           </li>
         </ul>
         <br />
-        <h5 className="text-center">Okrs Completados</h5>
+        <h5 className="text-center">OKRs completados</h5>
         <hr/>
         <div className="row row-cols-1 row-cols-md-2 g-4">
           {(okrs.length > 0) ? 
@@ -70,7 +70,7 @@ function StateOkrs({getOkrCompleted,getOkrId,okrs}) {
             </div>
           </div>
           ))
-        ) : <p>No tiene Okrs Completados</p> }
+        ) : <p>No tiene OKRs completados</p> }
           
           </div>
       </div>

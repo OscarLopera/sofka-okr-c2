@@ -432,4 +432,9 @@ describe("Test of Reducer get All Okrs", () => {
       ...initialState, loading: true
     });
   });
+
+  test('Reducer DEFAULT case', () => {
+      const state = reducer(initialState, "");
+      expect(state).toEqual({ ...initialState })
+  })
 })
