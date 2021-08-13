@@ -21,7 +21,6 @@ function sendNewOkr(){
           "message": "se ha creado un nuevo OKR",
           "emailUser": newNotification.emailUser
         };
-
         emailer.sendMail(message);
       }
 
@@ -31,8 +30,8 @@ function sendNewOkr(){
         screenNoti = true
       }
 
-      res.send({
-        OkrCreated : screenNoti,
+      res.send(saveNotification,{
+        screen : screenNoti,
         message: "se ha creado un nuevo OKR"
       })
     }catch(error){
