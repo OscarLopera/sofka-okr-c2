@@ -38,8 +38,6 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userE
             value: {email: item.email},
             label: item.name + " - " + item.email
         }
-        UpdateEvent(eventObject, token)
-        socket.emit("")
     })
 }
 
@@ -106,6 +104,7 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userE
       sendUpdates: 'all',
     }
     UpdateEvent(eventObject, token)
+    socket.emit("")
   }
 
 
