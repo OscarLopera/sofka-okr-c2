@@ -3,7 +3,8 @@ import { CalendarTypes } from "../../types/calendar/calendarTypes";
 const initialState = {
     events: [],
     error: null,
-    loading: false
+    loading: false,
+    emails: []
 }
 
 const calendarReducer = (state = initialState, action) => {
@@ -35,6 +36,12 @@ const calendarReducer = (state = initialState, action) => {
             return { ...state, loading: false, events: aux, error: null }
         case CalendarTypes.UPDATE_EVENT_FAILURE:
             return { ...state, loading: false, error: action.payload }
+        case CalendarTypes.GET_EMAIL_USERS:
+            return {...state,loading: true}
+        case CalendarTypes.GET_EMAIL_USERS_SUCCESS:
+            return {...state,loading: false, emails: action.payload}
+        case CalendarTypes.GET_EMAIL_USERS_FAILURE:
+            return {...state,loading: false, error: action.payload}
         default:
             return state
     }

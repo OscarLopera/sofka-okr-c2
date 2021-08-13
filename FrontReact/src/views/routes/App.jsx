@@ -46,19 +46,34 @@ import Push from 'push.js';
 
 //import moment from "moment";
 
-const App = ({ user, gethistory,sendNotification }) => {
-
+const App = ({ user, gethistory, sendNotification, initialstate }) => {
+  localStorage.setItem("notifymanager", JSON.stringify(initialstate.notificationstatus));
   useEffect(() => {
     if (user !== null) {
       socket.on(user.userId, (data) => {
-        sendNotification(user.userId,{
+          console.log(initialstate.notificationstatus[data.indicei][1])
+          console.log(initialstate.notificationstatus[data.indicei][2])
+        if (initialstate.notificationstatus[data.indicei][1]) {
+          console.log("si envia email")
+        sendNotification(user.userId, {
           "userEmail": user.userEmail,
-          "message":data
-      })
-      Push.create("Nueva notificacion Sofka Okr",{
-        body:data,
-        icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
-      })
+          "message": data.mensaje
+        })
+      }
+      if (!initialstate.notificationstatus[data.indicei][1]) {
+        console.log("no envia email")
+        sendNotification(user.userId, {
+          "userEmail": null,
+          "message": data.mensaje
+        })
+      }
+        if (initialstate.notificationstatus[data.indicei][2]) {
+          console.log("envia pantalla")
+          Push.create("Nueva notificacion Sofka Okr", {
+            body: data,
+            icon: "https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
+          })
+        }
         console.log("entro a socket")
         setTimeout(() => {
           gethistory(user.userId)
@@ -95,14 +110,15 @@ const App = ({ user, gethistory,sendNotification }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { gethistory,sendNotification }, dispatch
+    { gethistory, sendNotification }, dispatch
 
   );
 };
 
 const mapStateToProps = (state) => {
   return {
-    user: getUser(state)
+    user: getUser(state),
+    initialstate: state.notification
   };
 };
 

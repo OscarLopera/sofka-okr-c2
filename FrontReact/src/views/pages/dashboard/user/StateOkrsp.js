@@ -33,22 +33,22 @@ function StateOkrsp({getOkrProgress,getOkrId,okrs}) {
         <ul class="nav nav-tabs justify-content-center">
           <li class="nav-item">
             <Link class="nav-link" to="/userdash">
-              Mis Okrs
+              Mis OKRs
             </Link>
           </li>
           <li class="nav-item">
             <Link class="nav-link" to="/statedashokrs">
-              Completados
+              OKRs completados
             </Link>
           </li>
           <li class="nav-item">
             <Link class="nav-link" to="/statedashokrsp">
-              En progreso
+              OKRs en progreso
             </Link>
           </li>
         </ul>
         <br />
-        <h5 className="text-center">Okrs en Progreso</h5>
+        <h5 className="text-center">OKRs en progreso</h5>
         <hr/>
         <div className="row row-cols-1 row-cols-md-2 g-4 text-center">
           {(okrs.length > 0) ? 
@@ -70,7 +70,7 @@ function StateOkrsp({getOkrProgress,getOkrId,okrs}) {
             </div>
           </div>
           ))
-        ) : <p>No tiene Okrs en Progreso</p> }
+        ) : <p>No tiene OKRs en progreso</p> }
           
           </div>
       </div>

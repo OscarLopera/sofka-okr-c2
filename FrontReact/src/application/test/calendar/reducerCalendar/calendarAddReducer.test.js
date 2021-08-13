@@ -1,9 +1,10 @@
-import { AddEvent, AddEventFailure, AddEventSuccess } from "../../actions/calendar/calendarActions";
-import calendarReducer from "../../reducers/calendar/calendarReducer";
+import { AddEvent, AddEventFailure, AddEventSuccess } from "../../../actions/calendar/calendarActions";
+import calendarReducer from "../../../reducers/calendar/calendarReducer";
 const initialState = {
     events: [],
     error: null,
-    loading: false
+    loading: false,
+    emails:[]
 }
 
 describe('reducer calendar add test', () => {

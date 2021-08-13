@@ -1,5 +1,5 @@
-import calendarMiddleware from "../../middleware/calendar/calendarMiddleware";
-import {UpdateEvent, UpdateEventFailure, UpdateEventSuccess, ListEvents} from "../../actions/calendar/calendarActions";
+import calendarMiddleware from "../../../middleware/calendar/calendarMiddleware";
+import {UpdateEvent, UpdateEventFailure, UpdateEventSuccess, ListEvents} from "../../../actions/calendar/calendarActions";
 
 const token = 'AIzaSyC-_eI17Kv6_hl2dtAGTpFvgrb7e21567'
 

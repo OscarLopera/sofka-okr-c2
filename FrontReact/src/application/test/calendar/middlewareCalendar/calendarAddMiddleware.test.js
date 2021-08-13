@@ -1,5 +1,5 @@
-import calendarMiddleware from "../../middleware/calendar/calendarMiddleware";
-import {AddEvent, AddEventFailure, AddEventSuccess} from "../../actions/calendar/calendarActions";
+import calendarMiddleware from "../../../middleware/calendar/calendarMiddleware";
+import {AddEvent, AddEventFailure, AddEventSuccess} from "../../../actions/calendar/calendarActions";
 
 const dummyEvent = {
     kind: "calendar#rko",

@@ -1,5 +1,5 @@
-import {UpdateEvent, UpdateEventFailure,UpdateEventSuccess} from "../../actions/calendar/calendarActions";
-import calendarReducer from "../../reducers/calendar/calendarReducer";
+import {UpdateEvent, UpdateEventFailure,UpdateEventSuccess} from "../../../actions/calendar/calendarActions";
+import calendarReducer from "../../../reducers/calendar/calendarReducer";
 const initialState = {
     events: [],
     error: null,
