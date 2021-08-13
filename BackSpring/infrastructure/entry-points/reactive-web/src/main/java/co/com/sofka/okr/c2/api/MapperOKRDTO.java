@@ -42,6 +42,20 @@ public class MapperOKRDTO  {
         );
     }
 
+    public Function<OKRS, OKRSDTO> okrsToOkrDto(){
+        return okr-> new OKRSDTO(
+                okr.getId().getValue(),
+                okr.getObjective().getValue(),
+                okr.getTitle().getValue(),
+                okr.getManagerId(),
+                okr.getDescription().getValue(),
+                okr.getVerticalId().getValue(),
+                okr.getProgress(),
+                okr.getHistoricalProgress(),
+                krdtoList().apply(okr.getKrs())
+        );
+    }
+
     public Function <List<KRS>,List<KRDTO>> krdtoList( ){
         return list -> list.stream().map(it-> krToDto().apply(it)).collect(Collectors.toList());
     }

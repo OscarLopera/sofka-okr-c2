@@ -17,6 +17,7 @@ public class MapperUserDTO {
     public Function<Usuarios,UsuarioDTO> toDTO(){
         return usuarios -> new UsuarioDTO(
                 usuarios.getId(),
+                usuarios.getIdUser(),
                 usuarios.getName().getValue(),
                 usuarios.getEmail().getValue(),
                 usuarios.getUrlPhoto().getValue(),
@@ -30,6 +31,7 @@ public class MapperUserDTO {
     public Function<UsuarioDTO,Usuarios> UserToDTO(){
         return usuarioDTO -> new Usuarios(
                 usuarioDTO.getId(),
+                usuarioDTO.getIdUser(),
                 new Name(usuarioDTO.getName()),
                 new Email(usuarioDTO.getEmail()),
                 new UrlPhoto(usuarioDTO.getUrlPhoto()),

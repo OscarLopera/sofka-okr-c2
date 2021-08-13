@@ -44,7 +44,7 @@ public class OKRsRepositoryAdapter extends AdapterOperations<OKREntity,OKREntity
 
     @Override
     public Flux<OKRS> getLastOkr(String id) {
-        return this.repository.findAllByManagerId(id).map(entityMapper.fromOKREntity());
+        return this.repository.findAllByManagerId(id).map(entityMapper.fromOKREntity()).switchIfEmpty(Mono.error(new IllegalArgumentException("erro el encontrar id")));
     }
 
     @Override

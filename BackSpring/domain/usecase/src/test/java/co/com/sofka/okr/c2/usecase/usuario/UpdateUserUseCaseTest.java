@@ -44,12 +44,13 @@ class UpdateUserUseCaseTest {
                 new Rol("QA")
         );
 
+        Mockito.when(usuariosRepository.listUser(usuarios.getIdUser())).thenReturn(Mono.just(usuarios));
         Mockito.when(usuariosRepository.updateUser(any(Usuarios.class))).thenReturn(Mono.just(usuarios));
 
 
         var respuesta = updateUserUseCase.execute(usuarios);
 
-        Assertions.assertEquals(respuesta.block().getId(), "1");
+        Assertions.assertEquals(respuesta.block().getIdUser(), "1");
         Assertions.assertEquals(respuesta.block().getName().getValue(), "Omar");
         Assertions.assertEquals(respuesta.block().getEmail().getValue(), "juan0087@gmail.com");
         Assertions.assertEquals(respuesta.block().getUrlPhoto().getValue(), "http://imagen/data1");

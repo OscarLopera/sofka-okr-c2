@@ -11,7 +11,8 @@ public class MapperRespuestaLoginDTO {
     public Function<Usuarios,RespuestaLoginDTO> toDTOTrue(){
         return usuarios -> new RespuestaLoginDTO(
                 usuarios.getFirstTime().getValue(),
-                usuarios.getVerticalId().getValue()
+                usuarios.getVerticalId().getValue(),
+                usuarios.getId()
         );
     }
 }

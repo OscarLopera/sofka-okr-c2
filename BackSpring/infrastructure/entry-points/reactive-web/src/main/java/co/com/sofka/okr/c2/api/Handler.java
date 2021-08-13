@@ -1,19 +1,16 @@
 package co.com.sofka.okr.c2.api;
 
 
+import co.com.sofka.okr.c2.model.usuarios.Usuarios;
 import co.com.sofka.okr.c2.model.vertical.Vertical;
 import co.com.sofka.okr.c2.usecase.preguntas.ListPreguntasUseCase;
-import co.com.sofka.okr.c2.usecase.usuario.CreateUserUseCase;
+import co.com.sofka.okr.c2.usecase.usuario.*;
 
 import co.com.sofka.okr.c2.usecase.vertical.ListVerticalUseCase;
 import co.com.sofka.okr.c2.usecase.vertical.VerticalUseCase;
 
-import co.com.sofka.okr.c2.usecase.usuario.ListUserUseCase;
-
 
 import co.com.sofka.okr.c2.usecase.okr.*;
-import co.com.sofka.okr.c2.usecase.usuario.GetAllUserUseCase;
-import co.com.sofka.okr.c2.usecase.usuario.GetUserOKRUseCase;
 import co.com.sofka.okr.c2.model.okrs.KRS;
 import co.com.sofka.okr.c2.usecase.okr.GetAllKrsByIdOkrUseCase;
 import co.com.sofka.okr.c2.usecase.okr.GetOkrByIdUseCase;
@@ -41,6 +38,7 @@ public class Handler {
     private final ListUserUseCase listUserUseCase;
     private final ListVerticalUseCase listVerticalUseCase;
     private final ListPreguntasUseCase listPreguntasUseCase;
+    private final UpdateUserUseCase updateUserUseCase;
     private final MapperRespuestaLoginDTO respuesta;
     private final MapperUserDTO mapperUserDTO;
     private final MapperVerticalDTO mapperVerticalDTO;
@@ -112,7 +110,14 @@ public class Handler {
     }
 
     public Mono<VerticalDTO> findVerticalById(String id) {
-        return listVerticalUseCase.listVertical(id).map(mapperVerticalDTO.toVerticalDTO());
+        return listVerticalUseCase.listVertical(id).map(mapperVerticalDTO.toVerticalDTO())
+                .switchIfEmpty(Mono.just(new VerticalDTO())).map(respuestaVertical->{
+                    if(respuestaVertical.getId()==null){
+                        respuestaVertical.setId("-1");
+                        respuestaVertical.setVerticalname("Sin vertical asociada");
+                    }
+                    return respuestaVertical;
+                });
     }
 
     public Flux<VerticalDTO> getVertical() {
@@ -125,6 +130,7 @@ public class Handler {
                     if (respuestaLoginDTO.getVerticalId()==null){
                         respuestaLoginDTO.setFirstTime(true);
                         respuestaLoginDTO.setVerticalId(null);
+                        respuestaLoginDTO.setIdMongo("null");
                     }
                         return respuestaLoginDTO;
                 });
@@ -133,8 +139,7 @@ public class Handler {
     }
 
     public Mono<UsuarioDTO> updateUser(UsuarioDTO usuarioDTO){
-        Mono<UsuarioDTO> user = createUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO))
-                .map(mapperUserDTO.toDTO());
+        Mono<UsuarioDTO> user = updateUserUseCase.execute(mapperUserDTO.UserToDTO().apply(usuarioDTO)).map(mapperUserDTO.toDTO());
         return user;
     }
 
@@ -146,7 +151,20 @@ public class Handler {
 
 
     public Mono<OKRSDTO> getLastOkr(String id){
-        return getLastOkrUseCase.execute(id).map(mapperOKRDTO.okrToDto()).defaultIfEmpty(new OKRSDTO()).last();
+        return getLastOkrUseCase.execute(id).last().flatMap(list->{
+            if (list.getId()== null){
+                return Mono.just(new OKRSDTO());
+            }
+            Mono<OKRSDTO> response = getAllKrsByIdOkrUseCase.execute(list.getId().getValue()).buffer().flatMap(it ->{
+                if (it.get(0).getIdOkr() == null) {
+                    list.setKrs(new ArrayList<>());
+                } else {
+                    list.setKrs(it);
+                }
+                return Mono.just(list);
+            }).next().map(mapperOKRDTO.okrsToOkrDto());
+            return response;
+        });
     }
 
 }
