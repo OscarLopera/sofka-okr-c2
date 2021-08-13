@@ -37,7 +37,6 @@ export const DeleteEventFailure = (error) => ({
     type: CalendarTypes.DELETE_EVENT_FAILURE,
     payload: error
 })
-
 export const UpdateEvent = (event, token) => ({
     type: CalendarTypes.UPDATE_EVENT,
     payload: event,
@@ -50,4 +49,15 @@ export const UpdateEventSuccess = (event) => ({
 export const UpdateEventFailure = (error) => ({
     type: CalendarTypes.UPDATE_EVENT_FAILURE,
     payload: error
+})
+export const GetEmailUsers = () => ({
+  type:CalendarTypes.GET_EMAIL_USERS,
+})
+export const GetEmailUsersSuccess = (list) => ({
+    type:CalendarTypes.GET_EMAIL_USERS_SUCCESS,
+    payload: list,
+})
+export const GetEmailUsersFailure = (error) => ({
+    type:CalendarTypes.GET_EMAIL_USERS_FAILURE,
+    payload: error,
 })

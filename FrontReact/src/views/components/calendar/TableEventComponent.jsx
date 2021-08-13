@@ -1,7 +1,7 @@
 import React from 'react'
 import EventItemComponent from './EventItemComponent'
 
-const TableEventComponent = ({events, DeleteEvent, UpdateEvent, email, token}) => {
+const TableEventComponent = ({events, DeleteEvent, UpdateEvent, email, token,userEmails}) => {
     return (
         <table className="table table-striped table-hover">
             <thead>
@@ -25,7 +25,8 @@ const TableEventComponent = ({events, DeleteEvent, UpdateEvent, email, token}) =
                                         DeleteEvent={DeleteEvent}
                                         token={token}
                                         UpdateEvent={UpdateEvent}
-                                        email={email}/>
+                                        email={email}
+                                        userEmails={userEmails}/>
             }
             </tbody>
         </table>
