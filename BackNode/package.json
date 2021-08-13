@@ -7,7 +7,6 @@
     "start": " node infrastructure/server/server.js ",
     "dev": " nodemon infrastructure/server/server.js ",
     "test": "jest --coverage"
-
   },
   "keywords": [],
   "author": "",
