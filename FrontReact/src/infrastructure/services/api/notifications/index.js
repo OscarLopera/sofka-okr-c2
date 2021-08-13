@@ -14,6 +14,7 @@ const notifications = {
 
     addNotification: async (id, message) => {
         const response = await axios.put("https://pruebabacknoti.herokuapp.com/api/notifications/notification/" + id, message)
+        console.log(response.data)
         return response.data
     },
 

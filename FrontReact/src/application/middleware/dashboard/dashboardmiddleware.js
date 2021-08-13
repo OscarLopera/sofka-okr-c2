@@ -90,7 +90,7 @@ const getOkrProgressFlow = ({api}) => ({dispatch}) => next => async(action) => {
     }
 }
 
-const getOkrIdFlow = () => ({dispatch}) => next => async(action) => {
+const getOkrIdFlow = () => ({dispatch}) => next => (action) => {
     next(action);
     if(action.type === OKRConstanst.GET_OKR_ID){
         try{

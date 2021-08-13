@@ -2,7 +2,7 @@ import {
   LOAD_OKRS,
   ADD_OKRS,
   UPDATE_OKRS,
-  DELETE_OKRS,GET_OKRS_USER
+  DELETE_OKRS, GET_OKRS_USER
 } from "../../types/okr/okr";
 import {
   loadOkrsFailure,
@@ -13,7 +13,7 @@ import {
   updateOkrsFailure,
   deleteOkrsSuccess,
   deleteOkrsFailure,
-  loadOkrs, getAllOkrUserSuccess, getAllOkrUserFailure
+  loadOkrs, getAllOkrUserSuccess, getAllOkrUserFailure, getAllOkrUser
 } from "../../actions/okr/okr";
 
 const loadOkrFlow =
@@ -24,10 +24,7 @@ const loadOkrFlow =
           next(action);
           if (action.type === LOAD_OKRS) {
             try {
-              console.log("En middleware");
-
               const okrs = await api.okr.loadOkr(action.payload);
-              console.log(okrs);
               dispatch(loadOkrsSuccess(okrs));
             } catch (error) {
               dispatch(loadOkrsFailure(error));
@@ -51,14 +48,11 @@ const addOkrFlow =
               });
               krsByIdOkr.forEach(async (kr) => {
                 try {
-                  const responseKr = await api.kr.createKr(kr);
-
-                  console.log(responseKr);
+                  await api.kr.createKr(kr);
                 } catch (e) {
                   console.log(e);
                 }
               });
-              console.log(krsByIdOkr);
               dispatch(addOkrsSuccess(values.okrObject));
               dispatch(loadOkrs());
             } catch (error) {
@@ -93,7 +87,7 @@ const deleteOkrFlow =
             try {
               const okrs = await api.okr.deleteOkr(action.payload);
               dispatch(deleteOkrsSuccess(okrs));
-              dispatch(loadOkrs());
+              dispatch(getAllOkrUser(action.payload.idUser))
             } catch (error) {
               dispatch(deleteOkrsFailure(error));
             }
@@ -109,7 +103,6 @@ const getAllOkrUserFlow =
           if (action.type === GET_OKRS_USER) {
             try {
               const okrs = await api.okr.getAllOkrByUser(action.payload);
-              console.log(okrs);
               dispatch(getAllOkrUserSuccess(okrs));
             } catch (error) {
               dispatch(getAllOkrUserFailure(error));
