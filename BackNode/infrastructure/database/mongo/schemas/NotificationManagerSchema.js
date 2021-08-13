@@ -4,32 +4,20 @@ const Schema = mongoose.Schema;
 const NotificationManagerSchema = new Schema({
     userId: { type: String, required: true},
     mail: { type: Object, default:{
-        OkrCreated: true,
-	   KrCreated:  true,
-	   OkrUpdated: true,
-	   KrUpdated:  true,
-	   OkrFinished:true,
-	   KrFinished: true,
-	   OkrExpired: true,
-	   KrExpired:  true,
-	   OkrAssigned:true,
-	   KrAssigned: true,
-	   OkrDeleted: true,
-	   krDeleted:  true
+     Crear_Okr: true,
+	   Eliminar_Okr:  true,
+	   Finalizar_Okr: true,
+	   Asignar_Okr:  true,
+		 Reunion_Asignada: true,
+		 Reunion_Cancelada: true,
     }},
     screen: { type: Object, default:{
-        OkrCreated: true,
-	   KrCreated:  true,
-	   OkrUpdated: true,
-	   KrUpdated:  true,
-	   OkrFinished:true,
-	   KrFinished: true,
-	   OkrExpired: true,
-	   KrExpired:  true,
-	   OkrAssigned:true,
-	   KrAssigned: true,
-	   OkrDeleted: true,
-	   krDeleted:  true
+			Crear_Okr: true,
+			Eliminar_Okr:  true,
+			Finalizar_Okr: true,
+			Asignar_Okr:  true,
+			Reunion_Asignada: true,
+			Reunion_Cancelada: true,
     }}
 });
 
