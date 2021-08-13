@@ -42,11 +42,11 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
     }
 
     const updateAttendeesList = () => {
-        if (emailError === "") {
+        if (externalAttendeesList.includes(externalAttendees)) {
+            setExternalAttendees('')
+        } else if (emailError === "") {
             setExternalAttendeesList(list => [...list, externalAttendees])
             setExternalAttendees("")
-        } else {
-            return null;
         }
     }
 
@@ -68,13 +68,14 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
         setStartTime(time)
         setEndTime(time)
         setExternalAttendees("")
+        setExternalAttendeesList([])
     }
 
     const addEvent = () => {
         if (externalAttendeesList.length > 0) {
             externalAttendeesList.forEach(element => {
                 let aux = attendees;
-                aux.push({email:element})
+                aux.push({email: element})
                 setAttendees(aux)
             })
         }
@@ -174,9 +175,9 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
                                 <br/>
                                 {externalAttendeesList.map((item, index) => {
                                     return <label key={index} className="border border-dark rounded bg-light">
-                                        {item} <a
-                                        onClick={event => deleteExternalAttendees(item)}
-                                        className="bi bi-x-circle"/>
+                                        {item} <a data-testid={"btn-delete-external-" + item}
+                                                  onClick={event => deleteExternalAttendees(item)}
+                                                  className="bi bi-x-circle"/>
                                     </label>
                                 })}
                                 <br/>
@@ -189,7 +190,8 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
                                        onChange={event => validateEmail(event.target.value)}/>
                                 <span style={{fontWeight: 'bold', color: 'red',}}>{emailError}</span>
                                 <br/>
-                                <button className={"btn btn-primary"}
+                                <button data-testid={"btn-test-external-update"}
+                                        className={"btn btn-primary"}
                                         type={"button"}
                                         onClick={updateAttendeesList}>Agregar Correo
                                 </button>

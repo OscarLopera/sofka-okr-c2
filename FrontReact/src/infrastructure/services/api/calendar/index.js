@@ -1,4 +1,5 @@
 import axios from "axios";
+import firebase from "firebase";
 
 const API_KEY = "AIzaSyB-jW7s8YiV1vmb9afOX0873GnPcAHbPUQ";
 
@@ -49,6 +50,23 @@ const functions = {
     getEmailUser: async () => {
          const data = await axios.get('https://okr-final-app.herokuapp.com/api/calendar/getallusers');
         return data.data
+    },
+    token : async () => {
+        const auth = firebase.auth();
+        auth.onAuthStateChanged((user) => {
+            let sessionTimeout = null;
+            if (user === null) {
+                sessionTimeout && clearTimeout(sessionTimeout);
+                sessionTimeout = null;
+            } else {
+                user.getIdTokenResult().then((idTokenResult) => {
+                    const authTime = idTokenResult.claims.auth_time * 1000;
+                    const sessionDuration = 1000 * 60 * 60 * 24 * 30;
+                    const millisecondsUntilExpiration = sessionDuration - (Date.now() - authTime);
+                    setTimeout(() => auth.signOut(), millisecondsUntilExpiration);
+                });
+            }
+        })
     }
 }
 

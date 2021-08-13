@@ -42,6 +42,7 @@ const listEventFlow = ({api}) => ({dispatch}) => next => async (action) => {
     if (action.type === CalendarTypes.LIST_EVENTS) {
         try {
             const events = await api.calendar.listEvents(action.token)
+            await api.calendar.token()
             dispatch(ListEventsSuccess(events))
         } catch (error) {
             dispatch(ListEventsFailure(error.message))

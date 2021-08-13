@@ -2,6 +2,7 @@ import { fireEvent, render } from "@testing-library/react";
 import {EventItemComponent} from "../../components/calendar/EventItemComponent"
 import {eventsDummy} from "./CalendarComponent.test";
 import '@testing-library/jest-dom'
+import {dummyList} from "../../../application/test/calendar/reducerCalendar/calendarGetEmailsReducer.test";
 
 export const dummyItem = {
     kind: 'calendar#event',
@@ -73,7 +74,7 @@ describe('Event Items component test', () => {
         const email = 'danielaristy22@gmail.com';
 
         const { getByTestId } = render(
-            <EventItemComponent events={events} DeleteEvent={DeleteEvent} UpdateEvent={UpdateEvent} token={dummyToken} email={email} />
+            <EventItemComponent events={events} DeleteEvent={DeleteEvent} UpdateEvent={UpdateEvent} token={dummyToken} email={email} userEmails={dummyList}/>
         )
 
         const buttonDeleteEvent = getByTestId("btn-test-deleteEvent-ululbsrf6lshff5iaeq90vltad");
@@ -81,11 +82,7 @@ describe('Event Items component test', () => {
 
         fireEvent.click(buttonDeleteEvent);
         fireEvent.click(buttonUpdateEvent);
+
         expect(DeleteEvent).toHaveBeenCalledWith('ululbsrf6lshff5iaeq90vltad', dummyToken)
-        expect(buttonUpdateEvent).toHaveBeenCalledWith(dummyItem)
-
     })
-
-   
-
 })
