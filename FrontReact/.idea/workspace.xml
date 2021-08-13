@@ -5,29 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5deb2cff-e23b-48e5-a6c6-e0964362a645" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarGetEmailsMiddleware.test.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarGetEmailsReducer.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/actions/calendar/calendarActions.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/actions/calendar/calendarActions.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/middleware/calendar/calendarMiddleware.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/middleware/calendar/calendarMiddleware.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/reducers/calendar/calendarReducer.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/reducers/calendar/calendarReducer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/selectors/calendar/calendarSelector.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/selectors/calendar/calendarSelector.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarAddMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarAddMiddleware.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarAddReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarAddReducer.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarDeleteMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarDeleteMiddleware.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarDeleteReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarDeleteReducer.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarListMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarListMiddleware.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarListReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarListReducer.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarUpdateMiddleware.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/middlewareCalendar/calendarUpdateMiddleware.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/test/calendar/calendarUpdateReducer.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/test/calendar/reducerCalendar/calendarUpdateReducer.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/application/types/calendar/calendarTypes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/application/types/calendar/calendarTypes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/infrastructure/services/api/calendar/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/infrastructure/services/api/calendar/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarUpdateModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarUpdateModal.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/views/components/calendar/EventItemComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/EventItemComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/pages/calendar/CalendarPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/pages/calendar/CalendarPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarPage.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarPage.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/EventItemComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/EventItemComponent.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
