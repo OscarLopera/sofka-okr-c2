@@ -95,6 +95,9 @@ describe('middleware calendar list event test', () => {
             calendar: {
                 listEvents: () => {
                     return listEventsDummy;
+                },
+                token:() => {
+
                 }
             }
         }
