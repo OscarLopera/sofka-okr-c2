@@ -15,9 +15,9 @@ export const createKrError = (error) => ({
     payload: error
 });
 
-export const deleteKr = (id) => ({
+export const deleteKr = (idUser, id) => ({
     type: DELETE_KR,
-    payload: id
+    payload: {idUser, id}
 });
 
 export const deleteKrSuccess = (id) => ({

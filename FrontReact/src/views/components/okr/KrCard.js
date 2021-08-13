@@ -5,9 +5,9 @@ import { Form, Input, Button } from "reactstrap";
 import { bindActionCreators } from "redux";
 import { getUser } from "../../../application/selectors/administration/user";
 import { connect } from "react-redux";
-import { updateProgressKr } from "../../../application/actions/okr/KrAction";
+import { updateProgressKr , deleteKr} from "../../../application/actions/okr/KrAction";
 
-const KrCard = ({user, id, title, progress, updateProgressKr }) => {
+const KrCard = ({ user, id, title, progress, updateProgressKr, deleteKr }) => {
   const [loadValue, setLoadValue] = useState("");
 
   const updateKrProgress = (event) => {
@@ -17,6 +17,11 @@ const KrCard = ({user, id, title, progress, updateProgressKr }) => {
     };
     updateProgressKr(user.idMongo, id, krUpdate);
   };
+  const deleteKrHandle = (event) => {
+    event.preventDefault();
+    deleteKr(user.idMongo, id);
+  };
+  
 
   return (
     <div className="d-flex justify-content-around p-5 my-5 border rounded shadow-sm">
@@ -53,9 +58,15 @@ const KrCard = ({user, id, title, progress, updateProgressKr }) => {
             🎯
           </Button>
         </Form>
-        <div className="fs-2 btn" data-tip data-for="delete-kr-tip">
-          ❌
-        </div>
+        <Button
+            className="fs-2 text-decoration-none"
+            color="link"
+            data-tip
+            onClick={deleteKrHandle}
+            data-for="delete-kr-tip"
+          >
+            ❌
+          </Button>
 
         <ReactTooltip id="delete-kr-tip" place="top" effect="solid">
           Eliminar KR
@@ -69,15 +80,16 @@ const KrCard = ({user, id, title, progress, updateProgressKr }) => {
 };
 
 const mapStateToProps = (state) => {
-    return {
-      user: getUser(state),
-    };
+  return {
+    user: getUser(state),
   };
-  
+};
+
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       updateProgressKr,
+      deleteKr,
     },
     dispatch
   );
