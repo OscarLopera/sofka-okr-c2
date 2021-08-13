@@ -4,15 +4,15 @@ import { Link } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import ReactTooltip from 'react-tooltip';
 
-const OkrCard = ({ id, title, progress, okr }) => {
+const OkrCard = ({  okr }) => {
   
 
   return (
     <div className="d-flex flex-column p-5 my-5 border rounded shadow">
       <div className="d-flex justify-content-between">
         <div className="container flex-column">
-          <h3 className="fw-bold text-uppercase text-wrap">{title}</h3>
-          <ProgressBar variant="success" animated now={progress} label={`${progress}%`} style={{ height: "1.5rem" }} />
+          <h3 className="fw-bold text-uppercase text-wrap">{okr.okr.title}</h3>
+          <ProgressBar variant="success" animated now={okr.okr.currentProgress} label={`${okr.okr.currentProgress}%`} style={{ height: "1.5rem" }} />
         </div>
         <div className="d-flex">
           <div className="fs-2 mx-3" data-tip data-for="edit-okr-tip">✏️</div>
@@ -28,7 +28,7 @@ const OkrCard = ({ id, title, progress, okr }) => {
       </div>
       <div>
         <ul className="list-unstyled">
-          {okr.map(elem => {
+          {okr.krs.map(elem => {
             return (
               <li key={elem._id}>
                 <KrCard title={elem.title} progress={elem.progress} />

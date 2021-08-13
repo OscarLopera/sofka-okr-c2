@@ -6,19 +6,20 @@ import { getOkrs } from "../../../application/selectors/dashboard/okrs";
 import { useEffect } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import {getAllOkrUser} from '../../../application/actions/okr/okr'
+import { getAllOkrUser } from "../../../application/actions/okr/okr";
+import { getUser } from "../../../application/selectors/administration/user";
+import { getAllOkrsUser } from "../../../application/selectors/okr/okr";
 
-const OkrPage = ({ okr, getAllOkrUser }) => {
-  
-
+const OkrPage = ({ okr, getAllOkrUser, user,okrs }) => {
   useEffect(() => {
-    getAllOkrUser("611573c2a2605b535bfab39a");
-  }, [getAllOkrUser]);
+    getAllOkrUser(user.idMongo);
+  }, [getAllOkrUser, user.idMongo]);
 
-  
+
+
   return (
     <div className="container d-flex flex-column align-items-center py-5">
-      {okr.length === 0 ? (
+      {okrs.length === 0 ? (
         <>
           <EmptyMessage />
           <Link to="/okr/create-okr">
@@ -32,10 +33,12 @@ const OkrPage = ({ okr, getAllOkrUser }) => {
           </Link>
           <div className="container">
             <ul className="list-unstyled">
-              {okr.map((elem) => {
+              {okrs.map((elem) => {
                 return (
                   <li key={elem.id}>
-                    <OkrCard okr={okr} title={elem.objective} progress={elem.title} />
+                    <OkrCard
+                      okr={elem}    
+                    />
                   </li>
                 );
               })}
@@ -50,6 +53,8 @@ const OkrPage = ({ okr, getAllOkrUser }) => {
 const mapStateToProps = (state) => {
   return {
     okr: getOkrs(state),
+    user: getUser(state),
+    okrs: getAllOkrsUser(state),
   };
 };
 
