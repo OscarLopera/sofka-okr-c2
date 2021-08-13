@@ -1,4 +1,4 @@
-import { getStatusNotifySuccess,gethistorysuccess } from "../../actions/notifications";
+import { getStatusNotifySuccess,gethistorysuccess, sendNotificationSucess } from "../../actions/notifications";
 
 
 const GetStatusNotificationFlow = ({ api }) => ({ dispatch }) => next => async (action) => {
@@ -44,6 +44,7 @@ const AddNotify = ({ api }) => ({ dispatch }) => next => async (action) => {
     if (action.type === "ENVIAR_NOTIFICACION") {
         try {
             const noti = await api.notifications.addNotification(action.id,action.payload)
+            dispatch(sendNotificationSucess(noti))
         } catch (error) {
             console.log(error)
         }
@@ -53,32 +54,22 @@ const AddNotify = ({ api }) => ({ dispatch }) => next => async (action) => {
 export const convertirarrayToObjeto = (array) => {
     const objeto = {
         "mail": {
-            "OkrCreated": array[0][1],
-            "KrCreated": array[1][1],
-            "OkrUpdated": array[2][1],
-            "KrUpdated": array[3][1],
-            "OkrFinished": array[4][1],
-            "KrFinished": array[5][1],
-            "OkrExpired": array[6][1],
-            "KrExpired": array[7][1],
-            "OkrAssigned": array[8][1],
-            "KrAssigned": array[9][1],
-            "OkrDeleted": array[10][1],
-            "krDeleted": array[11][1]
+            "Crear_Okr": array[0][1],
+            "Eliminar_Okr": array[1][1],
+            "Finalizar_Okr": array[2][1],
+            "Asignar_Okr": array[3][1],
+            "Reunion_Asignada": array[4][1],
+            "Reunion_Cancelada": array[5][1],
+          
         },
         "screen": {
-            "OkrCreated": array[0][2],
-            "KrCreated": array[1][2],
-            "OkrUpdated": array[2][2],
-            "KrUpdated": array[3][2],
-            "OkrFinished": array[4][2],
-            "KrFinished": array[5][2],
-            "OkrExpired": array[6][2],
-            "KrExpired": array[7][2],
-            "OkrAssigned": array[8][2],
-            "KrAssigned": array[9][2],
-            "OkrDeleted": array[10][2],
-            "krDeleted": array[11][2]
+            "Crear_Okr": array[0][2],
+            "Eliminar_Okr": array[1][2],
+            "Finalizar_Okr": array[2][2],
+            "Asignar_Okr": array[3][2],
+            "Reunion_Asignada": array[4][2],
+            "Reunion_Cancelada": array[5][2],
+            
         }
     }
     return objeto

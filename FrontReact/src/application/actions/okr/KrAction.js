@@ -15,9 +15,9 @@ export const createKrError = (error) => ({
     payload: error
 });
 
-export const deleteKr = (id) => ({
+export const deleteKr = (idUser, id) => ({
     type: DELETE_KR,
-    payload: id
+    payload: {idUser, id}
 });
 
 export const deleteKrSuccess = (id) => ({
@@ -30,14 +30,14 @@ export const deleteKrError = (error) => ({
     payload: error
 });
 
-export const updateProgressKr = (id) => ({
+export const updateProgressKr = (idUser, id, krUpdate) => ({
     type: UPDATE_PROGRESS_KR,
-    payload: id
+    payload: {idUser, id, krUpdate}
 });
 
-export const updateProgressKrSuccess = (id) => ({
+export const updateProgressKrSuccess = (body) => ({
     type: UPDATE_PROGRESS_KR_SUCCESS,
-    payload: id
+    payload: body
 });
 
 export const updateProgressKrError = (error) => ({

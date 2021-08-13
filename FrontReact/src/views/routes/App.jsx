@@ -33,6 +33,7 @@ import CalendarPage from "../pages/calendar/CalendarPage";
 //Administration
 import AdministrationPage from "../pages/administration/AdministrationPage";
 import UserPage from "../pages/administration/UserPage";
+import NotFoundPage from "../pages/administration/NotFoundPage";
 
 
 import "../assets/styles/administration/App.scss";
@@ -46,37 +47,29 @@ import Push from 'push.js';
 //import moment from "moment";
 
 const App = ({ user, gethistory, sendNotification, initialstate }) => {
-  localStorage.setItem("notifymanager", JSON.stringify(initialstate.notificationstatus));
+  
   useEffect(() => {
+    //localStorage.setItem("notifymanager", JSON.stringify(initialstate.notificationstatus));
+    
     if (user !== null) {
       socket.on(user.userId, (data) => {
-          console.log(initialstate.notificationstatus[data.indicei][1])
-          console.log(initialstate.notificationstatus[data.indicei][2])
-        if (initialstate.notificationstatus[data.indicei][1]) {
-          console.log("si envia email")
         sendNotification(user.userId, {
           "userEmail": user.userEmail,
-          "message": data.mensaje
+          "message": data.mensaje,
+          "notisType": data.notiType
         })
-      }
-      if (!initialstate.notificationstatus[data.indicei][1]) {
-        console.log("no envia email")
-        sendNotification(user.userId, {
-          "userEmail": null,
-          "message": data.mensaje
-        })
-      }
-        if (initialstate.notificationstatus[data.indicei][2]) {
+        setTimeout(() => {
+        console.log(initialstate.validarscreen)
+        if (initialstate.validarscreen.screen) {
           console.log("envia pantalla")
           Push.create("Nueva notificacion Sofka Okr", {
             body: data,
             icon: "https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
           })
         }
-        console.log("entro a socket")
-        setTimeout(() => {
+        
           gethistory(user.userId)
-        }, 500);
+        }, 1000);
 
       })
     }
@@ -101,6 +94,7 @@ const App = ({ user, gethistory, sendNotification, initialstate }) => {
         <PrivateRoute exact path={"/notificaciones"} component={GestionNotificaciones} user={user} />
         <PrivateRoute exact path={"/userPage"} component={UserPage} user={user} />
         <PublicRoute exact path="/" component={HomePage} user={user} />
+        <Route exact path={"*"} component={NotFoundPage} />
       </Switch>
     </Router>
   );

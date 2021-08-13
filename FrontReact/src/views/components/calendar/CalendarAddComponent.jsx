@@ -73,6 +73,7 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) =>
     }
 
     const addEvent = () => {
+        socket.emit("crear-evento",{id:userId.userId,manager:userId.userName})
         if (externalAttendeesList.length > 0) {
             externalAttendeesList.forEach(element => {
                 let aux = attendees;
@@ -103,10 +104,10 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) =>
             },
             sendUpdates: "all"
         }
+       
         AddEvent(eventObject, token)
         socket.emit("crear-evento", { id: userId.userId, manager: userId.userName })
         clearData()
-
     }
 
     return (

@@ -3,8 +3,7 @@ import axios from "axios";
 const functions = {
 
     loadOkr: async (name) => {
-        const response = await axios.get('https://okr-final-app.herokuapp.com/api/calendar/usersbyname/' + name)
-        console.log(response);
+        const response = await axios.get('https://okr-final-app.herokuapp.com/api/calendar/usersbyname/' + name)        
         return response.data
     },
     createOkr: async (okr) => {
@@ -19,15 +18,14 @@ const functions = {
             description: okr.description
         }
     },
-    deleteOkr: async (idOkr) => {
-        await axios.delete('' + idOkr).then(() => {
-            return idOkr
+    deleteOkr: async ({id}) => {
+        await axios.delete('https://back-node-okr-qa.herokuapp.com/api/okr/delete/' + id).then((response) => {
+            return response
         }).catch(error => {
             return error
         })
     },
     getAllOkrByUser: async (id) => {
-        console.log("Estoy llegando al api", id);
         const response = await axios.get('https://back-node-okr-qa.herokuapp.com/api/okr/allokrsbyuser/' + id);
         return response.data.data
     },
