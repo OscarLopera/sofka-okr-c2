@@ -1,4 +1,5 @@
 import React, { useEffect, useState, Fragment } from "react";
+import {Link} from "react-router-dom";
 
 //Redux
 import { connect } from "react-redux";
@@ -11,25 +12,34 @@ import {
 } from "./../../../application/selectors/dashboard/okrs";
 
 //Acciones
-import { loadingOKR,loadingOKRid,getidOkrLast } from './../../../application/actions/dashboard/index';
+import {
+  loadingOKR,
+  loadingOKRid,
+  getidOkrLast,
+} from "./../../../application/actions/dashboard/index";
 
 //Componentes
-import Okruser from './user/OkrsUser';
-import Barchart from './user/BarChart';
+import Okruser from "./user/OkrsUser";
+import Barchart from "./user/BarChart";
 import PieChart from "./user/PieChart";
 
-const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) => {
+const DashboardUserPage = ({
+  loadingOKR,
+  getidOkrLast,
+  okrs,
+  loadingOKRid,
+  okr,
+}) => {
   const [idokr, setidokr] = useState("");
- //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "6114bf415f29ff49b805d9dc";
-  const idlast = "6114bf415f29ff49b805d9dc";
+  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
+  const idUser = "61157aaca2605b535bfab3ab";
+  const idlast = "61157aaca2605b535bfab3ab";
   //const idUser = "611461004b98615d2dc035f2";
   //const idlast = "611461004b98615d2dc035f2";
   useEffect(() => {
     loadingOKR(idUser);
-    getidOkrLast(idlast); 
-  }, [loadingOKR])
-
+    getidOkrLast(idlast);
+  }, [loadingOKR]);
 
   const handlerokrid = () => {
     loadingOKRid(idokr);
@@ -41,6 +51,23 @@ const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) =
         <center>
           <div className="col-2"></div>
           <div className="col-8">
+          <ul class="nav nav-tabs justify-content-center">
+              <li class="nav-item">
+                <Link class="nav-link" to="/userdash">
+                  Mis Okrs
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/statedashokrs">
+                  Completados
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/statedashokrs">
+                  En progreso
+                </Link>
+              </li>
+            </ul>
             {/* <h1>Mis OKRs</h1> */}
             <select
               style={{
@@ -53,11 +80,13 @@ const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) =
               value={idokr}
               onChange={(e) => setidokr(e.target.value)}
             >
-              {(okrs === null || "" || undefined) ? "No hay datos" : okrs.map((okr) => (
-                <option value={okr.id} key={okr.id}>
-                  {okr.title}
-                </option>
-              ))}
+              {okrs === null || "" || undefined
+                ? "No hay datos"
+                : okrs.map((okr) => (
+                    <option value={okr.id} key={okr.id}>
+                      {okr.title}
+                    </option>
+                  ))}
             </select>
             <button
               className="btn btn-outline-warning"
@@ -67,19 +96,19 @@ const DashboardUserPage = ({ loadingOKR,getidOkrLast,okrs,loadingOKRid, okr }) =
               Ver info
             </button>
             <div>
-            {(okrs === null || "" || undefined) ? ("No hay datos"): ( 
-               <Fragment>
-               <Okruser okr={okr} />
-              <div className="row">
-                <div className="col-xl-12 col-sm-6">
-                  <div className="media d-flex">
-                      <Barchart okr={okr} />
-                      <PieChart okr={okr} />
-                    </div>
-                </div>
-              </div></Fragment>)
-              }
-            
+              {okrs === null || "" || undefined ? (
+                "No hay datos"
+              ) : (
+                <Fragment>
+                  <Okruser okr={okr} />
+                  <br />
+                  <br />
+                  <PieChart okr={okr} />
+                  <br />
+                  <br />
+                  <Barchart okr={okr} />                  
+                </Fragment>
+              )}
             </div>
           </div>
           <div className="col-2 "></div>
