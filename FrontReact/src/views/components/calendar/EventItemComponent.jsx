@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CalendarUpdateModal from './CalendarUpdateModal'
-
-export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,userId}) => {
+import socket from '../../../infrastructure/services/api/notifications/socket';
+export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,userEmails,userId}) => {
   const [event, setEvent] = useState("")
 
   const deleteEvent = (id) => {
@@ -20,7 +20,7 @@ export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,u
         token={token}
         UpdateEvent={UpdateEvent}
         eventChange={setEvent}
-        userEmails={userEmails}
+        userEmails={userEmails} 
       />) : null}
 
       {events.map((item, i) => {
