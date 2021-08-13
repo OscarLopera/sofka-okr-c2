@@ -2,8 +2,8 @@ import {
     DeleteEvent,
     DeleteEventFailure,
     DeleteEventSuccess,
-} from "../../actions/calendar/calendarActions";
-import calendarMiddleware from "../../middleware/calendar/calendarMiddleware";
+} from "../../../actions/calendar/calendarActions";
+import calendarMiddleware from "../../../middleware/calendar/calendarMiddleware";
 
 const token = 'AIzaSyC-_eI17Kv6_hl2dtAGTpFvgrb7e21567'
 

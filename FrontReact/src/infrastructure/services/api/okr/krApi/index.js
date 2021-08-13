@@ -7,10 +7,18 @@ const functions = {
         return response.data
     },
 
-    deleteKr: async (idKr) =>{
-        await axios.delete('https://back-node-okr-qa.herokuapp.com/api/kr/delete').then(()=>{
-            return idKr
-        }).catch(error =>{
+    deleteKr: async ({id}) => {
+        await axios.delete('https://back-node-okr-qa.herokuapp.com/api/kr/delete/'+id).then((response) => {
+            return response
+        }).catch(error => {
+            return error
+        })
+    },
+    updateProgressKr: async ({id, krUpdate}) => {
+        console.log("MIDDD", id, krUpdate);
+        await axios.patch('https://back-node-okr-qa.herokuapp.com/api/kr/update/'+id,krUpdate).then((updatedObj) => {
+            return updatedObj
+        }).catch(error => {
             return error
         })
     }

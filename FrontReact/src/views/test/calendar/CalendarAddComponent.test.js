@@ -1,6 +1,6 @@
 import { CalendarAddComponent } from "../../components/calendar/CalendarAddComponent";
 import { fireEvent, render } from "@testing-library/react";
-
+import {dummyList} from "../../../application/test/calendar/reducerCalendar/calendarGetEmailsReducer.test";
 
 const dummyEvent = {
     summary: "OKR",
@@ -36,34 +36,30 @@ describe('calendar add component test', () => {
         const dummyToken = "token";
 
         const { getByTestId } = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken}/>
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} userEmails={dummyList} userId={"id"}/>
         )
 
         const inputDescription = getByTestId("input-test-descriptionAddEvent")
-
         const inputTimeStart = getByTestId("input-test-timeStart")
-
         const inputTimeEnd = getByTestId("input-test-timeEnd")
-
         const inputDate = getByTestId("input-test-date")
-
         const inputExternal= getByTestId("input-test-external")
-
         const buttonAddEvent = getByTestId("btn-test-addEvent")
-
+        const buttonUpdateExternal = getByTestId("btn-test-external-update")
         const buttonOpenModalAddEvent = getByTestId("btn-test-openModalAddEvent")
 
         fireEvent.click(buttonOpenModalAddEvent);
 
         fireEvent.change(inputDate, { target: { value: "2021-08-13" } })
-
         fireEvent.change(inputTimeStart, { target: { value: "20:43" } })
-
         fireEvent.change(inputTimeEnd, { target: { value: "20:43" } })
-
         fireEvent.change(inputDescription, { target: { value: "new description" } });
-
         fireEvent.change(inputExternal,{target:{value:"sebas99cano@gmail.com"}});
+        fireEvent.click(buttonUpdateExternal)
+        fireEvent.change(inputExternal,{target:{value:"sebas99cano"}});
+        fireEvent.change(inputExternal,{target:{value:"sebas99cano@gmail.com"}});
+        fireEvent.click(buttonUpdateExternal)
+
 
         fireEvent.submit(buttonAddEvent);
 
@@ -76,13 +72,10 @@ describe('calendar add component test', () => {
         const dummyToken = "token";
 
         const { getByTestId } = render(
-            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} />
-
+            <CalendarAddComponent AddEvent={AddEvent} token={dummyToken} userEmails={dummyList}/>
         )
         const buttonCancelEvent = getByTestId("btn-test-cancelEvent")
-
         const inputDescription = getByTestId("input-test-descriptionAddEvent")
-
         const buttonOpenModalAddEvent = getByTestId("btn-test-openModalAddEvent")
 
         fireEvent.click(buttonOpenModalAddEvent);

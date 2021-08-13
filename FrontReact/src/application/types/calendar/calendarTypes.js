@@ -14,4 +14,7 @@ export const CalendarTypes = {
    UPDATE_EVENT: '[calendar] update_event',
    UPDATE_EVENT_SUCCESS: '[calendar] update_event_success',
    UPDATE_EVENT_FAILURE: '[calendar] update_event_failure',
+   GET_EMAIL_USERS: '[calendar] get_email_users',
+   GET_EMAIL_USERS_SUCCESS: '[calendar] get_email_users_success',
+   GET_EMAIL_USERS_FAILURE: '[calendar] get_email_users_failure',
 }

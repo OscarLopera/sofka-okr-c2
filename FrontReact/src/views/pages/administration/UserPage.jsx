@@ -14,7 +14,7 @@ import { NavLink } from "react-router-dom";
 
 import "../../assets/styles/administration/UserPage.scss";
 
-const UserPage = ({
+export const UserPage = ({
   user,
   /*getVerticals NOVA*/ verticals,
   loadingVerticals,
@@ -30,7 +30,7 @@ const UserPage = ({
 
   useEffect(() => {
     loadingVerticals();
-  }, [loadingVerticals]);
+  }, []);
 
   return (
     <section className="user">
@@ -67,7 +67,7 @@ const UserPage = ({
           </form>
           <h4 className="user-text">Tipo de Usuario: {user.userRol} </h4>
           <NavLink to="/dashboard" className="btn btn-danger">
-            Volver al Dasboard
+            Volver al Dashboard
           </NavLink>
         </center>
       </section>
