@@ -6,11 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="b974446e-a1d5-476f-a350-150d05068fc6" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarAddComponent.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/components/calendar/CalendarUpdateModal.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/components/calendar/CalendarUpdateModal.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarAddComponent.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/CalendarUpdateComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/CalendarUpdateComponent.test.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/views/test/calendar/EventItemComponent.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/views/test/calendar/EventItemComponent.test.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +127,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1628848405139</updated>
-      <workItem from="1628848407521" duration="989000" />
+      <workItem from="1628848407521" duration="1674000" />
     </task>
     <servers />
   </component>
