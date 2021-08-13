@@ -1,9 +1,15 @@
-import React, { Fragment, useState } from 'react'
+import React, { Fragment, useState, useEffect } from 'react'
 
-const CalendarUpdateModal = ({ UpdateEvent, token, item }) => {
+const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange }) => {
   let date = new Date().toLocaleDateString().split('/')
   date[1] = date[1] < 10 ? '0' + date[1] : date[1]
   date = date[2] + '-' + date[1] + '-' + date[0]
+
+  const currentDate = item.start.dateTime.substring(0, 10)
+  const currentDescription = item.description;
+  const currentStartTime = item.start.dateTime.substring(11, 16)
+  const currentEndTime = item.end.dateTime.substring(11, 16)
+  const currentAtendees= item.attendees?item.attendees.map(attendee => attendee.email):[]
 
   const [startDate, setStartDate] = useState("")
   const [description, setDescription] = useState("")
@@ -11,7 +17,14 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item }) => {
   const [endTime, setEndTime] = useState("")
   const [errorEmail, setErrorEmail] = useState(false)
   const [guest, setGuest] = useState('')
-  const [guestsList, setGuestList] = useState([])
+  const [guestsList, setGuestList] = useState(currentAtendees)
+
+  useEffect(() => {
+    setStartDate(currentDate)
+    setDescription(currentDescription)
+    setStartTime(currentStartTime)
+    setEndTime(currentEndTime) 
+  },[]) 
 
   const updateGuestList = () => {
     if (guestsList.includes(guest)) {
@@ -35,6 +48,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item }) => {
   const clearData = () => {
     setGuest('')
     setGuestList([])
+    eventChange("")
   }
 
   const updateEvent = () => {
@@ -68,46 +82,17 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item }) => {
     UpdateEvent(eventObject, token)
   }
 
-  const setNewState = (id, description, date, endTime) => {
-    let currentDate = date
-    let currentStartTime = date.substring(11, 16)
-    let currentEndTime = endTime.substring(11, 16)
-    setStartDate(currentDate)
-    setDescription(description)
-    setStartTime(currentStartTime)
-    setEndTime(currentEndTime)
-
-    console.log(description)
-    //console.log(" PRUEBA- "+ endTime+" - "+startDate+" - "+startTime)
-
-  }
 
   return (
     <Fragment>
-      <button
-        className="btn btn-primary mx-2"
-        onClick={() => setNewState(item.id, item.description,item.start.dateTime,item.end.dateTime)}
-        data-testid={'btn-test'}
-        data-toggle={'modal'}
-        data-target={'#modalUpdateEvent'}
-      >
-        <i className="bi bi-pencil-square" />
-      </button>
 
-      <div id={'modalUpdateEvent'} className={'modal fade container'}>
-        <div className="modal-dialog modal-lg" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
+      <div id={'modalUpdateEvent'} className={'modal fade container'} data-backdrop="static" data-keyboard="false" >
+        <div className="modal-dialog modal-lg" role="document" >
+          <div className="modal-content" >
+            <div className="modal-header" >
               <h5 className="modal-title" id="exampleModalLabel">
                 Actualizar Evento
               </h5>
-              <button
-                type="button"
-                className={'btn close'}
-                data-dismiss="modal"
-              >
-                <i className="bi bi-x-lg" />
-              </button>
             </div>
             <div className="modal-body container row">
               <form onSubmit={updateEvent}>
