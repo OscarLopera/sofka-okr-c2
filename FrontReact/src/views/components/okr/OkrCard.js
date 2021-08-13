@@ -1,6 +1,5 @@
 import React from 'react';
 import KrCard from './KrCard';
-import { Link } from 'react-router-dom';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import ReactTooltip from 'react-tooltip';
 
