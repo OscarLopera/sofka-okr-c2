@@ -10,7 +10,7 @@ import {
     UPDATE_OKRS_FAILURE,
     DELETE_OKRS,
     DELETE_OKRS_SUCCESS,
-    DELETE_OKRS_FAILURE, GET_OKRS_USER,GET_OKRS_USER_FAILURE,GET_OKRS_USER_SUCESS
+    DELETE_OKRS_FAILURE, GET_OKRS_USER, GET_OKRS_USER_FAILURE, GET_OKRS_USER_SUCESS
 } from '../../types/okr/okr'
 
 export const loadOkrs = (okrName) => ({
@@ -58,14 +58,14 @@ export const updateOkrsFailure = (error) => ({
     payload: error
 })
 
-export const deleteOkrs = (idOkr) => ({
+export const deleteOkrs = (idUser, id) => ({
     type: DELETE_OKRS,
-    payload:idOkr
+    payload: { idUser, id }
 })
 
-export const deleteOkrsSuccess = (id) => ({
+export const deleteOkrsSuccess = (body) => ({
     type: DELETE_OKRS_SUCCESS,
-    payload: id
+    payload: body
 })
 
 export const deleteOkrsFailure = (error) => ({
@@ -75,7 +75,7 @@ export const deleteOkrsFailure = (error) => ({
 
 export const getAllOkrUser = (idUser) => ({
     type: GET_OKRS_USER,
-    payload:idUser
+    payload: idUser
 })
 
 export const getAllOkrUserSuccess = (okrs) => ({

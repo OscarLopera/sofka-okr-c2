@@ -53,6 +53,7 @@ const CrearOkrPage = ({
     if(selectedUser){
       addOkrs(values);
       socket.emit("crear-okr",{id:userId.userId, manager: userId.userName});
+      socket.emit("asignar-okr",{id:managerId, manager: managerName});
       alert("Se agrego el OKR Correctamente");
       history.push('/okr')
     }
@@ -61,7 +62,6 @@ const CrearOkrPage = ({
     }
   };
   const handleChange = (valueName) => {
-    console.log(valueName);
     const manager = users.find((user) => user.name === valueName);
     if(manager){
       setManagerId(manager.id)
