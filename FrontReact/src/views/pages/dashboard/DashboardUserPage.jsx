@@ -54,17 +54,17 @@ const DashboardUserPage = ({
           <ul class="nav nav-tabs justify-content-center">
               <li class="nav-item">
                 <Link class="nav-link" to="/userdash">
-                  Mis Okrs
+                  Mis OKRs
                 </Link>
               </li>
               <li class="nav-item">
                 <Link class="nav-link" to="/statedashokrs">
-                  Completados
+                  OKRs completados
                 </Link>
               </li>
               <li class="nav-item">
                 <Link class="nav-link" to="/statedashokrs">
-                  En progreso
+                OKRs en progreso
                 </Link>
               </li>
             </ul>
@@ -89,7 +89,7 @@ const DashboardUserPage = ({
             </select>
             <button
               className="btn btn-outline-warning"
-              style={{ margin: "10px 3px", padding: "4px" }}
+              style={{ margin: "10px 3px", padding: "4px", color: "black", backgroundColor: "#DAE3FF" }}
               onClick={() => handlerokrid()}
             >
               Ver info
