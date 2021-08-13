@@ -51,6 +51,7 @@ const CrearOkrPage = ({
     if(selectedUser){
       addOkrs(values);
       alert("Se agrego el OKR Correctamente");
+      history.push('/okr')
     }
     else{
     alert("selecciona un encargado");
@@ -78,7 +79,7 @@ const CrearOkrPage = ({
     <div className="container py-5">
       <div className="shadow-lg rounded form-floating p-5 pb-2">
         <h1 className="text-center fw-bold">Agregar OKR</h1>
-        <Form onSubmit={okrCreateSubmit}>
+        <Form onSubmit={(event)=>{okrCreateSubmit(event)}}>
           <FormGroup className="formgroup">
             <label for="floatingInput" className={"my-3 "}>
               Objetivo
@@ -165,7 +166,8 @@ const CrearOkrPage = ({
           <FormGroup>
             <div className="shadow rounded p-5 mt-5">
               <h2 className="text-center fw-bold mb-3">KRs</h2>
-              {krs.length !== 0 ? (
+              {krs !== null && 
+             <> {krs.length !== 0 ? (
                 <ul className=" rounded shadow-sm p-4 px-5 b-1 mb-4">
                   {krs.map((ele) => {
                     return (
@@ -183,7 +185,7 @@ const CrearOkrPage = ({
                 </ul>
               ) : (
                 <></>
-              )}
+              )}</>}
               {KrVisible ? (
                 <div className="shadow rounded">
                   <div
