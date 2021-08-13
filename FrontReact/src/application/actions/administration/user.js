@@ -35,3 +35,46 @@ export const closeWelcomeSuccess = user => ({
     type: types.CLOSE_WELCOME_SUCCESS,
     payload: user
 });
+
+export const loadingVerticals = () => ({
+    type: types.LOADING_VERTICALS,
+});
+
+export const loadingVerticalsSuccess = verticals => ({
+    type: types.LOADING_VERTICALS_SUCCESS,
+    payload: verticals
+});
+
+export const loadingVerticalsFailure = error => ({
+    type: types.LOADING_VERTICALS_FAILURE,
+    payload: error
+});
+
+export const updateUser = user => ({
+    type: types.UPDATE_USER,
+    payload: user
+});
+
+export const updateUserSuccess = user => ({
+    type: types.UPDATE_USER_SUCCESS,
+    payload: user
+});
+
+export const updateUserFailure = error => ({
+    type: types.UPDATE_USER_FAILURE,
+    payload: error
+});
+
+export const loadingQuestions = () => ({
+    type: types.LOADING_QUESTIONS
+});
+
+export const loadingQuestionsSuccess = questions => ({
+    type: types.LOADING_QUESTIONS_SUCCESS,
+    payload: questions
+});
+
+export const loadingQuestionsFailure = error => ({
+    type: types.LOADING_QUESTIONS_FAILURE,
+    payload: error
+});

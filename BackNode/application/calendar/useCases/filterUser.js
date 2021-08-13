@@ -10,7 +10,6 @@ const filterUser = async (id, OkrRepository, KrRepository, UserRepository) => {
 
     for (let i = 0; i < krList.length; i++) {
         const krId = krList[i];
-
         if (krList[i].idOkr === id) {
             listOkr.push(krId)
         }
@@ -31,7 +30,7 @@ const filterUser = async (id, OkrRepository, KrRepository, UserRepository) => {
         [item.email, item])).values()];
 
     return arrayUniqueByKey.map(user => new User(user._id, user.name, user.email, user.urlPhoto, user.phone,
-        user.isFirstTime, user.isFirstTime, user.verticalId, user.rol))
+        user.firstTime, user.verticalId, user.rol))
 };
 
 module.exports = filterUser

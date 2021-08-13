@@ -3,6 +3,7 @@
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-right: 1rem;
   }
   
   .switch input { 
@@ -71,7 +72,7 @@
     align-items: center;
     -webkit-box-pack: justify;
     justify-content: space-between;
-    padding: 0.5rem 0;
+    padding: 0.2rem 0;
     border-bottom: 1px solid #805555;
 }
 
@@ -85,7 +86,7 @@
     -webkit-box-flex: 1;
     flex: 1;
     margin-right: 0.5rem;
-    color: #858689;
+    color: #000000;
 }
 
 .EditProfilePrivacy-options{
@@ -108,4 +109,11 @@ display: block;
     -webkit-box-direction: normal;
     margin: 0;
     margin-top: 2rem;
+    padding-right: 17vw;
+    padding-left: 17vw;
+}
+
+.btn-noti{
+  background-color:  #06062b !important;
+  color: white !important;
 }

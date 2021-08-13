@@ -1,7 +1,18 @@
+import calendar from './calendar';
+import okr from './okr/okrApi/index';
+import kr from './okr/krApi/index';
 import user from './administration';
 import notifications from "./notifications";
+import dashboard from './dashboard/index'
 
-export default {
+const api = {
+    okr,
+    kr,
     user,
-    notifications
-};
+    notifications,
+    dashboard,
+    calendar,
+}
+
+export default api
+
