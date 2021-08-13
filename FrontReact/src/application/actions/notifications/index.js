@@ -24,14 +24,25 @@ export const changeStatusNotification = (notification, id) =>({
     id: id
 });
 
-// export const createNotificationManagerForNewUser = (notification) =>({
-//     type: "CAMBIAR_NOTIFICACION",
-//     payload: notification
-// });
-// export const changeStatusNotificationSuccess = (notification) =>({
-//     type: "CAMBIAR_NOTIFICACION_SUCCESS",
-//     payload: notification
-// });
+export const gethistory = (id) =>({
+    type: "OBTENER_HISTORIAL_NOTIFICACIONES",
+    payload: id
+});
 
+export const gethistorysuccess = (history) =>({
+    type: "OBTENER_HISTORIAL_NOTIFICACIONES_SUCCESS",
+    payload: history
+});
 
+export const sendNotificationSucess = (message) =>({
+    type: "ENVIAR_NOTIFICACION_SUCESS",
+    payload: message,
+    
+});
+
+export const sendNotification = (id,message) =>({
+    type: "ENVIAR_NOTIFICACION",
+    payload: message,
+    id:id
+});
 

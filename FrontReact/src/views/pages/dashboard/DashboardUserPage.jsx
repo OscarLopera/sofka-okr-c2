@@ -1,49 +1,125 @@
-import React, {useEffect, useState}from "react";
-//Redux
-import {connect} from "react-redux";
-import {bindActionCreators} from "redux";
-//Selectors
-import { getOkrs } from './../../../application/selectors/dashboard/okrs';
-//Acciones
-import { loadingOKR } from './../../../application/actions/dashboard/index';
+import React, { useEffect, useState, Fragment } from "react";
+import {Link} from "react-router-dom";
+import { getUser } from "../../../application/selectors/administration/user";
 
-const DashboardUserPage = ({loadingOKR, okrs}) => {
-  //Para sacar el id del elemento
-  const [idokr,setidokr] = useState("");
-  //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "61106133609d16f1740ddf34";
+//Redux
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+
+//Selectors
+import {
+  getOkrs,
+  getOkr,
+} from "./../../../application/selectors/dashboard/okrs";
+
+//Acciones
+import {
+  loadingOKR,
+  loadingOKRid,
+  getidOkrLast,
+} from "./../../../application/actions/dashboard/index";
+
+//Componentes
+import Okruser from "./user/OkrsUser";
+import Barchart from "./user/BarChart";
+import PieChart from "./user/PieChart";
+
+const DashboardUserPage = ({
+  loadingOKR,
+  getidOkrLast,
+  okrs,
+  loadingOKRid,
+  okr,
+  user,
+}) => {
+  const [idokr, setidokr] = useState("");
 
   useEffect(() => {
-    loadingOKR(idUser)
-  }, [loadingOKR])
+    loadingOKR(user.idMongo);
+    getidOkrLast(user.idMongo);
+  }, [loadingOKR]);
 
-  
+  const handlerokrid = () => {
+    loadingOKRid(idokr);
+  };
+
   return (
     <div>
-      <center>
-      <h1>Mis OKrs</h1>
-        <select
-              style={{ width: "320px", height: "35px" }}
+      <div className="row">
+        <center>
+          <div className="col-2"></div>
+          <div className="col-8">
+          <ul class="nav nav-tabs justify-content-center">
+              <li class="nav-item">
+                <Link class="nav-link" to="/userdash">
+                  Mis OKRs
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/statedashokrs">
+                  OKRs completados
+                </Link>
+              </li>
+              <li class="nav-item">
+                <Link class="nav-link" to="/statedashokrs">
+                OKRs en progreso
+                </Link>
+              </li>
+            </ul>
+            <select
+              style={{
+                width: "70%",
+                height: "34px",
+                marginTop: "11px",
+                borderRadius: "5px"
+              }}
               name="idokr"
               value={idokr}
-              onChange={(e) => setidokr(e.target.value) }
+              onChange={(e) => setidokr(e.target.value)}
             >
-              {okrs.map((okr) => (
-                <option value={okr.id} key={okr.id}>
-                  {okr.title}
-                </option>
-              ))}
+              {okrs === null || "" || undefined
+                ? "No hay datos"
+                : okrs.map((okr) => (
+                    <option value={okr.id} key={okr.id}>
+                      {okr.title}
+                    </option>
+                  ))}
             </select>
-            <button style={{padding:"4px",margin:"3px"}}>Ver info</button>
-      </center>
+            <button
+              className="btn btn-outline-warning"
+              style={{ margin: "10px 3px", padding: "4px", color: "black", backgroundColor: "#DAE3FF" }}
+              onClick={() => handlerokrid()}
+            >
+              Ver info
+            </button>
+            <div>
+              {okrs === null || "" || undefined ? (
+                "No hay datos"
+              ) : (
+                <Fragment>
+                  <Okruser okr={okr} />
+                  <br />
+                  <br />
+                  <PieChart okr={okr} />
+                  <br />
+                  <br />
+                  <Barchart okr={okr} />                  
+                </Fragment>
+              )}
+            </div>
+          </div>
+          <div className="col-2 "></div>
+        </center>
+      </div>
     </div>
   );
 };
-
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
     {
       loadingOKR,
+      getidOkrLast,
+      loadingOKRid,
     },
     dispatch
   );
@@ -51,7 +127,10 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    okrs: getOkrs(state)
+    okrs: getOkrs(state),
+    user: getUser(state),
+    okr: getOkr(state),
   };
 };
+
 export default connect(mapStateToProps, mapDispatchToProps)(DashboardUserPage);

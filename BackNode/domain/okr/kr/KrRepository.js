@@ -5,14 +5,19 @@ class KrRepository {
   deleteKr(KrId) {
     throw new Error("Error metodo deleteKr no implemenado");
   }
-  getAllKr() {
+
+  deleteKrsByIdOkr(idOkr) {
+    throw new Error("Error metodo deleteKr no implemenado");
+  }
+
+  getAllKrs() {
     throw new Error("Error metodo getAllKr no implemenado");
   }
   updateKr(KrId, Kr) {
     throw new Error("Error metodo updateKr no implemenado");
   }
-  getByKrId(KrId) {
-    throw new Error("Error metodo getByKrId no implemenado");
+  getMany(KrId) {
+    throw new Error("Error metodo getMany no implemenado");
   }
 }
 module.exports = KrRepository;

@@ -1,0 +1,132 @@
+$white: #fff;
+$google-blue: #4285f4;
+$button-active-blue: #1669f2;
+
+.google-btn {
+  width: 184px;
+  height: 42px;
+  background-color: $google-blue;
+  border-radius: 2px;
+  box-shadow: 0 3px 4px 0 rgba(0, 0, 0, 0.25);
+  .google-icon-wrapper {
+    position: absolute;
+    margin-top: 1px;
+    margin-left: 1px;
+    width: 40px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: $white;
+  }
+  .google-icon {
+    position: absolute;
+    margin-top: 11px;
+    margin-left: 11px;
+    width: 18px;
+    height: 18px;
+  }
+  .btn-text {
+    float: right;
+    margin: 11px 11px 0 0;
+    color: $white;
+    font-size: 14px;
+    letter-spacing: 0.2px;
+    font-family: "Roboto";
+  }
+  &:hover {
+    box-shadow: 0 0 6px $google-blue;
+  }
+  &:active {
+    background: $button-active-blue;
+  }
+}
+
+.sofka-color-btn {
+  background-color: #ff7e06 !important;
+  border-color: #ff7e06 !important;
+  font-weight: bold !important;
+  text-transform: uppercase !important;
+}
+
+.login {
+  // background-image: linear-gradient(#21c08b, #8f57fd);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0px 30px;
+  min-height: calc(
+    100vh - 200px
+  ); /* El ancho será igual al tamaño de todo el height menos 200px (100px del header + 100px del footer) */
+}
+
+.login__container {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: 2px solid white;
+  border-radius: 40px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 700px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 60px 68px 40px;
+  height: 100%;
+  width: 800px;
+}
+
+.login__container--form {
+  display: flex;
+  flex-direction: column;
+}
+
+.login__container--form label {
+  font-size: 14px;
+}
+
+.login__container--remember-me {
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.login__container--remember-me a {
+  color: white;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.login__container--remember-me a:hover {
+  text-decoration: underline;
+}
+
+.login__container--social-media > div {
+  align-items: center;
+  display: flex;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.login__container--social-media > div > img {
+  margin-right: 10px;
+  width: 30px;
+}
+
+.login__container--register {
+  font-size: 14px;
+}
+
+.login__container--register a {
+  color: white;
+  font-weight: bold;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.login__container--register a:hover {
+  text-decoration: underline;
+}
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:500);

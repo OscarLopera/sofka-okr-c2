@@ -1,5 +1,5 @@
 import reducer from '../../reducers/okr/KrReducer';
-import { createKr, createKrSuccess, createKrError, deleteKr, deleteKrSuccess, deleteKrError } from '../../actions/okr/KrAction'
+import { createKr, createKrSuccess, createKrError, deleteKr, deleteKrSuccess, deleteKrError,updateProgressKr,updateProgressKrSuccess,updateProgressKrError } from '../../actions/okr/KrAction'
 
 describe('Test reducer KR functions', () => {
 
@@ -13,6 +13,7 @@ describe('Test reducer KR functions', () => {
         loadValue: 20,
         managerName: "David Perez",
         managerEmail: "david@correo.com",
+        progress: 5
     }
 
     const initialState = {
@@ -30,7 +31,7 @@ describe('Test reducer KR functions', () => {
     test('reducer CREATE_KR_SUCCESS case', () => {
         const action = createKrSuccess(dummyKr);
         const state = reducer(initialState, action);
-        expect(state).toEqual({ ...initialState, loading: false })
+        expect(state).toEqual({ ...initialState, loading: false, kr: dummyKr })
     });
 
     test('reducer CREATE_KR_ERROR case', () => {
@@ -60,5 +61,23 @@ describe('Test reducer KR functions', () => {
     test('reducer default case', () => {
         const state = reducer(initialState, "");
         expect(state).toEqual({ ...initialState })
+    });
+
+    test('reducer UPDATE_PROGRESS_KR case', () => {
+        const action = updateProgressKr(dummyKr);
+        const state = reducer(initialState, action);
+        expect(state).toEqual({ ...initialState, loading: true })
+    });
+
+    test('reducer UPDATE_PROGRESS_KR_SUCCESS case', () => {
+        const action = updateProgressKrSuccess(dummyKr);
+        const state = reducer(initialState, action);
+        expect(state).toEqual({ ...initialState, loading: false })
+    });
+
+    test('reducer UPDATE_PROGRESS_KR_ERROR case', () => {
+        const action = updateProgressKrError("Update Error");
+        const state = reducer(initialState, action);
+        expect(state).toEqual({ ...initialState, loading: false, error: "Update Error" })
     });
 })

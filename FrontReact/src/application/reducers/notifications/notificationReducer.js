@@ -1,12 +1,18 @@
 
 const initialState = {
-    notificationstatus: {}
+    notificationstatus: JSON.parse(localStorage.getItem('notifymanager')),
+    historynotify: JSON.parse(localStorage.getItem('historynotify')),
+    validarscreen: {screen:true}
 };
 
 const notificationReducer = (state = initialState, action) => {
     switch (action.type) {
         case "OBTENER_NOTIFICACIONES_SUCCESS":
             return { ...state, notificationstatus: action.payload };
+        case "OBTENER_HISTORIAL_NOTIFICACIONES_SUCCESS":
+            return { ...state, historynotify: action.payload };
+        case "ENVIAR_NOTIFICACION_SUCESS":
+            return { ...state, validarscreen: action.payload };
         case "CAMBIAR_NOTIFICACION_MAIL":
             return {
                 ...state, notificationstatus: state.notificationstatus.map(notify => {

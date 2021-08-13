@@ -27,7 +27,7 @@ const UserSchema = mongoose.Schema({
         required: [true, 'Phone is required.'],
         minLength: [3, 'The minimum length of the phone is 3 characters'],
     },
-    isFirstTime :{
+    firstTime :{
         type: Boolean,
         required: [true, 'Is first time is a boolean and is required'],
     },
@@ -35,7 +35,7 @@ const UserSchema = mongoose.Schema({
         type: String,
         required: [true, 'Vertical id is required']
     },
-    role:{
+    rol:{
         type: String,
         required: [true, 'Rol is required'],
         minLength: [2, 'The minimum length of user`s role is 2 characters'],
@@ -44,7 +44,7 @@ const UserSchema = mongoose.Schema({
 
 }, {
     versionKey: false,
-    collection: 'usuarios'
+    collection: 'Users'
 })
 
 module.exports= mongoose.model('User', UserSchema)

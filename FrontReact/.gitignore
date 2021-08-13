@@ -22,12 +22,7 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-<<<<<<< HEAD
 package-lock.json
-=======
-<<<<<<< HEAD
-package-lock.json
-=======
-package-lock.json
->>>>>>> 42492c78237c806e30c2539707b17a67e90b1a27
->>>>>>> 5b2567fc06042c7b9ada9c296ced8d34eeaa6946
+
+.idea
+

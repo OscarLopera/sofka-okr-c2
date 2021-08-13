@@ -1,6 +1,6 @@
 const DescriptionValueObject = (description) => {
   if (!description) {
-    return { value: "Sin descripción" };
+    throw new Error( "Sin descripción" );
   }
   if (!(typeof description == "string")) {
     throw new Error("La descripcion debe ser de tipo texto");

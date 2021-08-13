@@ -10,10 +10,18 @@ module.exports = async (req, res, next) => {
       krRepository
     )
 
-    res.status(201).json({
-      dataId: deletedKrId,
-      message: "kr delete",
-    })
+    if (deletedKrId === null){
+      res.status(201).json({
+        dataId: "No existe Dicho Kr",
+        message: "kr not Exist",
+      })
+    } 
+    else{
+      res.status(201).json({
+        dataId: deletedKrId._id,
+        message: "kr delete",
+      })
+    }
 
   } catch (err) {
     next(err);

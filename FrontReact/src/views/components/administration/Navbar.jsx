@@ -46,7 +46,7 @@ const SidebarNav = styled.nav`
   position: fixed;
   top: 0;
   left: ${({ sidebar }) => (sidebar ? "0" : "-100%")};
-  transition: 350ms;
+  transition: 100ms;
   z-index: 10;
 `;
 
@@ -62,14 +62,19 @@ const Navbar = ({ logoutUser, user }) => {
     <>
       <nav className="navbar navbar-expand-lg navbar-light navega">
         <div className="container-fluid">
-          <Link to={"/#"} className="navbar-brand">
+          <div className="navbar-brand">
             {/* Usuario con Logueo */}
             {user && (
-              <NavIcon>
-                <FaIcons.FaBars onClick={showSidebar} className="mx-3" />
-                <img src={Logo} alt="logo sofka" />
-                <span className="mx-3 my-3 text-white">SOFKA OKR</span>
-              </NavIcon>
+              <>
+                <NavIcon>
+                  <FaIcons.FaBars
+                    onClick={showSidebar}
+                    className="hamburger mx-3"
+                  />
+                  <img src={Logo} alt="logo sofka" />
+                  <span className="mx-3 my-3 text-white">SOFKA OKR</span>
+                </NavIcon>
+              </>
             )}
             {/* Usuario sin logeo */}
             {!user && (
@@ -78,7 +83,7 @@ const Navbar = ({ logoutUser, user }) => {
                 <span className="mx-3 my-3 text-white">SOFKA OKR</span>
               </>
             )}
-          </Link>
+          </div>
           <button
             className="navbar-toggler"
             type="button"
@@ -88,10 +93,10 @@ const Navbar = ({ logoutUser, user }) => {
             aria-expanded="false"
             aria-label="Toggle navigation"
           >
-            <span className="navbar-toggler-icon"/>
+            <span className="navbar-toggler-icon" />
           </button>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul className="navbar-nav me-auto mb-2 mb-lg-0"/>
+            <ul className="navbar-nav me-auto mb-2 mb-lg-0" />
             <form className="d-flex">
               <ul className="navbar-nav me-auto mb-2 mb-lg-0">
                 <li className="nav-item">
@@ -103,11 +108,6 @@ const Navbar = ({ logoutUser, user }) => {
                     Home
                   </Link>
                 </li>
-                {/* <li className={!user ? "d-none" : "nav-item"}>
-                  <Link className="nav-link text-white mt-1" to="/principal">
-                    Principal
-                  </Link>
-                </li> */}
                 <li className={!user ? "d-none" : "nav-item"}>
                   <Campana />
                 </li>
@@ -144,26 +144,34 @@ const Navbar = ({ logoutUser, user }) => {
           </div>
         </div>
         <button
-          className={!user ? "d-none" : "btn btn-outline-danger btn-sm mx-3"}
+          className={!user ? "d-none" : "btn btn-outline-danger mx-3"}
           onClick={logoutUser}
         >
-          Cerrar Sesión
+          Logout
         </button>
       </nav>
 
       {/* Sidebar */}
-      <IconContext.Provider value={{ color: "#ff7e06" }}>
-        <SidebarNav sidebar={sidebar}>
-          <SidebarWrap>
-            <NavIcon to="#">
-              <AiIcons.AiOutlineClose onClick={showSidebar} />
-            </NavIcon>
-            {SidebarData.map((item, index) => {
-              return <SubMenu item={item} key={index} />;
-            })}
-          </SidebarWrap>
-        </SidebarNav>
-      </IconContext.Provider>
+
+      {user && (
+        <div>
+          <IconContext.Provider value={{ color: "#ff7e06" }}>
+            <SidebarNav sidebar={sidebar} >
+              <SidebarWrap>
+                <NavIcon to="#">
+                  <AiIcons.AiOutlineClose
+                    className="equis mx-4"
+                    onClick={showSidebar}
+                  />
+                </NavIcon>
+                {SidebarData.map((item, index) => {
+                  return <SubMenu item={item} key={index} />;
+                })}
+              </SidebarWrap>
+            </SidebarNav>
+          </IconContext.Provider>
+        </div>
+      )}
     </>
   );
 };
