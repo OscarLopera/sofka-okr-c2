@@ -27,7 +27,7 @@ function BarChart({okr}){
       const data = {
           labels:arraylabels,
           datasets:[{
-              label:'avances',
+              label:'Avances',
               backgroundColor: datacolor,
               borderColor: "rgba(0,0,255,.2)",
               hoverBackgroundColor: "rgba(0,0,255,.2)",
@@ -41,7 +41,7 @@ function BarChart({okr}){
       }
       return(
           <div className="BarChart" style={{width: '100%', height:'300px'}}>
-              <h5>AVANCE DE OKR POR SEMANA</h5>
+              <h5>Avance de OKR por semana</h5>
               <Bar data={data} options={opciones}/>
           </div>
       )
