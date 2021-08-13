@@ -30,7 +30,7 @@ const UserPage = ({
 
   useEffect(() => {
     loadingVerticals();
-  }, [loadingVerticals]);
+  }, []);
 
   return (
     <section className="user">
