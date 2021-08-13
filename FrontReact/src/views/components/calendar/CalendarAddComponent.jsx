@@ -3,7 +3,7 @@ import Select from "react-select";
 import socket from '../../../infrastructure/services/api/notifications/socket';
 import validator from 'validator'
 
-export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
+export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) => {
 
     let currentDate = new Date()
     const date = (currentDate.toISOString().split('T', 8))
@@ -104,19 +104,21 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
             sendUpdates: "all"
         }
         AddEvent(eventObject, token)
-        socket.emit("crear-evento",{id:userId.userId,manager:userId.userName})
+        socket.emit("crear-evento", { id: userId.userId, manager: userId.userName })
         clearData()
 
     }
 
     return (
         <div>
-            <button className=" mr-3 btn btn-primary px-4"
-                data-testid={"btn-test-openModalAddEvent"}
-                data-toggle={"modal"}
-                data-target={"#modalAddEvent"}>
-                Agregar Evento <i className="bi bi-plus-square" />
-            </button>
+            <div className="my-4">
+                <button className=" mr-3 btn btn-primary px-4"
+                    data-testid={"btn-test-openModalAddEvent"}
+                    data-toggle={"modal"}
+                    data-target={"#modalAddEvent"}>
+                    Agregar Evento <i className="bi bi-plus-square" />
+                </button>
+            </div>
             <div id={"modalAddEvent"} className={"modal fade"}>
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">

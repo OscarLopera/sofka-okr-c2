@@ -31,7 +31,6 @@ export const CalendarUpdateModal = ({ UpdateEvent, token, item, eventChange, use
         setEndTime(currentEndTime)
     }, [currentDate, currentDescription, currentEndTime, currentStartTime, userEmails])
 
-    console.log(userEmails)
     const listTransform = (list) => {
         if (list) {
             return list.map(item => {
