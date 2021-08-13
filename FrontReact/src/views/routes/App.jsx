@@ -52,7 +52,7 @@ const App = ({ user, gethistory,sendNotification }) => {
     if (user !== null) {
       socket.on(user.userId, (data) => {
         sendNotification(user.userId,{
-          "userEmail": userEmail,
+          "userEmail": user.userEmail,
           "message":data
       })
       Push.create("Nueva notificacion Sofka Okr",{
