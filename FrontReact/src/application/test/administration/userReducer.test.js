@@ -97,4 +97,30 @@ describe("reducer user test functions", () => {
     const state = reducer(initialState, action);
     expect(state).toEqual({...initialState, verticals: [], error:dummyError });
   });
+
+  test("reducer UPDATE_USER_SUCCESS case", () => {
+    const action = actions.updateUserSuccess(dummyUser);
+    const state = reducer(initialState2, action);
+    expect(state).toEqual({ ...initialState2, user: dummyUser, error:null});
+  });
+
+  test("reducer UPDATE_USER_FAILURE case", () => {
+    const action = actions.updateUserFailure(dummyError);
+    const state = reducer(initialState2, action);
+    expect(state).toEqual({...initialState2, error:dummyError });
+  });
+
+  test("reducer LOADING_QUESTIONS_SUCCESS case", () => {
+    const action = actions.loadingQuestionsSuccess(dummyQuestions);
+    const state = reducer(initialState2, action);
+    const optionalQuestions = initialState.questions;
+    optionalQuestions.push(dummyQuestion);
+    expect(state).toEqual({...initialState2, questions: optionalQuestions, error:null });
+  });
+
+  test("reducer LOADING_QUESTIONS_FAILURE case", () => {
+    const action = actions.loadingQuestionsFailure(dummyError);
+    const state = reducer(initialState2, action);
+    expect(state).toEqual({...initialState2, questions: [], error:dummyError });
+  });
 });

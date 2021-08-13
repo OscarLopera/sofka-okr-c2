@@ -12,7 +12,7 @@ import { Modal, Button } from "react-bootstrap";
 import "../../assets/styles/administration/HomePage.scss";
 import GrupoSofka from "../../assets/static/administration/imagenes-sofka.png";
 
-const HomePage = ({ loginUser, logoutUser, closeWelcome, user }) => {
+export const HomePage = ({ loginUser, logoutUser, closeWelcome, user }) => {
   return (
     <section className="login">
       <section className="login__container">

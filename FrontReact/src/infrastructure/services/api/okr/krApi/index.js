@@ -16,7 +16,7 @@ const functions = {
     },
     updateProgressKr: async ({id, krUpdate}) => {
         console.log("MIDDD", id, krUpdate);
-        await axios.patch('https://proyecto-sofka-u.herokuapp.com/api/kr/update/'+id,krUpdate).then((updatedObj) => {
+        await axios.patch('https://back-node-okr-qa.herokuapp.com/api/kr/update/'+id,krUpdate).then((updatedObj) => {
             return updatedObj
         }).catch(error => {
             return error

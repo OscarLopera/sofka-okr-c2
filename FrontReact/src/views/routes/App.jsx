@@ -33,6 +33,7 @@ import CalendarPage from "../pages/calendar/CalendarPage";
 //Administration
 import AdministrationPage from "../pages/administration/AdministrationPage";
 import UserPage from "../pages/administration/UserPage";
+import NotFoundPage from "../pages/administration/NotFoundPage";
 
 
 import "../assets/styles/administration/App.scss";
@@ -93,6 +94,7 @@ const App = ({ user, gethistory, sendNotification, initialstate }) => {
         <PrivateRoute exact path={"/notificaciones"} component={GestionNotificaciones} user={user} />
         <PrivateRoute exact path={"/userPage"} component={UserPage} user={user} />
         <PublicRoute exact path="/" component={HomePage} user={user} />
+        <Route exact path={"*"} component={NotFoundPage} />
       </Switch>
     </Router>
   );
