@@ -19,9 +19,10 @@ const functions = {
             description: okr.description
         }
     },
-    deleteOkr: async (idOkr) => {
-        await axios.delete('' + idOkr).then(() => {
-            return idOkr
+    deleteOkr: async ({id}) => {
+        console.log(id)
+        await axios.delete('https://back-node-okr-qa.herokuapp.com/api/okr/delete/' + id).then((response) => {
+            return response
         }).catch(error => {
             return error
         })

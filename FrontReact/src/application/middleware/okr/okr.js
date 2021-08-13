@@ -13,7 +13,7 @@ import {
   updateOkrsFailure,
   deleteOkrsSuccess,
   deleteOkrsFailure,
-  loadOkrs, getAllOkrUserSuccess, getAllOkrUserFailure
+  loadOkrs, getAllOkrUserSuccess, getAllOkrUserFailure, getAllOkrUser
 } from "../../actions/okr/okr";
 
 const loadOkrFlow =
@@ -91,9 +91,10 @@ const deleteOkrFlow =
           next(action);
           if (action.type === DELETE_OKRS) {
             try {
+              console.log("Middleware")
               const okrs = await api.okr.deleteOkr(action.payload);
               dispatch(deleteOkrsSuccess(okrs));
-              dispatch(loadOkrs());
+              dispatch(getAllOkrUser(action.payload.idUser))
             } catch (error) {
               dispatch(deleteOkrsFailure(error));
             }

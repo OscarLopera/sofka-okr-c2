@@ -2,9 +2,17 @@ import React from 'react';
 import KrCard from './KrCard';
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import ReactTooltip from 'react-tooltip';
+import { deleteOkrs } from '../../../application/actions/okr/okr';
+import { bindActionCreators } from "redux";
+import { connect } from "react-redux";
+import { getUser } from "../../../application/selectors/administration/user";
 
-const OkrCard = ({  okr }) => {
-  
+const OkrCard = ({ user, okr, deleteOkrs }) => {
+
+  const handleDeleteOkr = (event) => {
+    event.preventDefault();
+    deleteOkrs(user.idMongo, okr.okr._id)
+  }
 
   return (
     <div className="d-flex flex-column p-5 my-5 border rounded shadow">
@@ -14,7 +22,7 @@ const OkrCard = ({  okr }) => {
           <ProgressBar variant="success" animated now={okr.okr.currentProgress} label={`${okr.okr.currentProgress}%`} style={{ height: "1.5rem" }} />
         </div>
         <div className="d-flex align-items-center">
-          <div className="fs-2 mx-3" data-tip data-for="delete-okr-tip">❌</div>
+          <div className="fs-2 mx-3 btn" data-tip data-for="delete-okr-tip" onClick={handleDeleteOkr}>❌</div>
 
           <ReactTooltip id="delete-okr-tip" place="top" effect="solid">
             Eliminar OKR
@@ -35,5 +43,16 @@ const OkrCard = ({  okr }) => {
 
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    user: getUser(state),
+  }
+}
 
-export default OkrCard;
+const mapDispatchToProps = (dispatch) => {
+  return bindActionCreators({
+    deleteOkrs,
+  }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(OkrCard);
