@@ -12,6 +12,8 @@ const createKrMock = {
 
 const krId = "6111e919787e790ca0f2fef5";
 
+const userId = "61156c2fa2605b535bfab38c";
+
 const badCreateKrMock = {
   managerName: "perrii",
   managerEmail: "perrii@loqsea.com",
