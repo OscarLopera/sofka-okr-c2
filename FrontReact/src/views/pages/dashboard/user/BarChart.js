@@ -41,7 +41,7 @@ function BarChart({okr}){
       }
       return(
           <div className="BarChart" style={{width: '100%', height:'300px'}}>
-              <h4>AVANCE DE OKR POR SEMANA</h4>
+              <h5>AVANCE DE OKR POR SEMANA</h5>
               <Bar data={data} options={opciones}/>
           </div>
       )
