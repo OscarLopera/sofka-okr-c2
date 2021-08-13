@@ -45,7 +45,7 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails, userId }) =>
     const updateAttendeesList = () => {
         if (externalAttendeesList.includes(externalAttendees)) {
             setExternalAttendees('')
-        } else if (emailError === "") {
+        } else if (emailError === "" && externalAttendees !== "") {
             setExternalAttendeesList(list => [...list, externalAttendees])
             setExternalAttendees("")
         }
