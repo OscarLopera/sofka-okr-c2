@@ -19,6 +19,7 @@ public class Router {
     public RouterFunction<ServerResponse> createUser(Handler handler) {
         return route(POST("/api/usuario/crear").and(accept(MediaType.APPLICATION_JSON)),
                 request -> request.bodyToMono(UsuarioDTO.class)
+
                         .flatMap(usuarioDTO -> handler.createUser(usuarioDTO)
                                 .flatMap(result -> ServerResponse.ok()
                                         .contentType(MediaType.APPLICATION_JSON)
