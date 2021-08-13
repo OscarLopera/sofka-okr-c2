@@ -3,22 +3,17 @@ import '../../assets/styles/notifications/styleGestion.css';
 import OpcionPantallaEmail from '../../components/notifications/OpcionPantallaEmail';
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { changeStatusNotification, getStatusNotification, sendNotification } from '../../../application/actions/notifications';
+import { changeStatusNotification, getStatusNotification } from '../../../application/actions/notifications';
 import { getUser } from '../../../application/selectors/administration/user';
-import Push from 'push.js';
 import socket from '../../../infrastructure/services/api/notifications/socket';
 
-const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate, sendNotification }) => {
+const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate }) => {
 
 
 
     useEffect(() => {
 
         getStatusNotification(stateIdUser.userId)
-        socket.on(stateIdUser.userId, (data) => {
-            console.log(data)
-           
-         })
     }, [getStatusNotification, stateIdUser.userId])
 
 
@@ -27,15 +22,6 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
     
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus, stateIdUser.userId)
-         sendNotification(stateIdUser.userId,{
-             "userEmail": "azeron93@gmail.com",
-             "message":`Hola ${stateIdUser.userName}, has actualizado exitosamente tus preferencias de  `
-         })
-        Push.create("nueva notificacion",{
-            body:"se ha guardado exitosamente la configuracion de notificaciones",
-            icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
-          })
-    
         socket.emit("actualizar-kr",{id:stateIdUser.userId, manager: stateIdUser.userName});
         
     }
@@ -75,7 +61,7 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
 
 const mapDispatchToProps = (dispatch) => {
     return bindActionCreators(
-        { getStatusNotification, changeStatusNotification, sendNotification }, dispatch
+        { getStatusNotification, changeStatusNotification, }, dispatch
 
     );
 };

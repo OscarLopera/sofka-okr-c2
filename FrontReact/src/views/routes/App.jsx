@@ -41,15 +41,25 @@ import GestionNotificaciones from "../pages/notifications/GestionNotificaciones"
 import HistorialNotificaciones from "../pages/notifications/HistorialNotificaciones";
 
 //importacion historial de notificaciones
-import { gethistory } from "../../application/actions/notifications";
+import { gethistory, sendNotification } from "../../application/actions/notifications";
+import Push from 'push.js';
 
 //import moment from "moment";
 
-const App = ({ user, gethistory }) => {
+const App = ({ user, gethistory,sendNotification }) => {
 
   useEffect(() => {
     if (user !== null) {
-      socket.on(user.userId, () => {
+      socket.on(user.userId, (data) => {
+        sendNotification(user.userId,{
+          "userEmail": "azeron93@gmail.com",
+          "message":data
+      })
+      Push.create("Nueva notificacion Sofka Okr",{
+        body:data,
+        icon:"https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
+      })
+        console.log("entro a socket")
         setTimeout(() => {
           gethistory(user.userId)
         }, 500);
@@ -85,7 +95,7 @@ const App = ({ user, gethistory }) => {
 
 const mapDispatchToProps = (dispatch) => {
   return bindActionCreators(
-    { gethistory }, dispatch
+    { gethistory,sendNotification }, dispatch
 
   );
 };
