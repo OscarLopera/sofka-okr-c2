@@ -14,7 +14,6 @@ import Navbar from "../components/administration/Navbar";
 // Importación Páginas
 import { PrivateRoute, PublicRoute } from "./Routes"
 import HomePage from "../pages/administration/HomePage";
-import LoginPage from "../pages/administration/LoginPage";
 
 //Rutas OKR
 import OkrPage from "../pages/okr/OkrPage";
@@ -99,7 +98,6 @@ const App = ({ user, gethistory, sendNotification, initialstate }) => {
         <PrivateRoute exact path={"/calendar"} component={CalendarPage} user={user} />
         <PrivateRoute exact path={"/administration"} component={AdministrationPage} user={user} />
         <PrivateRoute exact path={"/historialnotificaciones"} component={HistorialNotificaciones} user={user} />
-        <Route exact path={"/login"} component={LoginPage} />
         <PrivateRoute exact path={"/notificaciones"} component={GestionNotificaciones} user={user} />
         <PrivateRoute exact path={"/userPage"} component={UserPage} user={user} />
         <PublicRoute exact path="/" component={HomePage} user={user} />
