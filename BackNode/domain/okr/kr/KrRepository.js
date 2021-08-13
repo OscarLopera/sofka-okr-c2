@@ -5,6 +5,11 @@ class KrRepository {
   deleteKr(KrId) {
     throw new Error("Error metodo deleteKr no implemenado");
   }
+
+  deleteKrsByIdOkr(idOkr) {
+    throw new Error("Error metodo deleteKr no implemenado");
+  }
+
   getAllKr() {
     throw new Error("Error metodo getAllKr no implemenado");
   }
