@@ -81,7 +81,7 @@ describe("Routes Kr API test", () => {
         expect(''+response.error).toBe("Error: cannot PATCH /api/kr/update/heynoexisto (402)")
         expect(response.statusCode).toBe(402)
     })
-
+  
     it("Delete Kr Delete Path Happy",async ()=>{
         
         const idkr = id

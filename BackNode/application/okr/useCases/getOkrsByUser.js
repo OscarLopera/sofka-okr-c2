@@ -6,7 +6,6 @@ const getOkrsByUserUseCase = async (userId, okrRepository, krRepository) => {
       return { okr, krs };
     })
   );
-  console.log(okrsWKrs);
   return okrsWKrs || [];
 };
 module.exports = getOkrsByUserUseCase;

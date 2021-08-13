@@ -32,7 +32,8 @@ describe('get-okrs-by-user-test', () => {
         //assert
         expect(okrRepository.getAllOkr).toHaveBeenCalled();
         expect(krRepository.getAllKrs).toHaveBeenCalled();
-
-        expect(userOkrWKrs[0]).toBe(okrFull);
+        expect(userOkrWKrs).toStrictEqual(okrFull);
     })
+
+
 })

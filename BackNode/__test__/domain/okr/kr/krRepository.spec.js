@@ -20,7 +20,7 @@ describe("repository methods (not implemented) Kr", () => {
   });
   it("getAll kr", () => {
     try {
-        krRepository.getAllKr()
+        krRepository.getAllKrs()
     } catch (e) {
       expect(e).toEqual(new Error("Error metodo getAllKr no implemenado"));
     }

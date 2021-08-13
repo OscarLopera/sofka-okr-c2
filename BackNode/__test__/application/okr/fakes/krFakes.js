@@ -50,4 +50,4 @@ const krList = [
 ];
 const OkrProgress = 75;
 
-module.exports = { createKrMock, krId, badCreateKrMock, krList, OkrProgress };
+module.exports = { createKrMock, krId, badCreateKrMock, krList, OkrProgress, userId };
