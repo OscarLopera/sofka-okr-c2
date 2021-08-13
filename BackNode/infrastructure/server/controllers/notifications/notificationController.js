@@ -1,4 +1,4 @@
-const { addMessage, addNotification} = require('../../../../application/notifications/index')
+const { addMessage, addNotification, getNotificationUser} = require('../../../../application/notifications/index')
 const emailer = require('../../../utils/nodemailerConfig/mailTransport');
 const mongoNotificationRepository = require ('../../../repositories/notifications/mongoNotificationRepository')
 
@@ -25,4 +25,5 @@ async function newMessageController(req,res){
         res.status(500).send(error);
     }
 }
+
 module.exports ={createNotification, newMessageController}
