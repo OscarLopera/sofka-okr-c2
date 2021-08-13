@@ -3,7 +3,7 @@ import {EventItemComponent} from "../../components/calendar/EventItemComponent"
 import {eventsDummy} from "./CalendarComponent.test";
 import '@testing-library/jest-dom'
 
-const dummyItem = {
+export const dummyItem = {
     kind: 'calendar#event',
     etag: '"3257494568730000"',
     id: 'ululbsrf6lshff5iaeq90vlta',

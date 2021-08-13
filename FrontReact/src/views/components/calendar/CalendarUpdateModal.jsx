@@ -125,6 +125,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
               <form onSubmit={updateEvent}>
                 <label>Dia del Evento</label>
                 <input
+                  data-testId={"input-test-start-date"}
                   type={'date'}
                   min={date}
                   required={true}
@@ -135,6 +136,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <hr className="my-4"/>
                 <label className="col">Hora Inicial</label>
                 <input
+                  data-testId={"input-test-start-time"}
                   placeholder="Selected time"
                   type={'time'}
                   id={'input_starttime'}
@@ -146,6 +148,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <label className="col">Hora Final</label>
                 <div className="w-100" />
                 <input
+                  data-testId={"input-test-end-time"}
                   placeholder="Selected time"
                   type={'time'}
                   id={'input_endttime'}
@@ -157,6 +160,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <hr className="my-4" />
                 <label>Descripcion</label>
                 <input
+                  data-testId={"input-test-description"}
                   type={'text'}
                   value={description}
                   minLength={10}
@@ -174,6 +178,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                 <hr className="my-4" />
                 <label>Invitados Externos</label>
                 <input
+                  data-testId={"input-test-guest-email"}
                   type="email"
                   className="form-control"
                   placeholder="email"
@@ -204,6 +209,7 @@ const CalendarUpdateModal = ({ UpdateEvent, token, item,eventChange,userEmails }
                   )
                 })}
                 <button
+                  data-testId={"button-test-update-event"}
                   type="button"
                   className="btn btn-secondary"
                   data-dismiss="modal"
