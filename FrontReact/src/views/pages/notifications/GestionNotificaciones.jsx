@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { changeStatusNotification, getStatusNotification } from '../../../application/actions/notifications';
 import { getUser } from '../../../application/selectors/administration/user';
-import socket from '../../../infrastructure/services/api/notifications/socket';
+import Push from 'push.js';
 
 const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification, stateIdUser, initialstate }) => {
 
@@ -22,7 +22,10 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
     
     const comprobar = () => {
         changeStatusNotification(initialstate.notificationstatus, stateIdUser.userId)
-        socket.emit("actualizar-kr",{id:stateIdUser.userId, manager: stateIdUser.userName});
+        Push.create("Nueva notificacion Sofka Okr", {
+            body: "se ha actualizado correctamente tus preferencias de notificaciones",
+            icon: "https://zenprospect-production.s3.amazonaws.com/uploads/pictures/5f5d5c992c13fc0001494f2d/picture"
+          })
         
     }
 
@@ -41,11 +44,13 @@ const GestionNotificaciones = ({ getStatusNotification, changeStatusNotification
                     <p className="me-2 text-center">Pantalla🖥️</p>
 
                 </div>
-                {initialstate.notificationstatus.length &&
+                {initialstate.notificationstatus !== null &&
+                <>{initialstate.notificationstatus.length &&
                     initialstate.notificationstatus.map(noti => {
                         return <OpcionPantallaEmail props={noti} key={noti[0]} />
                     })
-                }
+                }</>
+            }
 
             </div>
             <div className="text-center">

@@ -8,7 +8,7 @@ import {
     DeleteEventFailure,
     DeleteEventSuccess,
     UpdateEventFailure,
-    UpdateEventSuccess
+    UpdateEventSuccess, GetEmailUsersSuccess, GetEmailUsersFailure
 } from "../../actions/calendar/calendarActions";
 
 const addEventFlow = ({api}) => ({dispatch}) => next => async (action) => {
@@ -62,11 +62,24 @@ const deleteEventFlow = ({api}) => ({dispatch}) => next => async (action) => {
     }
 }
 
+const getEmailUsersFlow = ({api}) => ({dispatch}) => next => async (action) => {
+    next(action)
+    if (action.type === CalendarTypes.GET_EMAIL_USERS) {
+        try {
+            const list = await api.calendar.getEmailUser()
+            dispatch(GetEmailUsersSuccess(list))
+        } catch (error) {
+            dispatch(GetEmailUsersFailure(error.message))
+        }
+    }
+}
+
 const calendarMiddleware = [
     addEventFlow,
     listEventFlow,
     deleteEventFlow,
-    updateEventFlow
+    updateEventFlow,
+    getEmailUsersFlow
 ]
 
 export default calendarMiddleware

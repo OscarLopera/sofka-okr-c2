@@ -1,6 +1,6 @@
 
 const initialState = {
-    notificationstatus: {},
+    notificationstatus: JSON.parse(localStorage.getItem('notifymanager')),
     historynotify: JSON.parse(localStorage.getItem('historynotify'))
 };
 

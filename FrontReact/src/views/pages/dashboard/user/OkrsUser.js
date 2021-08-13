@@ -32,10 +32,10 @@ return (
               <thead>
                 <tr className="table"style={{
                 backgroundColor:"#050531", color:"#ffffff"}}>
-                  <th style={{padding:"10px"}}scope="col">Titulo</th>
-                  <th style={{padding:"10px"}}scope="col">Descripcion</th>
-                  <th style={{padding:"10px"}} scope="col">objetivo</th>
-                  <th style={{padding:"10px"}}scope="col">Progreso</th>
+                  <th style={{padding:"10px"}}scope="col"><center>Título</center></th>
+                  <th style={{padding:"10px"}}scope="col"><center>Descripción</center></th>
+                  <th style={{padding:"10px"}} scope="col"><center>Objetivo</center></th>
+                  <th style={{padding:"10px"}}scope="col"><center>Progreso</center></th>
                 </tr>
                 <br/>
               </thead>
@@ -45,16 +45,16 @@ return (
                   <td>{description}</td>
                   <td>{objective}</td>
                    <td>
+                      <center>
                       <div style={{ width: "50%" }}>
                         <CircularProgressbar
                           value={okr?.currentProgress || 0}
                           text={`${okr?.currentProgress}%`}
                         />
                       </div>
+                      </center>
                     </td>
-                   
-                  
-                </tr>
+                  </tr>
                 <br/>
                 <br/>
               </tbody>
@@ -63,12 +63,12 @@ return (
               <thead>
                 <tr style={{
                 backgroundColor:"#050531", color:"#ffffff"}}>
-                  <th scope="col">Titulo</th>
-                  <th scope="col">Descripcion KR</th>
-                  <th scope="col">Fecha  Inicio</th>
-                  <th scope="col">Fecha Final</th>
-                  <th scope="col">PesoOKR</th>
-                  <th scope="col">Progreso</th>
+                  <th scope="col"><center>Título</center></th>
+                  <th scope="col"><center>Descripción de KR</center></th>
+                  <th scope="col"><center>Fecha inicio</center></th>
+                  <th scope="col"><center>Fecha fin</center></th>
+                  <th scope="col" width="120px"><center>Valor en OKR</center></th>
+                  <th scope="col"><center>Progreso</center></th>
                 </tr>
               </thead>
               <tbody>
@@ -93,12 +93,14 @@ return (
                     </td>
                   
                       <td>
-                        <div style={{ width: "70px", marginLeft:"50px"}}>
+                      <center>
+                        <div style={{ width: "70px", marginLeft:"30px"}}>
                           <CircularProgressbar
                             value={kr.progress}
                             text={`${kr.progress}%`}
                           />
                         </div>
+                        </center>
                       </td>
                     
                   </tr>

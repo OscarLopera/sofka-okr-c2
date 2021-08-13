@@ -8,7 +8,6 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
     if(action.type === types.LOGIN_USER){
         try{
             const resultAuth = await firebase.user.authUserWithGoogle();
-            
             const userToken = resultAuth.credential.accessToken;
             const userId = await firebase.user.getUser().userId;
             const userEmail = await firebase.user.getUser().userEmail;

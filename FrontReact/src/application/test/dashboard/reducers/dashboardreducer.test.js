@@ -400,6 +400,10 @@ describe("Test of Reducer get All Okrs", () => {
     }
 
   ]
+ 
+ 
+
+
   const initialState = {
     OKRsAll: [],
     OKR: null,
@@ -437,4 +441,6 @@ describe("Test of Reducer get All Okrs", () => {
       const state = reducer(initialState, "");
       expect(state).toEqual({ ...initialState })
   })
+
+ 
 })
