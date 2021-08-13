@@ -26,7 +26,7 @@ const OkrCard = ({  okr }) => {
           {okr.krs.map(elem => {
             return (
               <li key={elem._id}>
-                <KrCard title={elem.title} progress={elem.progress} />
+                <KrCard id={elem._id} title={elem.title} progress={elem.progress} />
               </li>)
           })}
         </ul>

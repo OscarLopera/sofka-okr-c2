@@ -13,6 +13,15 @@ const functions = {
         }).catch(error => {
             return error
         })
+    },
+    updateProgressKr: async ({id, krUpdate}) => {
+        console.log("MIDDD", id, krUpdate);
+        await axios.patch('https://proyecto-sofka-u.herokuapp.com/api/kr/update/'+id,krUpdate).then((updatedObj) => {
+            console.log(updatedObj);
+            return updatedObj
+        }).catch(error => {
+            return error
+        })
     }
 }
 

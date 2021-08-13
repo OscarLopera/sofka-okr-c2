@@ -114,7 +114,6 @@ const KrForm = ({ createKr, close }) => {
               required="required"
               minLength="5"
               maxLength="50"
-
               onChange={(event) => setLoadValue(event.target.valueAsNumber)}
               placeholder="Valor porcentual del KR"
             />
@@ -155,7 +154,8 @@ const KrForm = ({ createKr, close }) => {
             <div className="d-flex py-3">
               <Button
                 type="button"
-                className="sofka-color-btn py-2 px-4 fs-6 m-auto" onClick={handleSubmitCreateKr}
+                className="sofka-color-btn py-2 px-4 fs-6 m-auto"
+                onClick={handleSubmitCreateKr}
               >
                 Agregar KR
               </Button>

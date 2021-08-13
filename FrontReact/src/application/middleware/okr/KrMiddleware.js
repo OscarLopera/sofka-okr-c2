@@ -5,6 +5,7 @@ import {
   deleteKrError,
   updateProgressKrSuccess,
 } from "../../actions/okr/KrAction";
+import {getAllOkrUser} from "../../actions/okr/okr";
 import { CREATE_KR, DELETE_KR, UPDATE_PROGRESS_KR } from "../../types/okr/KrTypes";
 
 const createKrFlow =
@@ -46,6 +47,7 @@ const updateProgressKrFlow = ({api}) => ({dispatch}) => (next) => async (action)
     try {
       const kr = await api.kr.updateProgressKr(action.payload)
       dispatch(updateProgressKrSuccess(kr))
+      dispatch(getAllOkrUser(action.payload.idUser))
     } catch (error) {
       dispatch(deleteKrError(error))
     }
