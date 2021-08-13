@@ -33,7 +33,6 @@ const KrForm = ({ createKr, close }) => {
 
   return (
     <>
-
       <div className="form-floating p-5 pt-0 pb-1">
         <Form>
           <FormGroup className="formgroup">

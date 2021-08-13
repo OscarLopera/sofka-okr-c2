@@ -1,5 +1,5 @@
 import middlewareKr from '../../middleware/okr/KrMiddleware';
-import { createKr, createKrSuccess, createKrError, deleteKr, deleteKrSuccess, deleteKrError } from '../../actions/okr/KrAction';
+import { createKr, createKrSuccess, createKrError, deleteKr, deleteKrSuccess, deleteKrError,updateProgressKr,updateProgressKrError,updateProgressKrSuccess } from '../../actions/okr/KrAction';
 
 
 const dummyKr = {
@@ -12,12 +12,13 @@ const dummyKr = {
     loadValue: 20,
     managerName: "David Perez",
     managerEmail: "david@correo.com",
+    progress: 5
 }
 
 const dispatch = jest.fn();
 const next = jest.fn();
 
-const [createKrFlow, deleteKrFlow] = middlewareKr;
+const [createKrFlow, deleteKrFlow, updateProgressKrFlow] = middlewareKr;
 
 describe('middleware KR test functions', () => {
 
@@ -74,6 +75,34 @@ describe('middleware KR test functions', () => {
         const action = deleteKr();
         await deleteKrFlow({ api })({ dispatch })(next)(action);
         expect(dispatch).toHaveBeenCalledWith(deleteKrError("Error al eliminar KR"));
+        expect(next).toHaveBeenCalledWith(action);
+    })
+
+    test('update progress KR flow test', async () => {
+        const api = {
+            kr: {
+                updateProgressKr: () => {
+                    return dummyKr;
+                }
+            }
+        }
+        const action = updateProgressKr(dummyKr);
+        await updateProgressKrFlow({ api })({ dispatch })(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(updateProgressKrSuccess(dummyKr));
+        expect(next).toHaveBeenCalledWith(action);
+    })
+
+    test('update progress KR flow error test', async () => {
+        const api = {
+            kr: {
+                updateProgressKr: () => {
+                    throw new Error("Error al actualizar progreso en KR");
+                }
+            }
+        }
+        const action = updateProgressKr(dummyKr);
+        await updateProgressKrFlow({ api })({ dispatch })(next)(action);
+        expect(dispatch).toHaveBeenCalledWith(updateProgressKrError("Error al actualizar progreso en KR"));
         expect(next).toHaveBeenCalledWith(action);
     })
 })
