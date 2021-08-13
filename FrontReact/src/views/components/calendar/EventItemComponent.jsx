@@ -1,9 +1,11 @@
 import React from 'react'
+import socket from '../../../infrastructure/services/api/notifications/socket'
 import CalendarUpdateModal from './CalendarUpdateModal'
 
-export const EventItemComponent = ({events, DeleteEvent, UpdateEvent, token, email}) => {
+export const EventItemComponent = ({events, DeleteEvent, UpdateEvent, token, email,userId}) => {
     const deleteEvent = (id) => {
         DeleteEvent(id, token)
+        socket.emit("eliminar-evento",{id:userId.userId,manager:userId.userName})
     }
 
     return (
@@ -23,7 +25,7 @@ export const EventItemComponent = ({events, DeleteEvent, UpdateEvent, token, ema
                         <td>{item.start.dateTime.substring(11, 16)}</td>
                         <td>
                             {item.organizer.email === email ? <>
-                                <CalendarUpdateModal item={item} token={token} UpdateEvent={UpdateEvent}/>
+                                <CalendarUpdateModal item={item} token={token} UpdateEvent={UpdateEvent} />
                                 <button
                                     data-testid={"btn-test-deleteEvent-" + item.id}
                                     className="btn btn-danger mx-2"

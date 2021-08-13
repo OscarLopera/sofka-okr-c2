@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import Select from "react-select";
+import socket from '../../../infrastructure/services/api/notifications/socket';
 
-export const CalendarAddComponent = ({AddEvent, token}) => {
+export const CalendarAddComponent = ({AddEvent, token,userId}) => {
 
     let currentDate = new Date()
     const date = (currentDate.toISOString().split('T', 8))
@@ -86,6 +87,7 @@ export const CalendarAddComponent = ({AddEvent, token}) => {
         setStartTime(time)
         setEndTime("")
         AddEvent(eventObject, token)
+        socket.emit("crear-evento",{id:userId.userId,manager:userId.userName})
         clearData()
     }
 

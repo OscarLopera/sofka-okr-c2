@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react'
 import Select from "react-select";
+import socket from '../../../infrastructure/services/api/notifications/socket';
 
 const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
     let date = new Date().toLocaleDateString().split('/');
@@ -43,6 +44,7 @@ const CalendarUpdateModal = ({UpdateEvent, token, item}) => {
             sendUpdates: "all"
         }
         UpdateEvent(eventObject, token)
+        socket.emit("")
 
     }
 

@@ -20,11 +20,11 @@ export const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent,UpdateEv
             <div className="row">
                 <div className="col-md-12">
                     <h1>Eventos</h1>
-                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken}  />
+                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken} userId={user} />
                 </div>
             </div>
             <div className={"row"}>
-                <TableEventComponent events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail}/>
+                <TableEventComponent events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail} userId={user}/>
             </div>
             <br/><br/>
             <CalendarComponent events={events}/>
