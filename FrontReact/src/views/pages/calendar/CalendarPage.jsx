@@ -28,12 +28,11 @@ export const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent, UpdateE
             <div className="row">
                 <div className="col-md-12">
                     <h1>Eventos</h1>
-                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken} userEmails={emails}/>
+                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken} userId={user} userEmails={emails}/>
                 </div>
             </div>
             <div className={"row"}>
-                <TableEventComponent events={events} DeleteEvent={DeleteEvent} token={user.userToken}
-                                     UpdateEvent={UpdateEvent} email={user.userEmail} userEmails={emails}/>
+                <TableEventComponent events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail} userId={user}/>
             </div>
             <br/><br/>
             <CalendarComponent events={events}/>

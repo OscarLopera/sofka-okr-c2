@@ -4,7 +4,7 @@ import { loadingQuestions } from "../../../application/actions/administration/us
 import { connect } from "react-redux";
 import { getQuestions } from "../../../application/selectors/administration/user";
 
-const AdministrationPage = ({ loadingQuestions, questions }) => {
+export const AdministrationPage = ({ loadingQuestions, questions }) => {
   useEffect(() => {
     loadingQuestions();
   }, []);
@@ -21,7 +21,7 @@ const AdministrationPage = ({ loadingQuestions, questions }) => {
         {questions != null &&
           questions.map((question, index) => {
             return (
-              <div className="accordion-item">
+              <div className="accordion-item" key={index}>
                 <h2 className="accordion-header" id={"heading" + index}>
                   <button
                     className="accordion-button"

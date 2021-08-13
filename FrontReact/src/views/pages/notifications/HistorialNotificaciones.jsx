@@ -9,7 +9,7 @@ const HistorialNotificaciones= ({gethistory,stateIdUser,initialstate})=> {
 
     useEffect(() => {
         gethistory(stateIdUser.userId)
-    }, [gethistory])
+    }, [gethistory,stateIdUser.userId])
     
     return (
         <div>

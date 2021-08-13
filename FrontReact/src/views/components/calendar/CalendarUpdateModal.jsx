@@ -1,5 +1,6 @@
 import React, {Fragment, useState, useEffect} from 'react'
 import Select from "react-select";
+import socket from '../../../infrastructure/services/api/notifications/socket';
 import validator from 'validator'
 
 export const CalendarUpdateModal = ({UpdateEvent, token, item, eventChange, userEmails}) => {
@@ -108,6 +109,7 @@ export const CalendarUpdateModal = ({UpdateEvent, token, item, eventChange, user
             sendUpdates: 'all',
         }
         UpdateEvent(eventObject, token)
+       socket.emit("")
     }
 
 

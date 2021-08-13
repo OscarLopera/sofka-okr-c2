@@ -1,6 +1,5 @@
 import "../../assets/styles/administration/App.scss";
-import { CircularProgressbar } from "react-circular-progressbar";
-import React, { useEffect, useState } from "react";
+import React, {useState,useEffect} from "react";
 //Redux
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
@@ -43,7 +42,7 @@ const DashboardPage = ({ getAllOkr, getAllOkrs, closeWelcome, okrs, user }) => {
             {/* Modal de Bienvenida al usuario */}
             <Modal active={active} closeWelcome={closeWelcome}>
               <div>
-                <img src={LogoSofka} alt="logo" />
+                <img src="https://www.sofka.com.co/wp-content/uploads/2020/08/sofka-logo-gradient-white.png" alt="logo" />
                 <span>
                   <h1 className="text-white">¡Bienvenid@ {user.userName} !</h1>
                 </span>

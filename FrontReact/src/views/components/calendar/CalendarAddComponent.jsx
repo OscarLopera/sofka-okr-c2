@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from 'react';
 import Select from "react-select";
+import socket from '../../../infrastructure/services/api/notifications/socket';
 import validator from 'validator'
 
-export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
+export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
 
     let currentDate = new Date()
     const date = (currentDate.toISOString().split('T', 8))
@@ -103,6 +104,7 @@ export const CalendarAddComponent = ({AddEvent, token, userEmails}) => {
             sendUpdates: "all"
         }
         AddEvent(eventObject, token)
+        socket.emit("crear-evento",{id:userId.userId,manager:userId.userName})
         clearData()
 
     }
