@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Renders correctly 1`] = `
+<div
+  className="PieChart"
+  style={
+    Object {
+      "margin": "50px",
+      "width": "50%",
+    }
+  }
+>
+  <canvas
+    data-testid="canvas"
+    height={150}
+    onClick={[Function]}
+    role="img"
+    width={300}
+  />
+</div>
+`;

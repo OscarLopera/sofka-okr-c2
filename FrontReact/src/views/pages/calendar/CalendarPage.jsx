@@ -21,7 +21,6 @@ export const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent, UpdateE
     useEffect(() => {
         ListEvents(user.userToken)
         GetEmailUsers()
-        token()
     }, [GetEmailUsers, ListEvents, user.userToken])
 
     return (
@@ -29,12 +28,11 @@ export const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent, UpdateE
             <div className="row">
                 <div className="col-md-12">
                     <h1>Eventos</h1>
-                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken} userEmails={emails}/>
+                    <CalendarAddComponent AddEvent={AddEvent} token={user.userToken} userId={user} userEmails={emails}/>
                 </div>
             </div>
             <div className={"row"}>
-                <TableEventComponent events={events} DeleteEvent={DeleteEvent} token={user.userToken}
-                                     UpdateEvent={UpdateEvent} email={user.userEmail} userEmails={emails}/>
+                <TableEventComponent events={events} DeleteEvent={DeleteEvent} token={user.userToken} UpdateEvent={UpdateEvent} email={user.userEmail} userId={user}/>
             </div>
             <br/><br/>
             <CalendarComponent events={events}/>
@@ -42,25 +40,6 @@ export const CalendarPage = ({events, AddEvent, ListEvents, DeleteEvent, UpdateE
     )
 }
 
-export const token = () => {
-    const auth = firebase.auth();
-    auth.onAuthStateChanged((user) => {
-        let sessionTimeout = null;
-        if (user === null) {
-            // User is logged out.
-            // Clear the session timeout.
-            sessionTimeout && clearTimeout(sessionTimeout);
-            sessionTimeout = null;
-        } else {
-            user.getIdTokenResult().then((idTokenResult) => {
-                const authTime = idTokenResult.claims.auth_time * 1000;
-                const sessionDuration = 1000 * 60 * 60 * 24 * 30;
-                const millisecondsUntilExpiration = sessionDuration - (Date.now() - authTime);
-                setTimeout(() => auth.signOut(), millisecondsUntilExpiration);
-            });
-        }
-    })
-}
 
 const mapStateToProps = (state) => {
     return {

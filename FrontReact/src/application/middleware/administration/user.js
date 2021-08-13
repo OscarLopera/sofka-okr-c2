@@ -14,9 +14,11 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
             const userName = await firebase.user.getUser().userName;
             const userPhone = await firebase.user.getUser().userPhone || "0000000";
             const userImage = await firebase.user.getUser().userImage;
-
+            
             const user = await api.user.validateUser(userId);
+      
             let vertical = {verticalname: user.verticalId};
+            let idMongo = user.idMongo;
             
             if(user.firstTime){
                 const userFirebase = {
@@ -29,7 +31,8 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                     verticalId:"verticalId",
                     rol: "rol"
                 }
-                await api.user.createUser(userFirebase);
+                const userApi = await api.user.createUser(userFirebase);
+                idMongo = userApi.id;
                 await api.notifications.createHistoryNotification({idUser:userId,emailUser:userEmail})
                 await api.notifications.createNotificationsManager({userId:userId})
 
@@ -47,7 +50,8 @@ const loginUserFlow = ({firebase, api}) => ({dispatch}) => next => async (action
                 firstTime: user.firstTime, 
                 userVertical: vertical.verticalname, 
                 userToken: userToken,
-                userRol: "super usuario"
+                userRol: "super usuario",
+                idMongo: idMongo
             }
             localStorage.setItem("user", JSON.stringify(userDataBase))
             dispatch(actions.loginUserSuccess(userDataBase));
@@ -121,7 +125,8 @@ const updateUserFlow = ({api}) => ({dispatch}) => next => async (action) => {
                 firstTime: false, 
                 userVertical: vertical.verticalname, 
                 userToken: user.userToken,
-                userRol: "super usuario"
+                userRol: "super usuario",
+                idMongo: user.idMongo
             }
             localStorage.setItem("user", JSON.stringify(userToState))
             dispatch(actions.updateUserSuccess(userToState));

@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import Select from "react-select";
+import socket from '../../../infrastructure/services/api/notifications/socket';
 import validator from 'validator'
 
-export const CalendarAddComponent = ({ AddEvent, token, userEmails }) => {
+export const CalendarAddComponent = ({AddEvent, token, userEmails,userId}) => {
 
     let currentDate = new Date()
     const date = (currentDate.toISOString().split('T', 8))
@@ -42,11 +43,11 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails }) => {
     }
 
     const updateAttendeesList = () => {
-        if (emailError === "") {
+        if (externalAttendeesList.includes(externalAttendees)) {
+            setExternalAttendees('')
+        } else if (emailError === "") {
             setExternalAttendeesList(list => [...list, externalAttendees])
             setExternalAttendees("")
-        } else {
-            return null;
         }
     }
 
@@ -68,6 +69,7 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails }) => {
         setStartTime(time)
         setEndTime(time)
         setExternalAttendees("")
+        setExternalAttendeesList([])
     }
 
     const addEvent = () => {
@@ -102,6 +104,7 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails }) => {
             sendUpdates: "all"
         }
         AddEvent(eventObject, token)
+        socket.emit("crear-evento",{id:userId.userId,manager:userId.userName})
         clearData()
 
     }
@@ -184,6 +187,7 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails }) => {
                                 {externalAttendeesList.map((item, index) => {
                                     return <label key={index} className="border border-dark rounded bg-light my-3 ms-1">
                                         {item}<a
+                                            data-testid={"btn-delete-external-" + item}
                                             onClick={event => deleteExternalAttendees(item)}
                                             className="mx-1" ><i class="bi bi-x-circle-fill"></i></a>
                                     </label>
@@ -199,7 +203,7 @@ export const CalendarAddComponent = ({ AddEvent, token, userEmails }) => {
                                         placeholder="Agregar correos externos"
                                         value={externalAttendees}
                                         onChange={event => validateEmail(event.target.value)} />
-                                    <button className={"btn btn-primary"}
+                                    <button data-testid={"btn-test-external-update"} className={"btn btn-primary"}
                                         type={"button"}
                                         onClick={updateAttendeesList}>Agregar Correo
                                     </button>
