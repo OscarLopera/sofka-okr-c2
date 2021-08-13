@@ -13,13 +13,9 @@ const OkrCard = ({  okr }) => {
           <h3 className="fw-bold text-uppercase text-wrap">{okr.okr.title}</h3>
           <ProgressBar variant="success" animated now={okr.okr.currentProgress} label={`${okr.okr.currentProgress}%`} style={{ height: "1.5rem" }} />
         </div>
-        <div className="d-flex">
-          <div className="fs-2 mx-3" data-tip data-for="edit-okr-tip">✏️</div>
+        <div className="d-flex align-items-center">
           <div className="fs-2 mx-3" data-tip data-for="delete-okr-tip">❌</div>
 
-          <ReactTooltip id="edit-okr-tip" place="top" effect="solid">
-            Editar OKR
-          </ReactTooltip>
           <ReactTooltip id="delete-okr-tip" place="top" effect="solid">
             Eliminar OKR
           </ReactTooltip>
