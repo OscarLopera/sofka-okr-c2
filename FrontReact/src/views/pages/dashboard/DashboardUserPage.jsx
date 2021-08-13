@@ -1,5 +1,6 @@
 import React, { useEffect, useState, Fragment } from "react";
 import {Link} from "react-router-dom";
+import { getUser } from "../../../application/selectors/administration/user";
 
 //Redux
 import { connect } from "react-redux";
@@ -29,16 +30,17 @@ const DashboardUserPage = ({
   okrs,
   loadingOKRid,
   okr,
+  user,
 }) => {
   const [idokr, setidokr] = useState("");
   //Por el momento quemo el id del usuario hasta que tenga el servicio de getUser ofrecido por admin
-  const idUser = "61157aaca2605b535bfab3ab";
-  const idlast = "61157aaca2605b535bfab3ab";
+  // const idUser = "61164bfad5c39f3f2cade723";
+  // const idlast = "61164bfad5c39f3f2cade723";
   //const idUser = "611461004b98615d2dc035f2";
   //const idlast = "611461004b98615d2dc035f2";
   useEffect(() => {
-    loadingOKR(idUser);
-    getidOkrLast(idlast);
+    loadingOKR(user.idMongo);
+    getidOkrLast(user.idMongo);
   }, [loadingOKR]);
 
   const handlerokrid = () => {
@@ -48,6 +50,7 @@ const DashboardUserPage = ({
   return (
     <div>
       <div className="row">
+        <h1>{okrs.title}hola</h1>
         <center>
           <div className="col-2"></div>
           <div className="col-8">
@@ -130,6 +133,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     okrs: getOkrs(state),
+    user: getUser(state),
     okr: getOkr(state),
   };
 };

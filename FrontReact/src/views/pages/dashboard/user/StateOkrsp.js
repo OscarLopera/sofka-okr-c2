@@ -1,6 +1,7 @@
 import React, {useEffect} from "react";
 import { Link,useHistory } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
+import { getUser } from "../../../../application/selectors/administration/user";
 
 //Redux
 import { connect } from "react-redux";
@@ -11,9 +12,9 @@ import { _getOkrProgress } from "../../../../application/selectors/dashboard/okr
 import { getOkrProgress,getOkrId } from "../../../../application/actions/dashboard/index";
 
 
-function StateOkrsp({getOkrProgress,getOkrId,okrs}) {
+function StateOkrsp({getOkrProgress,getOkrId,okrs, user}) {
 
-    const idUser = "61157aaca2605b535bfab3ab";
+    const idUser = user.idMongo;
     const history = useHistory();
 
     const handleviewokr = id =>{
@@ -91,7 +92,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapStateToProps = (state) => {
   return {
-    okrs: _getOkrProgress(state)
+    okrs: _getOkrProgress(state),
+    user: getUser(state)
   };
 };
 

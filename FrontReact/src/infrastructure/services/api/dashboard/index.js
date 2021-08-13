@@ -8,7 +8,7 @@ const functions = {
         return response.data
     },
     loadingOKRid: async (id) =>{
-        const response = await axios.get('http://back-spring-grupo-5.herokuapp.com/api/getokrbyid/'+id);
+        const response = await axios.get('https://back-spring-grupo-5.herokuapp.com/api/getokrbyid/'+id);
         return response.data
     },
 

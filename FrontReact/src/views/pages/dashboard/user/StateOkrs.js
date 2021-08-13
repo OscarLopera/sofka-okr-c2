@@ -10,11 +10,12 @@ import { bindActionCreators } from "redux";
 import { _getOkrCompleted} from "../../../../application/selectors/dashboard/okrs";
 //Acciones
 import { getOkrCompleted,getOkrId} from "../../../../application/actions/dashboard/index";
+import { getUser } from "../../../../application/selectors/administration/user";
 
 
-function StateOkrs({getOkrCompleted,getOkrId,okrs}) {
+function StateOkrs({getOkrCompleted,getOkrId,okrs, user}) {
 
-    const idUser = "61157aaca2605b535bfab3ab";
+    const idUser = user.idMongo;
     const history = useHistory();
     
     const handleviewokr = id =>{
@@ -92,6 +93,7 @@ const mapDispatchToProps = (dispatch) => {
 const mapStateToProps = (state) => {
   return {
     okrs: _getOkrCompleted(state),
+    user: getUser(state)
   };
 };
 
