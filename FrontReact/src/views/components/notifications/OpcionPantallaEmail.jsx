@@ -19,7 +19,7 @@ export default function OpcionPantallaEmail({props}) {
             <div className="EditProfilePrivacy-text">
                 <strong>
                     <span>{props[0]}</span></strong></div>
-            <label className="switch">
+            <label className="switch pe-1">
                 <input type="checkbox" name="nombre" checked={props[1]} onClick={cambiarestadomail} />
                 <span className="slider round"/>
             </label>

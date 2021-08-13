@@ -1,4 +1,4 @@
-import { CREATE_KR, CREATE_KR_ERROR, CREATE_KR_SUCCESS, DELETE_KR, DELETE_KR_ERROR, DELETE_KR_SUCCESS } from '../../types/okr/KrTypes'
+import { CREATE_KR, CREATE_KR_ERROR, CREATE_KR_SUCCESS, DELETE_KR, DELETE_KR_ERROR, DELETE_KR_SUCCESS, UPDATE_PROGRESS_KR, UPDATE_PROGRESS_KR_SUCCESS, UPDATE_PROGRESS_KR_ERROR } from '../../types/okr/KrTypes'
 
 export const createKr = (kr) => ({
     type: CREATE_KR,
@@ -27,5 +27,20 @@ export const deleteKrSuccess = (id) => ({
 
 export const deleteKrError = (error) => ({
     type: DELETE_KR_ERROR,
+    payload: error
+});
+
+export const updateProgressKr = (id) => ({
+    type: UPDATE_PROGRESS_KR,
+    payload: id
+});
+
+export const updateProgressKrSuccess = (id) => ({
+    type: UPDATE_PROGRESS_KR_SUCCESS,
+    payload: id
+});
+
+export const updateProgressKrError = (error) => ({
+    type: UPDATE_PROGRESS_KR_ERROR,
     payload: error
 });
