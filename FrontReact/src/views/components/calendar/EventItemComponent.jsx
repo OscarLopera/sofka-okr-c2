@@ -11,6 +11,7 @@ export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,u
   let updateModal = (item) => {
       setEvent(item)
   }
+  
   return events.length === 0 ? null : (
     <>
       {(event) ? ( <CalendarUpdateModal
@@ -52,7 +53,7 @@ export const EventItemComponent = ({events,DeleteEvent,UpdateEvent,token,email,u
                   <button
                     className="btn btn-primary mx-2"
                     onClick={() => updateModal(item)}
-                    data-testid={'btn-test'}
+                    data-testid={'btn-test-modal-' + item.id}
                     data-toggle={'modal'}
                     data-target={'#modalUpdateEvent'}
                   >
