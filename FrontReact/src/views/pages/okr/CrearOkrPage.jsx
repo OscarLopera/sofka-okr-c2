@@ -61,7 +61,6 @@ const CrearOkrPage = ({
     }
   };
   const handleChange = (valueName) => {
-    console.log(valueName);
     const manager = users.find((user) => user.name === valueName);
     if(manager){
       setManagerId(manager.id)
